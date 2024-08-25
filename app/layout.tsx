@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Manrope, Montserrat } from "next/font/google";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
+
 const manrope = Manrope({
   subsets: ["latin"],
 });
@@ -71,6 +72,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(manrope.className, montserrat.className)}>
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
