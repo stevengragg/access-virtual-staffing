@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,9 +11,11 @@
   "dependencies": {
     "@relume_io/relume-tailwind": "^0.4.0",
     "@relume_io/relume-ui": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.14",
     "next": "14.2.6",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
