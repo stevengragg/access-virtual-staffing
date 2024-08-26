@@ -28,6 +28,8 @@ const config: Config = {
     },
     backgroundImage: {
       heroHeaderBg: "url(/bg/heroheaderbg.webp)",
+      heroFeatureBg: "url(/bg/herofeaturebg.webp)",
+      ctaFooterBg: "url(/bg/ctafooterbg.webp)",
     },
   },
   presets: [require("@relume_io/relume-tailwind")],

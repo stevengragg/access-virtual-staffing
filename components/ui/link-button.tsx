@@ -14,7 +14,8 @@ const linkButtonVariants = cva(
         primary:
           "bg-primaryBrightAqua text-deepZinc hover:bg-deepBlue hover:text-white",
         secondary: "bg-deepBlue text-neutralLightZinc hover:bg-oceanBlue",
-        // ghost: "hover:bg-accent hover:text-accent-foreground",
+        outline:
+          "border border-deepZinc bg-neutralLightZinc hover:bg-primaryBrightAqua text-deepZinc",
         link: "text-white underline-offset-4 hover:underline bg-transparent border-none",
       },
       size: {

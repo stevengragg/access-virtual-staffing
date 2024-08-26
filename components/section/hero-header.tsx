@@ -1,4 +1,3 @@
-import { Button } from "@relume_io/relume-ui";
 import Image from "next/image";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { ChevronRight } from "lucide-react";

@@ -5,16 +5,12 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navigation";
+import { Footer } from "@/components/layout/footer";
 
 const manrope = Manrope({
   subsets: ["latin"],
 });
 
-// TODO: SEO-related tasks
-// - [x] Meta Data
-// - [x] View Port
-// - [ ] Robot txt
-// - [ ] Sitemap
 export const metadata: Metadata = {
   title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
   description:
@@ -84,6 +80,7 @@ export default function RootLayout({
       <body className={manrope.className}>
         <Navbar />
         {children}
+        <Footer />
         <SpeedInsights />
       </body>
     </html>
