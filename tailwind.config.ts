@@ -14,6 +14,20 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        primaryBlue: "#003479",
+        primaryBrightAqua: "#00C2CB",
+        neutralLightZinc: "#F5F5F5",
+        neutralZinc: "#A1A1AA",
+        deepBlue: "#003B59",
+        deepZinc: "#1F2937",
+        oceanBlue: "#206E95",
+        softGray: "#F2F2F2",
+        orangeStar: "#FFB800",
+      },
+    },
+    backgroundImage: {
+      heroHeaderBg: "url(/bg/heroheaderbg.webp)",
     },
   },
   presets: [require("@relume_io/relume-tailwind")],
