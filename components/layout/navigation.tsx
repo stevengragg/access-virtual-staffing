@@ -14,6 +14,7 @@ import { ImageProps } from "@/types/general";
 type NavLink = {
   url: string;
   title: string;
+  follow?: boolean;
   subMenuLinks?: NavLink[];
 };
 
@@ -171,6 +172,7 @@ const SubMenu = ({
               <Link
                 key={index}
                 href={navLink.url}
+                target={navLink.follow ? "_blank" : ""}
                 className={cn(
                   "block py-3 pl-[5%] text-md lg:px-4 lg:py-2 lg:text-base hover:underline",
                   pathname.startsWith(navLink.url) ||
@@ -199,14 +201,18 @@ export const Navbar1Defaults: Navbar1Props = {
   },
   navLinks: [
     { title: "Home", url: "/" },
-    { title: "About Us", url: "/about" },
+    { title: "About Us", url: "/about-us" },
     { title: "Services", url: "/services" },
     {
       title: "Resources",
       url: "#",
       subMenuLinks: [
-        { title: "Blog", url: "/blog" },
-        { title: "FAQs", url: "/faqs" },
+        {
+          title: "Blog",
+          url: "https://accessvirtualstaffing.blogspot.com",
+          follow: true,
+        },
+        { title: "FAQs", url: "/faq" },
         { title: "Contact Us", url: "/contact-us" },
       ],
     },
@@ -215,7 +221,7 @@ export const Navbar1Defaults: Navbar1Props = {
     {
       navLink: {
         title: "Book a discovery call",
-        url: "#",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "defaultOutline",
@@ -224,7 +230,7 @@ export const Navbar1Defaults: Navbar1Props = {
     {
       navLink: {
         title: "Hire a Virtual Staff",
-        url: "#",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "secondary",

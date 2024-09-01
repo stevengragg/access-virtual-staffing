@@ -1,6 +1,8 @@
 import { Button } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronRight } from "react-icons/rx";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
+import { ChevronRight } from "lucide-react";
 
 type SectionProps = {
   stepNumber: number;
@@ -13,13 +15,14 @@ type Props = {
   heading: string;
   subheading: string;
   sections: SectionProps[];
+  buttons: LinkButtonProps[];
 };
 
 export type Layout242Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HowItWorks = (props: Layout242Props) => {
-  const { heading, tagline, subheading, sections } = {
+  const { heading, tagline, subheading, buttons, sections } = {
     ...props,
     ...Layout242Defaults,
   } as Props;
@@ -51,6 +54,11 @@ export const HowItWorks = (props: Layout242Props) => {
                 <p className="mb-5 md:mb-6 ">{section.description}</p>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="mt-6 flex gap-x-2 md:mt-8">
+          {buttons.map((button, index) => (
+            <LinkButton key={index} {...button} />
           ))}
         </div>
       </div>
@@ -87,6 +95,27 @@ export const Layout242Defaults: Layout242Props = {
       heading: "Integration & Monitoring",
       description:
         "We handle timekeeping, monitor productivity, and manage payroll, providing weekly attendance reports and ensuring accurate, timely compensation for your virtual staff.",
+    },
+  ],
+  buttons: [
+    {
+      navLink: {
+        title: "Get Started",
+        url: "#",
+        follow: false,
+      },
+      variant: "secondary",
+      size: "xl",
+    },
+    {
+      navLink: {
+        title: "Learn more",
+        url: "#",
+        follow: false,
+      },
+      variant: "link2",
+      size: "xl",
+      icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
     },
   ],
 };
