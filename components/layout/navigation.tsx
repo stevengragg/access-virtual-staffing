@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
+import { useMediaQuery } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
 import Image from "next/image";
@@ -10,12 +9,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { usePathname } from "next/navigation";
-
-type ImageProps = {
-  url?: string;
-  src: string;
-  alt?: string;
-};
+import { ImageProps } from "@/types/general";
 
 type NavLink = {
   url: string;
@@ -50,8 +44,8 @@ export const Navbar = (props: Navbar1Props) => {
             <Image
               src={logo.src}
               alt={logo.alt || "AVS Logo 2024"}
-              width={78}
-              height={64}
+              width={logo.width || 0}
+              height={logo.height || 0}
             />
           </a>
           <button
@@ -198,8 +192,10 @@ const SubMenu = ({
 export const Navbar1Defaults: Navbar1Props = {
   logo: {
     url: "/",
-    src: "/avs_logo.webp",
-    alt: "Logo image",
+    src: "/avs_logo_2.webp",
+    alt: "Access Virtual Staffing Logo 2",
+    width: 135.5,
+    height: 67,
   },
   navLinks: [
     { title: "Home", url: "/" },

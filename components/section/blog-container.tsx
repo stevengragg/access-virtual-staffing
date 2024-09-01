@@ -3,13 +3,7 @@ import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronRight } from "react-icons/rx";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import Image from "next/image";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type BlogPost = {
   url: string;

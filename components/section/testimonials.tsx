@@ -1,12 +1,6 @@
+import { ImageProps } from "@/types/general";
 import Image from "next/image";
 import { BiSolidStar } from "react-icons/bi";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
 
 type Testimonial = {
   quote: string;

@@ -1,18 +1,16 @@
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
-import Image, { ImageProps } from "next/image";
 
 type Props = {
   heading: string;
   description: string;
   buttons: LinkButtonProps[];
-  image: ImageProps;
 };
 
 export type Cta25Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const CTAFooter = (props: Cta25Props) => {
-  const { heading, description, buttons, image } = {
+  const { heading, description, buttons } = {
     ...Cta25Defaults,
     ...props,
   } as Props;
@@ -57,10 +55,4 @@ export const Cta25Defaults: Cta25Props = {
       size: "xl",
     },
   ],
-  image: {
-    src: "https://relume-assets.s3.amazonaws.com/placeholder-image.svg",
-    alt: "Placeholder image",
-    width: 1000,
-    height: 1000,
-  },
 };

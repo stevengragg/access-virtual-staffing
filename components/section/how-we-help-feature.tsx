@@ -2,24 +2,16 @@
 
 import { useState } from "react";
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogPortal,
   DialogOverlay,
 } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
 import clsx from "clsx";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import Image from "next/image";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type Props = {
   heading: string;

@@ -7,14 +7,7 @@ import {
 } from "react-icons/bi";
 import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-
-type ImageProps = {
-  url: string;
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type Links = {
   title: string;
