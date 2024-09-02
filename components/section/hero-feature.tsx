@@ -28,7 +28,10 @@ export const HeroFeature = (props: Header37Props) => {
     ...props,
   } as Props;
   return (
-    <section className="grid grid-cols-1 items-center gap-y-16 pt-16 md:pt-24 lg:grid-cols-2 lg:pt-0 bg-primaryBlue">
+    <section
+      id="feature"
+      className="grid grid-cols-1 items-center gap-y-16 pt-16 md:pt-24 lg:grid-cols-2 lg:pt-0 bg-primaryBlue"
+    >
       <div className="order-2 lg:order-1">
         <Image
           src={image.src}

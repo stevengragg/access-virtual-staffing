@@ -15,7 +15,10 @@ export const Brands = (props: Logo3Props) => {
     ...props,
   } as Props;
   return (
-    <section className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBrightAqua">
+    <section
+      id="brands"
+      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBrightAqua"
+    >
       <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
         <h1 className="text-center text-base font-bold leading-[1.2] md:text-md md:leading-[1.2]">
           {heading}

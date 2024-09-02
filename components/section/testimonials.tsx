@@ -26,7 +26,10 @@ export const Testimonials = (props: Testimonial17Props) => {
     ...props,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-softGray">
+    <section
+      id="testimonials"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-softGray"
+    >
       <div className="container-xl">
         <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20 bg-gre">
           <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl">

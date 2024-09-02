@@ -27,7 +27,7 @@ export const HowItWorks = (props: Layout242Props) => {
     ...Layout242Defaults,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="how_it_works" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl flex flex-col items-start">
         <div className="mb-12 w-full max-w-lg md:mb-18 lg:mb-20 space-y-6">
           <p className="text-sm lg:text-base font-normal">{tagline}</p>
