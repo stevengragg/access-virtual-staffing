@@ -9,23 +9,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://accessvirtualstaffing.com",
+      url: "https://accessvirtualstaffing.com/faq",
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 1,
     },
     {
-      url: "https://accessvirtualstaffing.com/about",
+      url: "https://accessvirtualstaffing.com/about-us",
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 1,
+      priority: 0.5,
     },
-
+    {
+      url: "https://accessvirtualstaffing.com/contact-us",
+    },
+    {
+      url: "https://accessvirtualstaffing.com/book-a-meeting",
+    },
+    {
+      url: "https://accessvirtualstaffing.com/start-hiring",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     {
       url: "https://accessvirtualstaffing.com/services",
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 1,
+      priority: 0.8,
     },
   ];
 }
