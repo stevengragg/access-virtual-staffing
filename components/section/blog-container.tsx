@@ -95,11 +95,12 @@ export const BlogContainer = (props: Blog44Props) => {
 };
 
 export const Blog44Defaults: Blog44Props = {
-  heading: "Discover Our Latest Blogs",
-  description: "Stay informed with our insightful blog posts.",
+  heading: "Trends and Insights",
+  description:
+    "Stay informed with our insightful blog posts and helpful links.",
   button: {
     navLink: {
-      title: "View all at Blogger.com",
+      title: "Read more insights",
       url: "https://accessvirtualstaffing.blogspot.com/",
       follow: true,
     },

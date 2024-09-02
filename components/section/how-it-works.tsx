@@ -101,7 +101,7 @@ export const Layout242Defaults: Layout242Props = {
     {
       navLink: {
         title: "Get Started",
-        url: "#",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "secondary",
@@ -110,7 +110,7 @@ export const Layout242Defaults: Layout242Props = {
     {
       navLink: {
         title: "Learn more",
-        url: "#",
+        url: "/services",
         follow: false,
       },
       variant: "link2",

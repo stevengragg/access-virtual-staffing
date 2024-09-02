@@ -107,11 +107,20 @@ export const Header21Defaults: Header21Props = {
   buttons: [
     {
       navLink: {
-        title: "Start Hiring Virtual Staff",
-        url: "#",
+        title: "Discover Our Services",
+        url: "/services",
         follow: false,
       },
       variant: "primary",
+      size: "xl",
+    },
+    {
+      navLink: {
+        title: "Contact Us",
+        url: "/contact-us",
+        follow: false,
+      },
+      variant: "outline",
       size: "xl",
     },
   ],

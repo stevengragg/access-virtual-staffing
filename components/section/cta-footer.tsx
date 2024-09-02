@@ -21,7 +21,7 @@ export const CTAFooter = (props: Cta25Props) => {
           {heading}
         </h2>
         <p className="md:text-md text-white">{description}</p>
-        <div className="mt-6 flex items-center justify-center gap-4 md:mt-8">
+        <div className="mt-6 flex flex-col lg:flex-row items-center justify-center gap-4 md:mt-8">
           {buttons.map((button, index) => (
             <LinkButton key={index} {...button} />
           ))}
@@ -39,7 +39,7 @@ export const Cta25Defaults: Cta25Props = {
     {
       navLink: {
         title: "Discover Our Services",
-        url: "#",
+        url: "/services",
         follow: false,
       },
       variant: "secondary",
@@ -48,7 +48,7 @@ export const Cta25Defaults: Cta25Props = {
     {
       navLink: {
         title: "Contact Us",
-        url: "#",
+        url: "/contact-us",
         follow: false,
       },
       variant: "outline",

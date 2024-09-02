@@ -116,7 +116,7 @@ export const Footer = (props: Footer11Props) => {
 export const Footer11Defaults: Footer11Props = {
   logo: {
     url: "/",
-    src: "/avs_logo.webp",
+    src: "/avs_logo_2.webp",
     alt: "Logo image",
     width: 132,
     height: 64,
@@ -154,10 +154,10 @@ export const Footer11Defaults: Footer11Props = {
     { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
     { url: "#", icon: <BiLogoYoutube className="size-6" /> },
   ],
-  footerText: "© 2024 Relume. All rights reserved.",
+  footerText: "© 2024 Access Virtual Staffing. All rights reserved.",
   footerLinks: [
     { title: "Privacy Policy", url: "#" },
     { title: "Terms of Service", url: "#" },
-    { title: "Cookies Settings", url: "#" },
+    // { title: "Cookies Settings", url: "#" },
   ],
 };

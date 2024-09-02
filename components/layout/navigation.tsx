@@ -94,9 +94,7 @@ export const Navbar = (props: Navbar1Props) => {
                   href={navLink.url}
                   className={cn(
                     "block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:underline",
-                    url.startsWith(navLink.url) || url.includes(navLink.url)
-                      ? "underline"
-                      : ""
+                    url === navLink.url ? "underline" : ""
                   )}
                 >
                   {navLink.title}
@@ -175,10 +173,8 @@ const SubMenu = ({
                 target={navLink.follow ? "_blank" : ""}
                 className={cn(
                   "block py-3 pl-[5%] text-md lg:px-4 lg:py-2 lg:text-base hover:underline",
-                  pathname.startsWith(navLink.url) ||
-                    pathname.includes(navLink.url)
-                    ? "underline"
-                    : ""
+
+                  pathname === navLink.url ? "underline" : ""
                 )}
               >
                 {navLink.title}

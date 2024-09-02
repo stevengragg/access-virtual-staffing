@@ -64,8 +64,8 @@ export const Header37Defaults: Header37Props = {
   buttons: [
     {
       navLink: {
-        title: "Discover Our Services",
-        url: "#",
+        title: "Start Hiring Virtual Staff",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "primary",
@@ -73,13 +73,12 @@ export const Header37Defaults: Header37Props = {
     },
     {
       navLink: {
-        title: "Learn more",
-        url: "#",
+        title: "Contact Us",
+        url: "/contact-us",
         follow: false,
       },
       variant: "outline",
       size: "xl",
-      icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
     },
   ],
   image: {

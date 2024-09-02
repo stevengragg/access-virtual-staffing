@@ -27,12 +27,12 @@ export default function Home() {
       <Testimonials />
       {/* Brands Section */}
       <Brands />
-      {/* Contact CTA Section */}
-      <ContactCTA />
-      {/* Blog Container Section*/}
-      <BlogContainer />
       {/* CTA Footer Section */}
       <CTAFooter />
+      {/* Blog Container Section*/}
+      <BlogContainer />
+      {/* Contact CTA Section */}
+      <ContactCTA />
     </main>
   );
 }
