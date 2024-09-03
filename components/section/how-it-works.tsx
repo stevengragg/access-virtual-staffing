@@ -56,7 +56,7 @@ export const HowItWorks = (props: Layout242Props) => {
             </div>
           ))}
         </div>
-        <div className="mt-6 flex gap-x-2 md:mt-8">
+        <div className="mt-6 flex gap-2 md:mt-8">
           {buttons.map((button, index) => (
             <LinkButton key={index} {...button} />
           ))}

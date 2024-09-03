@@ -12,6 +12,7 @@ import { ImageProps } from "@/types/general";
 type Links = {
   title: string;
   url: string;
+  follow?: boolean;
 };
 
 type SocialMediaLinks = {
@@ -91,7 +92,9 @@ export const Footer = (props: Footer11Props) => {
               <ul key={index}>
                 {column.links.map((link, linkIndex) => (
                   <li key={linkIndex} className="py-2 text-sm font-semibold">
-                    <a href={link.url}>{link.title}</a>
+                    <a href={link.url} target={link.follow ? "_blank" : ""}>
+                      {link.title}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -133,17 +136,21 @@ export const Footer11Defaults: Footer11Props = {
   columnLinks: [
     {
       links: [
-        { title: "About Us", url: "#" },
-        { title: "Services", url: "#" },
-        { title: "Contact Us", url: "#" },
-        { title: "Request Virtual Staff", url: "#" },
+        { title: "About Us", url: "/about-us" },
+        { title: "Services", url: "/services" },
+        { title: "Hire Virtual Staff", url: "/start-hiring" },
       ],
     },
     {
       links: [
-        { title: "Testimonials", url: "#" },
-        { title: "FAQs", url: "#" },
-        { title: "Blog", url: "#" },
+        { title: "Contact Us", url: "/contact-us" },
+        { title: "Book A Discovery Call", url: "/book-a-meeting" },
+        { title: "FAQs", url: "/faq" },
+        {
+          title: "Blog",
+          url: "https://accessvirtualstaffing.blogspot.com/",
+          follow: true,
+        },
       ],
     },
   ],
