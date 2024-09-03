@@ -102,6 +102,7 @@ export const ContactForm = (props: Contact2Props) => {
                 type="text"
                 id="firstName"
                 value={firstNameInput}
+                className="rounded-lg"
                 onChange={(e) => setFirstNameInput(e.target.value)}
               />
             </div>
@@ -114,6 +115,7 @@ export const ContactForm = (props: Contact2Props) => {
                 type="text"
                 id="lastName"
                 value={lastNameInput}
+                className="rounded-lg"
                 onChange={(e) => setLastNameInput(e.target.value)}
               />
             </div>
@@ -128,6 +130,7 @@ export const ContactForm = (props: Contact2Props) => {
                 type="email"
                 id="email"
                 value={emailInput}
+                className="rounded-lg"
                 onChange={(e) => setEmailInput(e.target.value)}
               />
             </div>
@@ -140,6 +143,7 @@ export const ContactForm = (props: Contact2Props) => {
                 type="text"
                 id="phone"
                 value={phoneInput}
+                className="rounded-lg"
                 onChange={(e) => setPhoneInput(e.target.value)}
               />
             </div>
@@ -148,7 +152,7 @@ export const ContactForm = (props: Contact2Props) => {
           <div className="grid w-full items-center">
             <Label className="mb-2">Choose a topic</Label>
             <Select onValueChange={setSelectedItem}>
-              <SelectTrigger>
+              <SelectTrigger className="rounded-lg bg-white">
                 <SelectValue placeholder="Select one..." />
               </SelectTrigger>
               <SelectContent>
@@ -164,7 +168,7 @@ export const ContactForm = (props: Contact2Props) => {
           <div className="grid w-full items-center py-3 md:py-4">
             <Label className="mb-3 md:mb-4">Which best describes you?</Label>
             <Select onValueChange={setSelectedItem}>
-              <SelectTrigger>
+              <SelectTrigger className="rounded-lg bg-white">
                 <SelectValue placeholder="Select one..." />
               </SelectTrigger>
               <SelectContent>
@@ -184,7 +188,7 @@ export const ContactForm = (props: Contact2Props) => {
             <Textarea
               id="message"
               placeholder="Type your message..."
-              className="min-h-[11.25rem] overflow-auto"
+              className="min-h-[11.25rem] overflow-auto rounded-lg"
               value={messageInput}
               onChange={(e) => setMessageInput(e.target.value)}
             />
