@@ -9,6 +9,7 @@ import { HowWeHelpFeature } from "@/components/section/how-we-help-feature";
 import { Testimonials } from "@/components/section/testimonials";
 
 import { WhyChoose } from "@/components/section/why-choose";
+import { ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -16,7 +17,29 @@ export default function Home() {
       {/* Landing Hero Header Section */}
       <HeroHeader />
       {/* How it works Section */}
-      <HowItWorks />
+      <HowItWorks
+        buttons={[
+          {
+            navLink: {
+              title: "Get Started",
+              url: "/start-hiring",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+          {
+            navLink: {
+              title: "Learn more",
+              url: "/services",
+              follow: false,
+            },
+            variant: "link2",
+            size: "xl",
+            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          },
+        ]}
+      />
       {/* Feature 1 Section  */}
       <HeroFeature />
       {/* Why Choose Section */}

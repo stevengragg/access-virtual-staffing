@@ -97,25 +97,4 @@ export const Layout242Defaults: Layout242Props = {
         "We handle timekeeping, monitor productivity, and manage payroll, providing weekly attendance reports and ensuring accurate, timely compensation for your virtual staff.",
     },
   ],
-  buttons: [
-    {
-      navLink: {
-        title: "Get Started",
-        url: "/start-hiring",
-        follow: false,
-      },
-      variant: "secondary",
-      size: "xl",
-    },
-    {
-      navLink: {
-        title: "Learn more",
-        url: "/services",
-        follow: false,
-      },
-      variant: "link2",
-      size: "xl",
-      icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
-    },
-  ],
 };
