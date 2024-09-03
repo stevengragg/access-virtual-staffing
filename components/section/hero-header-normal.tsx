@@ -9,7 +9,6 @@ export type HeroHeaderNormalProps = React.ComponentPropsWithoutRef<"section"> &
 export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
   const { heading, context } = {
     ...props,
-    ...HeroHeaderNormalDefaults,
   } as Props;
   return (
     <section
@@ -26,10 +25,4 @@ export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
       </div>
     </section>
   );
-};
-
-export const HeroHeaderNormalDefaults: HeroHeaderNormalProps = {
-  heading: "Frequently Asked Questions",
-  context:
-    "Find answers to common questions about Access Virtual Staffing and our services.",
 };

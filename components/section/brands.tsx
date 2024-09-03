@@ -50,7 +50,7 @@ export const Brands = (props: Logo3Props) => {
 };
 
 export const Logo3Defaults: Logo3Props = {
-  heading: "Trusted by a wide range of clients in Florida, USA",
+  heading: "Trusted by a wide range of clients & businesses in Florida, USA",
   logos: [
     {
       src: "https://relume-assets.s3.amazonaws.com/webflow-logo.svg",

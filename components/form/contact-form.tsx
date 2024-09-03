@@ -80,7 +80,10 @@ export const ContactForm = (props: Contact2Props) => {
   ];
 
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="contact_form_container"
+      className="px-[5%] py-16 md:py-24 lg:py-28"
+    >
       <div className="container max-w-lg">
         <div className="mx-auto mb-8 w-full max-w-lg text-center md:mb-10 lg:mb-12">
           <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
@@ -90,6 +93,7 @@ export const ContactForm = (props: Contact2Props) => {
           <p className="md:text-md">{description}</p>
         </div>
         <form
+          id="contact_form"
           className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
           onSubmit={handleSubmit}
         >

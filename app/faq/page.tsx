@@ -8,7 +8,10 @@ export default function FAQ({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* FAQ Hero Header Section */}
-      <HeroHeaderNormal />
+      <HeroHeaderNormal
+        heading="Frequently Asked Questions"
+        context="Find answers to common questions about Access Virtual Staffing and our services."
+      />
       {/* FAQ Main Content Section */}
       <FaqContent />
       {/* CTA Footer Section */}
