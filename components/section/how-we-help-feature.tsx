@@ -2,29 +2,22 @@
 
 import { useState } from "react";
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogPortal,
   DialogOverlay,
 } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
 import clsx from "clsx";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import Image from "next/image";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type Props = {
   heading: string;
   description: string;
   highlights: string[];
+  description2: string;
   buttons: LinkButtonProps[];
   video: string;
   image: ImageProps;
@@ -35,12 +28,23 @@ export type Header21Props = React.ComponentPropsWithoutRef<"section"> &
 
 export const HowWeHelpFeature = (props: Header21Props) => {
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
-  const { heading, description, buttons, video, image, highlights } = {
+  const {
+    heading,
+    description,
+    description2,
+    buttons,
+    video,
+    image,
+    highlights,
+  } = {
     ...Header21Defaults,
     ...props,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue ">
+    <section
+      id="feature2"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue "
+    >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
           <Dialog>
@@ -84,18 +88,19 @@ export const HowWeHelpFeature = (props: Header21Props) => {
               {heading}
             </h1>
             <p className="text-sm md:text-md text-white mb-5">{description}</p>
-            <div className="space-y-4">
+            <div className="space-y-4 mb-5 md:mb-6">
               {highlights.map((text, idx) => (
                 <h4
-                  className="text-base md:text-2xl lg:text-4xl font-bold text-white"
+                  className="text-xl lg:text-4xl font-bold text-white"
                   key={idx}
                 >
                   {text}
                 </h4>
               ))}
             </div>
+            <p className="text-sm md:text-md text-white mb-5">{description2}</p>
 
-            <div className="mt-6 flex gap-x-4 md:mt-8">
+            <div className="mt-6 flex flex-col lg:flex-row gap-4 md:mt-8">
               {buttons.map((button, index) => (
                 <LinkButton key={index} {...button} />
               ))}
@@ -111,15 +116,26 @@ export const Header21Defaults: Header21Props = {
   heading: "How we help your business grow?",
   description:
     "We help your business grow by providing reliable virtual staff who handle the tasks that take up your time. At Access Virtual Staffing, we manage hiring and administrative processes, freeing you to focus on what truly matters---strategic growth. Let us reduce your overhead and operational complexities, so you can invest your energy where it counts. ",
-  highlights: ["Managed Hiring Process.", "Reduced Administrative Tasks."],
+  highlights: ["Ready to Take Your Business to the Next Level?"],
+  description2:
+    "Explore our services and discover how Access Virtual Staffing can help your business achieve its goals. Contact us today to learn more and start building your dream team.",
   buttons: [
     {
       navLink: {
-        title: "Start Hiring Virtual Staff",
-        url: "#",
+        title: "Discover Our Services",
+        url: "/services",
         follow: false,
       },
       variant: "primary",
+      size: "xl",
+    },
+    {
+      navLink: {
+        title: "Contact Us",
+        url: "/contact-us",
+        follow: false,
+      },
+      variant: "outline",
       size: "xl",
     },
   ],

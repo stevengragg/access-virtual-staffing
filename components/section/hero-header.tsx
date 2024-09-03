@@ -1,13 +1,7 @@
 import Image from "next/image";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { ChevronRight } from "lucide-react";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type Props = {
   heading: string;
@@ -25,7 +19,10 @@ export const HeroHeader = (props: Header36Props) => {
     ...props,
   } as Props;
   return (
-    <section className="grid grid-cols-1 items-center gap-y-16 pt-16 md:pt-24 lg:grid-cols-12 lg:pt-0 bg-primaryBlue/50  bg-heroHeaderBg bg-center bg-no-repeat bg-cover bg-blend-multiply">
+    <section
+      id="hero"
+      className="grid grid-cols-1 items-center gap-y-16 pt-16 md:pt-24 lg:grid-cols-12 lg:pt-0 bg-primaryBlue/50  bg-heroHeaderBg bg-center bg-no-repeat bg-cover bg-blend-multiply"
+    >
       <div className="mx-[5%] sm:max-w-lg md:justify-self-start lg:ml-[5vw] lg:mr-20 lg:justify-self-start lg:col-span-7 text-center lg:text-left ">
         <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white">
           {heading}
@@ -68,7 +65,7 @@ export const Header36Defaults: Header36Props = {
     {
       navLink: {
         title: "Hire a Virtual Staff",
-        url: "#",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "primary",
@@ -76,19 +73,18 @@ export const Header36Defaults: Header36Props = {
     },
     {
       navLink: {
-        title: "Learn more",
-        url: "#",
+        title: "Contact Us",
+        url: "/contact-us",
         follow: false,
       },
-      variant: "link",
+      variant: "outline",
       size: "xl",
-      icon: () => <ChevronRight className="text-white w-6 h-6" />,
     },
   ],
   image: {
     src: "/img/heroimage.webp",
     alt: "Business meeting - thanks to Amy Hirschi",
-    width: 1000,
-    height: 1000,
+    width: 2000,
+    height: 2000,
   },
 };

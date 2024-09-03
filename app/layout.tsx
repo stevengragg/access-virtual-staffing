@@ -6,6 +6,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
+import ScrollToTop from "@/components/ui/scroll-to-top";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -77,11 +78,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={manrope.className}>
+      <body className={cn(manrope.className)}>
         <Navbar />
         {children}
         <Footer />
         <SpeedInsights />
+        <ScrollToTop />
       </body>
     </html>
   );

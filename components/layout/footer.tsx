@@ -7,18 +7,12 @@ import {
 } from "react-icons/bi";
 import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-
-type ImageProps = {
-  url: string;
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type Links = {
   title: string;
   url: string;
+  follow?: boolean;
 };
 
 type SocialMediaLinks = {
@@ -67,7 +61,7 @@ export const Footer = (props: Footer11Props) => {
     ...props,
   } as Props;
   return (
-    <footer className="px-[5%] py-12 md:py-18 lg:py-20 bg-deepBlue">
+    <footer id="footer" className="px-[5%] py-12 md:py-18 lg:py-20 bg-deepBlue">
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  border border-neutralLightZinc rounded-lg p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
           <div className="flex flex-col">
@@ -98,7 +92,9 @@ export const Footer = (props: Footer11Props) => {
               <ul key={index}>
                 {column.links.map((link, linkIndex) => (
                   <li key={linkIndex} className="py-2 text-sm font-semibold">
-                    <a href={link.url}>{link.title}</a>
+                    <a href={link.url} target={link.follow ? "_blank" : ""}>
+                      {link.title}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -123,7 +119,7 @@ export const Footer = (props: Footer11Props) => {
 export const Footer11Defaults: Footer11Props = {
   logo: {
     url: "/",
-    src: "/avs_logo.webp",
+    src: "/avs_logo_2.webp",
     alt: "Logo image",
     width: 132,
     height: 64,
@@ -140,17 +136,21 @@ export const Footer11Defaults: Footer11Props = {
   columnLinks: [
     {
       links: [
-        { title: "About Us", url: "#" },
-        { title: "Services", url: "#" },
-        { title: "Contact Us", url: "#" },
-        { title: "Request Virtual Staff", url: "#" },
+        { title: "About Us", url: "/about-us" },
+        { title: "Services", url: "/services" },
+        { title: "Hire Virtual Staff", url: "/start-hiring" },
       ],
     },
     {
       links: [
-        { title: "Testimonials", url: "#" },
-        { title: "FAQs", url: "#" },
-        { title: "Blog", url: "#" },
+        { title: "Contact Us", url: "/contact-us" },
+        { title: "Book A Discovery Call", url: "/book-a-meeting" },
+        { title: "FAQs", url: "/faq" },
+        {
+          title: "Blog",
+          url: "https://accessvirtualstaffing.blogspot.com/",
+          follow: true,
+        },
       ],
     },
   ],
@@ -161,10 +161,10 @@ export const Footer11Defaults: Footer11Props = {
     { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
     { url: "#", icon: <BiLogoYoutube className="size-6" /> },
   ],
-  footerText: "© 2024 Relume. All rights reserved.",
+  footerText: "© 2024 Access Virtual Staffing. All rights reserved.",
   footerLinks: [
     { title: "Privacy Policy", url: "#" },
     { title: "Terms of Service", url: "#" },
-    { title: "Cookies Settings", url: "#" },
+    // { title: "Cookies Settings", url: "#" },
   ],
 };

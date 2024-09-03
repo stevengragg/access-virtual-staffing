@@ -15,7 +15,6 @@ type Props = {
   tagline: string;
   heading: string;
   description1: string;
-  description2: string;
   buttons: LinkButtonProps[];
   image: ImageProps;
 };
@@ -24,17 +23,20 @@ export type Header37Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HeroFeature = (props: Header37Props) => {
-  const { tagline, heading, description1, description2, buttons, image } = {
+  const { tagline, heading, description1, buttons, image } = {
     ...Header37Defaults,
     ...props,
   } as Props;
   return (
-    <section className="grid grid-cols-1 items-center gap-y-16 pt-16 md:pt-24 lg:grid-cols-2 lg:pt-0 bg-primaryBlue/50  bg-heroFeatureBg bg-center bg-no-repeat bg-cover bg-blend-multiply">
+    <section
+      id="feature"
+      className="grid grid-cols-1 items-center gap-y-16 pt-16 md:pt-24 lg:grid-cols-2 lg:pt-0 bg-primaryBlue"
+    >
       <div className="order-2 lg:order-1">
         <Image
           src={image.src}
           alt={image.alt}
-          className="w-full object-fit lg:object-cover  lg:h-screen lg:max-h-[60rem]"
+          className="w-full object-top max-h-screen object-cover"
           width={image.width}
           height={image.height}
         />
@@ -45,9 +47,9 @@ export const HeroFeature = (props: Header37Props) => {
           {heading}
         </h1>
         <p className=" text-sm md:text-md text-white">{description1}</p>
-        <br />
-        <p className="text-sm md:text-md text-white">{description2}</p>
-        <div className="mt-6 flex gap-x-4 md:mt-8">
+        {/* <br />
+        <p className="text-sm md:text-md text-white">{description2}</p> */}
+        <div className="mt-6 flex flex-col lg:flex-row gap-4 md:mt-8">
           {buttons.map((button, index) => (
             <LinkButton key={index} {...button} />
           ))}
@@ -61,14 +63,12 @@ export const Header37Defaults: Header37Props = {
   tagline: "Top Virtual Staffing Agency in Florida, USA",
   heading: "Unlock Your Business's Full Potential with Access Virtual Staffing",
   description1:
-    "Are you spending more time managing your backend operations than focusing on driving your business forward? You’re not alone. Many businesses find themselves overwhelmed with administrative tasks, leaving little room for strategic planning and sales growth.",
-  description2:
-    "Did you know that, on average, companies spend up to 20-30% of their operating budget on backend support? This often includes tasks like data entry, customer service, and administrative work – tasks that, while essential, don’t directly contribute to your bottom line. Imagine the possibilities if you could redirect that time and budget towards what truly matters: scaling your business, increasing sales, and crafting winning strategies. ",
+    "Are backend operations consuming your time and budget? Many businesses struggle with this, but Access Virtual Staffing can help. By outsourcing tasks like data entry and customer service, you can refocus on scaling your business and driving sales. Let us handle the backend so you can focus on what truly matters: scaling your business, increasing sales, and crafting winning strategies.",
   buttons: [
     {
       navLink: {
-        title: "Discover Our Services",
-        url: "#",
+        title: "Start Hiring Virtual Staff",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "primary",
@@ -76,13 +76,12 @@ export const Header37Defaults: Header37Props = {
     },
     {
       navLink: {
-        title: "Learn more",
-        url: "#",
+        title: "Contact Us",
+        url: "/contact-us",
         follow: false,
       },
-      variant: "link",
+      variant: "outline",
       size: "xl",
-      icon: () => <ChevronRight className="text-white w-6 h-6" />,
     },
   ],
   image: {

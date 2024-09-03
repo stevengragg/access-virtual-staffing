@@ -1,11 +1,5 @@
+import { ImageProps } from "@/types/general";
 import Image from "next/image";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
 
 type Props = {
   heading: string;
@@ -21,7 +15,10 @@ export const Brands = (props: Logo3Props) => {
     ...props,
   } as Props;
   return (
-    <section className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBrightAqua">
+    <section
+      id="brands"
+      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBrightAqua"
+    >
       <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
         <h1 className="text-center text-base font-bold leading-[1.2] md:text-md md:leading-[1.2]">
           {heading}
@@ -53,7 +50,7 @@ export const Brands = (props: Logo3Props) => {
 };
 
 export const Logo3Defaults: Logo3Props = {
-  heading: "Trusted by a wide range of clients in Florida, USA",
+  heading: "Trusted by a wide range of clients & businesses in Florida, USA",
   logos: [
     {
       src: "https://relume-assets.s3.amazonaws.com/webflow-logo.svg",

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
+import { useMediaQuery } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
 import Image from "next/image";
@@ -10,16 +9,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { usePathname } from "next/navigation";
-
-type ImageProps = {
-  url?: string;
-  src: string;
-  alt?: string;
-};
+import { ImageProps } from "@/types/general";
 
 type NavLink = {
   url: string;
   title: string;
+  follow?: boolean;
   subMenuLinks?: NavLink[];
 };
 
@@ -43,15 +38,18 @@ export const Navbar = (props: Navbar1Props) => {
   const url = usePathname();
 
   return (
-    <nav className="flex w-full items-center bg-background-primary lg:min-h-18 lg:px-[5%] ">
+    <nav
+      id="main_nav"
+      className="flex w-full items-center bg-background-primary lg:min-h-18 lg:px-[5%] "
+    >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex min-h-18 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           <a href={logo.url}>
             <Image
               src={logo.src}
               alt={logo.alt || "AVS Logo 2024"}
-              width={78}
-              height={64}
+              width={logo.width || 0}
+              height={logo.height || 0}
             />
           </a>
           <button
@@ -99,9 +97,7 @@ export const Navbar = (props: Navbar1Props) => {
                   href={navLink.url}
                   className={cn(
                     "block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:underline",
-                    url.startsWith(navLink.url) || url.includes(navLink.url)
-                      ? "underline"
-                      : ""
+                    url === navLink.url ? "underline" : ""
                   )}
                 >
                   {navLink.title}
@@ -177,12 +173,11 @@ const SubMenu = ({
               <Link
                 key={index}
                 href={navLink.url}
+                target={navLink.follow ? "_blank" : ""}
                 className={cn(
                   "block py-3 pl-[5%] text-md lg:px-4 lg:py-2 lg:text-base hover:underline",
-                  pathname.startsWith(navLink.url) ||
-                    pathname.includes(navLink.url)
-                    ? "underline"
-                    : ""
+
+                  pathname === navLink.url ? "underline" : ""
                 )}
               >
                 {navLink.title}
@@ -198,19 +193,25 @@ const SubMenu = ({
 export const Navbar1Defaults: Navbar1Props = {
   logo: {
     url: "/",
-    src: "/avs_logo.webp",
-    alt: "Logo image",
+    src: "/avs_logo_2.webp",
+    alt: "Access Virtual Staffing Logo 2",
+    width: 135.5,
+    height: 67,
   },
   navLinks: [
     { title: "Home", url: "/" },
-    { title: "About Us", url: "/about" },
+    { title: "About Us", url: "/about-us" },
     { title: "Services", url: "/services" },
     {
       title: "Resources",
       url: "#",
       subMenuLinks: [
-        { title: "Blog", url: "/blog" },
-        { title: "FAQs", url: "/faqs" },
+        {
+          title: "Blog",
+          url: "https://accessvirtualstaffing.blogspot.com",
+          follow: true,
+        },
+        { title: "FAQs", url: "/faq" },
         { title: "Contact Us", url: "/contact-us" },
       ],
     },
@@ -219,7 +220,7 @@ export const Navbar1Defaults: Navbar1Props = {
     {
       navLink: {
         title: "Book a discovery call",
-        url: "#",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "defaultOutline",
@@ -228,7 +229,7 @@ export const Navbar1Defaults: Navbar1Props = {
     {
       navLink: {
         title: "Hire a Virtual Staff",
-        url: "#",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "secondary",

@@ -1,6 +1,8 @@
 import { Button } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronRight } from "react-icons/rx";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
+import { ChevronRight } from "lucide-react";
 
 type SectionProps = {
   stepNumber: number;
@@ -13,18 +15,19 @@ type Props = {
   heading: string;
   subheading: string;
   sections: SectionProps[];
+  buttons: LinkButtonProps[];
 };
 
 export type Layout242Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HowItWorks = (props: Layout242Props) => {
-  const { heading, tagline, subheading, sections } = {
+  const { heading, tagline, subheading, buttons, sections } = {
     ...props,
     ...Layout242Defaults,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="how_it_works" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl flex flex-col items-start">
         <div className="mb-12 w-full max-w-lg md:mb-18 lg:mb-20 space-y-6">
           <p className="text-sm lg:text-base font-normal">{tagline}</p>
@@ -51,6 +54,11 @@ export const HowItWorks = (props: Layout242Props) => {
                 <p className="mb-5 md:mb-6 ">{section.description}</p>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="mt-6 flex gap-2 md:mt-8">
+          {buttons.map((button, index) => (
+            <LinkButton key={index} {...button} />
           ))}
         </div>
       </div>
