@@ -22,9 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://accessvirtualstaffing.com/contact-us",
     },
-    {
-      url: "https://accessvirtualstaffing.com/book-a-meeting",
-    },
+    // {
+    //   url: "https://accessvirtualstaffing.com/book-a-meeting",
+    // },
     {
       url: "https://accessvirtualstaffing.com/start-hiring",
       lastModified: new Date(),

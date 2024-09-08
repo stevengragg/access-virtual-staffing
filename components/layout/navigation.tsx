@@ -217,15 +217,15 @@ export const Navbar1Defaults: Navbar1Props = {
     },
   ],
   buttons: [
-    {
-      navLink: {
-        title: "Book a discovery call",
-        url: "/book-a-meeting",
-        follow: false,
-      },
-      variant: "defaultOutline",
-      size: "lg",
-    },
+    // {
+    //   navLink: {
+    //     title: "Book a discovery call",
+    //     url: "/book-a-meeting",
+    //     follow: false,
+    //   },
+    //   variant: "defaultOutline",
+    //   size: "lg",
+    // },
     {
       navLink: {
         title: "Hire a Virtual Staff",

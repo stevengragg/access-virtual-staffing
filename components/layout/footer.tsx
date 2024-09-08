@@ -144,7 +144,7 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "Contact Us", url: "/contact-us" },
-        { title: "Book A Discovery Call", url: "/book-a-meeting" },
+        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
         { title: "FAQs", url: "/faq" },
         {
           title: "Blog",

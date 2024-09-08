@@ -50,8 +50,8 @@ export const Cta25Defaults: Cta25Props = {
     },
     {
       navLink: {
-        title: "Contact Us",
-        url: "/contact-us",
+        title: "Start Hiring",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "outline",
