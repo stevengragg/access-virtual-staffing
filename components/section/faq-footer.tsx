@@ -11,6 +11,8 @@ import { ChevronRight } from "lucide-react";
 type QuestionsProps = {
   title: string;
   answer: string;
+  pointers?: string[];
+  footer?: string;
 };
 
 type Props = {
@@ -47,13 +49,25 @@ export const FaqFooter = (props: FaqFooter1Props) => {
           <p className="md:text-md">{description}</p>
         </div>
         <Accordion type="multiple">
-          {questions.map((question, index) => (
+          {questions.map((question: QuestionsProps, index: number) => (
             <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="md:py-5 md:text-md">
                 {question.title}
               </AccordionTrigger>
               <AccordionContent className="md:pb-6">
                 {question.answer}
+                <br />
+                {question.pointers && question.pointers?.length
+                  ? question.pointers.map(
+                      (pointerItem: string, idx: number) => (
+                        <p key={idx}>
+                          {idx + 1}. {pointerItem}
+                        </p>
+                      )
+                    )
+                  : null}
+                <br />
+                {question.footer}
               </AccordionContent>
             </AccordionItem>
           ))}
@@ -82,19 +96,19 @@ export const FaqFooter1Defaults: FaqFooter1Props = {
     "Find answers to common questions about virtual staffing and our services.",
   questions: [
     {
-      title: "How does it work?",
+      title: "Why choose Access Virtual Staffing?",
       answer:
-        "Virtual staffing works by connecting businesses with skilled professionals who work remotely. You can communicate with your virtual staff through online platforms and manage their tasks and projects just like you would with an in-house team.",
+        "Choosing Access Virtual Staffing means partnering with a team dedicated to delivering top-notch virtual staffing solutions tailored to your needs. We provide highly skilled professionals who are proficient in English and, in some cases, bilingual in Spanish. Our transparent and efficient process ensures you find the best fit for your business while benefiting from our commitment to quality, integrity, and personalized support. Additionally, our flexible services and advanced technology support help streamline your operations, allowing you to focus on what matters most—growing your business.",
     },
     {
-      title: "Why choose virtual staffing?",
+      title: "How do I request for a Virtual Staff?",
       answer:
-        "Virtual staffing offers numerous benefits, including access to a global talent pool, cost savings, flexibility, and scalability. It allows you to focus on core business activities while leaving non-core tasks to skilled professionals.",
+        "To request a Virtual Staff, simply fill out our web form (www.accessvirtualstaffing.com/start-hiring) with the necessary details about your staffing needs. Once we receive your submission, our team will evaluate your request and then reach out to you for a quick verification call. This ensures that we fully understand your requirements and are aligned on the expectations before moving forward.",
     },
     {
-      title: "Do you offer client support?",
+      title: "How much does it cost?",
       answer:
-        "Yes, we provide dedicated client support to ensure your satisfaction. Our team is available to address any concerns or questions you may have throughout your engagement with us.",
+        "The cost of our virtual staffing services depends on factors such as the type of tasks, the level of expertise required, and the number of hours needed. For more information, please contact us at support@accessvirtualstaffing.com",
     },
   ],
   footerDescription: "You have other questions?",

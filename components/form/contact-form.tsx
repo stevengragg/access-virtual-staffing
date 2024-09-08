@@ -66,8 +66,10 @@ export const ContactForm = (props: Contact2Props) => {
       value: "first-choice",
       label: "I am an existing client and I have a concern",
     },
-    { value: "second-choice", label: "Payment Concern" },
-    { value: "third-choice", label: "General Client Support Request" },
+    { value: "second-choice", label: "Payment or Invoicing concern" },
+    { value: "third-choice", label: "General support request" },
+    { value: "fourth-choice", label: "I have a unique requirements" },
+    { value: "fifth-choice", label: "Others" },
   ];
 
   const roleItems = [
