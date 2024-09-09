@@ -14,6 +14,7 @@ type Props = {
   tagline: string;
   heading: string;
   context: string;
+  context2?: string;
   sections?: SectionProps[];
   buttons?: LinkButtonProps[];
 };
@@ -22,7 +23,7 @@ export type LongFormHeaderProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const LongFormHeader = (props: LongFormHeaderProps) => {
-  const { heading, tagline, context, buttons, sections } = {
+  const { heading, tagline, context, context2, buttons, sections } = {
     ...props,
     ...LongFormHeaderDefaults,
   } as Props;
@@ -35,6 +36,7 @@ export const LongFormHeader = (props: LongFormHeaderProps) => {
             {heading}
           </h3>
           <p className="text-md font-normal">{context}</p>
+          <br /> <p className="text-md font-normal">{context2}</p>
         </div>
         {sections && (
           <div className="grid grid-cols-1 items-start gap-y-12 md:grid-cols-4 md:gap-x-8 md:gap-y-16 lg:gap-x-12">
@@ -74,5 +76,7 @@ export const LongFormHeaderDefaults: LongFormHeaderProps = {
   tagline: "Bridging Talent & Business Success, Crafted to Perfection",
   heading: "Our Story",
   context:
-    "Access Virtual Staffing is rooted in the unwavering commitment to excellence and people-centric leadership exemplified by our founder, Phil Wardell. Together with his wife Lisa, Phil previously launched Access Insurance Underwriting, LLC, a venture that quickly became a beacon of small business success in the insurance industry. Their relentless pursuit of innovation and quality led them to explore new avenues for growth, which brought them to the shores of the Philippines. During this transformative journey, Phil discovered a wealth of talent among Filipino professionals. Recognizing the potential of these offshore workers, he embraced a new business model that revolutionized his approach to staffing. He believed in not just hiring people but in nurturing and empowering them.",
+    "Access Virtual Staffing is rooted in the unwavering commitment to excellence and people-centric leadership exemplified by our founder, Phil Wardell. Together with his wife Lisa, Phil previously launched Access Insurance Underwriting, LLC, a venture that quickly became a beacon of small business success in the insurance industry. Their relentless pursuit of innovation and quality led them to explore new avenues for growth, which brought them to the shores of the Philippines.",
+  context2:
+    "During this transformative journey, Phil discovered a wealth of talent among Filipino professionals. Recognizing the potential of these offshore workers, he embraced a new business model that revolutionized his approach to staffing. He believed in not just hiring people but in nurturing and empowering them.",
 };

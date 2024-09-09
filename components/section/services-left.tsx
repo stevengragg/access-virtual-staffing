@@ -18,7 +18,7 @@ export const ServicesLeft = (props: ServicesLeftProps) => {
     ...props,
   } as Props;
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="services_left" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
           <div className="">
