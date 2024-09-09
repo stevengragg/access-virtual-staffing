@@ -137,34 +137,40 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "About Us", url: "/about-us" },
-        { title: "Services", url: "/services" },
         { title: "Hire Virtual Staff", url: "/start-hiring" },
-      ],
-    },
-    {
-      links: [
         { title: "Contact Us", url: "/contact-us" },
-        { title: "Book A Discovery Call", url: "/book-a-meeting" },
         { title: "FAQs", url: "/faq" },
         {
           title: "Blog",
           url: "https://accessvirtualstaffing.blogspot.com/",
           follow: true,
         },
+        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
+      ],
+    },
+    {
+      links: [
+        { title: "Services", url: "/services" },
+        { title: "Basic Tier", url: "/services/basic-tier" },
+        { title: "Premium Tier", url: "/services/premium-tier" },
+        {
+          title: "Specialized Training",
+          url: "/services/specialized-training",
+        },
       ],
     },
   ],
-  socialMediaLinks: [
-    { url: "#", icon: <BiLogoFacebookCircle className="size-6" /> },
-    { url: "#", icon: <BiLogoInstagram className="size-6" /> },
-    { url: "#", icon: <FaXTwitter className="size-6 p-0.5" /> },
-    { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
-    { url: "#", icon: <BiLogoYoutube className="size-6" /> },
-  ],
+  // socialMediaLinks: [
+  //   { url: "#", icon: <BiLogoFacebookCircle className="size-6" /> },
+  //   { url: "#", icon: <BiLogoInstagram className="size-6" /> },
+  //   { url: "#", icon: <FaXTwitter className="size-6 p-0.5" /> },
+  //   { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
+  //   { url: "#", icon: <BiLogoYoutube className="size-6" /> },
+  // ],
   footerText: "© 2024 Access Virtual Staffing. All rights reserved.",
   footerLinks: [
     { title: "Privacy Policy", url: "#" },
-    { title: "Terms of Service", url: "#" },
+    // { title: "Terms of Service", url: "#" },
     // { title: "Cookies Settings", url: "#" },
   ],
 };

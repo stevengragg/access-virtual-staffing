@@ -1,29 +1,50 @@
+import { ImageProps } from "@/types/general";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
+
 type Props = {
   quote: string;
   author: string;
-  children: React.ReactNode;
+  description: string;
+  description2?: string;
+  button?: LinkButtonProps;
+  image: ImageProps;
 };
 
-export type Content2Props = React.ComponentPropsWithoutRef<"section"> &
+export type LongFormContent2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const LongFormContent2 = (props: Content2Props) => {
-  const { quote, author, children } = {
-    ...Content2Defaults,
+export const LongFormContent2 = (props: LongFormContent2Props) => {
+  const { quote, author, description, description2, button, image } = {
     ...props,
   } as Props;
   return (
-    <section id="long_form_content" className="px-[5%] py-8 md:py-12 lg:py-14">
+    <section id="long_form_content" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl">
-        <div className="grid grid-cols-1 items-start gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20">
-          <div>
-            <div className="prose">{children}</div>
+        <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
+          <div className="order-first ">
+            <Image
+              src={image.src}
+              className="size-full object-cover rounded-lg"
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+            />
           </div>
-          <div>
-            <h2 className="rb-5 mb-5 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
+          <div className="order-last">
+            <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-2xl">
               {quote}
-            </h2>
-            <p className="text-md font-normal">{author}</p>
+            </h1>
+            <p className="text-xs lg:text-sm font-normal">{author}</p>
+            <br />
+            <br />
+            <p className="md:text-md">{description}</p>
+            <br />
+            <p className="md:text-md">{description2}</p>
+            <div className="mt-6 md:mt-8">
+              {button && <LinkButton {...button} className="py-2 px-0" />}
+            </div>
           </div>
         </div>
       </div>
@@ -31,19 +52,35 @@ export const LongFormContent2 = (props: Content2Props) => {
   );
 };
 
-export const Content2Defaults: Content2Props = {
-  quote:
-    "“I want to share the blueprint of our success with fellow small business CEOs, not just as a strategy, but as a belief in the limitless potential of people. By harnessing the power of global talent, we've unlocked a new dimension of growth and innovation. My goal is to help others do the same, empowering businesses to thrive by tapping into the diverse, skilled, and dedicated professionals that the world has to offer.”",
-  author: "Phil Wardell",
-  children: (
-    <div>
-      <p>
-        Access Virtual Staffing was born out of a desire to extend this proven
-        model to businesses worldwide, enabling them to achieve their goals with
-        the support of highly skilled, dedicated professionals. Our mission is
-        to bridge talent and business success, fostering long-lasting
-        partnerships that drive growth and innovation.
-      </p>
-    </div>
-  ),
-};
+// export const LongFormContent2Defaults: LongFormContent2Props = {
+//   heading: "Medium length hero heading goes here",
+//   description:
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+//   buttons: [
+//     {
+//       navLink: {
+//         title: "Get Started",
+//         url: "/start-hiring",
+//         follow: false,
+//       },
+//       variant: "secondary",
+//       size: "xl",
+//     },
+//     {
+//       navLink: {
+//         title: "Learn More",
+//         url: "/start-hiring",
+//         follow: false,
+//       },
+//       variant: "link2",
+//       size: "xl",
+//       icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+//     },
+//   ],
+//   image: {
+//     src: "/img/services1.webp",
+//     alt: "Services Image A",
+//     width: 616,
+//     height: 640,
+//   },
+// };

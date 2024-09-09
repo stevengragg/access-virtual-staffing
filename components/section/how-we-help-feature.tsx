@@ -118,7 +118,7 @@ export const Header21Defaults: Header21Props = {
     "We help your business grow by providing reliable virtual staff who handle the tasks that take up your time. At Access Virtual Staffing, we manage hiring and administrative processes, freeing you to focus on what truly matters---strategic growth. Let us reduce your overhead and operational complexities, so you can invest your energy where it counts. ",
   highlights: ["Ready to Take Your Business to the Next Level?"],
   description2:
-    "Explore our services and discover how Access Virtual Staffing can help your business achieve its goals. Contact us today to learn more and start building your dream team.",
+    "Explore our services and discover how Access Virtual Staffing can help your business achieve its goals. Contact us today and start building your dream team.",
   buttons: [
     {
       navLink: {
@@ -131,8 +131,8 @@ export const Header21Defaults: Header21Props = {
     },
     {
       navLink: {
-        title: "Contact Us",
-        url: "/contact-us",
+        title: "Start Hiring",
+        url: "/start-hiring",
         follow: false,
       },
       variant: "outline",

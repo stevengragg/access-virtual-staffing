@@ -25,7 +25,7 @@ export const WhyChoose = (props: Layout395Props) => {
   return (
     <section id="why_choose" className="px-[5%] py-6 md:py-8 lg:py-12">
       <div className="container-xl">
-        <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20">
+        <div className="mx-auto mb-12 w-full max-w-xl text-center md:mb-18 lg:mb-20">
           <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
           <h1 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
             {heading}

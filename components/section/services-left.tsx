@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 type Props = {
   heading: string;
   description: string;
-  buttons: LinkButtonProps[];
+  button?: LinkButtonProps;
   image: ImageProps;
 };
 
@@ -14,11 +14,11 @@ export type ServicesLeftProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const ServicesLeft = (props: ServicesLeftProps) => {
-  const { heading, description, buttons, image } = {
+  const { heading, description, button, image } = {
     ...props,
   } as Props;
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="services_left" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
           <div className="">
@@ -26,10 +26,8 @@ export const ServicesLeft = (props: ServicesLeftProps) => {
               {heading}
             </h1>
             <p className="md:text-md">{description}</p>
-            <div className="mt-6 flex gap-4 md:mt-8">
-              {buttons.map((button, index) => (
-                <LinkButton key={index} {...button} />
-              ))}
+            <div className="mt-6 md:mt-8">
+              {button && <LinkButton {...button} className="py-2 px-0" />}
             </div>
           </div>
           <div className="">

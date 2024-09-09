@@ -21,7 +21,30 @@ export default function StartHiring({}: Props) {
       {/* FAQ Footer Section */}
       <FaqFooter />
       {/* CTA Footer Section */}
-      <CTAFooter />
+      <CTAFooter
+        heading="Unlock Your Business Potential Today"
+        description="Discover our different services or you can send us your requirements or inquiries so that we can start hiring your first Virtual Staff."
+        buttons={[
+          {
+            navLink: {
+              title: "Discover Our Services",
+              url: "/services",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+          {
+            navLink: {
+              title: "Contact Us",
+              url: "/contact-us",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+        ]}
+      />
     </main>
   );
 }
