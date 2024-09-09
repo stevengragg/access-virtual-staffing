@@ -11,7 +11,7 @@ export type Cta25Props = React.ComponentPropsWithoutRef<"section"> &
 
 export const CTAFooter = (props: Cta25Props) => {
   const { heading, description, buttons } = {
-    ...Cta25Defaults,
+    // ...Cta25Defaults,
     ...props,
   } as Props;
   return (
@@ -34,28 +34,28 @@ export const CTAFooter = (props: Cta25Props) => {
   );
 };
 
-export const Cta25Defaults: Cta25Props = {
-  heading: "Unlock Your Business Potential Today",
-  description:
-    "Send us your requirements or inquiries so that we can start hiring your first Virtual Staff.",
-  buttons: [
-    {
-      navLink: {
-        title: "Discover Our Services",
-        url: "/services",
-        follow: false,
-      },
-      variant: "secondary",
-      size: "xl",
-    },
-    {
-      navLink: {
-        title: "Start Hiring",
-        url: "/start-hiring",
-        follow: false,
-      },
-      variant: "outline",
-      size: "xl",
-    },
-  ],
-};
+// export const Cta25Defaults: Cta25Props = {
+//   heading: "Unlock Your Business Potential Today",
+//   description:
+//     "Send us your requirements or inquiries so that we can start hiring your first Virtual Staff.",
+//   buttons: [
+//     {
+//       navLink: {
+//         title: "Discover Our Services",
+//         url: "/services",
+//         follow: false,
+//       },
+//       variant: "secondary",
+//       size: "xl",
+//     },
+//     {
+//       navLink: {
+//         title: "Start Hiring",
+//         url: "/start-hiring",
+//         follow: false,
+//       },
+//       variant: "outline",
+//       size: "xl",
+//     },
+//   ],
+// };

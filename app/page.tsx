@@ -51,7 +51,30 @@ export default function Home() {
       {/* Brands Section */}
       <Brands />
       {/* CTA Footer Section */}
-      <CTAFooter />
+      <CTAFooter
+        heading="Unlock Your Business Potential Today"
+        description="Discover our different services or you can send us your requirements so that we can start hiring your first Virtual Staff."
+        buttons={[
+          {
+            navLink: {
+              title: "Discover Our Services",
+              url: "/services",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+          {
+            navLink: {
+              title: "Start Hiring",
+              url: "/start-hiring",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+        ]}
+      />
       {/* Blog Container Section*/}
       <BlogContainer />
       {/* Contact CTA Section */}

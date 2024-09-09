@@ -37,5 +37,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+
+    {
+      url: "https://accessvirtualstaffing.com/services/basic-tier",
+    },
+
+    {
+      url: "https://accessvirtualstaffing.com/services/premium-tier",
+    },
+
+    {
+      url: "https://accessvirtualstaffing.com/services/specialized-training",
+    },
   ];
 }

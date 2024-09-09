@@ -201,7 +201,22 @@ export const Navbar1Defaults: Navbar1Props = {
   navLinks: [
     { title: "Home", url: "/" },
     { title: "About Us", url: "/about-us" },
-    { title: "Services", url: "/services" },
+    {
+      title: "Services",
+      url: "/services",
+      subMenuLinks: [
+        {
+          title: "All Services",
+          url: "/services",
+        },
+        { title: "Basic Tier", url: "/services/basic-tier" },
+        { title: "Premium Tier", url: "/services/premium-tier" },
+        {
+          title: "Specialized Training",
+          url: "/services/specialized-training",
+        },
+      ],
+    },
     {
       title: "Resources",
       url: "#",

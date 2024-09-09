@@ -93,7 +93,7 @@ export const FaqFooter = (props: FaqFooter1Props) => {
 export const FaqFooter1Defaults: FaqFooter1Props = {
   heading: "FAQs",
   description:
-    "Find answers to common questions about virtual staffing and our services.",
+    "Find answers to common questions about Access Virtual Staffing and our services.",
   questions: [
     {
       title: "Why choose Access Virtual Staffing?",
