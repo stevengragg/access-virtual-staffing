@@ -33,10 +33,10 @@ export const LongFormContent2 = (props: LongFormContent2Props) => {
             />
           </div>
           <div className="order-last">
-            <h1 className="mb-5 text-2xl font-bold md:mb-6 md:text-4xl lg:text-6xl">
+            <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-2xl">
               {quote}
             </h1>
-            <p className="text-md font-normal">{author}</p>
+            <p className="text-xs lg:text-sm font-normal">{author}</p>
             <br />
             <br />
             <p className="md:text-md">{description}</p>
