@@ -138,6 +138,7 @@ export const Footer11Defaults: Footer11Props = {
       links: [
         { title: "About Us", url: "/about-us" },
         { title: "Hire Virtual Staff", url: "/start-hiring" },
+        { title: "Book A Discovery Call", url: "/book-a-meeting" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
         {
@@ -145,17 +146,16 @@ export const Footer11Defaults: Footer11Props = {
           url: "https://accessvirtualstaffing.blogspot.com/",
           follow: true,
         },
-        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
       ],
     },
     {
       links: [
         { title: "Services", url: "/services" },
-        { title: "Basic Tier", url: "/services/basic-tier" },
-        { title: "Premium Tier", url: "/services/premium-tier" },
+        { title: "Basic", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
         {
-          title: "Specialized Training",
-          url: "/services/specialized-training",
+          title: "Specialized Services",
+          url: "/services/specialized-services",
         },
       ],
     },

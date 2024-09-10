@@ -10,18 +10,18 @@ import { ChevronRight } from "lucide-react";
 
 type Props = {};
 
-export default function PremiumTier({}: Props) {
+export default function StandardPlan({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
       <HeroHeaderNormal
-        heading="Premium Tier: Advance Recruiting Solutions"
+        heading="Standard Plan: Advance Recruiting Solutions"
         context=""
       />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Premium Tier"
-        description="Elevate your business operations with our Premium Tier, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations. We manage salaries, benefits, and all related administrative tasks, allowing you to focus on growing your business. This tier is designed to streamline operations and ensure smooth management of your workforce."
+        heading="Standard Plan"
+        description="Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations. We manage salaries, benefits, and all related administrative tasks, allowing you to focus on growing your business. This tier is designed to streamline operations and ensure smooth management of your workforce."
         button={{
           navLink: {
             title: "Start Hiring",
@@ -42,7 +42,7 @@ export default function PremiumTier({}: Props) {
       {/* What we offer Section */}
       <ServicesOutline
         heading="What We Offer"
-        subheading="Our Premium Tier provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
+        subheading="Our Standard Plan provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
         tabs={[
           {
             heading: "Recruitment Excellence",
@@ -81,8 +81,8 @@ export default function PremiumTier({}: Props) {
       />
       {/* Services Benefits Section */}
       <ServicesBenefits
-        heading="Benefits of the Premium Tier"
-        description="Choose our Premium Tier for a seamless staffing experience that supports your business’s success and growth, allowing you to concentrate on what you do best."
+        heading="Benefits of the Standard Plan"
+        description="Choose our Standard Plan for a seamless staffing experience that supports your business’s success and growth, allowing you to concentrate on what you do best."
         cards={[
           {
             heading: "Streamlined Operations",

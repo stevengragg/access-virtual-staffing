@@ -10,15 +10,15 @@ import { ChevronRight } from "lucide-react";
 
 type Props = {};
 
-export default function SpecializedTraining({}: Props) {
+export default function SpecializedServices({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
-      <HeroHeaderNormal heading="Specialized Training" context="" />
+      <HeroHeaderNormal heading="Specialized Services" context="" />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Specialized Training"
-        description="In addition to our recruitment services, we offer specialized training programs aimed at skill and process improvement, as well as objective setting. Our training helps enhance the capabilities of your virtual staff, ensuring they meet and exceed your business needs."
+        heading="Specialized Services"
+        description="In addition to our recruitment services, we offer Specialized Services programs aimed at skill and process improvement, as well as objective setting. Our training helps enhance the capabilities of your virtual staff, ensuring they meet and exceed your business needs."
         button={{
           navLink: {
             title: "Start Hiring",
@@ -39,7 +39,7 @@ export default function SpecializedTraining({}: Props) {
 
       {/* Services Benefits Section */}
       <ServicesBenefits
-        heading="Benefits of the Specialized Training"
+        heading="Benefits of the Specialized Services"
         description="You can add this services along side the other tier to enhance the capability of your dream team."
         cards={[
           {

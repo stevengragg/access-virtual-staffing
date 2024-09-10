@@ -107,7 +107,7 @@ export const Faq1Defaults: Faq1Props = {
     {
       title: "What services do you offer?",
       answer:
-        'Access Virtual Staffing offers a wide range of services: "Basic Tier: Recruiting Only", "Premium Tier: Advance Recruiting Solutions", and "Specialized Training".',
+        'Access Virtual Staffing offers a wide range of services: "Basic Plan: Recruiting Only", "Standard Plan: Advance Recruiting Solutions", and "Specialized Services".',
     },
     {
       title: "How much does it cost?",
@@ -148,7 +148,7 @@ export const Faq1Defaults: Faq1Props = {
     {
       title: "Who is responsible for training the virtual assistant?",
       answer:
-        'As the client, it is your responsibility to train the virtual assistant on all relevant tools, software, and work processes. However, Access Virtual Staffing offers specialized training programs if needed. For more information, feel free to contact us via our "Contact Us" page or through our support email address at support@accessvirtualstaffing.com.',
+        'As the client, it is your responsibility to train the virtual assistant on all relevant tools, software, and work processes. However, Access Virtual Staffing offers Specialized Services programs if needed. For more information, feel free to contact us via our "Contact Us" page or through our support email address at support@accessvirtualstaffing.com.',
     },
     {
       title: "What if I need to end the contractor's service?",

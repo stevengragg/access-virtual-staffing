@@ -145,7 +145,7 @@ export const ServicesOutline = (props: Layout28Props) => {
 //     {
 //       heading: "General Virtual Staff",
 //       description:
-//         "Our Basic Tier focuses on recruiting General Virtual Staff with essential skills for everyday tasks. This includes email management, calendar and travel scheduling, data entry, customer service, social media management, content creation, and basic graphic design. Ideal for businesses needing foundational support.",
+//         "Our Basic Plan focuses on recruiting General Virtual Staff with essential skills for everyday tasks. This includes email management, calendar and travel scheduling, data entry, customer service, social media management, content creation, and basic graphic design. Ideal for businesses needing foundational support.",
 //       image: {
 //         src: "/img/virtual_staff.svg",
 //         alt: "Virtual Staff SVG",

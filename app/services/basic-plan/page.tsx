@@ -9,15 +9,18 @@ import { ChevronRight } from "lucide-react";
 
 type Props = {};
 
-export default function BasicTier({}: Props) {
+export default function BasicPlan({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
-      <HeroHeaderNormal heading="Basic Tier: Recruiting Only" context="" />
+      <HeroHeaderNormal
+        heading="Basic Plan: Recruiting and Payroll"
+        context=""
+      />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Basic Tier"
-        description="The Basic Tier offers recruitment for 3 different types of Virtual Staff. The General Virtual Staff are for essential tasks such as email management, data entry, and social media management, providing foundational support for businesses. The Skilled Staff focuses on specialized roles like web developers, SEO experts, and accountants, catering to specific business needs. The High-Level Professional Services targets niche areas, offering advanced expertise in fields like legal, financial, and human resources for businesses seeking specialized knowledge."
+        heading="Basic Plan"
+        description="The Basic Plan offers recruitment for 3 different types of Virtual Staff. The General Virtual Staff are for essential tasks such as email management, data entry, and social media management, providing foundational support for businesses. The Skilled Staff focuses on specialized roles like web developers, SEO experts, and accountants, catering to specific business needs. The High-Level Professional Services targets niche areas, offering advanced expertise in fields like legal, financial, and human resources for businesses seeking specialized knowledge."
         button={{
           navLink: {
             title: "Start Hiring",
@@ -38,12 +41,12 @@ export default function BasicTier({}: Props) {
 
       <ServicesOutline
         heading="What We Offer"
-        subheading="The Basic Tier offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
+        subheading="The Basic Plan offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
         tabs={[
           {
             heading: "General Virtual Staff",
             description:
-              "Our Basic Tier focuses on recruiting General Virtual Staff with essential skills for everyday tasks. This includes email management, calendar and travel scheduling, data entry, customer service, social media management, content creation, and basic graphic design. Ideal for businesses needing foundational support.",
+              "Our Basic Plan focuses on recruiting General Virtual Staff with essential skills for everyday tasks. This includes email management, calendar and travel scheduling, data entry, customer service, social media management, content creation, and basic graphic design. Ideal for businesses needing foundational support.",
             image: {
               src: "/img/virtual_staff.svg",
               alt: "Virtual Staff SVG",

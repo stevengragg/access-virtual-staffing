@@ -14,16 +14,16 @@ export default function Services({}: Props) {
       {/* Header Section */}
       <HeroHeaderNormal
         heading="Our Services"
-        context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From basic virtual staff to specialized training, we ensure you get the talent and tools necessary to drive your business forward."
+        context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From basic virtual staff to Specialized Services, we ensure you get the talent and tools necessary to drive your business forward."
       />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Basic Tier: Recruiting Only"
-        description="The Basic Tier offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
+        heading="Basic Plan: Recruiting Only"
+        description="The Basic Plan offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
         button={{
           navLink: {
             title: "Learn More",
-            url: "/services/basic-tier",
+            url: "/services/basic-plan",
             follow: false,
           },
           variant: "link2",
@@ -39,12 +39,12 @@ export default function Services({}: Props) {
       />
       {/* Services B Section */}
       <ServicesRight
-        heading="Premium Tier: Advance Recruiting Solutions"
-        description="Our Premium Tier provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
+        heading="Standard Plan: Advance Recruiting Solutions"
+        description="Our Standard Plan provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
         button={{
           navLink: {
             title: "Learn More",
-            url: "/services/premium-tier",
+            url: "/services/standard-plan",
             follow: false,
           },
           variant: "link2",
@@ -61,12 +61,12 @@ export default function Services({}: Props) {
 
       {/* Services C Section */}
       <ServicesLeft
-        heading="Specialized Training"
-        description="In addition to our recruitment services, we offer specialized training programs aimed at skill and process improvement, as well as objective setting."
+        heading="Specialized Services"
+        description="In addition to our recruitment services, we offer Specialized Services programs aimed at skill and process improvement, as well as objective setting."
         button={{
           navLink: {
             title: "Learn More",
-            url: "/services/specialized-training",
+            url: "/services/specialized-services",
             follow: false,
           },
           variant: "link2",

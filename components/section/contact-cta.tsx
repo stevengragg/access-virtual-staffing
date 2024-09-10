@@ -41,17 +41,17 @@ export const ContactCTA = (props: Cta7Props) => {
 export const Cta7Defaults: Cta7Props = {
   heading: "Talk To Us",
   description:
-    "You can directly send us your inquiry through our Contact Us page or through our support email address.",
+    "You can book a call through our Calendly page and we'll explain the whole process or you can directly send us your inquiry through our Contact Us page .",
   buttons: [
-    // {
-    //   navLink: {
-    //     title: "Start Hiring Virtual Staff",
-    //     url: "/services",
-    //     follow: false,
-    //   },
-    //   variant: "primary",
-    //   size: "xl",
-    // },
+    {
+      navLink: {
+        title: "Book a Discovery Call",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "primary",
+      size: "xl",
+    },
     {
       navLink: {
         title: "Contact Us",

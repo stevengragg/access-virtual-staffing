@@ -209,11 +209,11 @@ export const Navbar1Defaults: Navbar1Props = {
           title: "All Services",
           url: "/services",
         },
-        { title: "Basic Tier", url: "/services/basic-tier" },
-        { title: "Premium Tier", url: "/services/premium-tier" },
+        { title: "Basic Plan", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
         {
-          title: "Specialized Training",
-          url: "/services/specialized-training",
+          title: "Specialized Services",
+          url: "/services/specialized-services",
         },
       ],
     },
@@ -232,15 +232,15 @@ export const Navbar1Defaults: Navbar1Props = {
     },
   ],
   buttons: [
-    // {
-    //   navLink: {
-    //     title: "Book a discovery call",
-    //     url: "/book-a-meeting",
-    //     follow: false,
-    //   },
-    //   variant: "defaultOutline",
-    //   size: "lg",
-    // },
+    {
+      navLink: {
+        title: "Book a discovery call",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "defaultOutline",
+      size: "lg",
+    },
     {
       navLink: {
         title: "Hire a Virtual Staff",
