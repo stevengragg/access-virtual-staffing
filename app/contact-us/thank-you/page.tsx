@@ -2,16 +2,18 @@ import { ContactForm } from "@/components/form/contact-form";
 import { ContactHeader } from "@/components/section/contact-header";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqFooter } from "@/components/section/faq-footer";
+import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 
 type Props = {};
 
 export default function ContactUs({}: Props) {
   return (
     <>
-      {/* Contact Us Hero Header Section */}
-      <ContactHeader />
-      {/* Contact Form Section */}
-      <ContactForm />
+      {/* Hero Header Section */}
+      <HeroHeaderNormal
+        heading="We got your message!"
+        context="Thank you for contacting us and we'll get back to you soon!"
+      />
       {/* FAQ Footer Section */}
       <FaqFooter />
       {/* CTA Footer Section */}

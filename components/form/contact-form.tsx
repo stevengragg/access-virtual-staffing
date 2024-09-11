@@ -16,6 +16,12 @@ import {
   Button,
 } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ContactFormSchema, contactFormSchema } from "@/lib/form-validation";
+import submitForm from "@/lib/send";
+import { useToast } from "../hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 type Props = {
   tagline: string;
@@ -33,33 +39,29 @@ export const ContactForm = (props: Contact2Props) => {
     ...props,
   } as Props;
 
-  const [firstNameInput, setFirstNameInput] = useState("");
-  const [lastNameInput, setLastNameInput] = useState("");
+  const router = useRouter();
 
-  const [emailInput, setEmailInput] = useState("");
-  const [phoneInput, setPhoneInput] = useState("");
+  const { toast } = useToast();
 
-  const [selectedItem, setSelectedItem] = useState("");
-  const [selectedRadio, setSelectedRadio] = useState("");
+  const form = useForm<ContactFormSchema>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: undefined,
+      email: undefined,
+      phone: undefined,
+      position: undefined,
+      subject: undefined,
+      message: undefined,
+    },
+  });
 
-  const [messageInput, setMessageInput] = useState("");
-  const [acceptTerms, setAcceptTerms] = useState<boolean | "indeterminate">(
-    false
-  );
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log({
-      firstNameInput,
-      lastNameInput,
-      emailInput,
-      phoneInput,
-      selectedItem,
-      selectedRadio,
-      messageInput,
-      acceptTerms,
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting },
+    reset,
+  } = form;
 
   const subjectItems = [
     {
@@ -81,6 +83,31 @@ export const ContactForm = (props: Contact2Props) => {
     { value: "other", label: "Other" },
   ];
 
+  const onSubmitForm: SubmitHandler<ContactFormSchema> = async (data) => {
+    const { success, errors } = await submitForm(data);
+
+    if (errors) {
+      toast({
+        variant: "destructive",
+        title: "Failed to submit",
+        description: errors.message,
+      });
+      return;
+    }
+
+    if (success) {
+      toast({
+        variant: "success",
+        title: "Success!",
+        description: success,
+      });
+      reset();
+      setValue("position", "");
+      setValue("subject", "");
+      setTimeout(() => router.push("/contact-us/thank-you"), 3000);
+    }
+  };
+
   return (
     <section
       id="contact_form_container"
@@ -97,34 +124,16 @@ export const ContactForm = (props: Contact2Props) => {
         <form
           id="contact_form"
           className="grid grid-cols-1 grid-rows-[auto_auto] gap-6"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmitForm)}
         >
-          <div className="grid grid-cols-2 gap-6">
-            <div className="grid w-full items-center">
-              <Label htmlFor="firstName" className="mb-2">
-                First name
-              </Label>
-              <Input
-                type="text"
-                id="firstName"
-                value={firstNameInput}
-                className="rounded-lg"
-                onChange={(e) => setFirstNameInput(e.target.value)}
-              />
-            </div>
-
-            <div className="grid w-full items-center">
-              <Label htmlFor="lastName" className="mb-2">
-                Last name
-              </Label>
-              <Input
-                type="text"
-                id="lastName"
-                value={lastNameInput}
-                className="rounded-lg"
-                onChange={(e) => setLastNameInput(e.target.value)}
-              />
-            </div>
+          <div className="grid w-full items-center">
+            <Label htmlFor="fullName" className="mb-2">
+              Full Name
+            </Label>
+            <Input {...register("name")} className="rounded-lg" />
+            <p className="text-red-500 font-medium text-xs mt-2">
+              {errors.name && errors.name.message}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -132,59 +141,65 @@ export const ContactForm = (props: Contact2Props) => {
               <Label htmlFor="email" className="mb-2">
                 Email
               </Label>
-              <Input
-                type="email"
-                id="email"
-                value={emailInput}
-                className="rounded-lg"
-                onChange={(e) => setEmailInput(e.target.value)}
-              />
+              <Input {...register("email")} className="rounded-lg" />
+              <p className="text-red-500 font-medium text-xs mt-2">
+                {errors.email && errors.email.message}
+              </p>
             </div>
 
             <div className="grid w-full items-center">
               <Label htmlFor="phone" className="mb-2">
                 Phone number
               </Label>
-              <Input
-                type="text"
-                id="phone"
-                value={phoneInput}
-                className="rounded-lg"
-                onChange={(e) => setPhoneInput(e.target.value)}
-              />
+              <Input {...register("phone")} className="rounded-lg" />
+              <p className="text-red-500 font-medium text-xs mt-2">
+                {errors.phone && errors.phone.message}
+              </p>
             </div>
           </div>
 
           <div className="grid w-full items-center">
             <Label className="mb-2">Choose a topic</Label>
-            <Select onValueChange={setSelectedItem}>
+            <Select
+              {...register("subject")}
+              onValueChange={(value) => setValue("subject", value)}
+            >
               <SelectTrigger className="rounded-lg bg-white">
                 <SelectValue placeholder="Select one..." />
               </SelectTrigger>
               <SelectContent>
                 {subjectItems.map((item, index) => (
-                  <SelectItem key={index} value={item.value}>
+                  <SelectItem key={index} value={item.label}>
                     {item.label}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
+            <p className="text-red-500 font-medium text-xs mt-2">
+              {errors.subject && errors.subject.message}
+            </p>
           </div>
 
           <div className="grid w-full items-center py-3 md:py-4">
             <Label className="mb-3 md:mb-4">Which best describes you?</Label>
-            <Select onValueChange={setSelectedItem}>
+            <Select
+              {...register("position")}
+              onValueChange={(value) => setValue("position", value)}
+            >
               <SelectTrigger className="rounded-lg bg-white">
                 <SelectValue placeholder="Select one..." />
               </SelectTrigger>
               <SelectContent>
                 {roleItems.map((item, index) => (
-                  <SelectItem key={index} value={item.value}>
+                  <SelectItem key={index} value={item.label}>
                     {item.label}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
+            <p className="text-red-500 font-medium text-xs mt-2">
+              {errors.position && errors.position.message}
+            </p>
           </div>
 
           <div className="grid w-full items-center">
@@ -192,17 +207,22 @@ export const ContactForm = (props: Contact2Props) => {
               Message
             </Label>
             <Textarea
-              id="message"
+              {...register("message")}
               placeholder="Type your message..."
               className="min-h-[11.25rem] overflow-auto rounded-lg"
-              value={messageInput}
-              onChange={(e) => setMessageInput(e.target.value)}
             />
+            <p className="text-red-500 font-medium text-xs mt-2">
+              {errors.message && errors.message.message}
+            </p>
           </div>
 
           <div className="text-center">
-            <Button {...button} className="bg-deepBlue rounded-lg w-full">
-              {button.title}
+            <Button
+              {...button}
+              className="bg-deepBlue rounded-lg w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Loading" : button.title}
             </Button>
           </div>
         </form>
