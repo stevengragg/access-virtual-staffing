@@ -115,7 +115,7 @@ export const HowWeHelpFeature = (props: Header21Props) => {
 export const Header21Defaults: Header21Props = {
   heading: "How we help your business grow?",
   description:
-    "We help your business grow by providing reliable virtual staff who handle the tasks that take up your time. At Access Virtual Staffing, we manage hiring and administrative processes, freeing you to focus on what truly matters---strategic growth. Let us reduce your overhead and operational complexities, so you can invest your energy where it counts. ",
+    "We help your business grow by providing reliable virtual staff while saving you up to 70% on salaries and 90% on operational expenses. At Access Virtual Staffing, we manage hiring and administrative processes, freeing you to focus on what truly matters—strategic growth. Let us streamline your operations and reduce overhead, so you can drive your business forward with greater efficiency.",
   highlights: ["Ready to Take Your Business to the Next Level?"],
   description2:
     "Explore our services and discover how Access Virtual Staffing can help your business achieve its goals. Contact us today and start building your dream team.",
