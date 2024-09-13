@@ -43,15 +43,15 @@ export const Cta7Defaults: Cta7Props = {
   description:
     "You can book a call through our Calendly page and we'll explain the whole process or you can directly send us your inquiry through our Contact Us page .",
   buttons: [
-    {
-      navLink: {
-        title: "Book a Discovery Call",
-        url: "/book-a-meeting",
-        follow: false,
-      },
-      variant: "primary",
-      size: "xl",
-    },
+    // {
+    //   navLink: {
+    //     title: "Book a Discovery Call",
+    //     url: "/book-a-meeting",
+    //     follow: false,
+    //   },
+    //   variant: "primary",
+    //   size: "xl",
+    // },
     {
       navLink: {
         title: "Contact Us",

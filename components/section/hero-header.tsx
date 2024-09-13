@@ -76,15 +76,15 @@ export const Header36Defaults: Header36Props = {
       variant: "primary",
       size: "xl",
     },
-    {
-      navLink: {
-        title: "Contact Us",
-        url: "/contact-us",
-        follow: false,
-      },
-      variant: "outline",
-      size: "xl",
-    },
+    // {
+    //   navLink: {
+    //     title: "Contact Us",
+    //     url: "/contact-us",
+    //     follow: false,
+    //   },
+    //   variant: "outline",
+    //   size: "xl",
+    // },
   ],
   image: {
     src: "/img/heroimage.webp",

@@ -138,7 +138,7 @@ export const Footer11Defaults: Footer11Props = {
       links: [
         { title: "About Us", url: "/about-us" },
         { title: "Hire Virtual Staff", url: "/start-hiring" },
-        { title: "Book A Discovery Call", url: "/book-a-meeting" },
+        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
         {
