@@ -18,8 +18,8 @@ export default function Services({}: Props) {
       />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Basic Plan: Recruiting Only"
-        description="The Basic Plan offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
+        heading="BASIC PLAN:  Recruiting and Payroll"
+        description="Our Basic Recruitment and Payroll service is ideal for employers seeking project-based staff. We handle the recruiting and payroll processes, allowing you to focus on the project, without the need for timekeeping or benefits administration."
         button={{
           navLink: {
             title: "Learn More",
@@ -27,6 +27,7 @@ export default function Services({}: Props) {
             follow: false,
           },
           variant: "link2",
+          className: "py-2 px-0",
           size: "xl",
           icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
         }}
@@ -39,8 +40,8 @@ export default function Services({}: Props) {
       />
       {/* Services B Section */}
       <ServicesRight
-        heading="Standard Plan: Advance Recruiting Solutions"
-        description="Our Standard Plan provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
+        heading="STANDARD PLAN:  Advance Recruiting Solutions"
+        description="Our Standard plan offers a comprehensive solution for your staffing needs, including recruiting, payroll, timekeeping, and benefits administration. Ideal for businesses seeking full-service support, this plan ensures seamless management of your workforce, allowing you to focus on your core operations."
         button={{
           navLink: {
             title: "Learn More",
@@ -48,6 +49,7 @@ export default function Services({}: Props) {
             follow: false,
           },
           variant: "link2",
+          className: "py-2 px-0",
           size: "xl",
           icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
         }}
@@ -62,7 +64,7 @@ export default function Services({}: Props) {
       {/* Services C Section */}
       <ServicesLeft
         heading="Specialized Services"
-        description="In addition to our recruitment services, we offer Specialized Services programs aimed at skill and process improvement, as well as objective setting."
+        description="Our Specialized Services go beyond recruitment to offer tailored training programs that elevate your team’s capabilities. From Complete Staff Work and Basic Management training to Advanced Leadership training, we cover essential skills such as job description writing, goal setting, SWOT analysis, and process improvement to ensure your virtual staff excels and drives your business forward."
         button={{
           navLink: {
             title: "Learn More",
@@ -70,6 +72,7 @@ export default function Services({}: Props) {
             follow: false,
           },
           variant: "link2",
+          className: "py-2 px-0",
           size: "xl",
           icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
         }}

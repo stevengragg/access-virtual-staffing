@@ -14,22 +14,24 @@ export default function BasicPlan({}: Props) {
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
       <HeroHeaderNormal
-        heading="Basic Plan: Recruiting and Payroll"
+        heading="BASIC PLAN:  Recruiting and Payroll"
         context=""
       />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Basic Plan"
-        description="The Basic Plan offers recruitment for 3 different types of Virtual Staff. The General Virtual Staff are for essential tasks such as email management, data entry, and social media management, providing foundational support for businesses. The Skilled Staff focuses on specialized roles like web developers, SEO experts, and accountants, catering to specific business needs. The High-Level Professional Services targets niche areas, offering advanced expertise in fields like legal, financial, and human resources for businesses seeking specialized knowledge."
+        heading="Overview"
+        description="The Basic Recruitment and Payroll service is designed for employers who require project-based staff without the complexity of managing full-time employees. We take care of the recruitment process, sourcing the right talent for your specific project needs, and manage payroll for your temporary workforce. This service is streamlined, as we do not provide timekeeping or benefits administration, making it perfect for short-term, flexible staffing solutions. Focus on your project’s success, while we handle the recruitment and payroll efficiently."
         button={{
           navLink: {
             title: "Start Hiring",
             url: "/start-hiring",
             follow: false,
           },
-          variant: "link2",
+          variant: "secondary",
           size: "xl",
-          icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          icon: () => (
+            <ChevronRight className="text-neutralLightZinc w-6 h-6" />
+          ),
         }}
         image={{
           src: "/img/services1.webp",
@@ -41,7 +43,7 @@ export default function BasicPlan({}: Props) {
 
       <ServicesOutline
         heading="What We Offer"
-        subheading="The Basic Plan offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
+        subheading="The Basic Plan offers recruitment and payroll services for General Virtual Staff, Skilled Staff, and High-level Professionals."
         tabs={[
           {
             heading: "General Virtual Staff",

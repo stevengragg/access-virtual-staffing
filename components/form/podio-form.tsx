@@ -5,7 +5,7 @@ export const PodioForm = (props: Props) => {
   return (
     <section
       id="podio_form_container"
-      className="px-[5%] py-16 md:py-24 lg:py-28"
+      className="lg:px-[5%] py-16 md:py-24 lg:py-28"
     >
       <div className="container-xl h-[1720px] overflow-hidden">
         <Suspense fallback={<p>Loading form...</p>}>

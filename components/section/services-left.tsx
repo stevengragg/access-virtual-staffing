@@ -25,9 +25,9 @@ export const ServicesLeft = (props: ServicesLeftProps) => {
             <h1 className="mb-5 text-2xl font-bold md:mb-6 md:text-4xl lg:text-6xl">
               {heading}
             </h1>
-            <p className="md:text-md">{description}</p>
+            <p className="text-md lg:text-lg font-medium">{description}</p>
             <div className="mt-6 md:mt-8">
-              {button && <LinkButton {...button} className="py-2 px-0" />}
+              {button && <LinkButton {...button} />}
             </div>
           </div>
           <div className="">

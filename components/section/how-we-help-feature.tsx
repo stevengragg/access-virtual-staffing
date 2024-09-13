@@ -47,10 +47,10 @@ export const HowWeHelpFeature = (props: Header21Props) => {
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className=" flex w-full max-w-full items-center justify-center ">
+          <div className=" flex max-w-full items-center justify-center ">
             <Image
               src={image.src}
-              className="w-full object-cover rounded-lg"
+              className=" object-cover rounded-lg"
               alt={image.alt}
               width={image.width}
               height={image.height}
@@ -114,10 +114,10 @@ export const Header21Defaults: Header21Props = {
   ],
 
   image: {
-    src: "/img/HowWeHelp.webp",
+    src: "/img/phil_wardell_w_wife.webp",
     alt: "Placeholder image",
-    width: 1000,
-    height: 1000,
+    width: 450,
+    height: 400,
   },
 };
 

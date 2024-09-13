@@ -17,17 +17,19 @@ export default function SpecializedServices({}: Props) {
       <HeroHeaderNormal heading="Specialized Services" context="" />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Specialized Services"
-        description="In addition to our recruitment services, we offer Specialized Services programs aimed at skill and process improvement, as well as objective setting. Our training helps enhance the capabilities of your virtual staff, ensuring they meet and exceed your business needs."
+        heading="Overview"
+        description="Our Specialized Services provide more than just recruitment; we offer in-depth training programs designed to enhance your team’s skills and effectiveness. Our training includes Complete Staff Work, Basic Management training, and Advanced Leadership training. These programs cover crucial areas such as writing job descriptions, setting goals and objectives, performing SWOT analysis, and understanding KRA and KPI metrics. We also focus on identifying gaps and bottlenecks and implementing process improvements. By investing in these specialized training programs, we help ensure that your virtual staff not only meets but exceeds your business needs, driving efficiency and growth in every aspect of your operations."
         button={{
           navLink: {
             title: "Start Hiring",
             url: "/start-hiring",
             follow: false,
           },
-          variant: "link2",
+          variant: "secondary",
           size: "xl",
-          icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          icon: () => (
+            <ChevronRight className="text-neutralLightZinc w-6 h-6" />
+          ),
         }}
         image={{
           src: "/img/services3.webp",
@@ -40,50 +42,50 @@ export default function SpecializedServices({}: Props) {
       {/* Services Benefits Section */}
       <ServicesBenefits
         heading="Benefits of the Specialized Services"
-        description="You can add this services along side the other tier to enhance the capability of your dream team."
+        description="Our Specialized Services offer targeted training programs designed to enhance your team’s skills and efficiency. With offerings such as Complete Staff Work, Basic Management Training, and Advanced Leadership Training, our programs are tailored to address critical areas like job description writing, goal setting, SWOT analysis, and process improvement."
         cards={[
           {
-            heading: "Benefits A",
+            heading: "Enhanced Employee Skills",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+              "Equip your team with advanced skills and methodologies, including KPI tracking and SMART goal setting, to boost their performance and efficiency.",
             image: {
-              src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-              alt: "Benefits A",
-              width: 1000,
-              height: 1000,
+              src: "/img/computer.svg",
+              alt: "Enhanced Employee Skills",
+              width: 304,
+              height: 160,
             },
           },
           {
-            heading: "Benefits B",
+            heading: "Improved Efficiency",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+              "Streamline operations using frameworks like PDCA (Plan-Do-Check-Act) and process improvement techniques to reduce bottlenecks and enhance workflow.",
             image: {
-              src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-              alt: "Benefits B",
-              width: 1000,
-              height: 1000,
+              src: "/img/circle-fading-arrow-up.svg",
+              alt: "Improved Efficiency",
+              width: 304,
+              height: 160,
             },
           },
           {
-            heading: "Benefits C",
+            heading: "Strategic Growth",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+              "Develop and execute growth strategies using SWOT analysis and other strategic planning tools to set clear, actionable objectives and drive your business forward.",
             image: {
-              src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-              alt: "Benefits C",
-              width: 1000,
-              height: 1000,
+              src: "/img/shrub.svg",
+              alt: "Informed Decision-Making",
+              width: 304,
+              height: 160,
             },
           },
           {
-            heading: "Benefits D",
+            heading: "Informed Decision-Making",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+              "Utilize comprehensive frameworks such as KPI metrics, SMART criteria, and PDCA cycles to make data-driven decisions and achieve superior business outcomes.",
             image: {
-              src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-              alt: "Benefits D",
-              width: 1000,
-              height: 1000,
+              src: "/img/chart-line.svg",
+              alt: "Informed Decision-Making",
+              width: 304,
+              height: 160,
             },
           },
         ]}
