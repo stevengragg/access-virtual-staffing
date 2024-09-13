@@ -20,7 +20,7 @@ export default async function submitForm(formData: ContactFormSchema) {
     const { data, error } = await resend.emails.send({
       from: `Access Virtual Staffing Website Visitor <${
         process.env.NEXT_NO_REPLY_EMAIL || "no-reply@accessvirtualstaffing.com"
-      }`,
+      }>`,
       to: [
         process.env.NEXT_SUPPORT_EMAIL || "support@accessvirtualstaffing.com",
       ],
