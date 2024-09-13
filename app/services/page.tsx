@@ -14,19 +14,20 @@ export default function Services({}: Props) {
       {/* Header Section */}
       <HeroHeaderNormal
         heading="Our Services"
-        context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From basic virtual staff to specialized training, we ensure you get the talent and tools necessary to drive your business forward."
+        context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From Basic Plan to Specialized Services, we ensure you get the talent and tools necessary to drive your business forward."
       />
       {/* Services A Section */}
       <ServicesLeft
-        heading="Basic Tier: Recruiting Only"
-        description="The Basic Tier offers recruitment for General Virtual Staff, Skilled Staff, and High-level Professionals."
+        heading="BASIC PLAN:  Recruiting and Payroll"
+        description="Our Basic Recruitment and Payroll service is ideal for employers seeking project-based staff. We handle the recruiting and payroll processes, allowing you to focus on the project, without the need for timekeeping or benefits administration."
         button={{
           navLink: {
             title: "Learn More",
-            url: "/services/basic-tier",
+            url: "/services/basic-plan",
             follow: false,
           },
           variant: "link2",
+          className: "py-2 px-0",
           size: "xl",
           icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
         }}
@@ -39,15 +40,16 @@ export default function Services({}: Props) {
       />
       {/* Services B Section */}
       <ServicesRight
-        heading="Premium Tier: Advance Recruiting Solutions"
-        description="Our Premium Tier provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
+        heading="STANDARD PLAN:  Advance Recruiting Solutions"
+        description="Our Standard plan offers a comprehensive solution for your staffing needs, including recruiting, payroll, timekeeping, and benefits administration. Ideal for businesses seeking full-service support, this plan ensures seamless management of your workforce, allowing you to focus on your core operations."
         button={{
           navLink: {
             title: "Learn More",
-            url: "/services/premium-tier",
+            url: "/services/standard-plan",
             follow: false,
           },
           variant: "link2",
+          className: "py-2 px-0",
           size: "xl",
           icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
         }}
@@ -61,15 +63,16 @@ export default function Services({}: Props) {
 
       {/* Services C Section */}
       <ServicesLeft
-        heading="Specialized Training"
-        description="In addition to our recruitment services, we offer specialized training programs aimed at skill and process improvement, as well as objective setting."
+        heading="Specialized Services"
+        description="Our Specialized Services go beyond recruitment to offer tailored training programs that elevate your team’s capabilities. From Complete Staff Work and Basic Management training to Advanced Leadership training, we cover essential skills such as job description writing, goal setting, SWOT analysis, and process improvement to ensure your virtual staff excels and drives your business forward."
         button={{
           navLink: {
             title: "Learn More",
-            url: "/services/specialized-training",
+            url: "/services/specialized-services",
             follow: false,
           },
           variant: "link2",
+          className: "py-2 px-0",
           size: "xl",
           icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
         }}

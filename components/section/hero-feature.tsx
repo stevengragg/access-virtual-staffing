@@ -14,6 +14,7 @@ type ImageProps = {
 type Props = {
   tagline: string;
   heading: string;
+  questionBold?: string;
   description1: string;
   buttons: LinkButtonProps[];
   image: ImageProps;
@@ -23,7 +24,7 @@ export type Header37Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HeroFeature = (props: Header37Props) => {
-  const { tagline, heading, description1, buttons, image } = {
+  const { tagline, heading, description1, questionBold, buttons, image } = {
     ...Header37Defaults,
     ...props,
   } as Props;
@@ -46,7 +47,10 @@ export const HeroFeature = (props: Header37Props) => {
         <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white">
           {heading}
         </h1>
-        <p className=" text-sm md:text-md text-white">{description1}</p>
+        <p className=" text-sm md:text-md text-white">
+          <b>{questionBold}</b>
+          {description1}
+        </p>
         {/* <br />
         <p className="text-sm md:text-md text-white">{description2}</p> */}
         <div className="mt-6 flex flex-col lg:flex-row gap-4 md:mt-8">
@@ -61,9 +65,11 @@ export const HeroFeature = (props: Header37Props) => {
 
 export const Header37Defaults: Header37Props = {
   tagline: "Top Virtual Staffing Agency in Florida, USA",
-  heading: "Unlock Your Business's Full Potential with Access Virtual Staffing",
+  heading:
+    "Unlock Growth and Profitability with Talented Remote Staff—No Hiring Hassles, No Overhead Costs, Just Exceptional Talent Ready to Drive Your Success!",
+  questionBold: "Struggling to find or afford new employees? ",
   description1:
-    "Are backend operations consuming your time and budget? Many businesses struggle with this, but Access Virtual Staffing can help. By outsourcing tasks like data entry and customer service, you can refocus on scaling your business and driving sales. Let us handle the backend so you can focus on what truly matters: scaling your business, increasing sales, and crafting winning strategies.",
+    " Is your company’s growth stalled due to a lack of skilled talent? Tired of the high costs of Medicare, FICA, worker’s compensation, and exorbitant employee benefits, not to mention the risks of potential lawsuits? Imagine how quickly your business could grow and become highly profitable with a team of talented, loyal, and hardworking remote staff. At Access Virtual Staffing, we provide the skilled professionals you need without the hiring hassles or overhead costs. Discover the power of exceptional remote talent and unlock your company's full potential today!",
   buttons: [
     {
       navLink: {

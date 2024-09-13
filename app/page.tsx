@@ -49,7 +49,7 @@ export default function Home() {
       {/* Testimonials Section */}
       <Testimonials />
       {/* Brands Section */}
-      <Brands />
+      {/* <Brands /> */}
       {/* CTA Footer Section */}
       <CTAFooter
         heading="Unlock Your Business Potential Today"

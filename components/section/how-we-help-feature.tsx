@@ -19,7 +19,7 @@ type Props = {
   highlights: string[];
   description2: string;
   buttons: LinkButtonProps[];
-  video: string;
+  video?: string;
   image: ImageProps;
 };
 
@@ -47,42 +47,15 @@ export const HowWeHelpFeature = (props: Header21Props) => {
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <Dialog>
-            <DialogTrigger className="order-2 lg:order-1">
-              <div className="relative flex w-full max-w-full items-center justify-center ">
-                <Image
-                  src={image.src}
-                  className="w-full object-cover rounded-lg"
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                />
-                <Play className="absolute z-20 size-20 text-white" />
-                <span className="absolute inset-0 z-10 " />
-              </div>
-            </DialogTrigger>
-            <DialogPortal>
-              <DialogOverlay className="bg-black/90" />
-              <DialogContent>
-                {!isIframeLoaded && (
-                  <Loading className="mx-auto size-16 text-white" />
-                )}
-                <iframe
-                  className={clsx(
-                    "z-0 mx-auto aspect-video h-full w-full md:w-[738px] lg:w-[940px]",
-                    {
-                      visible: isIframeLoaded,
-                      hidden: !isIframeLoaded,
-                    }
-                  )}
-                  src={video}
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  onLoad={() => setIsIframeLoaded(true)}
-                ></iframe>
-              </DialogContent>
-            </DialogPortal>
-          </Dialog>
+          <div className=" flex max-w-full items-center justify-center ">
+            <Image
+              src={image.src}
+              className=" object-cover rounded-lg"
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+            />
+          </div>
           <div className="order-1 lg:order-2">
             <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white">
               {heading}
@@ -115,7 +88,7 @@ export const HowWeHelpFeature = (props: Header21Props) => {
 export const Header21Defaults: Header21Props = {
   heading: "How we help your business grow?",
   description:
-    "We help your business grow by providing reliable virtual staff who handle the tasks that take up your time. At Access Virtual Staffing, we manage hiring and administrative processes, freeing you to focus on what truly matters---strategic growth. Let us reduce your overhead and operational complexities, so you can invest your energy where it counts. ",
+    "We help your business grow by providing reliable virtual staff while saving you up to 70% on salaries and 90% on operational expenses. At Access Virtual Staffing, we manage hiring and administrative processes, freeing you to focus on what truly matters—strategic growth. Let us streamline your operations and reduce overhead, so you can drive your business forward with greater efficiency.",
   highlights: ["Ready to Take Your Business to the Next Level?"],
   description2:
     "Explore our services and discover how Access Virtual Staffing can help your business achieve its goals. Contact us today and start building your dream team.",
@@ -140,12 +113,11 @@ export const Header21Defaults: Header21Props = {
     },
   ],
 
-  video: "https://www.youtube.com/embed/6YcofccdkBc?si=No5cUt-ctItN9AiE",
   image: {
-    src: "https://relume-assets.s3.amazonaws.com/placeholder-video-thumbnail.svg",
+    src: "/img/phil_wardell_w_wife.webp",
     alt: "Placeholder image",
-    width: 1000,
-    height: 1000,
+    width: 450,
+    height: 400,
   },
 };
 

@@ -7,7 +7,7 @@ type Props = {};
 
 export default function ContactUs({}: Props) {
   return (
-    <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
+    <>
       {/* Contact Us Hero Header Section */}
       <ContactHeader />
       {/* Contact Form Section */}
@@ -39,6 +39,6 @@ export default function ContactUs({}: Props) {
           },
         ]}
       />
-    </main>
+    </>
   );
 }

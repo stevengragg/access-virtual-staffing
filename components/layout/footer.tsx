@@ -8,6 +8,7 @@ import {
 import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { ImageProps } from "@/types/general";
+import GoogleMapLink from "../ui/googlemap-link";
 
 type Links = {
   title: string;
@@ -79,11 +80,17 @@ export const Footer = (props: Footer11Props) => {
             <div className="mb-6 md:mb-8 text-white">
               <div className="space-x-2 flex flex-row items-start">
                 <span>{address.icon()}</span>
-                <p className="mb-5 text-sm md:mb-6">{address.value}</p>
+                <GoogleMapLink address={address.value} />
+                {/* <p className="mb-5 text-sm md:mb-6">{address.value}</p> */}
               </div>
               <div className="space-x-2 flex flex-row items-start">
                 <span>{contact.icon()}</span>
-                <p className="mb-5 text-sm md:mb-6">{contact.email}</p>
+                <a
+                  className="mb-5 text-sm md:mb-6"
+                  href={`mailto:${contact.email}`}
+                >
+                  {contact.email}
+                </a>
               </div>
             </div>
           </div>
@@ -138,6 +145,7 @@ export const Footer11Defaults: Footer11Props = {
       links: [
         { title: "About Us", url: "/about-us" },
         { title: "Hire Virtual Staff", url: "/start-hiring" },
+        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
         {
@@ -145,17 +153,21 @@ export const Footer11Defaults: Footer11Props = {
           url: "https://accessvirtualstaffing.blogspot.com/",
           follow: true,
         },
-        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
+        {
+          title: "Fiverr with AVS",
+          url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
+          follow: true,
+        },
       ],
     },
     {
       links: [
         { title: "Services", url: "/services" },
-        { title: "Basic Tier", url: "/services/basic-tier" },
-        { title: "Premium Tier", url: "/services/premium-tier" },
+        { title: "Basic Plan", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
         {
-          title: "Specialized Training",
-          url: "/services/specialized-training",
+          title: "Specialized Services",
+          url: "/services/specialized-services",
         },
       ],
     },
@@ -169,7 +181,7 @@ export const Footer11Defaults: Footer11Props = {
   // ],
   footerText: "© 2024 Access Virtual Staffing. All rights reserved.",
   footerLinks: [
-    { title: "Privacy Policy", url: "#" },
+    { title: "Privacy Policy", url: "/privacy-policy" },
     // { title: "Terms of Service", url: "#" },
     // { title: "Cookies Settings", url: "#" },
   ],

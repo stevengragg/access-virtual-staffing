@@ -36,7 +36,7 @@ export const ServicesRight = (props: ServicesRightProps) => {
             </h1>
             <p className="md:text-md">{description}</p>
             <div className="mt-6 md:mt-8">
-              {button && <LinkButton {...button} className="py-2 px-0" />}
+              {button && <LinkButton {...button} />}
             </div>
           </div>
         </div>
