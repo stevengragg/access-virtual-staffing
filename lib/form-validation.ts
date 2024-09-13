@@ -2,7 +2,15 @@ import { z } from "zod";
 import { isValidPhoneNumber } from "react-phone-number-input";
 
 export const contactFormSchema = z.object({
-  name: z.string().optional(),
+  name: z
+    .string({
+      required_error: "Please provide your full name",
+      invalid_type_error: "Please provide your valid full name",
+      message: "Please provide your valid full name",
+    })
+    .min(2, {
+      message: "Please provide your valid full name (min. 2 characters)",
+    }),
   email: z
     .string({
       required_error: "Please provide your email address",
@@ -16,11 +24,21 @@ export const contactFormSchema = z.object({
       invalid_type_error: "Please provide your valid US phone number",
       message: "Please provide your valid US phone number",
     })
-    .refine((arg) => isValidPhoneNumber(arg, "US"), {
+    .refine((arg) => arg === "" || isValidPhoneNumber(arg, "US"), {
       message: "Please provide your US phone number",
-    }),
-  position: z.string().optional(),
-  subject: z.string().optional(),
+    })
+    .nullable()
+    .optional(),
+  position: z.string({
+    required_error: "Please provide your position",
+    invalid_type_error: "Please provide your position",
+    message: "Please provide your position",
+  }),
+  subject: z.string({
+    required_error: "Please choose a topic",
+    invalid_type_error: "Please choose a topic",
+    message: "Please choose a topic",
+  }),
   message: z
     .string({
       required_error: "Please specify your message",
