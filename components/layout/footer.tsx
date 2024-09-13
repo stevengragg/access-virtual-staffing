@@ -8,6 +8,7 @@ import {
 import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { ImageProps } from "@/types/general";
+import GoogleMapLink from "../ui/googlemap-link";
 
 type Links = {
   title: string;
@@ -79,11 +80,17 @@ export const Footer = (props: Footer11Props) => {
             <div className="mb-6 md:mb-8 text-white">
               <div className="space-x-2 flex flex-row items-start">
                 <span>{address.icon()}</span>
-                <p className="mb-5 text-sm md:mb-6">{address.value}</p>
+                <GoogleMapLink address={address.value} />
+                {/* <p className="mb-5 text-sm md:mb-6">{address.value}</p> */}
               </div>
               <div className="space-x-2 flex flex-row items-start">
                 <span>{contact.icon()}</span>
-                <p className="mb-5 text-sm md:mb-6">{contact.email}</p>
+                <a
+                  className="mb-5 text-sm md:mb-6"
+                  href={`mailto:${contact.email}`}
+                >
+                  {contact.email}
+                </a>
               </div>
             </div>
           </div>

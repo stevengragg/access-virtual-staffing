@@ -1,4 +1,5 @@
 import { BiEnvelope, BiMap, BiMessageDetail, BiPhone } from "react-icons/bi";
+import GoogleMapLink from "../ui/googlemap-link";
 
 type LinkProps = {
   label: string;
@@ -48,9 +49,16 @@ export const ContactHeader = (props: Contact24Props) => {
                 {contact.title}
               </h3>
               <p className="mb-5 md:mb-6 text-white">{contact.description}</p>
-              <a className="underline text-white" href={contact.link.url}>
-                {contact.link.label}
-              </a>
+              {contact.title === "Office" ? (
+                <GoogleMapLink
+                  address={contact.link.url}
+                  className="underline text-white"
+                />
+              ) : (
+                <a className="underline text-white" href={contact.link.url}>
+                  {contact.link.label}
+                </a>
+              )}
             </div>
           ))}
         </div>
@@ -81,7 +89,7 @@ export const Contact24Defaults: Contact24Props = {
         "Visit our office during business hours for in-person assistance.",
       link: {
         label: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
-        url: "#",
+        url: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
       },
     },
   ],
