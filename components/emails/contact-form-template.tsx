@@ -14,11 +14,11 @@ import {
 import * as React from "react";
 
 interface ContactFormTemplateProps {
-  name?: string;
+  name: string;
   email: string;
-  phone: string;
-  position?: string;
-  subject?: string;
+  phone?: string | null;
+  position: string;
+  subject: string;
   message: string;
   origin: string;
 }
