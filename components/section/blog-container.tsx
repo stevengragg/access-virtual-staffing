@@ -57,7 +57,7 @@ export const BlogContainer = (props: Blog44Props) => {
                   height={post.image.height}
                 />
               </div>
-              <div className="flex w-full flex-1 flex-col justify-between px-5 py-6 md:p-6">
+              <div className="flex w-full flex-1 flex-col  px-5 py-6 md:p-6">
                 <div className="mb-4 flex items-center">
                   <p className="mr-4 bg-oceanBlue px-2 py-1 text-sm font-semibold rounded-xl text-white">
                     {post.category}
@@ -109,17 +109,39 @@ export const Blog44Defaults: Blog44Props = {
   },
   blogPosts: [
     {
-      url: "#",
+      url: "https://accessvirtualstaffing.blogspot.com/2024/09/how-virtual-staffing-supercharged.html",
       image: {
-        src: "/img/blogimg.png",
-        alt: "Placeholder image 1",
+        src: "/blog/blog1.webp",
+        alt: "Blog 1 Image",
+        width: 1000,
+        height: 1000,
+      },
+      category: "Virtual Staffing",
+      readTime: "5 min read",
+      title:
+        "How Virtual Staffing Supercharged Access Insurance Underwriting: Our Transformation Story",
+      description:
+        "Access Insurance Underwriting, led by CEO Phil Wardell, transformed their business with virtual staffing, cutting costs, boosting efficiency, and driving unexpected growth. Here’s the full story.",
+      button: {
+        title: "Read more",
+        variant: "link",
+        size: "link",
+        iconRight: <RxChevronRight />,
+      },
+    },
+    {
+      url: "https://accessvirtualstaffing.blogspot.com/2024/09/why-virtual-staffing-is-key-to-growing.html",
+      image: {
+        src: "/blog/blog2.webp",
+        alt: "Blog 2 image",
         width: 1000,
         height: 1000,
       },
       category: "Business",
       readTime: "5 min read",
-      title: "The Power of Virtual Staffing",
-      description: "Discover how virtual staffing can transform your business.",
+      title: "Why Virtual Staffing is Key to Growing Your Business in Florida",
+      description:
+        "Virtual staffing, particularly through Access Virtual Staffing's bilingual team, enables Florida businesses to cut overhead costs and strategically expand by reaching a broader, diverse audience. Read the full article.",
       button: {
         title: "Read more",
         variant: "link",
@@ -128,38 +150,18 @@ export const Blog44Defaults: Blog44Props = {
       },
     },
     {
-      url: "#",
+      url: "https://accessvirtualstaffing.blogspot.com/2024/09/why-philippines-is-go-to-hub-for.html",
       image: {
-        src: "/img/blogimg.png",
-        alt: "Placeholder image 2",
+        src: "/blog/blog3.webp",
+        alt: "Blog image 3",
         width: 1000,
         height: 1000,
       },
-      category: "Productivity",
+      category: "Virtual Staffing",
       readTime: "5 min read",
-      title: "Boost Your Productivity",
+      title: "Why the Philippines Is the Go-To Hub for Offshore Virtual Staff",
       description:
-        "Learn how virtual staffing can help you achieve more in less time.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "#",
-      image: {
-        src: "/img/blogimg.png",
-        alt: "Placeholder image 3",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Remote",
-      readTime: "5 min read",
-      title: "The Future of Remote Work",
-      description:
-        "Discover the benefits and challenges of remote work in today's world.",
+        "Have you ever wondered why so many companies are tapping into the virtual talent pool in the Philippines?. Here’s the full story.",
       button: {
         title: "Read more",
         variant: "link",

@@ -19,7 +19,7 @@ type Props = {
   highlights: string[];
   description2: string;
   buttons: LinkButtonProps[];
-  video: string;
+  video?: string;
   image: ImageProps;
 };
 
@@ -47,42 +47,15 @@ export const HowWeHelpFeature = (props: Header21Props) => {
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <Dialog>
-            <DialogTrigger className="order-2 lg:order-1">
-              <div className="relative flex w-full max-w-full items-center justify-center ">
-                <Image
-                  src={image.src}
-                  className="w-full object-cover rounded-lg"
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                />
-                <Play className="absolute z-20 size-20 text-white" />
-                <span className="absolute inset-0 z-10 " />
-              </div>
-            </DialogTrigger>
-            <DialogPortal>
-              <DialogOverlay className="bg-black/90" />
-              <DialogContent>
-                {!isIframeLoaded && (
-                  <Loading className="mx-auto size-16 text-white" />
-                )}
-                <iframe
-                  className={clsx(
-                    "z-0 mx-auto aspect-video h-full w-full md:w-[738px] lg:w-[940px]",
-                    {
-                      visible: isIframeLoaded,
-                      hidden: !isIframeLoaded,
-                    }
-                  )}
-                  src={video}
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  onLoad={() => setIsIframeLoaded(true)}
-                ></iframe>
-              </DialogContent>
-            </DialogPortal>
-          </Dialog>
+          <div className=" flex w-full max-w-full items-center justify-center ">
+            <Image
+              src={image.src}
+              className="w-full object-cover rounded-lg"
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+            />
+          </div>
           <div className="order-1 lg:order-2">
             <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white">
               {heading}
@@ -140,9 +113,8 @@ export const Header21Defaults: Header21Props = {
     },
   ],
 
-  video: "https://www.youtube.com/embed/6YcofccdkBc?si=No5cUt-ctItN9AiE",
   image: {
-    src: "https://relume-assets.s3.amazonaws.com/placeholder-video-thumbnail.svg",
+    src: "/img/HowWeHelp.webp",
     alt: "Placeholder image",
     width: 1000,
     height: 1000,

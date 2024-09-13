@@ -151,7 +151,7 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "Services", url: "/services" },
-        { title: "Basic", url: "/services/basic-plan" },
+        { title: "Basic Plan", url: "/services/basic-plan" },
         { title: "Standard Plan", url: "/services/standard-plan" },
         {
           title: "Specialized Services",
@@ -169,7 +169,7 @@ export const Footer11Defaults: Footer11Props = {
   // ],
   footerText: "© 2024 Access Virtual Staffing. All rights reserved.",
   footerLinks: [
-    { title: "Privacy Policy", url: "#" },
+    { title: "Privacy Policy", url: "/privacy-policy" },
     // { title: "Terms of Service", url: "#" },
     // { title: "Cookies Settings", url: "#" },
   ],

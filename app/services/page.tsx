@@ -14,7 +14,7 @@ export default function Services({}: Props) {
       {/* Header Section */}
       <HeroHeaderNormal
         heading="Our Services"
-        context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From basic virtual staff to Specialized Services, we ensure you get the talent and tools necessary to drive your business forward."
+        context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From Basic Plan to Specialized Services, we ensure you get the talent and tools necessary to drive your business forward."
       />
       {/* Services A Section */}
       <ServicesLeft
