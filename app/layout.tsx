@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://access-virtual-staffing.vercel.app"),
+  metadataBase: new URL("https://www.accessvirtualstaffing.com"),
   alternates: {
     canonical: "/",
     languages: {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description:
       "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
     type: "website",
-    url: "https://access-virtual-staffing.vercel.app", // Replace with your actual URL
+    url: "https://www.accessvirtualstaffing.com", // Replace with your actual URL
     images: "/opengraph-image.jpg", // Replace with your actual image URL
   },
   twitter: {

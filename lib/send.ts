@@ -19,7 +19,9 @@ export default async function submitForm(formData: ContactFormSchema) {
     // });
     const { data, error } = await resend.emails.send({
       from: "Access Virtual Staffing Website <onboarding@resend.dev>",
-      to: ["sgragg5619@gmail.com"],
+      to: [
+        process.env.NEXT_SUPPORT_EMAIL || "support@accessvirtualstaffing.com",
+      ],
       subject: `Website Contact Form | Sent by ${formData.email} | ${
         formData.subject || "General Inquiry (No Subject)"
       }`,

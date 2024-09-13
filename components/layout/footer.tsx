@@ -153,6 +153,11 @@ export const Footer11Defaults: Footer11Props = {
           url: "https://accessvirtualstaffing.blogspot.com/",
           follow: true,
         },
+        {
+          title: "Fiverr with AVS",
+          url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
+          follow: true,
+        },
       ],
     },
     {

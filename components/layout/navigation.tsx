@@ -228,6 +228,11 @@ export const Navbar1Defaults: Navbar1Props = {
         },
         { title: "FAQs", url: "/faq" },
         { title: "Contact Us", url: "/contact-us" },
+        {
+          title: "Fiverr with AVS",
+          url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
+          follow: true,
+        },
       ],
     },
   ],
