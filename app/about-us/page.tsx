@@ -23,8 +23,8 @@ Phil's innovative model offers more than just a staffing solution; it provides a
         image={{
           src: "/img/phil_wardell.webp",
           alt: "Phil Image 1",
-          width: 665,
-          height: 800,
+          width: 450,
+          height: 500,
         }}
       />
       {/* Long Form Content 2 Section */}
@@ -35,8 +35,8 @@ Phil's innovative model offers more than just a staffing solution; it provides a
         image={{
           src: "/img/phil_wardell_w_wife.webp",
           alt: "Phil Image 2",
-          width: 665,
-          height: 800,
+          width: 450,
+          height: 500,
         }}
       />
       {/* CTA Footer Section */}

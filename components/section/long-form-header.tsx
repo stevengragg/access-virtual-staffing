@@ -28,15 +28,15 @@ export const LongFormHeader = (props: LongFormHeaderProps) => {
     ...LongFormHeaderDefaults,
   } as Props;
   return (
-    <section id="long_form_header1" className="px-[5%] py-8 md:py-12 lg:py-14">
+    <section id="long_form_header1" className="px-[5%] py-4 lg:py-6">
       <div className="container-xl flex flex-col items-start">
-        <div className="mb-12 w-full md:mb-18 lg:mb-20 space-y-6">
+        <div className="mb-0 w-full space-y-6">
           <p className="text-sm lg:text-base font-normal">{tagline}</p>
-          <h3 className="text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl ">
+          <h2 className="text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl ">
             {heading}
-          </h3>
-          <p className="text-md font-normal">{context}</p>
-          <br /> <p className="text-md font-normal">{context2}</p>
+          </h2>
+          <p className="text-md lg:text-lg font-medium">{context}</p>
+          <p className="text-md lg:text-lg font-medium mt-4">{context2}</p>
         </div>
         {sections && (
           <div className="grid grid-cols-1 items-start gap-y-12 md:grid-cols-4 md:gap-x-8 md:gap-y-16 lg:gap-x-12">
