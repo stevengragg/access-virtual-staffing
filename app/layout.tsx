@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
-import { Banner2 } from "@/components/section/banner";
+// import { Banner2 } from "@/components/section/banner";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -80,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(manrope.className)}>
-        <Banner2 />
+        {/* <Banner2 /> */}
         <Navbar />
         {children}
         <Footer />
