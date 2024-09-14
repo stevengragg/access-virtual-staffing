@@ -15,6 +15,10 @@ export default function Services({}: Props) {
       <HeroHeaderNormal
         heading="Our Services"
         context="At Access Virtual Staffing, we offer a range of tailored recruitment solutions to meet your business needs. Whether you're seeking general virtual assistance, specialized skills, or high-level professional expertise, our service tiers are designed to provide the right support. From Basic Plan to Specialized Services, we ensure you get the talent and tools necessary to drive your business forward."
+        ads={{
+          text: "For short-term or specialized projects, we also partner with platforms like Fiverr Pro, offering quick access to top-rated freelancers.",
+          url: process.env.NEXT_PUBLIC_FIVERR_AFFILIATE_URL,
+        }}
       />
       {/* Services A Section */}
       <ServicesLeft

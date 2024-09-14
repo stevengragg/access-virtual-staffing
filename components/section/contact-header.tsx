@@ -69,7 +69,7 @@ export const ContactHeader = (props: Contact24Props) => {
 
 export const Contact24Defaults: Contact24Props = {
   tagline: "",
-  heading: "Talk to Us",
+  heading: "Let's Connect",
   description:
     "Send us your general inquiry or your concerns and we will have you assisted right away.",
   contacts: [
@@ -82,15 +82,15 @@ export const Contact24Defaults: Contact24Props = {
         url: "mailto:support@accessvirtualstaffing.com",
       },
     },
-    {
-      icon: <BiMap className="size-12 text-white" />,
-      title: "Office",
-      description:
-        "Visit our office during business hours for in-person assistance.",
-      link: {
-        label: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
-        url: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
-      },
-    },
+    // {
+    //   icon: <BiMap className="size-12 text-white" />,
+    //   title: "Office",
+    //   description:
+    //     "Visit our office during business hours for in-person assistance.",
+    //   link: {
+    //     label: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
+    //     url: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
+    //   },
+    // },
   ],
 };

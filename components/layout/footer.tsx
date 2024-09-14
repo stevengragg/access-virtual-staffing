@@ -155,7 +155,7 @@ export const Footer11Defaults: Footer11Props = {
         },
         {
           title: "Fiverr with AVS",
-          url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
+          url: process.env.NEXT_PUBLIC_FIVERR_AFFILIATE_URL || "#",
           follow: true,
         },
       ],
