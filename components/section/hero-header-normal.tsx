@@ -1,13 +1,17 @@
 type Props = {
   heading: string;
   context: string;
+  ads?: {
+    text?: string;
+    url?: string;
+  };
 };
 
 export type HeroHeaderNormalProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
-  const { heading, context } = {
+  const { heading, context, ads } = {
     ...props,
   } as Props;
   return (
@@ -21,6 +25,23 @@ export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
             {heading}
           </h3>
           <p className="text-md font-normal text-white">{context}</p>
+          {ads && (
+            <div className="mt-4 lg:mt-8">
+              <p className="text-md font-normal text-white">{ads.text || ""}</p>
+              {ads.url && (
+                <div className="text-md font-normal text-white">
+                  <a
+                    href={ads.url || "#"}
+                    target="_blank"
+                    className="underline text-white hover:text-yellow-500 text-md font-semibold mr-1"
+                  >
+                    Click Here
+                  </a>
+                  to learn more.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>
