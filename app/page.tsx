@@ -47,7 +47,7 @@ export default function Home() {
       {/* How We Help Feature Section */}
       <HowWeHelpFeature />
       {/* Testimonials Section */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       {/* Brands Section */}
       {/* <Brands /> */}
       {/* CTA Footer Section */}
