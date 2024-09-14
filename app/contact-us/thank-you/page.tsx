@@ -1,5 +1,3 @@
-import { ContactForm } from "@/components/form/contact-form";
-import { ContactHeader } from "@/components/section/contact-header";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqFooter } from "@/components/section/faq-footer";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
