@@ -134,8 +134,8 @@ export default function StandardPlan({}: Props) {
       />
       {/* Hero feature Section */}
       <HeroFeature />
-      {/* FAQ Footer Section */}
-      <Testimonials />
+      {/* Testimonials Section */}
+      {/* <Testimonials /> */}
       {/* CTA Footer Section */}
       <CTAFooter
         heading="Unlock Your Business Potential Today"
