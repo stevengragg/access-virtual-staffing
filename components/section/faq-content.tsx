@@ -112,7 +112,7 @@ export const Faq1Defaults: Faq1Props = {
     {
       title: "What services do you offer?",
       answer:
-        'Access Virtual Staffing offers a wide range of services: "Basic Plan: Recruiting Only", "Standard Plan: Advance Recruiting Solutions", and "Specialized Services".',
+        'Access Virtual Staffing offers a wide range of services: "Basic Plan:  Recruiting and Payroll", "Standard Plan:  Advance Recruiting Solutions", and "Specialized Services:  a tailored training program to elevate your team\'s capabilities".',
     },
     {
       title: "How much does it cost?",

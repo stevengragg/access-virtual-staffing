@@ -90,8 +90,8 @@ export default function Services({}: Props) {
 
       {/* Hero Feature Section */}
       <HeroFeature />
-      {/* FAQ Footer Section */}
-      <Testimonials />
+      {/* Testimonials Section */}
+      {/* <Testimonials /> */}
       {/* CTA Footer Section */}
       <CTAFooter
         heading="Unlock Your Business Potential Today"
