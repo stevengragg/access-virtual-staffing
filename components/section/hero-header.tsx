@@ -73,7 +73,7 @@ export const Header36Defaults: Header36Props = {
         url: "/start-hiring",
         follow: false,
       },
-      variant: "primary",
+      variant: "light",
       size: "xl",
     },
     // {

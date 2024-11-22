@@ -48,8 +48,8 @@ export const Navbar = (props: Navbar1Props) => {
             <Image
               src={logo.src}
               alt={logo.alt || "AVS Logo 2024"}
-              width={logo.width || 0}
-              height={logo.height || 0}
+              width={logo.width || 175}
+              height={logo.height || 50}
             />
           </a>
           <button
@@ -193,10 +193,10 @@ const SubMenu = ({
 export const Navbar1Defaults: Navbar1Props = {
   logo: {
     url: "/",
-    src: "/avs_logo_2.webp",
+    src: "/avs_logo_4.png",
     alt: "Access Virtual Staffing Logo 2",
-    width: 135.5,
-    height: 67,
+    width: 175,
+    height: 50,
   },
   navLinks: [
     { title: "Home", url: "/" },
