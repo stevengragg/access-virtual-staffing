@@ -19,6 +19,7 @@ const linkButtonVariants = cva(
         link: "text-white underline-offset-4 hover:underline bg-transparent border-none",
         link2:
           "text-deepZinc underline-offset-4 hover:underline bg-transparent border-none",
+        light: "bg-white text-deepZip hover:bg-deepBlue hover:text-white",
       },
       size: {
         default: "h-10 px-5 py-2",
