@@ -66,12 +66,12 @@ export const Footer = (props: Footer11Props) => {
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  border border-neutralLightZinc rounded-lg p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
           <div className="flex flex-col">
-            <div className="mb-6 md:mb-8 ">
-              <a href={logo.url}>
+            <div className="mb-6 md:mb-8  ">
+              <a href={logo.url} className="w-full">
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  className="p-4 rounded-xl bg-white "
+                  className="p-4 rounded-xl bg-white w-full lg:w-auto "
                   width={logo.width}
                   height={logo.height}
                 />
@@ -126,10 +126,10 @@ export const Footer = (props: Footer11Props) => {
 export const Footer11Defaults: Footer11Props = {
   logo: {
     url: "/",
-    src: "/avs_logo_2.webp",
+    src: "/avs_logo_4.png",
     alt: "Logo image",
-    width: 132,
-    height: 64,
+    width: 250,
+    height: 65,
   },
   address: {
     icon: () => <MapPin className="text-white w-6 h-6" />,
