@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const linkButtonVariants = cva(
-  "focus-visible:ring-border-primary inline-flex gap-3 items-center justify-center whitespace-nowrap ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50   px-5 py-2 rounded-md font-medium",
+  "focus-visible:ring-border-primary inline-flex gap-3 items-center justify-center whitespace-nowrap ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50   px-5 py-2 rounded-md font-semibold",
   {
     variants: {
       variant: {
@@ -16,10 +16,11 @@ const linkButtonVariants = cva(
         secondary: "bg-deepBlue text-neutralLightZinc hover:bg-oceanBlue",
         outline:
           "border border-deepZinc bg-neutralLightZinc hover:bg-zinc-300 text-deepZinc",
-        link: "text-white underline-offset-4 hover:underline bg-transparent border-none",
+        link: "text-white underline-offset-4 hover:text-zinc-100 underline bg-transparent border-none",
         link2:
-          "text-deepZinc underline-offset-4 hover:underline bg-transparent border-none",
+          "text-deepZinc underline-offset-4 hover:text-primaryBlue underline bg-transparent border-none",
         light: "bg-white text-deepZip hover:bg-deepBlue hover:text-white",
+        destructive: "bg-red-500  destructive text-white hover:bg-red-400",
       },
       size: {
         default: "h-10 px-5 py-2",
