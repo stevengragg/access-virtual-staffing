@@ -1,4 +1,27 @@
+import { Metadata } from "next";
+
 import LinkButton, { LinkButtonProps } from "@/components/ui/link-button";
+
+export const metadata: Metadata = {
+  title: "Applicant Portal | Access Virtual Staffing",
+  description:
+    "Find work and access your applicant portal account to manage your job applications, profile, and advanced job search.",
+  openGraph: {
+    title: "Applicant Portal | Access Virtual Staffing",
+    description:
+      "Find work and access your applicant portal account to manage your job applications, profile, and advanced job search.",
+    type: "website",
+    url: "https://www.accessvirtualstaffing.com/auth",
+    images: "/opengraph-image.jpg",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Applicant Portal | Access Virtual Staffing",
+    description:
+      "Find work and access your applicant portal account to manage your job applications, profile, and advanced job search.",
+    images: "/twitter-image.jpg",
+  },
+};
 
 type Props = {
   title: string;

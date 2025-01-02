@@ -37,14 +37,13 @@ export const metadata: Metadata = {
     "specialized skilled staff",
     "staffing agency",
   ],
-  authors: [{ name: "Steven Gragg", url: "https://github.com/stevengragg" }],
-  creator: "Steven Gragg",
-  publisher: "Iona Innovation Laboratories",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  authors: [
+    {
+      name: "Iona Innovation Labs",
+      url: "https://www.linkedin.com/company/iona-innovation-labs",
+    },
+  ],
+  publisher: "Vercel",
   metadataBase: new URL("https://www.accessvirtualstaffing.com"),
   alternates: {
     canonical: "/",

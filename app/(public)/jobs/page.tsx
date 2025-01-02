@@ -1,6 +1,68 @@
-import { JobListContainer } from "@/components/jobs/joblist-container";
-import { JobListHeader } from "@/components/jobs/joblist-header";
+import { Metadata } from "next";
 
+import { JobListContainer } from "@/components/jobs/joblist-container";
+// import { JobListHeader } from "@/components/jobs/joblist-header";
+
+export const metadata: Metadata = {
+  title: "Browse Jobs | Access Virtual Staffing",
+  description:
+    "Explore a wide range of job opportunities with Access Virtual Staffing. Create an account, log in to your applicant portal, and apply for jobs that match your skills and career goals.",
+  keywords: [
+    "virtual staffing",
+    "remote staffing",
+    "virtual assistants",
+    "Florida staffing agency",
+    "remote professionals",
+    "Access Virtual Staffing",
+    "virtual team",
+    "business solutions",
+    "top staffing agency Florida",
+    "virtual workforce",
+    "virtual staffing agency",
+    "administrative support staff",
+    "data entry staff",
+    "customer service staff",
+    "specialized skilled staff",
+    "staffing agency",
+    "remote jobs",
+    "virtual staffing jobs",
+    "VA jobs",
+    "virtual assistant jobs",
+    "freelancing",
+    "freelancer",
+    "remote work",
+    "online jobs",
+    "work from home",
+    "remote employment",
+    "virtual job opportunities",
+    "freelance jobs",
+    "gig economy",
+    "remote career",
+    "virtual assistant services",
+    "remote job listings",
+    "freelance opportunities",
+    "virtual employment",
+    "remote job search",
+    "virtual assistant positions",
+    "freelance work",
+    "remote job openings",
+  ],
+  openGraph: {
+    title: "Browse Jobs | Access Virtual Staffing",
+    description:
+      "Explore a wide range of job opportunities with Access Virtual Staffing. Create an account, log in to your applicant portal, and apply for jobs that match your skills and career goals.",
+    type: "website",
+    url: "https://www.accessvirtualstaffing.com/jobs",
+    images: "/opengraph-image.jpg", // Use the specified image URL
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Browse Jobs | Access Virtual Staffing",
+    description:
+      "Explore a wide range of job opportunities with Access Virtual Staffing. Create an account, log in to your applicant portal, and apply for jobs that match your skills and career goals.",
+    images: "/twitter-image.jpg", // Use the specified image URL
+  },
+};
 export const dynamic = "force-dynamic";
 
 export default async function Jobs() {

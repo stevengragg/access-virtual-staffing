@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import { Metadata } from "next";
 
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroFeature } from "@/components/section/hero-feature";
@@ -8,6 +9,30 @@ import { ServicesLeft } from "@/components/section/services-left";
 import { ServicesOutline } from "@/components/section/services-outline";
 // import { ServicesRight } from "@/components/section/services-right";
 // import { Testimonials } from "@/components/section/testimonials";
+
+export const metadata: Metadata = {
+  title:
+    "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
+  description:
+    "Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations.",
+  openGraph: {
+    title:
+      "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
+    description:
+      "Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations.",
+    type: "website",
+    url: "https://www.accessvirtualstaffing.com/services/standard-plan",
+    images: "/opengraph-image.jpg", // Use the specified image URL
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
+    description:
+      "Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations.",
+    images: "/twitter-image.jpg", // Use the specified image URL
+  },
+};
 
 type Props = {};
 

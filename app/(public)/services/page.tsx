@@ -1,11 +1,33 @@
+import { ChevronRight } from "lucide-react";
+import { Metadata } from "next";
+
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { ServicesLeft } from "@/components/section/services-left";
 import { ServicesRight } from "@/components/section/services-right";
-import { Testimonials } from "@/components/section/testimonials";
-import { ChevronRight } from "lucide-react";
+// import { Testimonials } from "@/components/section/testimonials";
 
+export const metadata: Metadata = {
+  title: "Our Services | Access Virtual Staffing",
+  description:
+    "Explore the range of tailored recruitment solutions offered by Access Virtual Staffing. From general virtual assistance to specialized skills and high-level professional expertise, our service tiers are designed to meet your business needs and drive your success.",
+  openGraph: {
+    title: "Our Services | Access Virtual Staffing",
+    description:
+      "Explore the range of tailored recruitment solutions offered by Access Virtual Staffing. From general virtual assistance to specialized skills and high-level professional expertise, our service tiers are designed to meet your business needs and drive your success.",
+    type: "website",
+    url: "https://www.accessvirtualstaffing.com/services",
+    images: "/opengraph-image.jpg", // Use the specified image URL
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Services | Access Virtual Staffing",
+    description:
+      "Explore the range of tailored recruitment solutions offered by Access Virtual Staffing. From general virtual assistance to specialized skills and high-level professional expertise, our service tiers are designed to meet your business needs and drive your success.",
+    images: "/twitter-image.jpg", // Use the specified image URL
+  },
+};
 type Props = {};
 
 export default function Services({}: Props) {

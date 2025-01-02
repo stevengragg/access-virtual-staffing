@@ -1,12 +1,35 @@
 import { ChevronRight } from "lucide-react";
+import { Metadata } from "next";
 
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { ServicesLeft } from "@/components/section/services-left";
 import { ServicesOutline } from "@/components/section/services-outline";
+
 // import { ServicesRight } from "@/components/section/services-right";
 // import { Testimonials } from "@/components/section/testimonials";
+
+export const metadata: Metadata = {
+  title: "Basic Plan: Recruiting and Payroll | Access Virtual Staffing",
+  description:
+    "Discover our Basic Recruitment and Payroll service, designed for employers who need project-based staff without the complexity of managing full-time employees. We handle recruitment and payroll efficiently, allowing you to focus on your project's success.",
+  openGraph: {
+    title: "Basic Plan: Recruiting and Payroll | Access Virtual Staffing",
+    description:
+      "Discover our Basic Recruitment and Payroll service, designed for employers who need project-based staff without the complexity of managing full-time employees. We handle recruitment and payroll efficiently, allowing you to focus on your project's success.",
+    type: "website",
+    url: "https://www.accessvirtualstaffing.com/services/basic-plan",
+    images: "/opengraph-image.jpg", // Use the specified image URL
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Basic Plan: Recruiting and Payroll | Access Virtual Staffing",
+    description:
+      "Discover our Basic Recruitment and Payroll service, designed for employers who need project-based staff without the complexity of managing full-time employees. We handle recruitment and payroll efficiently, allowing you to focus on your project's success.",
+    images: "/twitter-image.jpg", // Use the specified image URL
+  },
+};
 
 type Props = {};
 

@@ -1,8 +1,16 @@
+import { Metadata } from "next";
+
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroHeader2 } from "@/components/section/hero-header-2";
 import { LongFormContent } from "@/components/section/long-form-content";
 import { LongFormContent2 } from "@/components/section/long-form-content2";
 import { LongFormHeader } from "@/components/section/long-form-header";
+
+export const metadata: Metadata = {
+  title: "About Us | Access Virtual Staffing",
+  description:
+    "Learn more about Access Virtual Staffing, Florida's top virtual staffing agency. Discover our mission, values, and the team dedicated to providing exceptional virtual staffing solutions.",
+};
 
 type Props = {};
 

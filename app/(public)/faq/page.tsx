@@ -1,7 +1,14 @@
+import { Metadata } from "next";
+
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqContent } from "@/components/section/faq-content";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 
+export const metadata: Metadata = {
+  title: "FAQs | Access Virtual Staffing",
+  description:
+    "Find answers to common questions about Access Virtual Staffing and our services.",
+};
 type Props = {};
 
 export default function FAQ({}: Props) {
