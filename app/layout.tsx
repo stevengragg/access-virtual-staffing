@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+// import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Manrope } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { getSession } from "@auth0/nextjs-auth0";
+// import { getSession } from "@auth0/nextjs-auth0";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Footer } from "@/components/layout/footer";
-import ScrollToTop from "@/components/ui/scroll-to-top";
-import { AppNavbar } from "@/components/layout/app-navigation";
-import { SiteNavbar } from "@/components/layout/site-navigation";
+// import { Footer } from "@/components/layout/footer";
+// import ScrollToTop from "@/components/ui/scroll-to-top";
+// import { AppNavbar } from "@/components/layout/app-navigation";
+// import { SiteNavbar } from "@/components/layout/site-navigation";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -79,19 +79,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getSession();
-  console.log(session);
+  // const session = await getSession();
+  // console.log(session);
   return (
     <html lang="en">
       <UserProvider>
-        <body className={cn(manrope.className)}>
-          {/* <Banner2 /> */}
-          {session ? null : <SiteNavbar />}
-          {children}
-          <Footer />
-          <SpeedInsights />
-          <ScrollToTop />
-        </body>
+        <body className={cn(manrope.className)}>{children}</body>
       </UserProvider>
     </html>
   );

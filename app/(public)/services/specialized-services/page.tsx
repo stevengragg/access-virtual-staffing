@@ -1,12 +1,13 @@
+import { ChevronRight } from "lucide-react";
+
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { ServicesBenefits } from "@/components/section/services-benefits";
 import { ServicesLeft } from "@/components/section/services-left";
-import { ServicesOutline } from "@/components/section/services-outline";
-import { ServicesRight } from "@/components/section/services-right";
-import { Testimonials } from "@/components/section/testimonials";
-import { ChevronRight } from "lucide-react";
+// import { ServicesOutline } from "@/components/section/services-outline";
+// import { ServicesRight } from "@/components/section/services-right";
+// import { Testimonials } from "@/components/section/testimonials";
 
 type Props = {};
 

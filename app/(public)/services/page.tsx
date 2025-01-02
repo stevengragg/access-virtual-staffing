@@ -22,7 +22,7 @@ export default function Services({}: Props) {
       />
       {/* Services A Section */}
       <ServicesLeft
-        heading="BASIC PLAN:  Recruiting and Payroll"
+        heading="Basic Plan:  Recruiting and Payroll"
         description="Our Basic Recruitment and Payroll service is ideal for employers seeking project-based staff. We handle the recruiting and payroll processes, allowing you to focus on the project, without the need for timekeeping or benefits administration."
         button={{
           navLink: {

@@ -1,11 +1,12 @@
+import { ChevronRight } from "lucide-react";
+
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { ServicesLeft } from "@/components/section/services-left";
 import { ServicesOutline } from "@/components/section/services-outline";
-import { ServicesRight } from "@/components/section/services-right";
-import { Testimonials } from "@/components/section/testimonials";
-import { ChevronRight } from "lucide-react";
+// import { ServicesRight } from "@/components/section/services-right";
+// import { Testimonials } from "@/components/section/testimonials";
 
 type Props = {};
 
@@ -14,7 +15,7 @@ export default function BasicPlan({}: Props) {
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
       <HeroHeaderNormal
-        heading="BASIC PLAN:  Recruiting and Payroll"
+        heading="Basic Plan:  Recruiting and Payroll"
         context=""
       />
       {/* Services A Section */}

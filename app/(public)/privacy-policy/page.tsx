@@ -1,5 +1,5 @@
-import { CTAFooter } from "@/components/section/cta-footer";
-import { FaqContent } from "@/components/section/faq-content";
+// import { CTAFooter } from "@/components/section/cta-footer";
+// import { FaqContent } from "@/components/section/faq-content";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 
 type Props = {};

@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 import { ApplicationShell4 } from "@/components/layout/app-shell";
