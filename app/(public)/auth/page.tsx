@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import LinkButton, { LinkButtonProps } from "@/components/ui/link-button";
+import { AccessPortalContainer } from "@/components/auth/access-portal-container";
 
 export const metadata: Metadata = {
   title: "Applicant Portal | Access Virtual Staffing",
@@ -26,15 +27,13 @@ export const metadata: Metadata = {
 type Props = {
   title: string;
   description: string;
-  logInButton: LinkButtonProps;
-  signUpButton: LinkButtonProps;
 };
 
 export type AuthProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export default function Auth(props: AuthProps) {
-  const { title, description, logInButton, signUpButton } = {
+  const { title, description } = {
     ...AuthDefaults,
     ...props,
   };
@@ -49,13 +48,7 @@ export default function Auth(props: AuthProps) {
             </h1>
             <p className="md:text-md">{description}</p>
           </div>
-          <div className="grid grid-cols-1 gap-6">
-            <div className="grid grid-cols-1 gap-4">
-              <LinkButton {...logInButton} className="gap-x-3" />
-
-              <LinkButton {...signUpButton} className="gap-x-3" />
-            </div>
-          </div>
+          <AccessPortalContainer />
         </div>
       </div>
     </section>
@@ -66,23 +59,4 @@ export const AuthDefaults: Props = {
   title: "Applicant Portal",
   description:
     "Discover jobs that fits your skills and access your account to manage your profile and job applications.",
-  logInButton: {
-    navLink: {
-      title: "Login",
-      url: "/api/auth/login",
-      follow: false,
-    },
-    variant: "default",
-    size: "xl",
-  },
-
-  signUpButton: {
-    navLink: {
-      title: "Create Account",
-      url: "/api/auth/signup",
-      follow: false,
-    },
-    variant: "secondary",
-    size: "xl",
-  },
 };
