@@ -1,17 +1,21 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
+
+// import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
   return (
-    <div className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container-xl">
-        <div className="flex flex-col gap-3">
-          <Skeleton className="h-[640px] w-full rounded-lg" />
-          <div className="space-y-2">
-            <Skeleton className="h-8 w-full rounded-lg" />
-            <Skeleton className="h-8 w-full rounded-lg" />
-          </div>
-        </div>
-      </div>
+    <div className="flex flex-row min-h-screen justify-center items-center">
+      {/* <Skeleton className="h-[640px] w-full rounded-lg" /> */}
+
+      <Image
+        src={"/avs_logo_4.png"}
+        alt={"AVS Logo"}
+        width={350}
+        height={100}
+        className="animate-bounce"
+      />
+      {/* <Skeleton className="h-8 w-full rounded-lg" />
+      <Skeleton className="h-8 w-full rounded-lg" /> */}
     </div>
   );
 }
