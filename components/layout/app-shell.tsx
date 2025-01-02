@@ -1,16 +1,6 @@
 "use client";
 
 import {
-  Button,
-  DropdownMenuGroup,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  Input,
-  SheetClose,
-  SheetOverlay,
-  SheetPortal,
-} from "@relume_io/relume-ui";
-import {
   BiArchive,
   BiBarChartAlt2,
   BiBell,
@@ -24,6 +14,14 @@ import {
   BiStar,
 } from "react-icons/bi";
 import {
+  Button,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  Input,
+  SheetClose,
+  SheetOverlay,
+  SheetPortal,
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -61,7 +59,7 @@ export const ApplicationShell4 = () => {
           <a href="#" className="ml-14 justify-self-start lg:ml-0">
             <Image
               src="/avs_logo_4.png"
-              alt="AVS Logo 2024"
+              alt="AVS Logo"
               width={175}
               height={50}
             />

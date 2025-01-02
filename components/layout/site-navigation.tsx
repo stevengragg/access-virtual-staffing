@@ -1,14 +1,51 @@
 "use client";
 
 import { useState } from "react";
-import { useMediaQuery } from "@relume_io/relume-ui";
+
+import {
+  BiArchive,
+  BiBarChartAlt2,
+  BiBell,
+  BiCog,
+  BiFile,
+  BiHelpCircle,
+  BiHome,
+  BiLayer,
+  BiPieChartAlt2,
+  BiSearch,
+  BiStar,
+} from "react-icons/bi";
+import {
+  Button,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  Input,
+  SheetClose,
+  SheetOverlay,
+  SheetPortal,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  useMediaQuery,
+} from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { usePathname } from "next/navigation";
+
+import { cn } from "@/lib/utils";
+import LinkButton, { LinkButtonProps } from "@/components/ui/link-button";
 import { ImageProps } from "@/types/general";
 
 type NavLink = {
@@ -28,6 +65,8 @@ export type SiteNavbarProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const SiteNavbar = (props: SiteNavbarProps) => {
+  const { user, error, isLoading } = useUser();
+  console.log(user);
   const { logo, navLinks, buttons } = {
     ...SiteNavbarDefaults,
     ...props,
@@ -47,31 +86,62 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
           <a href={logo.url}>
             <Image
               src={logo.src}
-              alt={logo.alt || "AVS Logo 2024"}
+              alt={logo.alt || "AVS Logo"}
               width={logo.width || 175}
               height={logo.height || 50}
             />
           </a>
-          <button
-            className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          >
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
-              variants={topLineVariants}
-            />
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={isMobileMenuOpen ? "open" : "closed"}
-              variants={middleLineVariants}
-            />
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
-              variants={bottomLineVariants}
-            />
-          </button>
+          <div className="lg:hidden flex">
+            {" "}
+            {user && !isLoading ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="w-full p-0">
+                  <Image
+                    src={user.picture || ""}
+                    alt="Avatar"
+                    className="size-10 rounded-full object-cover"
+                    width={40}
+                    height={40}
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  sideOffset={0}
+                  className="mt-1.5 px-0 py-2"
+                >
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      <a href="/app/overview">Go to App</a>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator className="mx-4" />
+                    <DropdownMenuItem>
+                      <a href="/api/auth/logout">Log Out</a>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : null}{" "}
+            <button
+              className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            >
+              <motion.span
+                className="my-[3px] h-0.5 w-6 bg-black"
+                animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
+                variants={topLineVariants}
+              />
+              <motion.span
+                className="my-[3px] h-0.5 w-6 bg-black"
+                animate={isMobileMenuOpen ? "open" : "closed"}
+                variants={middleLineVariants}
+              />
+              <motion.span
+                className="my-[3px] h-0.5 w-6 bg-black"
+                animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
+                variants={bottomLineVariants}
+              />
+            </button>
+          </div>
         </div>
         <motion.div
           variants={{
@@ -107,7 +177,44 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
           ))}
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             {buttons.map((button, index) => (
-              <LinkButton key={index} {...button} className="w-full" />
+              <div key={index} className="w-full">
+                {button.navLink.title === "Login" &&
+                user &&
+                !isLoading &&
+                !isMobile ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="w-full p-0">
+                      <Image
+                        src={user.picture || ""}
+                        alt="Avatar"
+                        className="size-10 rounded-full object-cover"
+                        width={40}
+                        height={40}
+                      />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="end"
+                      sideOffset={0}
+                      className="mt-1.5 px-0 py-2"
+                    >
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem>
+                          <a href="/app/overview">Go to App</a>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator className="mx-4" />
+                        <DropdownMenuItem>
+                          <a href="/api/auth/logout">Log Out</a>
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : button.navLink.title === "Login" &&
+                  user &&
+                  !isLoading &&
+                  isMobile ? null : (
+                  <LinkButton {...button} className="w-full" />
+                )}
+              </div>
             ))}
           </div>
         </motion.div>

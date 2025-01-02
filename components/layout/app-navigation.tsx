@@ -47,7 +47,7 @@ export const AppNavbar = (props: AppNavbarProps) => {
           <a href={logo.url}>
             <Image
               src={logo.src}
-              alt={logo.alt || "AVS Logo 2024"}
+              alt={logo.alt || "AVS Logo"}
               width={logo.width || 175}
               height={logo.height || 50}
             />

@@ -9,8 +9,6 @@ export default async function PublicRootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const session = await getSession();
-  // console.log(session);
   return (
     <>
       <SiteNavbar />

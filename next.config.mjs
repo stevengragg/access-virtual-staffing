@@ -5,7 +5,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        port: "",
       },
       {
         protocol: "http",
@@ -23,6 +22,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "relume-assets.s3.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "s.gravatar.com",
       },
     ],
   },
