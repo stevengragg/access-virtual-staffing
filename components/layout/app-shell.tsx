@@ -5,29 +5,12 @@ import {
   DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  Input,
   SheetClose,
   SheetOverlay,
   SheetPortal,
 } from "@relume_io/relume-ui";
+import { BiBell } from "react-icons/bi";
 import {
-  BiArchive,
-  BiBarChartAlt2,
-  BiBell,
-  BiCog,
-  BiFile,
-  BiHelpCircle,
-  BiHome,
-  BiLayer,
-  BiPieChartAlt2,
-  BiSearch,
-  BiStar,
-} from "react-icons/bi";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -37,7 +20,6 @@ import {
   SheetTrigger,
   useMediaQuery,
 } from "@relume_io/relume-ui";
-import { MdTrendingUp } from "react-icons/md";
 import {
   RxChevronDown,
   RxChevronRight,
@@ -45,10 +27,8 @@ import {
   RxHamburgerMenu,
 } from "react-icons/rx";
 import { useState, ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import Image from "next/image";
-import { IconType } from "react-icons";
 import { Briefcase, FileText, House, LucideIcon, UserPen } from "lucide-react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
@@ -133,39 +113,6 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
               <h3 className="font-bold">Applicant Portal</h3>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
-              <button
-                onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
-                className="p-2 lg:hidden"
-              >
-                <BiSearch className="size-6" />
-              </button>
-              <AnimatePresence>
-                {isSearchIconClicked && (
-                  <motion.div
-                    variants={{
-                      visible: { opacity: 1 },
-                      hidden: { opacity: 0 },
-                    }}
-                    initial="hidden"
-                    exit="hidden"
-                    animate={isSearchIconClicked ? "visible" : "hidden"}
-                    className="absolute bottom-0 left-0 right-0 top-16 flex min-h-16 max-w-md items-center justify-center border-b border-border-primary bg-white px-6 lg:hidden"
-                  >
-                    <Input
-                      className="h-fit w-full"
-                      placeholder="Search"
-                      icon={<BiSearch className="size-6" />}
-                    />
-                    <button
-                      onClick={() =>
-                        setIsSearchIconClicked(!isSearchIconClicked)
-                      }
-                    >
-                      <RxCross2 className="ml-4 size-6" />
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
               <DropdownMenu>
                 <DropdownMenuTrigger className="relative">
                   <div className="absolute bottom-auto left-auto right-2 top-2 size-2 rounded-full bg-black outline outline-[3px] outline-offset-0 outline-white" />
@@ -267,7 +214,10 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                   <DropdownMenuGroup>
                     {dropdown &&
                       dropdown.map((dropdownItem, idx) => (
-                        <DropdownMenuItem key={idx}>
+                        <DropdownMenuItem
+                          key={idx}
+                          className="hover:bg-zinc-100 hover:rounded-lg x-2"
+                        >
                           <a
                             target={dropdownItem.follow ? "_blank" : ""}
                             href={dropdownItem.url || "#"}
@@ -321,7 +271,7 @@ const Navigation = ({
                 key={idx}
                 target={nav.follow ? "_blank" : ""}
                 href={nav.url || "#"}
-                className="flex items-center gap-x-2 p-2 text-center"
+                className="flex items-center gap-x-2 p-2 text-center cursor-pointer hover:bg-zinc-100 hover:rounded-lg"
               >
                 <span className="flex w-full items-center gap-3">
                   {nav.icon && <nav.icon className="size-6 shrink-0" />}
