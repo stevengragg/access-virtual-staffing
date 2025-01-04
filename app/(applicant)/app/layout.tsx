@@ -1,4 +1,4 @@
-import { AppNavbar } from "@/components/layout/app-navigation";
+import { ApplicationShell } from "@/components/layout/app-shell";
 
 export default async function AppRootLayout({
   children,
@@ -9,9 +9,7 @@ export default async function AppRootLayout({
   // console.log(session);
   return (
     <>
-      <AppNavbar />
-      {children}
-      <footer>I am footer</footer>
+      <ApplicationShell>{children}</ApplicationShell>
     </>
   );
 }

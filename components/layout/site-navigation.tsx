@@ -66,7 +66,7 @@ export type SiteNavbarProps = React.ComponentPropsWithoutRef<"section"> &
 
 export const SiteNavbar = (props: SiteNavbarProps) => {
   const { user, error, isLoading } = useUser();
-  console.log(user);
+
   const { logo, navLinks, buttons } = {
     ...SiteNavbarDefaults,
     ...props,
