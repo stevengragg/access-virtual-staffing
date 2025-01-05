@@ -11,6 +11,7 @@ import { HowWeHelpFeature } from "@/components/section/how-we-help-feature";
 // import { Testimonials } from "@/components/section/testimonials";
 
 import { WhyChoose } from "@/components/section/why-choose";
+import { CtaJobseeker } from "@/components/section/cta-jobseeker";
 
 export default function Home() {
   return (
@@ -51,35 +52,38 @@ export default function Home() {
       {/* <Testimonials /> */}
       {/* Brands Section */}
       {/* <Brands /> */}
+
+      {/* Blog Container Section*/}
+      <BlogContainer />
+      {/* For Employees Section */}
+      <CtaJobseeker />
+      {/* Contact CTA Section */}
+      {/* <ContactCTA /> */}
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Discover our different services or you can send us your requirements so that we can start hiring your first Virtual Staff."
+        heading="Your shortcut to the best virtual staff for your business"
+        description=""
         buttons={[
           {
             navLink: {
-              title: "Discover Our Services",
-              url: "/services",
-              follow: false,
-            },
-            variant: "secondary",
-            size: "xl",
-          },
-          {
-            navLink: {
-              title: "Start Hiring",
+              title: "Hire Talent",
               url: "/start-hiring",
               follow: false,
             },
             variant: "outline",
             size: "xl",
           },
+          {
+            navLink: {
+              title: "Find Work",
+              url: "/find-work",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
         ]}
       />
-      {/* Blog Container Section*/}
-      <BlogContainer />
-      {/* Contact CTA Section */}
-      <ContactCTA />
     </main>
   );
 }
