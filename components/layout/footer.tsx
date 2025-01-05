@@ -86,7 +86,7 @@ export const Footer = (props: Footer11Props) => {
               <div className="space-x-2 flex flex-row items-start">
                 <span>{contact.icon()}</span>
                 <a
-                  className="mb-5 text-sm md:mb-6"
+                  className="mb-5 text-sm md:mb-6 hover:underline"
                   href={`mailto:${contact.email}`}
                 >
                   {contact.email}
@@ -99,7 +99,11 @@ export const Footer = (props: Footer11Props) => {
               <ul key={index}>
                 {column.links.map((link, linkIndex) => (
                   <li key={linkIndex} className="py-2 text-sm font-semibold">
-                    <a href={link.url} target={link.follow ? "_blank" : ""}>
+                    <a
+                      href={link.url}
+                      className="hover:underline"
+                      target={link.follow ? "_blank" : ""}
+                    >
                       {link.title}
                     </a>
                   </li>
@@ -113,7 +117,9 @@ export const Footer = (props: Footer11Props) => {
           <ul className="grid grid-flow-row grid-cols-[max-content] justify-center gap-x-0 gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0 text-white">
             {footerLinks.map((link, index) => (
               <li key={index} className="underline">
-                <a href={link.url}>{link.title}</a>
+                <a href={link.url} className="hover:underline">
+                  {link.title}
+                </a>
               </li>
             ))}
           </ul>

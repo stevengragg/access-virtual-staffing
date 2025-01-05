@@ -111,7 +111,7 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
                 >
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
-                      <a href="/app/overview">Go to App</a>
+                      <a href="/app/overview">Go to Applicant Portal</a>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator className="mx-4" />
                     <DropdownMenuItem>
@@ -177,45 +177,36 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
           ))}
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             {buttons.map((button, index) => (
-              <div key={index} className="w-full">
-                {button.navLink.title === "Login" &&
-                user &&
-                !isLoading &&
-                !isMobile ? (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="w-full p-0">
-                      <Image
-                        src={user.picture || ""}
-                        alt="Avatar"
-                        className="size-10 rounded-full object-cover"
-                        width={40}
-                        height={40}
-                      />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      align="end"
-                      sideOffset={0}
-                      className="mt-1.5 px-0 py-2"
-                    >
-                      <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                          <a href="/app/overview">Go to App</a>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator className="mx-4" />
-                        <DropdownMenuItem>
-                          <a href="/api/auth/logout">Log Out</a>
-                        </DropdownMenuItem>
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                ) : button.navLink.title === "Login" &&
-                  user &&
-                  !isLoading &&
-                  isMobile ? null : (
-                  <LinkButton {...button} className="w-full" />
-                )}
-              </div>
+              <LinkButton key={index} {...button} className="w-full" />
             ))}
+            {user && !isLoading && !isMobile && (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="w-full p-0">
+                  <Image
+                    src={user.picture || ""}
+                    alt="Avatar"
+                    className="size-10 rounded-full object-cover"
+                    width={40}
+                    height={40}
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  sideOffset={0}
+                  className="mt-1.5 px-0 py-2"
+                >
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      <a href="/app/overview">Go to Applicant Portal</a>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator className="mx-4" />
+                    <DropdownMenuItem>
+                      <a href="/api/auth/logout">Log Out</a>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
         </motion.div>
       </div>
@@ -306,9 +297,9 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     height: 50,
   },
   navLinks: [
-    // { title: "Home", url: "/" },
+    { title: "Home", url: "/" },
     { title: "About Us", url: "/about-us" },
-    { title: "For Employers", url: "/recruit" },
+    // { title: "For Employers", url: "/recruit" },
     // { title: "For Job seekers", url: "/candidates" },
 
     {
@@ -347,15 +338,15 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     },
   ],
   buttons: [
-    {
-      navLink: {
-        title: "Login",
-        url: "/auth",
-        follow: false,
-      },
-      variant: "link2",
-      size: "default",
-    },
+    // {
+    //   navLink: {
+    //     title: "Login",
+    //     url: "/auth",
+    //     follow: false,
+    //   },
+    //   variant: "link2",
+    //   size: "default",
+    // },
     {
       navLink: {
         title: "Find Work",

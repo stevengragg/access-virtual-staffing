@@ -287,7 +287,7 @@ const Navigation = ({
 
 export const ApplicationShellDefaults = {
   logo: {
-    url: "/",
+    url: "/app/overview",
     src: "/avs_logo_4.png",
     alt: "Access Virtual Staffing Logo 2",
     width: 175,
@@ -300,13 +300,12 @@ export const ApplicationShellDefaults = {
     { title: "Submissions", url: "/app/submissions", icon: FileText },
   ],
   dropdown: [
-    { title: "Go to Site", url: "/" },
+    { title: "Contact Us", url: "/contact-us" },
     {
       title: "Blog",
       url: "https://accessvirtualstaffing.blogspot.com",
       follow: true,
     },
     { title: "FAQs", url: "/faq" },
-    { title: "Contact Us", url: "/contact-us" },
   ],
 };

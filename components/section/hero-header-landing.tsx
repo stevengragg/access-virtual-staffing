@@ -46,7 +46,7 @@ export const HeroHeaderLanding = (props: HeroHeaderLandingProps) => {
           className="size-full object-cover"
           alt={image.alt}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-deepBlue/75" />
       </div>
     </section>
   );
@@ -58,7 +58,7 @@ export const HeroHeaderLandingDefaults: Props = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
   buttons: [{ title: "Button" }, { title: "Button", variant: "secondary-alt" }],
   image: {
-    src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+    src: "/bg/root_homebg1.webp",
     alt: "Relume placeholder image",
   },
 };
