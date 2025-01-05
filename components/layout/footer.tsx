@@ -94,7 +94,7 @@ export const Footer = (props: Footer11Props) => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-2 md:gap-x-8 md:gap-y-4 text-white">
+          <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-8 md:gap-y-4 text-white">
             {columnLinks.map((column, index) => (
               <ul key={index}>
                 {column.links.map((link, linkIndex) => (
@@ -175,6 +175,12 @@ export const Footer11Defaults: Footer11Props = {
           title: "Specialized Services",
           url: "/services/specialized-services",
         },
+      ],
+    },
+    {
+      links: [
+        { title: "Find Work", url: "/find-work" },
+        { title: "Applicant Portal", url: "/auth" },
       ],
     },
   ],
