@@ -17,5 +17,5 @@ export default withPageAuthRequired(
       </div>
     );
   },
-  { returnTo: "/app/jobs" }
+  { returnTo: "/app/find-work" }
 );
