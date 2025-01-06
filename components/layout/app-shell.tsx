@@ -65,7 +65,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    <section id="relume" className="relative flex flex-col lg:flex-row">
+    <section id="header" className="relative flex flex-col lg:flex-row">
       <div className="absolute top-0 z-10 flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] lg:border-r lg:border-border-primary lg:px-0 lg:py-6">
         <div className="flex flex-1 flex-row items-center lg:flex-col lg:items-stretch">
           {logo && (

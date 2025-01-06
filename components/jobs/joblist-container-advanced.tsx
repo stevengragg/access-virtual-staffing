@@ -1,6 +1,3 @@
-import { Banknote, MapPin, UserRound } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
-
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { JobListing } from "@/types/general";
 import { JobListItemPosition } from "./joblist-item-position";
@@ -12,10 +9,12 @@ type Props = {
   buttons: LinkButtonProps[];
 };
 
-export type JobListContainerProps = React.ComponentPropsWithoutRef<"section"> &
-  Partial<Props>;
+export type JobListContainerAdvancedProps =
+  React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
 
-export const JobListContainer = (props: JobListContainerProps) => {
+export const JobListContainerAdvanced = (
+  props: JobListContainerAdvancedProps
+) => {
   const { heading, description, positions, buttons } = {
     ...props,
   };

@@ -5,3 +5,17 @@ export type ImageProps = {
   width: number;
   height: number;
 };
+
+export interface JobListing {
+  id: string;
+  url: string;
+  title: string;
+  pay?: string;
+  description?: string;
+  createdAt: string;
+  postedBy: string;
+}
+
+export type Position = {
+  position: JobListing;
+};

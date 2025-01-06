@@ -39,7 +39,7 @@ export default function Auth(props: AuthProps) {
   };
 
   return (
-    <section id="relume" className="px-[5%]">
+    <section id="header" className="px-[5%]">
       <div className="relative flex min-h-svh flex-col justify-start overflow-auto py-24 lg:py-20">
         <div className="mx-auto w-full max-w-sm">
           <div className="rb-6 mb-6 text-center md:mb-8">

@@ -45,7 +45,7 @@ export const Banner2 = (props: Banner2Props) => {
   if (isLoading) return null;
   if (!isBannerVisible) return null; // Don't render the banner if it's closed
   return (
-    <section id="relume" className="">
+    <section id="banner" className="">
       <div className="w-full relative flex flex-col items-stretch justify-start border border-black bg-white p-4 md:flex-row md:items-center md:px-4 md:py-3">
         <div className="rb-4 mb-4 mr-7 flex flex-col lg:flex-row flex-1 items-start md:mb-0 md:mr-8 lg:items-center">
           <a href={logo} target="_blank" className="lg:px-4">

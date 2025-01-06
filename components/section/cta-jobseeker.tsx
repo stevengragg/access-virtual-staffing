@@ -21,7 +21,7 @@ export const CtaJobseeker = (props: CtaJobseekerProps) => {
     ...props,
   };
   return (
-    <section id="relume" className="px-[5%] py-8 md:py-12 bg-zinc-300">
+    <section id="cta" className="px-[5%] py-8 md:py-12 bg-zinc-300">
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>

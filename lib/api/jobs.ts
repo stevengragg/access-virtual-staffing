@@ -1,14 +1,5 @@
-import axios from "axios";
 import { gainRefreshedAccessToken } from "./authorization";
-
-export interface JobListing {
-  id: string;
-  url: string;
-  title: string;
-  pay?: string;
-  createdAt: string;
-  postedBy: string;
-}
+import { JobListing } from "@/types/general";
 
 interface FetchJobListingsResponse {
   success: boolean;
@@ -24,6 +15,11 @@ type FetchJobListingsConfig = {
   offset?: number;
   remember?: boolean;
 };
+
+interface FetchJobResponse {
+  success: boolean;
+  item: JobListing | null;
+}
 
 export const fetchJobListings = async (
   accessToken: string,
@@ -52,10 +48,10 @@ export const fetchJobListings = async (
     };
   }
 
-  const position = await response.json();
-  console.log(`There are ${position.items?.length} jobs`);
+  const data = await response.json();
+  console.log(`There are ${data.items?.length} jobs`);
 
-  const formattedData = position.items.map((item: any) => {
+  const formattedData = data.items.map((item: any) => {
     const title =
       item.fields.find((field: any) => field.external_id === "title")?.values[0]
         ?.value || "N/A";
@@ -64,13 +60,13 @@ export const fetchJobListings = async (
       (field: any) => field.external_id === "estimated-salary"
     )?.values[0];
     return {
-      id: item.item_id,
+      id: item.app_item_id,
       title,
       pay: `${estimatedSalary.currency} ${parseFloat(
         estimatedSalary.value
       ).toFixed(2)} / hr`,
       url: "https://podio.com/webforms/29994876/2499223",
-      createdOn: item.created_on,
+      createdAt: item.created_on,
       postedBy: item.created_by.name,
     };
   });
@@ -79,6 +75,65 @@ export const fetchJobListings = async (
     success: true,
     items: formattedData,
     total: formattedData.length,
+  };
+};
+
+export const fetchJob = async (
+  accessToken: string,
+  appId: string,
+  appItemId: string
+): Promise<FetchJobResponse> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `OAuth2 ${accessToken || "invalid"}`,
+    },
+  };
+
+  const url = `https://api.podio.com/app/${
+    appId || "invalid"
+  }/item/${appItemId}`;
+
+  const response: any = await fetch(url, options);
+
+  if (response?.error === "unauthorized") {
+    console.log("Request unauthorized - please gain new access token");
+    return {
+      success: false,
+      item: null,
+    };
+  }
+
+  const data = await response.json();
+  console.log(data);
+
+  const title =
+    data.fields?.find((field: any) => field.external_id === "title")?.values[0]
+      ?.value || "N/A";
+
+  const description =
+    data.fields?.find((field: any) => field.external_id === "job-description")
+      ?.values[0]?.value || "No description provided";
+
+  const estimatedSalary = data.fields.find(
+    (field: any) => field.external_id === "estimated-salary"
+  )?.values[0];
+  const item = {
+    id: data.app_item_id,
+    title,
+    pay: `${estimatedSalary.currency} ${parseFloat(
+      estimatedSalary.value
+    ).toFixed(2)} / hr`,
+    url: "https://podio.com/webforms/29994876/2499223",
+    createdAt: data.created_on,
+    postedBy: data.created_by.name,
+    description,
+  };
+
+  return {
+    success: true,
+    item,
   };
 };
 
@@ -92,4 +147,16 @@ export const getJobs = async (
   }
 
   return fetchJobListings(newAccessToken, "30011142", config);
+};
+
+export const getJobPost = async (
+  id: string
+): Promise<FetchJobResponse | null> => {
+  const newAccessToken = await gainRefreshedAccessToken();
+
+  if (!newAccessToken) {
+    return null;
+  }
+
+  return fetchJob(newAccessToken, "30011142", id);
 };

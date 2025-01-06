@@ -1,62 +1,42 @@
-type Tag = {
-  url: string;
+import { LucideIcon } from "lucide-react";
+
+type Details = {
   label: string;
+  icon?: LucideIcon;
 };
 
 type Props = {
   heading: string;
-  description: string;
-  tags: Tag[];
+  details: Details[];
 };
 
 export type ViewJobHeaderProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const ViewJobHeader = (props: ViewJobHeaderProps) => {
-  const { heading, description, tags } = {
-    ...ViewJobHeaderDefaults,
+  const { heading, details } = {
     ...props,
   };
   return (
-    <section id="relume" className="px-[5%]">
+    <section id="header" className="px-[5%] bg-zinc-200">
       <div className="mx-auto max-w-lg py-16 text-center md:py-24 lg:py-28">
-        <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
+        <h1 className="mb-5 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
           {heading}
         </h1>
-        <p className="md:text-md">{description}</p>
         <ul className="mt-5 flex flex-wrap justify-center gap-2 md:mt-6">
-          {tags.map((tag, index) => (
-            <li key={index} className="flex">
-              <a
-                href={tag.url}
-                className="bg-background-secondary px-2 py-1 text-sm font-semibold"
-              >
-                {tag.label}
-              </a>
-            </li>
-          ))}
+          {details &&
+            details.map((detail, index) => (
+              <div key={index} className="flex">
+                <div className="mr-3 flex-none">
+                  {detail.icon && (
+                    <detail.icon className="flex size-6 flex-col items-center justify-center" />
+                  )}
+                </div>
+                <span className="md:text-md">{detail.label}</span>
+              </div>
+            ))}
         </ul>
       </div>
     </section>
   );
-};
-
-export const ViewJobHeaderDefaults: Props = {
-  heading: "Project name here",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-  tags: [
-    {
-      label: "Tag one",
-      url: "#",
-    },
-    {
-      label: "Tag two",
-      url: "#",
-    },
-    {
-      label: "Tag three",
-      url: "#",
-    },
-  ],
 };

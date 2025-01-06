@@ -30,7 +30,7 @@ export const FaqContent = (props: Faq1Props) => {
     ...props,
   } as Props;
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="content" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container mx-auto max-w-lg">
         <Accordion type="multiple">
           {questions.map((question: QuestionsProps, index: number) => (

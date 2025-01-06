@@ -1,10 +1,9 @@
 import { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
 
-import { JobListContainer } from "@/components/jobs/joblist-container";
-import { JobListHeader } from "@/components/jobs/joblist-header";
 import { getJobs } from "@/lib/api/jobs";
 import { CtaFooterJobseeker } from "@/components/section/cta-footer-jobseeker";
+import { JobListHeaderCta } from "@/components/jobs/joblist-header-cta";
+import { JobListContainerAdvanced } from "@/components/jobs/joblist-container-advanced";
 
 export const metadata: Metadata = {
   title:
@@ -85,24 +84,13 @@ export default async function FindWork({
 
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
-      <JobListHeader />
+      <JobListHeaderCta />
 
-      <JobListContainer
-        heading="Current Job Openings"
+      <JobListContainerAdvanced
+        heading=""
         description=""
         positions={positions?.success ? positions.items : []}
-        buttons={[
-          {
-            navLink: {
-              title: "View All",
-              url: "#",
-              follow: false,
-            },
-            variant: "link2",
-            size: "xl",
-            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
-          },
-        ]}
+        buttons={[]}
       />
 
       <CtaFooterJobseeker

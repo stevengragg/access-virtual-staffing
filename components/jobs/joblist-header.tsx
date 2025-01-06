@@ -21,7 +21,10 @@ export const JobListHeader = (props: JobListHeaderProps) => {
     ...props,
   };
   return (
-    <section id="relume" className="relative px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="joblist_header"
+      className="relative px-[5%] py-16 md:py-24 lg:py-28"
+    >
       <div className="container relative z-10">
         <div className="w-full max-w-lg">
           <p className="mb-3 font-semibold text-text-alternative md:mb-4">
