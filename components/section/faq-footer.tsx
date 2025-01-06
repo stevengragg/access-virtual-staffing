@@ -36,11 +36,10 @@ export const FaqFooter = (props: FaqFooter1Props) => {
     footerDescription,
     button,
   } = {
-    ...FaqFooter1Defaults,
     ...props,
   } as Props;
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="faq_footer" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl mx-auto">
         <div className="rb-12 mb-12 text-left md:mb-18 lg:mb-20">
           <h2 className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
@@ -88,38 +87,4 @@ export const FaqFooter = (props: FaqFooter1Props) => {
       </div>
     </section>
   );
-};
-
-export const FaqFooter1Defaults: FaqFooter1Props = {
-  heading: "FAQs",
-  description:
-    "Find answers to common questions about Access Virtual Staffing and our services.",
-  questions: [
-    {
-      title: "Why choose Access Virtual Staffing?",
-      answer:
-        "Choosing Access Virtual Staffing means partnering with a team dedicated to delivering top-notch virtual staffing solutions tailored to your needs. We provide highly skilled professionals who are proficient in English and, in some cases, bilingual in Spanish. Our transparent and efficient process ensures you find the best fit for your business while benefiting from our commitment to quality, integrity, and personalized support. Additionally, our flexible services and advanced technology support help streamline your operations, allowing you to focus on what matters most—growing your business.",
-    },
-    {
-      title: "How do I request for a Virtual Staff?",
-      answer:
-        "To request a Virtual Staff, simply fill out our web form (www.accessvirtualstaffing.com/start-hiring) with the necessary details about your staffing needs. Once we receive your submission, our team will evaluate your request and then reach out to you for a quick verification call. This ensures that we fully understand your requirements and are aligned on the expectations before moving forward.",
-    },
-    {
-      title: "How much does it cost?",
-      answer:
-        "The cost of our virtual staffing services depends on factors such as the type of tasks, the level of expertise required, and the number of hours needed. For more information, please contact us at support@accessvirtualstaffing.com",
-    },
-  ],
-  footerDescription: "You have other questions?",
-  button: {
-    navLink: {
-      title: "See more",
-      url: "/faq",
-      follow: false,
-    },
-    variant: "link2",
-    size: "lg",
-    icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
-  },
 };

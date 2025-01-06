@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+// import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Manrope } from "next/font/google";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+// import { getSession } from "@auth0/nextjs-auth0";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Navbar } from "@/components/layout/navigation";
-import { Footer } from "@/components/layout/footer";
-import ScrollToTop from "@/components/ui/scroll-to-top";
-// import { Banner2 } from "@/components/section/banner";
+// import { Footer } from "@/components/layout/footer";
+// import ScrollToTop from "@/components/ui/scroll-to-top";
+// import { AppNavbar } from "@/components/layout/app-navigation";
+// import { SiteNavbar } from "@/components/layout/site-navigation";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -35,14 +37,13 @@ export const metadata: Metadata = {
     "specialized skilled staff",
     "staffing agency",
   ],
-  authors: [{ name: "Steven Gragg", url: "https://github.com/stevengragg" }],
-  creator: "Steven Gragg",
-  publisher: "Iona Innovation Laboratories",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  authors: [
+    {
+      name: "Iona Innovation Labs",
+      url: "https://www.linkedin.com/company/iona-innovation-labs",
+    },
+  ],
+  publisher: "Vercel",
   metadataBase: new URL("https://www.accessvirtualstaffing.com"),
   alternates: {
     canonical: "/",
@@ -72,21 +73,18 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const session = await getSession();
+  // console.log(session);
   return (
     <html lang="en">
-      <body className={cn(manrope.className)}>
-        {/* <Banner2 /> */}
-        <Navbar />
-        {children}
-        <Footer />
-        <SpeedInsights />
-        <ScrollToTop />
-      </body>
+      <UserProvider>
+        <body className={cn(manrope.className)}>{children}</body>
+      </UserProvider>
     </html>
   );
 }

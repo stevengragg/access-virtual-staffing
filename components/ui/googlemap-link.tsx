@@ -15,7 +15,7 @@ const GoogleMapLink = ({ address, className }: Props) => {
       href={googleMapsUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn("mb-5 text-sm md:mb-6", className)}
+      className={cn("mb-5 text-sm md:mb-6 hover:underline", className)}
     >
       {address}
     </a>
