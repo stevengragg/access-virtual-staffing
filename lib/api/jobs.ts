@@ -1,43 +1,84 @@
 import axios from "axios";
+import { gainRefreshedAccessToken } from "./authorization";
 
 interface JobListing {
-  item_id: number;
-  fields: {
-    field_id: number;
-    label: string;
-    values: Array<{ value: string }>;
-  }[];
+  id: string;
+  url: string;
+  title: string;
+  createdAt: string;
+  postedBy: string;
 }
 
 interface FetchJobListingsResponse {
+  success: boolean;
   items: JobListing[];
   total: number;
 }
 
+type FetchJobListingsConfig = {
+  sort_by: string;
+  sort_desc: boolean;
+  filters?: Record<string, any>;
+  limit?: number;
+  offset?: number;
+  remember?: boolean;
+};
+
 export const fetchJobListings = async (
   accessToken: string,
-  appId: string
+  appId: string,
+  config?: FetchJobListingsConfig
 ): Promise<FetchJobListingsResponse> => {
-  const url = `https://api.podio.com/item/app/${appId}/filter`;
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `OAuth2 ${accessToken || "invalid"}`,
+    },
+    body: JSON.stringify(config),
+  };
 
-  try {
-    const response = await axios.post<FetchJobListingsResponse>(
-      url,
-      {
-        sort_by: "created_on",
-        sort_desc: true,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `OAuth2 ${accessToken}`,
-        },
-      }
-    );
+  const url = `https://api.podio.com/item/app/${appId || "invalid"}/filter`;
 
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch job listings");
+  const response: any = await fetch(url, options);
+
+  if (response?.error === "unauthorized") {
+    console.log("Request unauthorized - please gain new access token");
+    return {
+      success: false,
+      items: [],
+      total: 0,
+    };
   }
+
+  const position = await response.json();
+  console.log(`There are ${position.items?.length} jobs`);
+
+  const formattedData = position.items.map((item: any) => ({
+    id: item.item_id,
+    title:
+      item.fields.find((field: any) => field.external_id === "title")?.values[0]
+        ?.value || "N/A",
+    url: item.link || "#",
+    createdOn: item.created_on,
+    postedBy: item.created_by.name,
+  }));
+
+  return {
+    success: true,
+    items: formattedData,
+    total: formattedData.length,
+  };
+};
+
+export const getJobs = async (
+  config: FetchJobListingsConfig
+): Promise<FetchJobListingsResponse | null> => {
+  const newAccessToken = await gainRefreshedAccessToken();
+
+  if (!newAccessToken) {
+    return null;
+  }
+
+  return fetchJobListings(newAccessToken, "30011142", config);
 };

@@ -1,10 +1,14 @@
 import { Metadata } from "next";
+import { ChevronRight } from "lucide-react";
 
 import { JobListContainer } from "@/components/jobs/joblist-container";
-// import { JobListHeader } from "@/components/jobs/joblist-header";
+import { JobListHeader } from "@/components/jobs/joblist-header";
+import { getJobs } from "@/lib/api/jobs";
+import { CtaFooterJobseeker } from "@/components/section/cta-footer-jobseeker";
 
 export const metadata: Metadata = {
-  title: "Browse Jobs | Access Virtual Staffing",
+  title:
+    "Browse Remote Jobs and Find Virtual Staff Opportunities | Access Virtual Staffing",
   description:
     "Explore a wide range of job opportunities with Access Virtual Staffing. Create an account, log in to your applicant portal, and apply for jobs that match your skills and career goals.",
   keywords: [
@@ -64,47 +68,66 @@ export const metadata: Metadata = {
   },
 };
 export const dynamic = "force-dynamic";
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+export default async function FindWork({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  console.log("search params: ", { searchParams });
 
-export default async function Jobs() {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "OAuth2 601aa5d5db72e26f74c1806c15246383",
-    },
-    body: JSON.stringify({
-      sort_by: "created_on",
-      sort_desc: true,
-    }),
-  };
-
-  const data = await fetch(
-    "https://api.podio.com/item/app/30011142/filter",
-    options
-  );
-
-  const position = await data.json();
-
-  const formattedData = position.items.map((item: any) => ({
-    id: item.item_id,
-    title:
-      item.fields.find((field: any) => field.external_id === "title")?.values[0]
-        ?.value || "N/A",
-    url: item.link || "#",
-    createdOn: item.created_on,
-    postedBy: item.created_by.name,
-  }));
-
-  console.log(formattedData);
+  const positions = await getJobs({
+    sort_by: "created_on",
+    sort_desc: true,
+    // limit: 5,
+    filters: { "job-posting-status": 3 },
+  });
 
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
-      {/* <JobListHeader /> */}
+      <JobListHeader />
 
       <JobListContainer
         heading="Current Job Openings"
-        description="Find your ideal virtual job with us today."
-        positions={formattedData}
+        description=""
+        positions={positions?.success ? positions.items : []}
+        buttons={[
+          {
+            navLink: {
+              title: "View All",
+              url: "#",
+              follow: false,
+            },
+            variant: "link2",
+            size: "xl",
+            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          },
+        ]}
+      />
+
+      <CtaFooterJobseeker
+        heading="Remote Jobs: Work and Grow From Anywhere"
+        description=""
+        buttons={[
+          {
+            navLink: {
+              title: "Find Jobs",
+              url: "/auth",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+          {
+            navLink: {
+              title: "Hire a Virtual Staff",
+              url: "/talent",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+        ]}
       />
     </main>
   );

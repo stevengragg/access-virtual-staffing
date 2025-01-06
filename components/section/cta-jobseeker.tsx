@@ -55,12 +55,12 @@ export const CtaJobseekerDefaults: Props = {
   tagline: "For Talent",
   heading: "Your Career, Your Way – Work from Anywhere",
   description:
-    "Access Virtual Staffing connects you with freelance and full-time remote opportunities tailored for developers, designers, marketers, product managers, project managers, virtual assistants, and more. Discover roles with US-based startups and tech companies and find the flexibility to work on your terms from anywhere in the world.",
+    "Access Virtual Staffing connects you with freelance and full-time remote opportunities tailored for developers, designers, marketers, product managers, project managers, virtual assistants, and more. Discover roles with US-based startups and companies and find the flexibility to work on your terms from anywhere in the world.",
   buttons: [
     {
       navLink: {
         title: "Learn More",
-        url: "/find-work",
+        url: "/talent",
         follow: false,
       },
       variant: "secondary",
@@ -70,7 +70,7 @@ export const CtaJobseekerDefaults: Props = {
   image: {
     src: "/img/working_remotely.svg",
     alt: "Working Remotely",
-    width: 500,
-    height: 500,
+    width: 100,
+    height: 100,
   },
 };

@@ -20,6 +20,35 @@ export default function Home() {
       <HeroHeader />
       {/* How it works Section */}
       <HowItWorks
+        tagline="Seamless Staffing Solutions"
+        heading="How It Works"
+        subheading="Discover how easy and efficient it is to elevate your team with Access Virtual Staffing. Our streamlined process ensures that you get the right virtual staff quickly and effortlessly. Here’s a quick look at how we make it all happen:"
+        sections={[
+          {
+            stepNumber: 1,
+            heading: "Client Intake",
+            description:
+              "Begin by filling out our virtual staff request form. Once we receive it, we’ll review the details and, if needed, schedule a call to clarify expectations and deliverables.",
+          },
+          {
+            stepNumber: 2,
+            heading: "Sourcing and Screening",
+            description:
+              "We kick off our sourcing and screening process to find the best candidates.",
+          },
+          {
+            stepNumber: 3,
+            heading: "Onboarding",
+            description:
+              "After you’ve selected your preferred candidate, we’ll handle the onboarding process to ensure they are ready for their first day.",
+          },
+          {
+            stepNumber: 4,
+            heading: "Integration & Monitoring",
+            description:
+              "We handle timekeeping, monitor productivity, and manage payroll, providing weekly attendance reports and ensuring accurate, timely compensation for your virtual staff.",
+          },
+        ]}
         buttons={[
           {
             navLink: {
@@ -76,7 +105,7 @@ export default function Home() {
           {
             navLink: {
               title: "Find Work",
-              url: "/find-work",
+              url: "/talent",
               follow: false,
             },
             variant: "secondary",

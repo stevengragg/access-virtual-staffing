@@ -1,5 +1,6 @@
 import { Button } from "@relume_io/relume-ui";
-import { UserRound } from "lucide-react";
+import { Banknote, MapPin, UserRound } from "lucide-react";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
 // import type { ButtonProps } from "@relume_io/relume-ui";
 // import { LuMapPin, LuPersonStanding } from "react-icons/lu";
 // import { MdAccessTime } from "react-icons/md";
@@ -20,13 +21,14 @@ type Props = {
   heading: string;
   description: string;
   positions: PositionProps[];
+  buttons: LinkButtonProps[];
 };
 
 export type JobListContainerProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const JobListContainer = (props: JobListContainerProps) => {
-  const { heading, description, positions } = {
+  const { heading, description, positions, buttons } = {
     ...props,
   };
   return (
@@ -51,6 +53,12 @@ export const JobListContainer = (props: JobListContainerProps) => {
             </div>
           )}
         </div>
+        <div className="mt-6 flex gap-2 md:mt-8">
+          {buttons &&
+            buttons.map((button, index) => (
+              <LinkButton key={index} {...button} />
+            ))}
+        </div>
       </div>
     </section>
   );
@@ -60,7 +68,7 @@ const PositionCard: React.FC<PositionCardProps> = ({ position }) => {
   return (
     <div className="border border-border-primary p-6 md:p-8 rounded-lg">
       <div className="mb-3 flex justify-between gap-4 md:mb-4">
-        <a href={position.url} className="hover:underline">
+        <a href={`/find-work/${position.id}`} className="hover:underline">
           <h3 className="text-xl font-bold md:text-2xl">{position.title}</h3>
         </a>
         <p className="self-start bg-background-secondary px-2 py-1 text-sm font-semibold">
@@ -69,6 +77,18 @@ const PositionCard: React.FC<PositionCardProps> = ({ position }) => {
       </div>
 
       <div className="flex flex-wrap gap-y-3">
+        <div className="mr-6 flex items-center">
+          <div className="mr-3 flex-none">
+            <MapPin className="flex size-6 flex-col items-center justify-center" />
+          </div>
+          <span className="md:text-md">Remote</span>
+        </div>
+        <div className="mr-6 flex items-center">
+          <div className="mr-3 flex-none">
+            <Banknote className="flex size-6 flex-col items-center justify-center" />
+          </div>
+          <span className="md:text-md">PHP 234.00 / hour</span>
+        </div>
         <div className="mr-6 flex items-center">
           <div className="mr-3 flex-none">
             <UserRound className="flex size-6 flex-col items-center justify-center" />

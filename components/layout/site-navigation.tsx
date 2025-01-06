@@ -350,7 +350,7 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     {
       navLink: {
         title: "Find Work",
-        url: "/find-work",
+        url: "/talent",
         follow: false,
       },
       variant: "outline",

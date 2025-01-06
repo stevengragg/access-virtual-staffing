@@ -19,6 +19,34 @@ export default function Home() {
       <HeroHeader />
       {/* How it works Section */}
       <HowItWorks
+        tagline="Your Career, Your Way – Work from Anywhere"
+        heading="How to get hired on AVS"
+        subheading="Get hired in 4 simple steps:"
+        sections={[
+          {
+            stepNumber: 1,
+            heading: "Create your profile",
+            description:
+              "Share some basic details and your past work experience.",
+          },
+          {
+            stepNumber: 2,
+            heading: "Apply to jobs",
+            description: "Submit the application form to the job you chosen.",
+          },
+          {
+            stepNumber: 3,
+            heading: "Receive interview invites",
+            description:
+              "Interview directly with hiring managers and get job offers.",
+          },
+          {
+            stepNumber: 4,
+            heading: "Start working",
+            description:
+              "Continue to receive support from AVS after you start a new role or contract.",
+          },
+        ]}
         buttons={[
           {
             navLink: {

@@ -179,7 +179,8 @@ export const Footer11Defaults: Footer11Props = {
     },
     {
       links: [
-        { title: "Find Work", url: "/find-work" },
+        { title: "For Jobseekers", url: "/talent" },
+        { title: "Remote Jobs", url: "/find-work" },
         { title: "Applicant Portal", url: "/auth" },
       ],
     },
