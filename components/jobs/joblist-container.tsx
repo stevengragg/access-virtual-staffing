@@ -1,26 +1,19 @@
 import { Button } from "@relume_io/relume-ui";
 import { Banknote, MapPin, UserRound } from "lucide-react";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
+import { JobListing } from "@/lib/api/jobs";
 // import type { ButtonProps } from "@relume_io/relume-ui";
 // import { LuMapPin, LuPersonStanding } from "react-icons/lu";
 // import { MdAccessTime } from "react-icons/md";
 
-type PositionProps = {
-  id: string;
-  url: string;
-  title: string;
-  createdAt: string;
-  postedBy: string;
-};
-
 type PositionCardProps = {
-  position: PositionProps;
+  position: JobListing;
 };
 
 type Props = {
   heading: string;
   description: string;
-  positions: PositionProps[];
+  positions: JobListing[];
   buttons: LinkButtonProps[];
 };
 
@@ -87,7 +80,7 @@ const PositionCard: React.FC<PositionCardProps> = ({ position }) => {
           <div className="mr-3 flex-none">
             <Banknote className="flex size-6 flex-col items-center justify-center" />
           </div>
-          <span className="md:text-md">PHP 234.00 / hour</span>
+          <span className="md:text-md">{position.pay || "Not specified"}</span>
         </div>
         <div className="mr-6 flex items-center">
           <div className="mr-3 flex-none">

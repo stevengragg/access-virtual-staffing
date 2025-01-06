@@ -1,10 +1,11 @@
 import axios from "axios";
 import { gainRefreshedAccessToken } from "./authorization";
 
-interface JobListing {
+export interface JobListing {
   id: string;
   url: string;
   title: string;
+  pay?: string;
   createdAt: string;
   postedBy: string;
 }
@@ -54,15 +55,25 @@ export const fetchJobListings = async (
   const position = await response.json();
   console.log(`There are ${position.items?.length} jobs`);
 
-  const formattedData = position.items.map((item: any) => ({
-    id: item.item_id,
-    title:
+  const formattedData = position.items.map((item: any) => {
+    const title =
       item.fields.find((field: any) => field.external_id === "title")?.values[0]
-        ?.value || "N/A",
-    url: item.link || "#",
-    createdOn: item.created_on,
-    postedBy: item.created_by.name,
-  }));
+        ?.value || "N/A";
+
+    const estimatedSalary = item.fields.find(
+      (field: any) => field.external_id === "estimated-salary"
+    )?.values[0];
+    return {
+      id: item.item_id,
+      title,
+      pay: `${estimatedSalary.currency} ${parseFloat(
+        estimatedSalary.value
+      ).toFixed(2)} / hr`,
+      url: "https://podio.com/webforms/29994876/2499223",
+      createdOn: item.created_on,
+      postedBy: item.created_by.name,
+    };
+  });
 
   return {
     success: true,

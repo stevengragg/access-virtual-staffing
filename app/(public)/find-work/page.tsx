@@ -79,7 +79,7 @@ export default async function FindWork({
   const positions = await getJobs({
     sort_by: "created_on",
     sort_desc: true,
-    // limit: 5,
+    limit: 10,
     filters: { "job-posting-status": 3 },
   });
 
