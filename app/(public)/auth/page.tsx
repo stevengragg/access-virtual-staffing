@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 
-import LinkButton, { LinkButtonProps } from "@/components/ui/link-button";
 import { AccessPortalContainer } from "@/components/auth/access-portal-container";
 
 export const metadata: Metadata = {
@@ -24,29 +23,19 @@ export const metadata: Metadata = {
   },
 };
 
-type Props = {
-  title: string;
-  description: string;
-};
-
-export type AuthProps = React.ComponentPropsWithoutRef<"section"> &
-  Partial<Props>;
-
-export default function Auth(props: AuthProps) {
-  const { title, description } = {
-    ...AuthDefaults,
-    ...props,
-  };
-
+export default function Auth() {
   return (
     <section id="header" className="px-[5%]">
       <div className="relative flex min-h-svh flex-col justify-start overflow-auto py-24 lg:py-20">
         <div className="mx-auto w-full max-w-sm">
           <div className="rb-6 mb-6 text-center md:mb-8">
             <h1 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
-              {title}
+              Applicant Portal
             </h1>
-            <p className="md:text-md">{description}</p>
+            <p className="md:text-md">
+              Discover jobs that fits your skills and access your account to
+              manage your profile and job applications
+            </p>
           </div>
           <AccessPortalContainer />
         </div>
@@ -54,9 +43,3 @@ export default function Auth(props: AuthProps) {
     </section>
   );
 }
-
-export const AuthDefaults: Props = {
-  title: "Applicant Portal",
-  description:
-    "Discover jobs that fits your skills and access your account to manage your profile and job applications.",
-};
