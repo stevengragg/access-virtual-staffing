@@ -46,10 +46,7 @@ export const metadata: Metadata = {
   publisher: "Vercel",
   metadataBase: new URL("https://www.accessvirtualstaffing.com"),
   alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
+    canonical: "https://www.accessvirtualstaffing.com",
   },
   openGraph: {
     title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
