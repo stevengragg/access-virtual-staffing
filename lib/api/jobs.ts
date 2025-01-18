@@ -62,9 +62,11 @@ export const fetchJobListings = async (
     return {
       id: item.app_item_id,
       title,
-      pay: `${estimatedSalary.currency} ${parseFloat(
-        estimatedSalary.value
-      ).toFixed(2)} / hr`,
+      pay: estimatedSalary
+        ? `${estimatedSalary.currency} ${parseFloat(
+            estimatedSalary.value
+          ).toFixed(2)} / hr`
+        : "Not provided",
       url: "https://podio.com/webforms/29994876/2499223",
       createdAt: item.created_on,
       postedBy: item.created_by.name,
