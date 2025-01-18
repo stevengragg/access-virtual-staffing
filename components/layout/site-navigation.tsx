@@ -338,15 +338,15 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     },
   ],
   buttons: [
-    // {
-    //   navLink: {
-    //     title: "Login",
-    //     url: "/auth",
-    //     follow: false,
-    //   },
-    //   variant: "link2",
-    //   size: "default",
-    // },
+    {
+      navLink: {
+        title: "Login",
+        url: "/auth",
+        follow: false,
+      },
+      variant: "link2",
+      size: "default",
+    },
     {
       navLink: {
         title: "Find Work",
