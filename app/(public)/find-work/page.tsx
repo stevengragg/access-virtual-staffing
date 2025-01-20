@@ -4,6 +4,8 @@ import { getJobs } from "@/lib/api/jobs";
 import { CtaFooterJobseeker } from "@/components/section/cta-footer-jobseeker";
 import { JobListHeaderCta } from "@/components/jobs/joblist-header-cta";
 import { JobListContainerAdvanced } from "@/components/jobs/joblist-container-advanced";
+import { JobListPaginationContainer } from "@/components/jobs/joblist-pagination-container";
+import { JobListSearchFormContainer } from "@/components/jobs/joblist-search-form-container";
 
 export const metadata: Metadata = {
   title:
@@ -67,30 +69,50 @@ export const metadata: Metadata = {
   },
 };
 export const dynamic = "force-dynamic";
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+type SearchParams = { [key: string]: string | string[] | undefined };
 export default async function FindWork({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
-  console.log("search params: ", { searchParams });
+  const resolvedSearchParams = await searchParams;
 
+  const page = parseInt(resolvedSearchParams.page as string, 10) || 1;
+  const offset = (page - 1) * 10;
   const positions = await getJobs({
+    offset,
     sort_by: "created_on",
     sort_desc: true,
     limit: 10,
-    filters: { "job-posting-status": 3 },
+    filters: {
+      "job-posting-status": 3,
+      title: resolvedSearchParams.search || undefined,
+    },
   });
 
+  const totalFilteredCount = positions?.success ? positions.total : 0;
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       <JobListHeaderCta />
 
+      <JobListSearchFormContainer
+        totalSearchResult={totalFilteredCount}
+        searchText={
+          Array.isArray(resolvedSearchParams.search)
+            ? resolvedSearchParams.search[0]
+            : resolvedSearchParams.search || ""
+        }
+      />
+
       <JobListContainerAdvanced
-        heading=""
-        description=""
         positions={positions?.success ? positions.items : []}
         buttons={[]}
+      />
+
+      <JobListPaginationContainer
+        totalCount={totalFilteredCount}
+        siblingCount={1}
+        pageSize={10}
       />
 
       <CtaFooterJobseeker

@@ -107,7 +107,7 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
                 <DropdownMenuContent
                   align="end"
                   sideOffset={0}
-                  className="mt-1.5 px-0 py-2"
+                  className="mt-1.5 px-0 py-2 rounded-md"
                 >
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
@@ -177,7 +177,13 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
           ))}
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             {buttons.map((button, index) => (
-              <LinkButton key={index} {...button} className="w-full" />
+              <div key={index}>
+                {button.navLink.title === "Login" &&
+                user &&
+                !isLoading ? null : (
+                  <LinkButton {...button} className="w-full" />
+                )}{" "}
+              </div>
             ))}
             {user && !isLoading && !isMobile && (
               <DropdownMenu>
@@ -193,7 +199,7 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
                 <DropdownMenuContent
                   align="end"
                   sideOffset={0}
-                  className="mt-1.5 px-0 py-2"
+                  className="mt-1.5 px-0 py-2 rounded-md"
                 >
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
@@ -231,7 +237,7 @@ const SubMenu = ({
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className="flex w-full items-center justify-between gap-2 py-3 text-left text-md lg:flex-none lg:justify-start lg:px-4 lg:py-2 lg:text-base hover:underline"
+        className=" flex w-full items-center justify-between gap-2 py-3 text-left text-md lg:flex-none lg:justify-start lg:px-4 lg:py-2 lg:text-base hover:underline"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         <span>{navLink.title}</span>
@@ -265,7 +271,7 @@ const SubMenu = ({
             initial="close"
             exit="close"
             transition={{ duration: 0.2 }}
-            className="bg-background-primary lg:absolute lg:z-50 lg:border lg:border-deepBlue rounded-md lg:p-2 lg:[--y-close:25%]"
+            className="bg-white lg:absolute lg:z-50 lg:border lg:border-deepBlue rounded-md lg:p-2 lg:[--y-close:25%]"
           >
             {navLink.subMenuLinks?.map((navLink, index) => (
               <Link

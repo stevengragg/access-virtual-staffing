@@ -23,11 +23,11 @@ export const ViewJobHeader = (props: ViewJobHeaderProps) => {
         <h1 className="mb-5 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
           {heading}
         </h1>
-        <ul className="mt-5 flex flex-wrap justify-center gap-2 md:mt-6">
+        <ul className="mt-5 flex lg:flex-row flex-wrap items-center justify-center gap-6 md:mt-6">
           {details &&
             details.map((detail, index) => (
-              <div key={index} className="flex">
-                <div className="mr-3 flex-none">
+              <div key={index} className="flex flex-row items-center gap-2">
+                <div className=" flex-none">
                   {detail.icon && (
                     <detail.icon className="flex size-6 flex-col items-center justify-center" />
                   )}

@@ -51,3 +51,9 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormSchema = z.infer<typeof contactFormSchema>;
+
+export const searchFormSchema = z.object({
+  searchText: z.string().optional(),
+});
+
+export type SearchFormSchema = z.infer<typeof searchFormSchema>;

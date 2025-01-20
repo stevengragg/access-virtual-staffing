@@ -4,6 +4,7 @@ import { formatDistanceToNow } from "date-fns";
 import { ViewJobContent } from "@/components/jobs/view-job-content";
 import { ViewJobHeader } from "@/components/jobs/view-job-header";
 import { getJobPost } from "@/lib/api/jobs";
+import { ViewJobApplyContainer } from "@/components/jobs/view-job-apply-container";
 
 export async function generateMetadata({
   params,
@@ -54,6 +55,8 @@ export default async function ViewJob({ params }: { params: Params }) {
           dangerouslySetInnerHTML={{ __html: post?.item?.description || "" }}
         />
       </ViewJobContent>
+
+      <ViewJobApplyContainer />
     </main>
   );
 }

@@ -1,0 +1,3 @@
+type JobSearchFilter = {
+  searchText: string;
+};
