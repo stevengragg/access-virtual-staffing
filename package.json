@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.1",
     "@react-email/components": "^0.0.25",
     "@relume_io/relume-tailwind": "^0.4.0",
@@ -18,7 +19,7 @@
     "@tailwindcss/typography": "^0.5.14",
     "@vercel/speed-insights": "^1.0.12",
     "axios": "^1.7.9",
-    "class-variance-authority": "^0.7.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "js-cookie": "^3.0.5",
@@ -30,8 +31,9 @@
     "react-hook-form": "^7.53.0",
     "react-phone-number-input": "^3.4.5",
     "resend": "^4.0.0",
+    "schema-dts": "^1.1.2",
     "sharp": "^0.33.5",
-    "tailwind-merge": "^2.5.2",
+    "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },

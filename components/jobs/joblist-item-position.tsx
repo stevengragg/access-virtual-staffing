@@ -4,13 +4,13 @@ import { formatDistanceToNow } from "date-fns";
 import { Position } from "@/types/general";
 import LinkButton from "../ui/link-button";
 
-export const JobListItemPosition: React.FC<Position> = ({ position }) => {
+export const JobListItemPosition = ({ position }: Position) => {
   return (
-    <div className="border border-border-primary p-6 md:p-8 rounded-lg">
+    <div className="border border-zinc-300 p-4 md:p-6 rounded-lg hover:border-primaryBlue hover:bg-zinc-200">
       <div className="mb-3 flex flex-col lg:flex-row justify-between gap-4 md:mb-4">
-        <a href={`/find-work/${position.id}`} className="hover:underline">
-          <h3 className="text-xl font-bold md:text-2xl">{position.title}</h3>
-        </a>
+        <div>
+          <h3 className="text-lg font-semibold md:text-xl">{position.title}</h3>
+        </div>
         <p className="self-start  px-2 py-1 text-sm font-semibold">
           {formatDistanceToNow(new Date(position.createdAt), {
             addSuffix: true,
@@ -41,7 +41,7 @@ export const JobListItemPosition: React.FC<Position> = ({ position }) => {
       <div className="mt-6 md:mt-8">
         <LinkButton
           navLink={{
-            title: "Apply Now",
+            title: "I'm interested",
             url: position.url || "#",
             follow: false,
           }}

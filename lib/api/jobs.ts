@@ -4,7 +4,8 @@ import { JobListing } from "@/types/general";
 interface FetchJobListingsResponse {
   success: boolean;
   items: JobListing[];
-  total: number;
+  total: number; //filtered
+  all: number; // all total
 }
 
 type FetchJobListingsConfig = {
@@ -45,13 +46,14 @@ export const fetchJobListings = async (
       success: false,
       items: [],
       total: 0,
+      all: 0,
     };
   }
 
   const data = await response.json();
-  console.log(`There are ${data.items?.length} jobs`);
+  console.log(`There are ${data?.items?.length} jobs`);
 
-  const formattedData = data.items.map((item: any) => {
+  const formattedData = data?.items?.map((item: any) => {
     const title =
       item.fields.find((field: any) => field.external_id === "title")?.values[0]
         ?.value || "N/A";
@@ -59,6 +61,7 @@ export const fetchJobListings = async (
     const estimatedSalary = item.fields.find(
       (field: any) => field.external_id === "estimated-salary"
     )?.values[0];
+    console.log(estimatedSalary);
     return {
       id: item.app_item_id,
       title,
@@ -67,7 +70,8 @@ export const fetchJobListings = async (
             estimatedSalary.value
           ).toFixed(2)} / hr`
         : "Not provided",
-      url: "https://podio.com/webforms/29994876/2499223",
+      url: `/find-work/${item.app_item_id}`,
+      //"https://podio.com/webforms/29994876/2499223"
       createdAt: item.created_on,
       postedBy: item.created_by.name,
     };
@@ -76,7 +80,8 @@ export const fetchJobListings = async (
   return {
     success: true,
     items: formattedData,
-    total: formattedData.length,
+    total: data?.filtered || 0,
+    all: data?.total || 0,
   };
 };
 
@@ -124,9 +129,11 @@ export const fetchJob = async (
   const item = {
     id: data.app_item_id,
     title,
-    pay: `${estimatedSalary.currency} ${parseFloat(
-      estimatedSalary.value
-    ).toFixed(2)} / hr`,
+    pay: estimatedSalary
+      ? `${estimatedSalary.currency} ${parseFloat(
+          estimatedSalary.value
+        ).toFixed(2)} / hr`
+      : "Not provided",
     url: "https://podio.com/webforms/29994876/2499223",
     createdAt: data.created_on,
     postedBy: data.created_by.name,

@@ -12,7 +12,7 @@ export const ViewJobContent = (props: ViewJobContentProps) => {
     ...props,
   };
   return (
-    <section id="viewjob_header" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="viewjob_content" className="px-[5%] py-4 md:py-8 ">
       <div className="container">
         <div className="grid grid-cols-1 items-start gap-y-12  md:gap-x-12 lg:gap-x-20">
           <div>

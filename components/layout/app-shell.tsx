@@ -95,7 +95,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                 </SheetClose>
                 <SheetContent
                   side="left"
-                  className="w-[80vw] overflow-hidden md:w-full md:max-w-[19.5rem]"
+                  className="w-[80vw] overflow-hidden md:w-full md:max-w-[19.5rem]  "
                 >
                   <Navigation logo={logo} navLinks={navLinks} />
                 </SheetContent>
@@ -119,7 +119,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                   <BiBell className="size-6" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="max-w-[19rem] px-0"
+                  className="max-w-[19rem] px-0 bg-white "
                   align="end"
                   sideOffset={0}
                 >
@@ -209,7 +209,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                 <DropdownMenuContent
                   align="end"
                   sideOffset={0}
-                  className="mt-1.5 min-w-32 px-0 py-2 md:min-w-48"
+                  className="mt-1.5 min-w-32 px-0 py-2 md:min-w-48 bg-white "
                 >
                   <DropdownMenuGroup>
                     {dropdown &&

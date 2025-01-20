@@ -17,7 +17,7 @@ export const CtaFooterJobseeker = (props: CtaFooterJobseekerProps) => {
   return (
     <section
       id="cta_footer"
-      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-primaryBlue   bg-center bg-no-repeat bg-cover bg-blend-multiply"
+      className=" px-[5%] py-16 md:py-24 lg:py-28  bg-zinc-800"
     >
       <div className="container text-center max-w-xl ">
         <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white">
