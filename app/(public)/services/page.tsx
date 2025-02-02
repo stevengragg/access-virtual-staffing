@@ -66,7 +66,7 @@ export default function Services({}: Props) {
       />
       {/* Services B Section */}
       <ServicesRight
-        heading="STANDARD PLAN:  Advance Recruiting Solutions"
+        heading="Standard Plan:  Advance Recruiting Solutions"
         description="Our Standard plan offers a comprehensive solution for your staffing needs, including recruiting, payroll, timekeeping, and benefits administration. Ideal for businesses seeking full-service support, this plan ensures seamless management of your workforce, allowing you to focus on your core operations."
         button={{
           navLink: {
