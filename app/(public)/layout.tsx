@@ -35,7 +35,7 @@ export default async function PublicRootLayout({
       {
         "@type": "ListItem",
         position: 4,
-        name: "Hire a Virtual Staff",
+        name: "Free Strategy Call",
         item: "https://www.accessvirtualstaffing.com/start-hiring",
       },
     ],

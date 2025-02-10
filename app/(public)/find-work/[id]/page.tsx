@@ -5,6 +5,7 @@ import { ViewJobContent } from "@/components/jobs/view-job-content";
 import { ViewJobHeader } from "@/components/jobs/view-job-header";
 import { getJobPost } from "@/lib/api/jobs";
 import { ViewJobApplyContainer } from "@/components/jobs/view-job-apply-container";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -15,7 +16,7 @@ export async function generateMetadata({
   const post = await getJobPost(id);
 
   return {
-    title: post ? post.item?.title : "View Job",
+    title: post ? `${post.item?.title} - Access Virtual Staffing` : "View Job",
   };
 }
 
@@ -24,7 +25,13 @@ export default async function ViewJob({ params }: { params: Params }) {
   const { id } = await params;
   const post = await getJobPost(id);
 
-  console.log(post);
+  if (
+    post?.item?.title?.toLowerCase() !==
+    id?.split("-")?.splice(1)?.join(" ")?.toLowerCase()
+  ) {
+    return notFound();
+  }
+
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       <ViewJobHeader
@@ -38,10 +45,10 @@ export default async function ViewJob({ params }: { params: Params }) {
             label: post?.item?.pay || "Not specified",
             icon: Banknote,
           },
-          {
-            label: post?.item?.postedBy || "Not available",
-            icon: UserRound,
-          },
+          // {
+          //   label: post?.item?.postedBy || "Not available",
+          //   icon: UserRound,
+          // },
           {
             label: formatDistanceToNow(new Date(post?.item?.createdAt || ""), {
               addSuffix: true,

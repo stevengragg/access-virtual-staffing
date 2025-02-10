@@ -209,7 +209,7 @@ export default async function Talent({
           },
           {
             navLink: {
-              title: "Hire a Virtual Staff",
+              title: "Free Strategy Call",
               url: "/talent",
               follow: false,
             },

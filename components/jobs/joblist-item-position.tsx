@@ -31,12 +31,12 @@ export const JobListItemPosition = ({ position }: Position) => {
           </div>
           <span className="md:text-md">{position.pay || "Not specified"}</span>
         </div>
-        <div className="mr-6 flex items-center">
+        {/* <div className="mr-6 flex items-center">
           <div className="mr-3 flex-none">
             <UserRound className="flex size-6 flex-col items-center justify-center" />
           </div>
           <span className="md:text-md">{position.postedBy}</span>
-        </div>
+        </div> */}
       </div>
       <div className="mt-6 md:mt-8">
         <LinkButton

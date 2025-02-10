@@ -6,6 +6,8 @@ import { JobListHeaderCta } from "@/components/jobs/joblist-header-cta";
 import { JobListContainerAdvanced } from "@/components/jobs/joblist-container-advanced";
 import { JobListPaginationContainer } from "@/components/jobs/joblist-pagination-container";
 import { JobListSearchFormContainer } from "@/components/jobs/joblist-search-form-container";
+import { ISearchParams } from "@/types/jobs";
+import { JobListItemPosition } from "@/components/jobs/joblist-item-position";
 
 export const metadata: Metadata = {
   title:
@@ -68,12 +70,13 @@ export const metadata: Metadata = {
     images: "/twitter-image.jpg", // Use the specified image URL
   },
 };
+
 export const dynamic = "force-dynamic";
-type SearchParams = { [key: string]: string | string[] | undefined };
+
 export default async function FindWork({
   searchParams,
 }: {
-  searchParams: Promise<SearchParams>;
+  searchParams: Promise<ISearchParams>;
 }) {
   const resolvedSearchParams = await searchParams;
 
@@ -104,10 +107,21 @@ export default async function FindWork({
         }
       />
 
-      <JobListContainerAdvanced
-        positions={positions?.success ? positions.items : []}
-        buttons={[]}
-      />
+      <JobListContainerAdvanced>
+        <div className="flex flex-col gap-6 md:gap-8">
+          {positions && positions.items.length ? (
+            positions.items.map((position, index) => (
+              <JobListItemPosition key={index} position={position} />
+            ))
+          ) : (
+            <div className="bg-zinc-300 p-8 lg:p-12 text-center">
+              <p className="md:text-md">
+                No Jobs available. Please check again later.
+              </p>
+            </div>
+          )}
+        </div>
+      </JobListContainerAdvanced>
 
       <JobListPaginationContainer
         totalCount={totalFilteredCount}
@@ -130,7 +144,7 @@ export default async function FindWork({
           },
           {
             navLink: {
-              title: "Hire a Virtual Staff",
+              title: "Free Strategy Call",
               url: "/talent",
               follow: false,
             },

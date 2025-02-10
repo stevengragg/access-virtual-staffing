@@ -78,7 +78,7 @@ export const Header36Defaults: Header36Props = {
     },
     {
       navLink: {
-        title: "Hire a Virtual Staff",
+        title: "Free Strategy Call",
         url: "/start-hiring",
         follow: false,
       },

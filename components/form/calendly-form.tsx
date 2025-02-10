@@ -12,7 +12,10 @@ export const CalendlyForm = (props: Props) => {
     >
       <div className="container-xl h-full overflow-hidden">
         <InlineWidget
-          url="https://calendly.com/steven-gragg/discovery-call-test"
+          url={
+            process.env.NEXT_PUBLIC_CALENDLY_LINK ||
+            "https://calendly.com/themorningrush/access-virtual-staffing-strategy-session"
+          }
           styles={{ height: "700px" }}
         />
       </div>

@@ -25,7 +25,8 @@ interface FetchJobResponse {
 export const fetchJobListings = async (
   accessToken: string,
   appId: string,
-  config?: FetchJobListingsConfig
+  config?: FetchJobListingsConfig,
+  isApp?: boolean
 ): Promise<FetchJobListingsResponse> => {
   const options = {
     method: "POST",
@@ -57,7 +58,9 @@ export const fetchJobListings = async (
     const title =
       item.fields.find((field: any) => field.external_id === "title")?.values[0]
         ?.value || "N/A";
-
+    const urlFriendlyTitle = `${item.app_item_id}-${title
+      ?.toLowerCase()
+      .replace(/ /g, "-")}`;
     const estimatedSalary = item.fields.find(
       (field: any) => field.external_id === "estimated-salary"
     )?.values[0];
@@ -70,7 +73,9 @@ export const fetchJobListings = async (
             estimatedSalary.value
           ).toFixed(2)} / hr`
         : "Not provided",
-      url: `/find-work/${item.app_item_id}`,
+      url: isApp
+        ? `/app/jobs/v/${urlFriendlyTitle}`
+        : `/find-work/${urlFriendlyTitle}`,
       //"https://podio.com/webforms/29994876/2499223"
       createdAt: item.created_on,
       postedBy: item.created_by.name,
@@ -147,7 +152,8 @@ export const fetchJob = async (
 };
 
 export const getJobs = async (
-  config: FetchJobListingsConfig
+  config: FetchJobListingsConfig,
+  isApp?: boolean
 ): Promise<FetchJobListingsResponse | null> => {
   const newAccessToken = await gainRefreshedAccessToken();
 
@@ -155,7 +161,7 @@ export const getJobs = async (
     return null;
   }
 
-  return fetchJobListings(newAccessToken, "30011142", config);
+  return fetchJobListings(newAccessToken, "30011142", config, isApp);
 };
 
 export const getJobPost = async (
@@ -167,5 +173,14 @@ export const getJobPost = async (
     return null;
   }
 
-  return fetchJob(newAccessToken, "30011142", id);
+  // Extract the job ID from the idWithSlug string
+  const idMatch = id.match(/^(\d+)-/);
+  const finalId = idMatch ? idMatch[1] : null;
+
+  if (!finalId) {
+    console.log("Invalid job ID");
+    return null;
+  }
+
+  return fetchJob(newAccessToken, "30011142", finalId);
 };

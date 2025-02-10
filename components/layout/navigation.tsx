@@ -248,7 +248,7 @@ export const Navbar1Defaults: Navbar1Props = {
     // },
     {
       navLink: {
-        title: "Hire a Virtual Staff",
+        title: "Free Strategy Call",
         url: "/start-hiring",
         follow: false,
       },

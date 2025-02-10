@@ -8,7 +8,7 @@ import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { HowItWorks } from "@/components/section/how-it-works";
 
 export const metadata: Metadata = {
-  title: "Hire a Virtual Staff | Access Virtual Staffing",
+  title: "Free Strategy Call | Access Virtual Staffing",
   description:
     "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Hire a Virtual Staff | Access Virtual Staffing",
+    title: "Free Strategy Call | Access Virtual Staffing",
     description:
       "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
     type: "website",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hire a Virtual Staff | Access Virtual Staffing",
+    title: "Free Strategy Call | Access Virtual Staffing",
     description:
       "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
     images: "/twitter-image.jpg", // Replace with your actual image URL
