@@ -1,7 +1,12 @@
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+"use client";
+
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 export default withPageAuthRequired(
-  async function Overview() {
+  function Overview() {
+    const { isLoading, error } = useUser();
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error.message}</div>;
     return (
       <div className="h-[calc(100vh-4.5rem)] overflow-auto">
         <div className="border-b-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">

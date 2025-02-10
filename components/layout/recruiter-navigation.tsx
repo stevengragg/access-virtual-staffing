@@ -260,7 +260,7 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     },
     {
       navLink: {
-        title: "Hire a Virtual Staff",
+        title: "Free Strategy Call",
         url: "/start-hiring",
         follow: false,
       },

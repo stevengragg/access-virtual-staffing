@@ -66,7 +66,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
 
   return (
     <section id="header" className="relative flex flex-col lg:flex-row">
-      <div className="absolute top-0 z-10 flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] lg:border-r lg:border-border-primary lg:px-0 lg:py-6">
+      <div className="bg-white absolute top-0 z-10 flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] border-b  lg:border-r border-zinc-300 lg:px-0 lg:py-6">
         <div className="flex flex-1 flex-row items-center lg:flex-col lg:items-stretch">
           {logo && (
             <a
@@ -106,8 +106,8 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
           )}
         </div>
       </div>
-      <main className="relative flex-1 bg-background-secondary">
-        <div className="sticky top-0 flex h-auto min-h-16 w-full items-center border-b border-border-primary bg-white px-6 md:min-h-18 lg:px-8">
+      <main className="relative flex-1 bg-white">
+        <div className="sticky top-0 flex h-auto min-h-16 w-full items-center border-b border-zinc-300 bg-white px-6 md:min-h-18 lg:px-8">
           <div className="mx-auto grid size-full grid-cols-1 items-center justify-end justify-items-end gap-4 lg:grid-cols-[1fr_max-content] lg:justify-between lg:justify-items-stretch">
             <div className="hidden w-full max-w-md lg:block">
               <h3 className="font-bold">Applicant Portal</h3>

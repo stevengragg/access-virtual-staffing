@@ -3,7 +3,7 @@ import {
   getCurrentPageFromSearchParams,
   getSearchTextFromSearchParams,
 } from "@/lib/get-search-params-data";
-import { format } from "date-fns";
+import { JobSearchFilter } from "@/types/jobs";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function useFilter() {
