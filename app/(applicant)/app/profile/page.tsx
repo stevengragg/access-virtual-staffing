@@ -1,26 +1,32 @@
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Metadata } from "next";
+import ProfileCard from "@/components/profile/profile-overview-card";
 
-export const metadata: Metadata = {
-  title: "Profile - Access Virtual Staffing",
-};
-
-export default withPageAuthRequired(
-  async function Profile() {
-    return (
-      <div className="h-[calc(100vh-4.5rem)] overflow-auto">
-        <div className="border-b-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">
-          <h1>Profile</h1>
-        </div>
-        <div className="container px-6 py-8 md:px-8 md:py-10 lg:py-12">
-          <div className="grid grid-cols-1 gap-12">
-            <div className="flex h-screen items-center justify-center border-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">
-              <h2>Click and paste Main Content</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  },
-  { returnTo: "/app/profile" }
-);
+export default function ProfilePage() {
+  const profileData = {
+    resume: "https://example.com/resume.pdf",
+    fullName: "Kobe Brian Santos",
+    email: "kobe@example.com",
+    phoneNumber: "+1 234 567 8901",
+    address: "Manila, Philippines",
+    skypeID: "kobe.santos",
+    whyFit: "I am a highly motivated developer...",
+    whatStrengths: "Strong problem-solving skills...",
+    whatNeedImprovement: "Need to work on public speaking...",
+    dateOfBirth: "1995-06-15",
+    hasPaypal: true,
+    contentLinks: ["https://example.com/portfolio"],
+    numberOfChildren: 2,
+    videoLinks: ["https://youtube.com/demo", "facebook.com"],
+    assessmentTests: ["https://example.com/assessment"],
+    internetProvider: "PLDT Fiber",
+    numberOfMonitors: "2",
+    numberOfExperience: "5",
+    salaryUnit: "PHP",
+    desiredSalary: "100,000",
+    workSamples: ["https://example.com/work-sample"],
+  };
+  return (
+    <div className="flex justify-center items-center mb-12">
+      <ProfileCard profile={profileData} />
+    </div>
+  );
+}
