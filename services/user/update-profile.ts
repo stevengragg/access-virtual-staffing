@@ -102,6 +102,3 @@ export const editProfileSchema = z.object({
 
 export type EditProfileSchema = z.infer<typeof editProfileSchema>;
 
-export const onSubmit = (data: EditProfileSchema) => {
-    console.log("Form submitted:", data);
-};

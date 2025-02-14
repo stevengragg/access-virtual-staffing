@@ -5,7 +5,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export default function DashboardLayout({ children }: LayoutProps) {
+export default function EditProfileLayout({ children }: LayoutProps) {
   return (
     <div className="h-[calc(100vh-4.5rem)] overflow-auto">
         <div className="w-full mx-auto ">

@@ -20,12 +20,7 @@ interface DatePickerProps {
   className?: string
 }
 
-export const DatePicker: React.FC<DatePickerProps> = ({
-  date,
-  onChange,
-  placeholder = "Pick a date",
-  className,
-}) => {
+export const DatePicker = ({ date, onChange, placeholder = "Pick a date", className }: DatePickerProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>

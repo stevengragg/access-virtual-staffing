@@ -32,39 +32,4 @@ export const fileUploadSchema = z.object({
 
 export type FileUploadSchema = z.infer<typeof fileUploadSchema>;
 
-//Sample request body
-/*
-  "resume": [
-    {
-      "file": {}
-    }
-  ],
-  "pfp": [],
-  "internetScreenshot": [],
-  "computerSpecsScreenshot": [],
-  "workstationPhoto": [],
-  "attachments": []
-}
-*/
 
-export const onSubmit = (data: FileUploadSchema) => {
-  console.log("📤 Data before FormData conversion:", JSON.stringify(data, null, 2));
-
-  const formData = new FormData();
-
-  Object.entries(data).forEach(([key, files]) => {
-    if (Array.isArray(files)) {
-      files.forEach(({ file }) => {
-        if (file) formData.append(key, file); 
-      });
-    }
-  });
-
-  console.log("📤 FormData Contents:");
-  Array.from(formData.entries()).forEach(([key, value]) => {
-    console.log(
-      `${key}:`,
-      value instanceof File ? `(File: ${value.name}, Size: ${value.size} bytes)` : value
-    );
-  });
-};

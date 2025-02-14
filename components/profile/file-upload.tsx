@@ -3,16 +3,18 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import {FileUploadProps} from "@/types/file-upload";
 
-const FileUpload: React.FC<FileUploadProps> = ({
-  fieldName,
-  label,
-  acceptedTypes = [],
-  maxSizeMB,
-  onChange,
-  value,
-}) => {
+type FileUploadProps = {
+  fieldName: string;
+  label: string;
+  acceptedTypes?: string[];
+  maxSizeMB: number;
+  onChange: (file: File | null) => void;
+  value?: File | null;
+}
+
+const FileUpload = ({ fieldName, label, acceptedTypes = [], maxSizeMB, onChange, value }: FileUploadProps) => {
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null;
 

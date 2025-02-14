@@ -8,9 +8,34 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import {IProfileProps} from "@/types/profile";
 
-const ProfileCard: React.FC<IProfileProps> = ({ profile }) => {
+type IProfileProps = {
+  profile: {
+    resume: string;
+    fullName: string;
+    email: string;
+    address: string;
+    phoneNumber: string;
+    skypeID: string;
+    whyFit: string;
+    whatStrengths: string;
+    whatNeedImprovement: string;
+    dateOfBirth: string;
+    hasPaypal: boolean;
+    contentLinks: string[];
+    numberOfChildren: number;
+    videoLinks: string[];
+    assessmentTests: string[];
+    internetProvider: string;
+    numberOfMonitors: string;
+    numberOfExperience: string;
+    salaryUnit: string;
+    desiredSalary: string;
+    workSamples: string[];
+  };
+}
+
+const ProfileCard = ({ profile }: IProfileProps) => {
   const { user, error, isLoading } = useUser();
   return (
     <Card className="xl:w-2/3 w-full bg-gray-100 border border-gray-500 max-w-3xl mx-auto xl:px-12 py-12 xl:py-8 shadow-lg rounded-lg relative">

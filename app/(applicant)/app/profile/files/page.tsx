@@ -6,9 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/profile/file-upload";
-import { fileUploadSchema, onSubmit, FileUploadSchema } from "@/services/user/update-files";
+import { fileUploadSchema, FileUploadSchema } from "@/services/user/update-files";
 
-const FileUploadForm: React.FC = () => {
+const FileUploadForm = () => {
   const {
     handleSubmit,
     control,
@@ -33,6 +33,44 @@ const FileUploadForm: React.FC = () => {
   const computerSpecsArray = useFieldArray({ control, name: "computerSpecsScreenshot" });
   const workstationPhotoArray = useFieldArray({ control, name: "workstationPhoto" });
   const attachmentsArray = useFieldArray({ control, name: "attachments" });
+
+  //Sample request body that is sent
+  /*
+    "resume": [
+      {
+        "file": {}
+      }
+    ],
+    "pfp": [],
+    "internetScreenshot": [],
+    "computerSpecsScreenshot": [],
+    "workstationPhoto": [],
+    "attachments": []
+  }
+  */
+
+ const onSubmit = (data: FileUploadSchema) => {
+    console.log("📤 Data before FormData conversion:", JSON.stringify(data, null, 2));
+  
+    const formData = new FormData();
+  
+    Object.entries(data).forEach(([key, files]) => {
+      if (Array.isArray(files)) {
+        files.forEach(({ file }) => {
+          if (file) formData.append(key, file); 
+        });
+      }
+    });
+  
+    console.log("📤 FormData Contents:");
+    Array.from(formData.entries()).forEach(([key, value]) => {
+      console.log(
+        `${key}:`,
+        value instanceof File ? `(File: ${value.name}, Size: ${value.size} bytes)` : value
+      );
+    });
+  };
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-24">
