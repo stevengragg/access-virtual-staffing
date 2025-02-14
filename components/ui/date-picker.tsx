@@ -42,6 +42,7 @@ export const DatePicker = ({ date, onChange, placeholder = "Pick a date", classN
           selected={date}
           onSelect={onChange}
           initialFocus
+          className="bg-white"
         />
       </PopoverContent>
     </Popover>

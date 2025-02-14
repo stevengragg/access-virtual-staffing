@@ -27,7 +27,7 @@ export default function EditProfile({}: EditProfile) {
             address: "",
             skypeId: "",
             hasPaypal: false,
-            phone: [{ type: "", number: "" }],
+            phone: [{ type: "mobile", number: "" }],
             emailAddress: [{ type: "", address: "" }],
             workSamples: [],
             assessmentTests: [],
@@ -193,71 +193,78 @@ export default function EditProfile({}: EditProfile) {
                         )}
                     />
 
-                    <div className="col-span-4 xl:col-span-1 font-semibold">
-                        <Label className="">Phone Number</Label>
-                    </div>
-                    <div className="com-span-4 xl:col-span-3 space-y-2">
-                        {phoneFields.map((item, index) => (
-                            <div key={item.id} className="grid grid-cols-6 gap-2 items-center">
-                                {/* Phone Type Dropdown */}
+                    <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field, fieldState }) => (
+                        <FormItem className="col-span-4 grid grid-cols-4 gap-2">
+                        <div className="col-span-4 xl:col-span-1">
+                            <FormLabel className="mt-2 font-semibold">Contact Numbers</FormLabel>
+                        </div>
+
+                        <div className="col-span-4 xl:col-span-3 space-y-3">
+                            {phoneFields.map((phone, index) => (
+                            <div key={phone.id} className="flex items-start gap-2">
+                                {/* Dropdown for Phone Type */}
                                 <FormField
-                                    control={form.control}
-                                    name={`phone.${index}.type`}
-                                    render={({ field }) => (
-                                        <FormItem className="col-span-6 xl:col-span-1">
-                                            <FormControl>
-                                                <Select onValueChange={field.onChange} defaultValue={field.value} >
-                                                    <SelectTrigger  className="border-gray-800">
-                                                        <SelectValue placeholder="Select type"/>
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value="mobile">Mobile</SelectItem>
-                                                        <SelectItem value="landline">Landline</SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
-                                            <FormMessage className="text-red-500"/>
-                                        </FormItem>
-                                    )}
+                                control={form.control}
+                                name={`phone.${index}.type`}
+                                render={({ field }) => (
+                                    <FormItem>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <SelectTrigger className="w-[180px] border-gray-800">
+                                        <SelectValue placeholder="Type" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                        <SelectGroup className="bg-white">
+                                            <SelectLabel>Phone Type</SelectLabel>
+                                            <SelectItem value="mobile">Mobile</SelectItem>
+                                            <SelectItem value="landline">Landline</SelectItem>
+                                        </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                    </FormItem>
+                                )}
                                 />
 
-                                <div className="col-span-5 xl:col-span-5 space-y-3 flex items-center">
-    
-                                    <FormField
-                                        control={form.control}
-                                        name={`phone.${index}.number`}
-                                        render={({ field }) => (
-                                            <FormItem className="w-full">
-                                                <FormControl>
-                                                    <Input {...field} placeholder="Enter contact number" className='border-gray-800' />
-                                                </FormControl>
-                                                <FormMessage className="text-red-500"/>
-                                            </FormItem>
-                                        )}
-                                    />
+                                {/* Input for Phone Number */}
+                                <FormField
+                                control={form.control}
+                                name={`phone.${index}.number`}
+                                render={({ field }) => (
+                                    <FormItem className="w-full flex flex-col items-start">
+                                    <FormControl>
+                                        <Input
+                                        {...field}
+                                        type="text"
+                                        placeholder="Enter contact number"
+                                        className="w-full border p-2 rounded border-gray-800"
+                                        />
+                                    </FormControl>
+                                    <FormMessage className="text-red-500" />
+                                    </FormItem>
+                                )}
+                                />
 
-                                    <Button 
-                                        type="button" 
-                                        variant="destructive" 
-                                        onClick={() => removePhone(index)}
-                                        className={`!mt-0 ${phoneFields.length === 1 ? "hidden" : ""}`}
-                                    >
-                                        X
-                                    </Button>
-                                </div>
-                                
+                                {/* Conditional Delete Button */}
+                                {phoneFields.length > 1 && (
+                                <Button variant="ghost" type="button" onClick={() => removePhone(index)}>
+                                    X
+                                </Button>
+                                )}
                             </div>
-                        ))}
+                            ))}
 
-                        {/* Add Another Phone Button */}
-                        <Button 
-                            type="button" 
-                            variant="outline" 
-                            onClick={() => addPhone({ type: "", number: "" })}
-                        >
-                            Add Another Phone
-                        </Button>
-                    </div>
+                            {/* Always Visible Add Button */}
+                            <Button type="button" variant="outline" onClick={() => addPhone({ type: "", number: "" })}>
+                            Add Phone
+                            </Button>
+                        </div>
+                        </FormItem>
+                    )}
+                    />
+
+
 
 
                     <FormField
@@ -287,7 +294,7 @@ export default function EditProfile({}: EditProfile) {
                                                                 <SelectValue placeholder="Type" />
                                                             </SelectTrigger>
                                                             <SelectContent>
-                                                                <SelectGroup>
+                                                                <SelectGroup className="bg-white">
                                                                     <SelectLabel>Email Type</SelectLabel>
                                                                     <SelectItem value="personal">Personal</SelectItem>
                                                                     <SelectItem value="work">Work</SelectItem>
@@ -383,7 +390,7 @@ export default function EditProfile({}: EditProfile) {
                                             <SelectValue placeholder="Select an option" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectGroup>
+                                            <SelectGroup className="bg-white">
                                                 <SelectLabel>Options</SelectLabel>
                                                 <SelectItem value="yes">Yes</SelectItem>
                                                 <SelectItem value="no">No</SelectItem>
@@ -674,7 +681,7 @@ export default function EditProfile({}: EditProfile) {
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
-                                                    <SelectGroup>
+                                                    <SelectGroup className="bg-white">
                                                         <SelectItem value="hourly">Hourly</SelectItem>
                                                         <SelectItem value="monthly">Monthly</SelectItem>
                                                         <SelectItem value="yearly">Yearly</SelectItem>
@@ -684,7 +691,7 @@ export default function EditProfile({}: EditProfile) {
                                         )}
                                     />
                                     <FormControl>
-                                        <Input {...field} type="text" placeholder="Enter amount" className="w-full border p-2 rounded border-gray-800" />
+                                        <Input {...field} onChange={e => field.onChange(parseInt(e.target.value))} type="number" placeholder="Enter amount" className="w-full border p-2 rounded border-gray-800" />
                                     </FormControl>
                                 </div>
                                 
@@ -764,7 +771,7 @@ export default function EditProfile({}: EditProfile) {
                                                 <SelectValue placeholder="Select an option" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectGroup>
+                                                <SelectGroup className="bg-white">
                                                     <SelectItem value="friend">Friend</SelectItem>
                                                     <SelectItem value="social_media">Social Media</SelectItem>
                                                     <SelectItem value="job_board">Job Board</SelectItem>
