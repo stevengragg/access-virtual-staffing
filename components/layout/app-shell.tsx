@@ -31,8 +31,10 @@ import clsx from "clsx";
 import Image from "next/image";
 import { Briefcase, FileText, House, LucideIcon, UserPen } from "lucide-react";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import {INotification} from "@/types/notification"
 
 import { ImageProps } from "@/types/general";
+import { getNotificationIcon } from "@/lib/get-icon-type";
 
 type NavLink = {
   url: string;
@@ -48,25 +50,101 @@ type Props = {
   dropdown: NavLink[];
 };
 
+
+const notifications = [
+  {
+    title: "New Job",
+    message: "New notification alert, click to open. sdsw asdawd awdaw dawd awd awd awdsdasdaw dawda dawd ",
+    date: "11 Jan 2022",
+    type: "recommendation",
+    link: "/app/jobs",
+    id: "1",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "reminder",
+    link: "#",
+    id: "2",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "job",
+    link: "#",
+    id: "3",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "info",
+    link: "#",
+    id: "4",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "update",
+    link: "#",
+    id: "5",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "job",
+    link: "#",
+    id: "6",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "job",
+    link: "#",
+    id: "7",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "job",
+    link: "#",
+    id: "8",
+  },
+  {
+    title: "New Job",
+    message: "New notification alert, click to open.",
+    date: "11 Jan 2022",
+    type: "job",
+    link: "#",
+    id: "9",
+  }
+]
+
 export type ApplicationShellProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props> & {
     children: ReactNode;
   };
 
 export const ApplicationShell = (props: ApplicationShellProps) => {
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
   const { logo, navLinks, dropdown, children } = {
     ...ApplicationShellDefaults,
     ...props,
   };
-  const [isSearchIconClicked, setIsSearchIconClicked] =
-    useState<boolean>(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isSearchIconClicked, setIsSearchIconClicked] = useState<boolean>(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState<boolean>(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
     <section id="header" className="relative flex flex-col lg:flex-row">
-      <div className="bg-white absolute top-0 z-10 flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] border-b  lg:border-r border-zinc-300 lg:px-0 lg:py-6">
+      <div className="bg-white absolute top-0 z-10 flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] border-b lg:border-r border-zinc-300 lg:px-0 lg:py-6">
         <div className="flex flex-1 flex-row items-center lg:flex-col lg:items-stretch">
           {logo && (
             <a
@@ -95,7 +173,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                 </SheetClose>
                 <SheetContent
                   side="left"
-                  className="w-[80vw] overflow-hidden md:w-full md:max-w-[19.5rem]  "
+                  className="w-[80vw] overflow-hidden md:w-full md:max-w-[19.5rem]"
                 >
                   <Navigation logo={logo} navLinks={navLinks} />
                 </SheetContent>
@@ -113,77 +191,68 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
               <h3 className="font-bold">Applicant Portal</h3>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
-              <DropdownMenu>
+              <DropdownMenu onOpenChange={(open) => setIsNotificationsOpen(open)}>
                 <DropdownMenuTrigger className="relative">
                   <div className="absolute bottom-auto left-auto right-2 top-2 size-2 rounded-full bg-black outline outline-[3px] outline-offset-0 outline-white" />
-                  <BiBell className="size-6" />
+                  <div
+                    className={clsx(
+                      "transition-all p-2 rounded-full",
+                      isNotificationsOpen ? "bg-deepBlue" : "bg-white"
+                    )}
+                  >
+                    <BiBell className={`size-6 ${isNotificationsOpen && 'text-white'}`} />
+                  </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="max-w-[19rem] px-0 bg-white "
+                  className="max-w-[24rem] px-0 bg-white rounded-lg  border border-gray-300"
                   align="end"
                   sideOffset={0}
                 >
                   <div className="flex flex-col">
                     <div className="flex items-center justify-between px-4 py-2">
-                      <DropdownMenuLabel className="p-0">
-                        Notifications
-                      </DropdownMenuLabel>
-                      <a href="#">Mark as read</a>
+                      <DropdownMenuLabel className="p-0 text-sm font-medium">Recent Notifications</DropdownMenuLabel>
+                      <a href="#" className="text-xs">Mark all as read</a>
                     </div>
-                    <DropdownMenuSeparator />
-                    <div className="h-full max-h-[14rem] overflow-auto px-2 py-1">
-                      <DropdownMenuItem className="mt-2 grid grid-cols-[max-content_1fr] gap-2 px-2 py-1">
-                        <div className="flex size-full flex-col items-start justify-start">
-                          <img
-                            src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                            alt="Avatar"
-                            className="size-6"
-                          />
-                        </div>
-                        <div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
-                          </p>
-                          <p className="mt-2 text-sm">11 Jan 2022</p>
-                        </div>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="mt-2 grid grid-cols-[max-content_1fr] gap-2 px-2 py-1">
-                        <div className="flex size-full flex-col items-start justify-start">
-                          <img
-                            src="https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg"
-                            alt="Avatar"
-                            className="size-6"
-                          />
-                        </div>
-                        <div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
-                          </p>
-                          <p className="mt-2 text-sm">11 Jan 2022</p>
-                        </div>
-                      </DropdownMenuItem>
+                    <div className="w-full max-w-[50rem] max-h-[24rem] overflow-y-auto overflow-x-hidden px-2 py-1 scrollbar-hide">
+                      {notifications?.map((notification: INotification) => (
+                        <DropdownMenuItem key={notification.id} className="p-0 w-full">
+                          <a
+                            href={notification.link}
+                            className="flex w-full items-start justify-start gap-4 p-3 hover:bg-gray-100 rounded-lg"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div>{getNotificationIcon(notification.type)}</div>
+                            </div>
+                            <div className="flex-1 break-words">
+                              <p className="font-semibold text-base break-words">
+                                {notification.title}
+                              </p>
+                              <p className="mt-1 text-sm text-gray-600 break-words">
+                                {notification.message}
+                              </p>
+                              <div className="mt-2 flex items-center justify-between">
+                                <span className="text-xs text-gray-500">{notification.date}</span>
+                              </div>
+                            </div>
+                          </a>
+                        </DropdownMenuItem>
+                      ))}
                     </div>
                   </div>
-                  <DropdownMenuSeparator />
-                  <div className="flex w-full items-end justify-end px-4 py-2">
+
+                  <div className="flex w-full items-center justify-end px-4 py-2">
                     <Button
                       variant="link"
                       size="link"
                       iconRight={<RxChevronRight />}
                       asChild
                     >
-                      <a href="#">View All</a>
+                      <a href="/app/notifications" className="text-sm hover:text-deepBlue px-2 rounded-md">View All</a>
                     </Button>
                   </div>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <DropdownMenu
-                onOpenChange={(isDropdownOpen) =>
-                  setIsDropdownOpen(isDropdownOpen)
-                }
-              >
+              <DropdownMenu onOpenChange={(open) => setIsUserDropdownOpen(open)}>
                 <DropdownMenuTrigger className="flex items-center p-0">
                   <Image
                     src={user?.picture || ""}
@@ -199,8 +268,8 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                       className={clsx(
                         "shrink-0 text-text-primary transition-transform duration-300",
                         {
-                          "rotate-180": isDropdownOpen,
-                          "rotate-0": !isDropdownOpen,
+                          "rotate-180": isUserDropdownOpen,
+                          "rotate-0": !isUserDropdownOpen,
                         }
                       )}
                     />
