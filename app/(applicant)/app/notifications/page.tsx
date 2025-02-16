@@ -263,7 +263,6 @@ export default withPageAuthRequired(
               <Switch
                 checked={showUnreadOnly}
                 onCheckedChange={setShowUnreadOnly}
-                className="w-9 h-5" 
               />
             </div>
 

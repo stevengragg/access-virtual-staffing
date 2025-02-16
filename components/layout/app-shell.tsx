@@ -29,7 +29,7 @@ import {
 import { useState, ReactNode } from "react";
 import clsx from "clsx";
 import Image from "next/image";
-import { Briefcase, FileText, House, LucideIcon, UserPen } from "lucide-react";
+import { Briefcase, FileText, House, LucideIcon, UserPen, Cog } from "lucide-react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import {INotification} from "@/types/notification"
 
@@ -366,6 +366,7 @@ export const ApplicationShellDefaults = {
     { title: "Overview", url: "/app/overview", icon: House },
     { title: "Profile", url: "/app/profile", icon: UserPen },
     { title: "Jobs", url: "/app/jobs", icon: Briefcase },
+    { title: "Settings", url: "/app/settings/general", icon: Cog },
     { title: "Submissions", url: "/app/submissions", icon: FileText },
   ],
   dropdown: [
