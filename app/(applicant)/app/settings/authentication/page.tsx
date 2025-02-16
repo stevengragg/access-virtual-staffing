@@ -1,6 +1,10 @@
 'use client';
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { authenticationSchema, AuthenticationSchema } from "@/services/settings/authentication";
+
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,9 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { authenticationSchema, AuthenticationSchema } from "@/services/settings/authentication";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 

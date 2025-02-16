@@ -1,18 +1,19 @@
 'use client'
 
-import { Input } from "@/components/ui/input";
-import { editProfileSchema, EditProfileSchema } from "@/services/user/update-profile";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Label } from "@/components/ui/label";
+import { editProfileSchema, EditProfileSchema } from "@/services/user/update-profile";
 import { useFieldArray, useForm } from "react-hook-form";
+
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectItem, SelectLabel, SelectContent, SelectGroup, SelectTrigger, SelectValue  } from "@/components/ui/select";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { DatePicker } from "@/components/ui/date-picker";
-import Image from "next/image";
-import { useUser } from "@auth0/nextjs-auth0/client";
+
 
 interface EditProfile {}
 
