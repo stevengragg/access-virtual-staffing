@@ -2,14 +2,18 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { generalSchema, GeneralSchema } from "@/services/settings/general";
+import Image from "next/image";
+
 
 export default function GeneralSettings() {
+  const { user } = useUser();
   const form = useForm<GeneralSchema>({
     resolver: zodResolver(generalSchema),
     defaultValues: {
@@ -32,6 +36,19 @@ export default function GeneralSettings() {
         </CardHeader>
 
         <CardContent className="space-y-8">
+          <div className="flex flex-col gap-4">
+            <h2 className="font-semibold text-sm text-gray-700">
+              Profile Picture
+            </h2>
+            <Image
+                src={user?.picture || ""}
+                alt="Avatar"
+                className="size-20 rounded-full object-cover"
+                width={50}
+                height={50}
+              />
+          </div>
+
           <Form {...form}>
             <FormField
               control={form.control}

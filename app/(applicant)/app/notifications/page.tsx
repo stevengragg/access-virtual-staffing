@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const sampleNotifications: INotification[] = [
+const notifications: INotification[] = [
   {
     id: "1",
     title: "New Job",
@@ -167,7 +167,7 @@ export default withPageAuthRequired(
     ): Promise<INotification[]> => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          let filtered = sampleNotifications;
+          let filtered = notifications;
           if (filter !== "all") {
             filtered = filtered.filter((notif) => notif.type === filter);
           }
