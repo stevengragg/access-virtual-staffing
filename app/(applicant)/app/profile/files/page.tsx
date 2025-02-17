@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { fileUploadSchema, FileUploadSchema } from "@/services/user/update-files";
 import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/profile/file-upload";
-import { fileUploadSchema, FileUploadSchema } from "@/services/user/update-files";
+
 
 const FileUploadForm = () => {
   const {
@@ -92,7 +93,7 @@ const FileUploadForm = () => {
               {field.fields.map((file, index) => (
                 <FileUpload
                   key={file.id}
-                  fieldName={`${name}.${index}.file`} // ✅ Correct field name
+                  fieldName={`${name}.${index}.file`}
                   label={`File ${index + 1}`}
                   acceptedTypes={types}
                   maxSizeMB={maxSize}
