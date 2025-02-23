@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@hookform/resolvers": "^3.10.0",
+    "@neondatabase/serverless": "^0.10.4",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-popover": "^1.1.6",
@@ -25,9 +26,12 @@
     "@tailwindcss/typography": "^0.5.14",
     "@vercel/speed-insights": "^1.0.12",
     "axios": "^1.7.9",
+    "chalk": "^5.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.3",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.436.0",
     "next": "^14.2.20",
@@ -42,6 +46,7 @@
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "ws": "^8.18.1",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -49,6 +54,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/ws": "^8.5.14",
+    "drizzle-kit": "^0.30.4",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
     "postcss": "^8",

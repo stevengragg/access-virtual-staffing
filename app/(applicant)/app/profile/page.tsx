@@ -1,4 +1,5 @@
 import ProfileCard from "@/components/profile/profile-overview-card";
+import { getUser } from "@/database/queries/users";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 export default withPageAuthRequired(
@@ -26,6 +27,9 @@ export default withPageAuthRequired(
       desiredSalary: "100,000",
       workSamples: ["https://example.com/work-sample"],
     };
+
+    const result = await getUser(2);
+    console.log(result);
     return (
       <div className="flex justify-center items-center mb-12">
         <ProfileCard profile={profileData} />
@@ -35,4 +39,4 @@ export default withPageAuthRequired(
   {
     returnTo: "/app/profile",
   }
-)
+);
