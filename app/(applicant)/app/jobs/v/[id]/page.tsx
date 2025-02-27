@@ -83,5 +83,5 @@ export default withPageAuthRequired(
       </main>
     );
   },
-  { returnTo: "/app/jobs" }
+  { returnTo: "/app/jobs/v/:id" }
 );

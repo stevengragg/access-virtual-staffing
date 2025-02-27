@@ -21,5 +21,5 @@ export default withPageAuthRequired(
       </div>
     );
   },
-  { returnTo: "/app/submissions" }
+  { returnTo: "/app/jobs/v/:id/apply" }
 );
