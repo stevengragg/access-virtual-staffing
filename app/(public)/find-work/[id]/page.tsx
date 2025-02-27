@@ -25,10 +25,14 @@ export default async function ViewJob({ params }: { params: Params }) {
   const { id } = await params;
   const post = await getJobPost(id);
 
-  if (
-    post?.item?.title?.toLowerCase() !==
-    id?.split("-")?.splice(1)?.join(" ")?.toLowerCase()
-  ) {
+  // if (
+  //   post?.item?.title?.toLowerCase() !==
+  //   id?.split("-")?.splice(1)?.join(" ")?.toLowerCase()
+  // ) {
+  //   return notFound();
+  // }
+
+  if (!post) {
     return notFound();
   }
 

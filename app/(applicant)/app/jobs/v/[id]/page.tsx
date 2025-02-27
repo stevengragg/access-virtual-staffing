@@ -1,25 +1,86 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Metadata } from "next";
+import { formatDistanceToNow } from "date-fns";
+import { Banknote, Calendar, MapPin } from "lucide-react";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "View Job - Access Virtual Staffing",
-};
+import { ViewJobHeader } from "@/components/jobs/view-job-header";
+import LinkButton from "@/components/ui/link-button";
+import { getJobPost } from "@/lib/api/jobs";
+import { AppRouterWithNormalParamsWithId } from "@/types/general";
+import { ViewJobContent } from "@/components/jobs/view-job-content";
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const { id } = params;
+  const post = await getJobPost(id);
+
+  return {
+    title: post ? `${post.item?.title} - Access Virtual Staffing` : "View Job",
+  };
+}
 
 export default withPageAuthRequired(
-  async function ViewJob() {
+  async function ViewJob({ params }: AppRouterWithNormalParamsWithId) {
+    const post = await getJobPost(
+      Array.isArray(params?.id) ? params?.id[0] : params?.id || ""
+    );
+
+    // if (
+    //   post?.item?.title?.toLowerCase() !==
+    //   params?.id?.toString()?.split("-")?.splice(1)?.join(" ")?.toLowerCase()
+    // ) {
+
+    //   return notFound();
+    // }
+
+    if (!post) {
+      return notFound();
+    }
+
     return (
-      <div className="h-[calc(100vh-4.5rem)] overflow-auto">
-        <div className="py-6 text-center text-zinc-800">
-          <h1>View Job</h1>
-        </div>
-        <div className="container px-6 py-8 md:px-8 md:py-10 lg:py-12">
-          <div className="grid grid-cols-1 gap-12">
-            <div className="flex h-screen items-center justify-center border-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">
-              <h2>Click and paste Main Content</h2>
-            </div>
-          </div>
-        </div>
-      </div>
+      <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
+        <ViewJobHeader
+          heading={post?.item?.title || "..."}
+          details={[
+            {
+              label: "Remote",
+              icon: MapPin,
+            },
+            {
+              label: post?.item?.pay || "Not specified",
+              icon: Banknote,
+            },
+            // {
+            //   label: post?.item?.postedBy || "Not available",
+            //   icon: UserRound,
+            // },
+            {
+              label: formatDistanceToNow(
+                new Date(post?.item?.createdAt || ""),
+                {
+                  addSuffix: true,
+                }
+              ),
+              icon: Calendar,
+            },
+          ]}
+          applyBtn={
+            <LinkButton
+              size="xl"
+              variant="primary"
+              navLink={{
+                title: "APPLY FOR THIS JOB",
+                url: `/app/submissions/apply/${params?.id}`,
+                follow: false,
+              }}
+            />
+          }
+        />
+        <ViewJobContent heading="Overview">
+          <div
+            dangerouslySetInnerHTML={{ __html: post?.item?.description || "" }}
+          />
+        </ViewJobContent>
+      </main>
     );
   },
   { returnTo: "/app/jobs" }

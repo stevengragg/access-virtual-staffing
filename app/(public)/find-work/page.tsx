@@ -109,7 +109,7 @@ export default async function FindWork({
 
       <JobListContainerAdvanced>
         <div className="flex flex-col gap-6 md:gap-8">
-          {positions && positions.items.length ? (
+          {positions && positions.items?.length ? (
             positions.items.map((position, index) => (
               <JobListItemPosition key={index} position={position} />
             ))

@@ -6,7 +6,7 @@ import LinkButton from "../ui/link-button";
 
 export const JobListItemPosition = ({ position }: Position) => {
   return (
-    <div className="border border-zinc-300 p-4 md:p-6 rounded-lg hover:border-primaryBlue hover:bg-zinc-200">
+    <div className="border border-zinc-300 p-4 md:p-6 rounded-lg hover:border-primaryBlue hover:bg-primaryBrightAqua/10">
       <div className="mb-3 flex flex-col lg:flex-row justify-between gap-4 md:mb-4">
         <div>
           <h3 className="text-lg font-semibold md:text-xl">{position.title}</h3>

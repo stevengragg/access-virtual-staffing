@@ -19,3 +19,7 @@ export interface JobListing {
 export type Position = {
   position: JobListing;
 };
+
+export type NormalParamsWithId = { id?: string };
+export type AppRouterWithNormalParamsWithId = AppRouterPageRouteOpts &
+  NormalParamsWithId;

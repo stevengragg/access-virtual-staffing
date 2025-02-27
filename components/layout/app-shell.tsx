@@ -29,9 +29,16 @@ import {
 import { useState, ReactNode } from "react";
 import clsx from "clsx";
 import Image from "next/image";
-import { Briefcase, FileText, House, LucideIcon, UserPen, Cog } from "lucide-react";
+import {
+  Briefcase,
+  FileText,
+  House,
+  LucideIcon,
+  UserPen,
+  Cog,
+} from "lucide-react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import {INotification} from "@/types/notification"
+import { INotification } from "@/types/notification";
 
 import { ImageProps } from "@/types/general";
 import { getNotificationIcon } from "@/lib/get-icon-type";
@@ -50,11 +57,11 @@ type Props = {
   dropdown: NavLink[];
 };
 
-
 const notifications = [
   {
     title: "New Job",
-    message: "New notification alert, click to open. sdsw asdawd awdaw dawd awd awd awdsdasdaw dawda dawd ",
+    message:
+      "New notification alert, click to open. sdsw asdawd awdaw dawd awd awd awdsdasdaw dawda dawd ",
     date: "11 Jan 2022",
     type: "recommendation",
     link: "/app/jobs",
@@ -123,8 +130,8 @@ const notifications = [
     type: "job",
     link: "#",
     id: "9",
-  }
-]
+  },
+];
 
 export type ApplicationShellProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props> & {
@@ -137,8 +144,10 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
     ...ApplicationShellDefaults,
     ...props,
   };
-  const [isSearchIconClicked, setIsSearchIconClicked] = useState<boolean>(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState<boolean>(false);
+  const [isSearchIconClicked, setIsSearchIconClicked] =
+    useState<boolean>(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] =
+    useState<boolean>(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
 
@@ -191,7 +200,9 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
               <h3 className="font-bold">Applicant Portal</h3>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
-              <DropdownMenu onOpenChange={(open) => setIsNotificationsOpen(open)}>
+              <DropdownMenu
+                onOpenChange={(open) => setIsNotificationsOpen(open)}
+              >
                 <DropdownMenuTrigger className="relative">
                   <div className="absolute bottom-auto left-auto right-2 top-2 size-2 rounded-full bg-black outline outline-[3px] outline-offset-0 outline-white" />
                   <div
@@ -200,7 +211,11 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                       isNotificationsOpen ? "bg-deepBlue" : "bg-white"
                     )}
                   >
-                    <BiBell className={`size-6 ${isNotificationsOpen && 'text-white'}`} />
+                    <BiBell
+                      className={`size-6 ${
+                        isNotificationsOpen && "text-white"
+                      }`}
+                    />
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -210,18 +225,27 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                 >
                   <div className="flex flex-col">
                     <div className="flex items-center justify-between px-4 py-2">
-                      <DropdownMenuLabel className="p-0 text-sm font-medium">Recent Notifications</DropdownMenuLabel>
-                      <a href="#" className="text-xs">Mark all as read</a>
+                      <DropdownMenuLabel className="p-0 text-sm font-medium">
+                        Recent Notifications
+                      </DropdownMenuLabel>
+                      <a href="#" className="text-xs">
+                        Mark all as read
+                      </a>
                     </div>
                     <div className="w-full max-w-[50rem] max-h-[24rem] overflow-y-auto overflow-x-hidden px-2 py-1 scrollbar-hide">
                       {notifications?.map((notification: INotification) => (
-                        <DropdownMenuItem key={notification.id} className="p-0 w-full">
+                        <DropdownMenuItem
+                          key={notification.id}
+                          className="p-0 w-full"
+                        >
                           <a
                             href={notification.link}
                             className="flex w-full items-start justify-start gap-4 p-3 hover:bg-gray-100 rounded-lg"
                           >
                             <div className="flex items-center gap-2">
-                              <div>{getNotificationIcon(notification.type)}</div>
+                              <div>
+                                {getNotificationIcon(notification.type)}
+                              </div>
                             </div>
                             <div className="flex-1 break-words">
                               <p className="font-semibold text-base break-words">
@@ -231,7 +255,9 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                                 {notification.message}
                               </p>
                               <div className="mt-2 flex items-center justify-between">
-                                <span className="text-xs text-gray-500">{notification.date}</span>
+                                <span className="text-xs text-gray-500">
+                                  {notification.date}
+                                </span>
                               </div>
                             </div>
                           </a>
@@ -247,12 +273,19 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                       iconRight={<RxChevronRight />}
                       asChild
                     >
-                      <a href="/app/notifications" className="text-sm hover:text-deepBlue px-2 rounded-md">View All</a>
+                      <a
+                        href="/app/notifications"
+                        className="text-sm hover:text-deepBlue px-2 rounded-md"
+                      >
+                        View All
+                      </a>
                     </Button>
                   </div>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <DropdownMenu onOpenChange={(open) => setIsUserDropdownOpen(open)}>
+              <DropdownMenu
+                onOpenChange={(open) => setIsUserDropdownOpen(open)}
+              >
                 <DropdownMenuTrigger className="flex items-center p-0">
                   <Image
                     src={user?.picture || ""}
@@ -321,7 +354,7 @@ const Navigation = ({
 }) => {
   return (
     <nav className="absolute left-0 right-auto top-0 float-right h-full w-[80vw] max-w-[none] md:w-full md:max-w-[19.5rem] lg:relative lg:inset-auto lg:w-auto lg:max-w-[auto]">
-      <div className="absolute flex size-full flex-col gap-4 border-r border-border-primary bg-white py-6 lg:gap-6 lg:border-none lg:py-0">
+      <div className="absolute flex size-full flex-col gap-4  bg-white py-6 lg:gap-6 lg:border-none lg:py-0">
         <div className="flex size-full flex-col overflow-auto px-4">
           {logo && (
             <div>
