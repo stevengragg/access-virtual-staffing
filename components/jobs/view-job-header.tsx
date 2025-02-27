@@ -8,13 +8,14 @@ type Details = {
 type Props = {
   heading: string;
   details: Details[];
+  applyBtn: JSX.Element;
 };
 
 export type ViewJobHeaderProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const ViewJobHeader = (props: ViewJobHeaderProps) => {
-  const { heading, details } = {
+  const { heading, details, applyBtn } = {
     ...props,
   };
   return (
@@ -36,6 +37,7 @@ export const ViewJobHeader = (props: ViewJobHeaderProps) => {
               </div>
             ))}
         </ul>
+        <div className="mt-4">{applyBtn}</div>
       </div>
     </section>
   );

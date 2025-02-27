@@ -51,7 +51,7 @@ export const JobListSearchFormContainer = ({
               <Input
                 {...register("searchText")}
                 placeholder="Search..."
-                className="rounded-lg"
+                className="rounded-lg border border-zinc-300"
               />
               <button
                 type="button"

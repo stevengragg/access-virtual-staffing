@@ -128,7 +128,7 @@ export const fetchJob = async (
     data.fields?.find((field: any) => field.external_id === "job-description")
       ?.values[0]?.value || "No description provided";
 
-  const estimatedSalary = data.fields.find(
+  const estimatedSalary = data.fields?.find(
     (field: any) => field.external_id === "estimated-salary"
   )?.values[0];
   const item = {
@@ -153,6 +153,7 @@ export const fetchJob = async (
 
 export const getJobs = async (
   config: FetchJobListingsConfig,
+  search?: string,
   isApp?: boolean
 ): Promise<FetchJobListingsResponse | null> => {
   const newAccessToken = await gainRefreshedAccessToken();
@@ -160,8 +161,26 @@ export const getJobs = async (
   if (!newAccessToken) {
     return null;
   }
+  const response = await fetchJobListings(
+    newAccessToken,
+    process.env.NEXT_PODIO_JOBLISTING_APP_ID?.toString() || "",
+    config,
+    isApp
+  );
+  let jobListing: JobListing[] = [];
+  if (search) {
+    jobListing = response.items.filter((job) => {
+      const regex = new RegExp(search, "i");
+      return regex.test(job.title) || regex.test(job.description || "");
+    });
 
-  return fetchJobListings(newAccessToken, "30011142", config, isApp);
+    return {
+      ...response,
+      items: jobListing,
+    };
+  } else {
+    return response;
+  }
 };
 
 export const getJobPost = async (
@@ -182,5 +201,9 @@ export const getJobPost = async (
     return null;
   }
 
-  return fetchJob(newAccessToken, "30011142", finalId);
+  return fetchJob(
+    newAccessToken,
+    process.env.NEXT_PODIO_JOBLISTING_APP_ID?.toString() || "",
+    finalId
+  );
 };
