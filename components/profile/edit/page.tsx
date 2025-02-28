@@ -31,47 +31,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { DatePicker } from "@/components/ui/date-picker";
+import { useProfileDetails } from "@/context/profile-details-context";
+import { useEffect, useState } from "react";
 
 interface EditProfile {}
 
 export default function EditProfile({}: EditProfile) {
-  const form = useForm<EditProfileSchema>({
-    resolver: zodResolver(editProfileSchema),
-    defaultValues: {
-      fullName: "",
-      whyFit: "",
-      whatStrengths: "",
-      whatNeedImprovement: "",
-      address: "",
-      skypeId: "",
-      hasPaypal: false,
-      phone: [{ type: "mobile", number: "" }],
-      emailAddress: [{ type: "", address: "" }],
-      workSamples: [],
-      assessmentTests: [],
-      contentLinks: [],
-      videoLinks: [],
-      numberOfChildren: 0,
-      internetProvider: "",
-      numberOfMonitors: "",
-      numberOfExperience: "",
-      salaryUnit: "",
-      desiredSalary: 1000,
-      howKnow: "",
-      howHear: "",
-      someoneName: "",
-      referrer: "",
-    },
-  });
-
+  const profileDetailsForm = useProfileDetails();
   const { user } = useUser();
 
+  const [hasError, setHasError] = useState(false)
   const {
     fields: phoneFields,
     append: addPhone,
     remove: removePhone,
   } = useFieldArray({
-    control: form.control,
+    control: profileDetailsForm.control,
     name: "phone",
   });
 
@@ -80,7 +55,7 @@ export default function EditProfile({}: EditProfile) {
     append: addEmail,
     remove: removeEmail,
   } = useFieldArray({
-    control: form.control,
+    control: profileDetailsForm.control,
     name: "emailAddress",
   });
 
@@ -89,7 +64,7 @@ export default function EditProfile({}: EditProfile) {
     append: addWorkSample,
     remove: removeWorkSample,
   } = useFieldArray<EditProfileSchema, "workSamples">({
-    control: form.control,
+    control: profileDetailsForm.control,
     name: "workSamples",
   });
 
@@ -98,7 +73,7 @@ export default function EditProfile({}: EditProfile) {
     append: addAssessment,
     remove: removeAssessment,
   } = useFieldArray<EditProfileSchema, "assessmentTests">({
-    control: form.control,
+    control: profileDetailsForm.control,
     name: "assessmentTests",
   });
 
@@ -107,23 +82,31 @@ export default function EditProfile({}: EditProfile) {
     append: addContent,
     remove: removeContent,
   } = useFieldArray<EditProfileSchema, "contentLinks">({
-    control: form.control,
+    control: profileDetailsForm.control,
     name: "contentLinks",
   });
+
+
+  const errors = useProfileDetails().formState.errors;
+  useEffect(() => {
+    console.log("Errors changed:", errors);
+  }, [hasError]);
+  
+
 
   const onSubmit = (data: EditProfileSchema) => {
     console.log("Form Data:", data);
   };
 
   return (
-    <Form {...form}>
+    <Form {...profileDetailsForm}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={profileDetailsForm.handleSubmit(onSubmit, (errors) => setHasError(!hasError))}
         className="max-w-3xl mx-auto p-4"
       >
         <div className="grid grid-cols-4 gap-12">
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="fullName"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -156,7 +139,7 @@ export default function EditProfile({}: EditProfile) {
           </div>
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="whyFit"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -177,7 +160,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="whatStrengths"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -198,7 +181,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="whatNeedImprovement"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -218,7 +201,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="address"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -239,7 +222,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="phone"
             render={({ field, fieldState }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -254,7 +237,7 @@ export default function EditProfile({}: EditProfile) {
                     <div key={phone.id} className="flex items-start gap-2">
                       {/* Dropdown for Phone Type */}
                       <FormField
-                        control={form.control}
+                        control={profileDetailsForm.control}
                         name={`phone.${index}.type`}
                         render={({ field }) => (
                           <FormItem>
@@ -281,7 +264,7 @@ export default function EditProfile({}: EditProfile) {
 
                       {/* Input for Phone Number */}
                       <FormField
-                        control={form.control}
+                        control={profileDetailsForm.control}
                         name={`phone.${index}.number`}
                         render={({ field }) => (
                           <FormItem className="w-full flex flex-col items-start">
@@ -325,7 +308,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="emailAddress"
             render={(f) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -337,7 +320,7 @@ export default function EditProfile({}: EditProfile) {
                   {emailFields.map((email, index) => (
                     <FormField
                       key={email.id}
-                      control={form.control}
+                      control={profileDetailsForm.control}
                       name={`emailAddress.${index}.address`}
                       render={({ field }) => (
                         <FormItem>
@@ -345,12 +328,12 @@ export default function EditProfile({}: EditProfile) {
                             {/* Dropdown for Email Type */}
                             <Select
                               onValueChange={(value) =>
-                                form.setValue(
+                                profileDetailsForm.setValue(
                                   `emailAddress.${index}.type`,
                                   value
                                 )
                               }
-                              defaultValue={form.watch(
+                              defaultValue={profileDetailsForm.watch(
                                 `emailAddress.${index}.type`
                               )}
                             >
@@ -409,7 +392,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="dateOfBirth"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -430,7 +413,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="skypeId"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -451,7 +434,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="hasPaypal"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -478,7 +461,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="numberOfChildren"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -499,7 +482,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="assessmentTests"
             render={() => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -523,7 +506,7 @@ export default function EditProfile({}: EditProfile) {
                   {assessmentFields.map((test, index) => (
                     <FormField
                       key={test.id}
-                      control={form.control}
+                      control={profileDetailsForm.control}
                       name={`assessmentTests.${index}.link`} // Updated to match new schema
                       render={({ field }) => (
                         <FormItem>
@@ -569,7 +552,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="contentLinks"
             render={() => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -584,7 +567,7 @@ export default function EditProfile({}: EditProfile) {
                   {contentFields.map((field, index) => (
                     <FormField
                       key={field.id}
-                      control={form.control}
+                      control={profileDetailsForm.control}
                       name={`contentLinks.${index}.link`} // Updated to match schema
                       render={({ field }) => (
                         <FormItem>
@@ -630,7 +613,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="workSamples"
             render={() => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -644,7 +627,7 @@ export default function EditProfile({}: EditProfile) {
                   {workSampleFields.map((field, index) => (
                     <FormField
                       key={field.id}
-                      control={form.control}
+                      control={profileDetailsForm.control}
                       name={`workSamples.${index}.link`} // Updated to match new schema
                       render={({ field }) => (
                         <FormItem>
@@ -688,7 +671,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="internetProvider"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -715,7 +698,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="numberOfMonitors"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -738,7 +721,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="numberOfExperience"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -761,7 +744,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="desiredSalary"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -773,7 +756,7 @@ export default function EditProfile({}: EditProfile) {
                 </div>
                 <div className="col-span-4 xl:col-span-3 flex items-center gap-2">
                   <FormField
-                    control={form.control}
+                    control={profileDetailsForm.control}
                     name="salaryUnit"
                     render={({ field }) => (
                       <Select
@@ -810,7 +793,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="contentLinks"
             render={() => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -825,7 +808,7 @@ export default function EditProfile({}: EditProfile) {
                   {contentFields.map((content, index) => (
                     <FormField
                       key={content.id}
-                      control={form.control}
+                      control={profileDetailsForm.control}
                       name={`contentLinks.${index}`} // Connects input to validation
                       render={({ field }) => (
                         <FormItem>
@@ -881,7 +864,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="howHear"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
@@ -916,7 +899,7 @@ export default function EditProfile({}: EditProfile) {
           />
 
           <FormField
-            control={form.control}
+            control={profileDetailsForm.control}
             name="someoneName"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">

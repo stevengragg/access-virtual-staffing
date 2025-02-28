@@ -2,31 +2,15 @@
 
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { fileUploadSchema, FileUploadSchema } from "@/services/user/update-files";
+import { FileUploadSchema } from "@/services/user/update-files";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/profile/file-upload";
-
+import { useProfileFiles } from "@/context/profile-files-context";
 
 const FileUploadForm = () => {
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FileUploadSchema>({
-    resolver: zodResolver(fileUploadSchema),
-    defaultValues: {
-      resume: [],
-      pfp: [],
-      internetScreenshot: [],
-      computerSpecsScreenshot: [],
-      workstationPhoto: [],
-      attachments: [],
-    },
-  });
-
+  const { handleSubmit, control, watch, formState } = useProfileFiles();
   // Define useFieldArray for each file field
   const resumeArray = useFieldArray({ control, name: "resume" });
   const pfpArray = useFieldArray({ control, name: "pfp" });
@@ -74,7 +58,7 @@ const FileUploadForm = () => {
   
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-24">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-24 w-full">
       <div className="space-y-4">
         {[
           { label: "Resume", field: resumeArray, name: "resume", types: ["application/pdf"], maxSize: 5 },
@@ -85,10 +69,9 @@ const FileUploadForm = () => {
           { label: "Attachments", field: attachmentsArray, name: "attachments", types: [], maxSize: 10 },
         ].map(({ label, field, name, types, maxSize }) => (
           <div key={name} className="grid grid-cols-4 items-start gap-4 border-b pb-8">
-            {/* Label (1/4) */}
+
             <label className="text-gray-700 font-medium text-sm">{label}</label>
 
-            {/* File Upload Field (3/4) */}
             <div className="col-span-3 space-y-2">
               {field.fields.map((file, index) => (
                 <FileUpload
@@ -115,10 +98,6 @@ const FileUploadForm = () => {
           </div>
         ))}
       </div>
-
-      <Button type="submit" className="bg-deepBlue rounded-lg px-4 py-2 w-full md:w-[300px] self-end mt-12 mb-20 text-white">
-        Upload Files
-      </Button>
     </form>
   );
 };
