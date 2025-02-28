@@ -1,7 +1,5 @@
 import { BiBell, BiCalendar, BiInfoCircle, BiCheckCircle } from "react-icons/bi";
 export function getNotificationIcon(type: string) {
-
-  console.log(type)
   switch (type) {
     case "recommendation":
       return <BiBell size={30} className="bg-deepBlue text-white p-1 rounded-full" />;
