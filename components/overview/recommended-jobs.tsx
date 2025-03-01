@@ -43,7 +43,7 @@ const RecommendedJobs = () => {
             <div className="flex flex-col">
                 <div className="flex flex-col">
                     <h2 className="font-semibold">Recommended Jobs</h2>
-                    <p className="text-gray-700 text-xs">Jobs where you're a top applicant based on your profile job search</p>
+                    <p className="text-gray-700 text-xs">Jobs where you&apos;re a top applicant based on your profile job search</p>
                 </div>
             </div>
 

@@ -86,14 +86,6 @@ export default function EditProfile({}: EditProfile) {
     name: "contentLinks",
   });
 
-
-  const errors = useProfileDetails().formState.errors;
-  useEffect(() => {
-    console.log("Errors changed:", errors);
-  }, [hasError]);
-  
-
-
   const onSubmit = (data: EditProfileSchema) => {
     console.log("Form Data:", data);
   };
