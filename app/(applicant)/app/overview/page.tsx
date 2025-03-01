@@ -1,6 +1,16 @@
 "use client";
 
+import AppliedJobs from "@/components/overview/applied-jobs";
+import Profile from "@/components/overview/profile";
+import Stepper from "@/components/overview/progress";
+import RecommendedJobs from "@/components/overview/recommended-jobs";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+
+const stepper = {
+  message: "Your application is 50% complete",
+  maxValue: 13,
+  currentValue: 10,
+}
 
 export default withPageAuthRequired(
   function Overview() {
@@ -8,17 +18,21 @@ export default withPageAuthRequired(
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;
     return (
-      <div className="h-[calc(100vh-4.5rem)] overflow-auto">
-        <div className="border-b-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">
-          <h1>Overview</h1>
-        </div>
-        <div className="container px-6 py-8 md:px-8 md:py-10 lg:py-12">
-          <div className="grid grid-cols-1 gap-12">
-            <div className="flex h-screen items-center justify-center border-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">
-              <h2>Click and paste Main Content</h2>
-            </div>
+      <div className="h-fit overflow-auto">
+        <div className="container flex flex-col mt-4 gap-4 px-4">
+          <div className="w-full justify-end items-end py-2">
+            <h1 className=" text-end">Profile last updated on: <span className="font-medium">Feb 12, 2025</span></h1>
           </div>
+          <Stepper
+            message={stepper.message}
+            maxValue={stepper.maxValue}
+            currentValue={stepper.currentValue}
+          />
+          <Profile />
+          <RecommendedJobs/>
+          <AppliedJobs/>
         </div>
+    
       </div>
     );
   },
