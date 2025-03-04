@@ -69,7 +69,7 @@ export default withPageAuthRequired(
               variant="primary"
               navLink={{
                 title: "APPLY FOR THIS JOB",
-                url: `/app/submissions/apply/${params?.id}`,
+                url: `/app/jobs/v/${params?.id}/apply`,
                 follow: false,
               }}
             />
