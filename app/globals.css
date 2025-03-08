@@ -50,3 +50,16 @@ body,
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.tab-trigger[data-state="active"] {
+  background: white;
+  color: slate-950;
+}
+
+.tab-trigger:focus{
+  background: white;
+}
+
+:root {
+  --background: 217.78, 19.71%, 26.86%;
+}

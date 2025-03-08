@@ -58,7 +58,7 @@ const FileUploadForm = () => {
   
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-24 w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-24 p-4 w-full">
       <div className="space-y-4">
         {[
           { label: "Resume", field: resumeArray, name: "resume", types: ["application/pdf"], maxSize: 5 },
@@ -98,6 +98,12 @@ const FileUploadForm = () => {
           </div>
         ))}
       </div>
+      <Button
+          type="submit"
+          className="bg-deepBlue rounded-lg px-4 py-2 w-full xl:w-[300px] self-end mt-12 mb-20 text-white"
+        >
+          Submit
+        </Button>
     </form>
   );
 };

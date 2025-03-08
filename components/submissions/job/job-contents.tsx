@@ -14,9 +14,9 @@ const JobContent = ({ jobData }: JobContentProps) => {
     return (
         <Tabs defaultValue="application" className="w-full mt-4">
             <TabsList className="border-b pb-2 text-gray-600 text-sm">
-                <TabsTrigger value="application">Application</TabsTrigger>
-                <TabsTrigger value="description">Job description</TabsTrigger>
-                <TabsTrigger value="company">Company info</TabsTrigger>
+                <TabsTrigger className="text-gray-700 data-[state=active]:border-gray-700 rounded-none border-white border-b-2" value="application">Application</TabsTrigger>
+                <TabsTrigger className="text-gray-700 data-[state=active]:border-gray-700 rounded-none border-white border-b-2" value="description">Job description</TabsTrigger>
+                <TabsTrigger className="text-gray-700 data-[state=active]:border-gray-700 rounded-none border-white border-b-2" value="company">Company info</TabsTrigger>
             </TabsList>
 
             <TabsContent value="application">

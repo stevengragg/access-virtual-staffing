@@ -1,33 +1,34 @@
-"use client"
-
-import { ReactNode, useState } from "react";
-import ProfileTabs from "@/components/profile/tabs";
-import { Button } from "@/components/ui/button";
-import { ProfileTabProvider, useProfileTabContext } from "@/context/profile-tab-context";
-import ProfileHeader from "@/components/profile/profile-header";
-import { ProfileFilesProvider } from "@/context/profile-files-context";
+import { ReactNode } from "react";
+import EditProfileTabs from "@/components/profile/edit-profile-tabs";
+import { ProfileTabProvider } from "@/context/profile-tab-context";
 import { ProfileDetailsProvider } from "@/context/profile-details-context";
+import { ProfileFilesProvider } from "@/context/profile-files-context";
+
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default function EditProfileLayout({ children }: LayoutProps) {
-    return (
-        <ProfileTabProvider>
-            <ProfileDetailsProvider>
-            <ProfileFilesProvider>
+export default function DashboardLayout({ children }: LayoutProps) {
+  return (
+            <ProfileTabProvider>
+                <ProfileDetailsProvider>
+                <ProfileFilesProvider>
                 <div className="h-[calc(100vh-4.5rem)] overflow-auto">
                     <div className="w-full mx-auto ">
                         <section
                             id="joblist_header"
                             className="relative px-[5%] pt-8 md:pt-12"
-                        >  
+                        >
                             <div className="container">
-                                <ProfileTabs/>
+                                <div className="w-full max-w-lg">
+                                    <h1 className=" text-2xl font-bold md:text-3xl">
+                                    Edit your Profile
+                                    </h1>
+                                </div>
                             </div>
                         </section>
-                        <ProfileHeader/>               
+                        
                         <section
                             id="joblist_header"
                             className="relative px-[5%] pt-8 md:pt-12"
@@ -38,8 +39,9 @@ export default function EditProfileLayout({ children }: LayoutProps) {
                         </section>
                     </div>
                 </div>
-            </ProfileFilesProvider>
-            </ProfileDetailsProvider>
-        </ProfileTabProvider>
-    );
+                </ProfileFilesProvider>
+                </ProfileDetailsProvider>
+            </ProfileTabProvider>
+    
+  );
 }

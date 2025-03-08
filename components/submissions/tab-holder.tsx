@@ -48,8 +48,8 @@ const SubmissionPages = () => {
         <div className="container px-6 py-8 md:px-2 md:py-10 lg:py-4">
             <Tabs defaultValue="ongoing" className="w-full">
                 <TabsList className="border-b pb-2 text-gray-600 text-sm">
-                    <TabsTrigger value="ongoing">Ongoing</TabsTrigger>
-                    <TabsTrigger value="archived">Archived</TabsTrigger>
+                    <TabsTrigger className="text-gray-700 data-[state=active]:border-gray-700 rounded-none border-white border-b-2" value="ongoing">Ongoing</TabsTrigger>
+                    <TabsTrigger className="text-gray-700 data-[state=active]:border-gray-700 rounded-none border-white border-b-2" value="archived">Archived</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="ongoing">
