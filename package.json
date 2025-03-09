@@ -6,7 +6,9 @@
     "dev": "next dev -p 5000",
     "build": "next build",
     "start": "next start -p 5000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migration:generate": "drizzle-kit generate",
+    "migration:run": "drizzle-kit migrate"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
@@ -58,7 +60,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/ws": "^8.5.14",
-    "drizzle-kit": "^0.30.4",
+    "drizzle-kit": "^0.30.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
     "postcss": "^8",
