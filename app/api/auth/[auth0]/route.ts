@@ -1,9 +1,4 @@
-import {
-  handleAuth,
-  handleLogin,
-  handleLogout,
-  getSession,
-} from "@auth0/nextjs-auth0";
+import { handleAuth, handleLogin } from "@auth0/nextjs-auth0";
 
 // const logoutUrl = [
 //   `${process.env.AUTH0_ISSUER_BASE_URL}/v2/logout?`,
