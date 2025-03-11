@@ -20,7 +20,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema, contactFormSchema } from "@/lib/form-validation";
 import submitForm from "@/lib/send";
-import { useToast } from "../hooks/use-toast";
+import { useToast } from "../../hooks/use-toast";
 import { useRouter } from "next/navigation";
 
 type Props = {

@@ -9,8 +9,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { usePagination } from "@/components/hooks/use-pagination";
-import { useFilter } from "../hooks/use-filter";
+import { usePagination } from "@/hooks/use-pagination";
+import { useFilter } from "../../hooks/use-filter";
 
 type JobListPaginationContainerProps = {
   totalCount: number;

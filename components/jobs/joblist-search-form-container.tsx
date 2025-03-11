@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { searchFormSchema, SearchFormSchema } from "@/lib/form-validation";
-import { useFilter } from "../hooks/use-filter";
+import { useFilter } from "../../hooks/use-filter";
 import { Input } from "@relume_io/relume-ui";
 import { XIcon } from "lucide-react";
 
