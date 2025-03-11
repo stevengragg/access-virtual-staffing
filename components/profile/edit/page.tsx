@@ -40,7 +40,7 @@ export default function EditProfile({}: EditProfile) {
   const profileDetailsForm = useProfileDetails();
   const { user } = useUser();
 
-  const [hasError, setHasError] = useState(false)
+  const [hasError, setHasError] = useState(false);
   const {
     fields: phoneFields,
     append: addPhone,
@@ -93,23 +93,44 @@ export default function EditProfile({}: EditProfile) {
   return (
     <Form {...profileDetailsForm}>
       <form
-        onSubmit={profileDetailsForm.handleSubmit(onSubmit, (errors) => setHasError(!hasError))}
+        onSubmit={profileDetailsForm.handleSubmit(onSubmit, (errors) =>
+          setHasError(!hasError)
+        )}
         className="max-w-3xl mx-auto p-4"
       >
         <div className="grid grid-cols-4 gap-12">
           <FormField
             control={profileDetailsForm.control}
-            name="fullName"
+            name="firstName"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1">
-                  <FormMessage className="text-red-500" />
-                  Full Name
+                  First Name
                 </FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="Full name"
+                    placeholder="Enter your First/Given Name"
+                    className="col-span-4 xl:col-span-3 border-gray-800"
+                  />
+                </FormControl>
+                <FormMessage className="text-red-800" />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={profileDetailsForm.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
+                <FormLabel className="mt-2 col-span-4 xl:col-span-1">
+                  Last Name
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Enter your Last/Family Name"
                     className="col-span-4 xl:col-span-3 border-gray-800"
                   />
                 </FormControl>
