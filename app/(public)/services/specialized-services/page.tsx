@@ -48,8 +48,8 @@ export default function SpecializedServices({}: Props) {
         description="Our Specialized Services provide more than just recruitment; we offer in-depth training programs designed to enhance your team’s skills and effectiveness. Our training includes Complete Staff Work, Basic Management training, and Advanced Leadership training. These programs cover crucial areas such as writing job descriptions, setting goals and objectives, performing SWOT analysis, and understanding KRA and KPI metrics. We also focus on identifying gaps and bottlenecks and implementing process improvements. By investing in these specialized training programs, we help ensure that your virtual staff not only meets but exceeds your business needs, driving efficiency and growth in every aspect of your operations."
         button={{
           navLink: {
-            title: "Start Hiring",
-            url: "/start-hiring",
+            title: "Free Strategy Call",
+            url: "/book-a-meeting",
             follow: false,
           },
           variant: "secondary",
@@ -129,7 +129,7 @@ export default function SpecializedServices({}: Props) {
           {
             navLink: {
               title: "Get Started",
-              url: "/start-hiring",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",

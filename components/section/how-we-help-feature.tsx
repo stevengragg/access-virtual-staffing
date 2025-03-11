@@ -105,7 +105,7 @@ export const Header21Defaults: Header21Props = {
     {
       navLink: {
         title: "Start Hiring",
-        url: "/start-hiring",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "outline",

@@ -74,7 +74,7 @@ export const Header37Defaults: Header37Props = {
     {
       navLink: {
         title: "Start Hiring Virtual Staff",
-        url: "/start-hiring",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "primary",

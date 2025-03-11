@@ -100,7 +100,7 @@ export default async function Talent({
           {
             navLink: {
               title: "View All",
-              url: "/find-work",
+              url: "/talent/find-work",
               follow: false,
             },
             variant: "link2",

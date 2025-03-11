@@ -150,7 +150,7 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "About Us", url: "/about-us" },
-        { title: "Hire Virtual Staff", url: "/start-hiring" },
+        { title: "Hire Virtual Staff", url: "/book-a-meeting" },
         // { title: "Book A Discovery Call", url: "/book-a-meeting" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
@@ -179,9 +179,9 @@ export const Footer11Defaults: Footer11Props = {
     },
     {
       links: [
-        { title: "For Jobseekers", url: "/talent" },
-        { title: "Remote Jobs", url: "/find-work" },
-        { title: "Applicant Portal", url: "/auth" },
+        { title: "For Talents", url: "/talent" },
+        { title: "Remote Jobs", url: "/talent/find-work" },
+        // { title: "Applicant Portal", url: "/auth" },
       ],
     },
   ],

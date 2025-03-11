@@ -37,8 +37,8 @@ export default function FAQ({}: Props) {
           },
           {
             navLink: {
-              title: "Start Hiring",
-              url: "/start-hiring",
+              title: "Free Strategy Call",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "outline",

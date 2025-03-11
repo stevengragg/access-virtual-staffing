@@ -50,8 +50,8 @@ export default function StandardPlan({}: Props) {
         description="Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations. We manage salaries, benefits, and all related administrative tasks, allowing you to focus on growing your business. This tier is designed to streamline operations and ensure smooth management of your workforce."
         button={{
           navLink: {
-            title: "Start Hiring",
-            url: "/start-hiring",
+            title: "Free Strategy Call",
+            url: "/book-a-meeting",
             follow: false,
           },
           variant: "secondary",
@@ -170,7 +170,7 @@ export default function StandardPlan({}: Props) {
           {
             navLink: {
               title: "Get Started",
-              url: "/start-hiring",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",

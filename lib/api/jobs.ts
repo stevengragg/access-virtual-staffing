@@ -75,7 +75,7 @@ export const fetchJobListings = async (
         : "Not provided",
       url: isApp
         ? `/app/jobs/v/${urlFriendlyTitle}`
-        : `/find-work/${urlFriendlyTitle}`,
+        : `/talent/find-work/${urlFriendlyTitle}`,
       //"https://podio.com/webforms/29994876/2499223"
       createdAt: item.created_on,
       postedBy: item.created_by.name,

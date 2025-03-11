@@ -22,30 +22,26 @@ export default function BookAMeeting({}: Props) {
         description="Find answers to your common questions."
         questions={[
           {
-            title: "Who can join AVS?",
+            title: "Why choose Access Virtual Staffing?",
             answer:
-              "Whether you’re a developer, designer, or marketer, join Arc to find freelance and full-time remote jobs. With Arc, you can receive job matches tailored to your profile, speak directly with hiring managers, and get hired!",
+              "Choosing Access Virtual Staffing means partnering with a team dedicated to delivering top-notch virtual staffing solutions tailored to your needs. We provide highly skilled professionals who are proficient in English and, in some cases, bilingual in Spanish. Our transparent and efficient process ensures you find the best fit for your business while benefiting from our commitment to quality, integrity, and personalized support. Additionally, our flexible services and advanced technology support help streamline your operations, allowing you to focus on what matters most—growing your business.",
           },
           {
-            title: "Is it free to join AVS?",
-            answer: "Yes, it is completely free.",
+            title: "How do I request for a Virtual Staff?",
+            answer:
+              "To request a Virtual Staff, simply schedule a free strategy call (www.accessvirtualstaffing.com/book-a-meeting) and we can discuss the necessary details about your staffing needs. Once you book a call with us we will ensure that we fully understand your requirements and are aligned on the expectations before moving forward.",
           },
           {
-            title: "Who are the hiring companies/clients?",
+            title: "How much does it cost?",
             answer:
-              "AVS work with different companies and clients that requests a virtual staff or a team.",
-          },
-          {
-            title: "What type of jobs can I find on AVS?",
-            answer:
-              "There are full-time, freelance/part-time jobs here at AVS. Once you sign up and get access to our Applicant Portal, you'll receive recommendation and access number of job openings that you search.",
+              "The cost of our virtual staffing services depends on factors such as the type of tasks, the level of expertise required, and the number of hours needed. For more information, please contact us at support@accessvirtualstaffing.com",
           },
         ]}
         footerDescription="You have other questions?"
         button={{
           navLink: {
-            title: "Contact Us",
-            url: "/contact-us",
+            title: "See more",
+            url: "/faq",
             follow: false,
           },
           variant: "link2",
@@ -67,15 +63,15 @@ export default function BookAMeeting({}: Props) {
             variant: "secondary",
             size: "xl",
           },
-          {
-            navLink: {
-              title: "Start Hiring",
-              url: "/start-hiring",
-              follow: false,
-            },
-            variant: "outline",
-            size: "xl",
-          },
+          // {
+          //   navLink: {
+          //     title: "Start Hiring",
+          //     url: "/start-hiring",
+          //     follow: false,
+          //   },
+          //   variant: "outline",
+          //   size: "xl",
+          // },
         ]}
       />
     </main>

@@ -249,7 +249,7 @@ export const Navbar1Defaults: Navbar1Props = {
     {
       navLink: {
         title: "Free Strategy Call",
-        url: "/start-hiring",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "secondary",

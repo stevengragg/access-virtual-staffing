@@ -53,7 +53,7 @@ export default function Home() {
           {
             navLink: {
               title: "Get Started",
-              url: "/start-hiring",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",
@@ -96,7 +96,7 @@ export default function Home() {
           {
             navLink: {
               title: "Hire Talent",
-              url: "/start-hiring",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "outline",

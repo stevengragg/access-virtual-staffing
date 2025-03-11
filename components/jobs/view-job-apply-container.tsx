@@ -13,7 +13,7 @@ export const ViewJobApplyContainer = () => {
               url:
                 process.env.NEXT_PUBLIC_PODIO_JOB_APPLICATION_WEB_FORM ||
                 "https://podio.com/webforms/29994876/2499223",
-              follow: true,
+              follow: false,
             }}
           />
         </div>

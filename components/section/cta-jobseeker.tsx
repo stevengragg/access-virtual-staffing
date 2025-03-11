@@ -22,7 +22,7 @@ export const CtaJobseeker = (props: CtaJobseekerProps) => {
   };
   return (
     <section id="cta" className="px-[5%] py-8 md:py-12 bg-zinc-300">
-      <div className="container-xl">
+      <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
@@ -39,8 +39,8 @@ export const CtaJobseeker = (props: CtaJobseekerProps) => {
           <div>
             <Image
               src={image.src}
-              className="w-full object-cover"
               alt={image.alt}
+              className="object-cover rounded-lg"
               width={image.width}
               height={image.height}
             />
@@ -68,9 +68,9 @@ export const CtaJobseekerDefaults: Props = {
     },
   ],
   image: {
-    src: "/img/working_remotely.svg",
+    src: "/img/talent-feature-img.webp",
     alt: "Working Remotely",
-    width: 100,
-    height: 100,
+    width: 1000,
+    height: 1000,
   },
 };

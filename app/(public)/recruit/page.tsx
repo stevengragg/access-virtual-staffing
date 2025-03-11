@@ -50,8 +50,8 @@ export default function Home() {
         buttons={[
           {
             navLink: {
-              title: "Get Started",
-              url: "/start-hiring",
+              title: "Free Strategy Call",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",
@@ -95,8 +95,8 @@ export default function Home() {
           },
           {
             navLink: {
-              title: "Start Hiring",
-              url: "/start-hiring",
+              title: "Free Strategy Call",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "outline",

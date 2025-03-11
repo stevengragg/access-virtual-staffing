@@ -27,7 +27,7 @@ export default function ContactUs({}: Props) {
           {
             title: "How do I request for a Virtual Staff?",
             answer:
-              "To request a Virtual Staff, simply fill out our web form (www.accessvirtualstaffing.com/start-hiring) with the necessary details about your staffing needs. Once we receive your submission, our team will evaluate your request and then reach out to you for a quick verification call. This ensures that we fully understand your requirements and are aligned on the expectations before moving forward.",
+              "To request a Virtual Staff, simply schedule a free strategy call (www.accessvirtualstaffing.com/book-a-meeting) and we can discuss the necessary details about your staffing needs. Once you book a call with us we will ensure that we fully understand your requirements and are aligned on the expectations before moving forward.",
           },
           {
             title: "How much does it cost?",
@@ -63,8 +63,8 @@ export default function ContactUs({}: Props) {
           },
           {
             navLink: {
-              title: "Start Hiring",
-              url: "/start-hiring",
+              title: "Free Strategy Call",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "outline",

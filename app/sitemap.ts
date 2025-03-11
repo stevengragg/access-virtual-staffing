@@ -17,12 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://accessvirtualstaffing.com/contact-us",
     },
-    // {
-    //   url: "https://accessvirtualstaffing.com/book-a-meeting",
-    // },
     {
-      url: "https://accessvirtualstaffing.com/start-hiring",
+      url: "https://accessvirtualstaffing.com/book-a-meeting",
     },
+    // {
+    //   url: "https://accessvirtualstaffing.com/start-hiring",
+    // },
     {
       url: "https://accessvirtualstaffing.com/services",
     },
@@ -37,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     {
       url: "https://accessvirtualstaffing.com/services/specialized-services",
+    },
+    {
+      url: "https://accessvirtualstaffing.com/talent",
+    },
+    {
+      url: "https://accessvirtualstaffing.com/talent/find-work",
     },
   ];
 }

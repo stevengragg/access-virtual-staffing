@@ -47,8 +47,8 @@ export default function BasicPlan({}: Props) {
         description="The Basic Recruitment and Payroll service is designed for employers who require project-based staff without the complexity of managing full-time employees. We take care of the recruitment process, sourcing the right talent for your specific project needs, and manage payroll for your temporary workforce. This service is streamlined, as we do not provide timekeeping or benefits administration, making it perfect for short-term, flexible staffing solutions. Focus on your project’s success, while we handle the recruitment and payroll efficiently."
         button={{
           navLink: {
-            title: "Start Hiring",
-            url: "/start-hiring",
+            title: "Free Strategy Call",
+            url: "/book-a-meeting",
             follow: false,
           },
           variant: "secondary",
@@ -116,7 +116,7 @@ export default function BasicPlan({}: Props) {
           {
             navLink: {
               title: "Get Started",
-              url: "/start-hiring",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",

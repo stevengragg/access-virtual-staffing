@@ -63,8 +63,8 @@ Phil's innovative model offers more than just a staffing solution; it provides a
           },
           {
             navLink: {
-              title: "Start Hiring",
-              url: "/start-hiring",
+              title: "Free Startegy Call",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "outline",

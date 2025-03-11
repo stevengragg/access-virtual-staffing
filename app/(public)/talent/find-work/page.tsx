@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description:
       "Explore a wide range of job opportunities with Access Virtual Staffing. Create an account, log in to your applicant portal, and apply for jobs that match your skills and career goals.",
     type: "website",
-    url: "https://www.accessvirtualstaffing.com/find-work",
+    url: "https://www.accessvirtualstaffing.com/talent/find-work",
     images: "/opengraph-image.jpg", // Use the specified image URL
   },
   twitter: {

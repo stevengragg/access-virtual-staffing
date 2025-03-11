@@ -122,7 +122,7 @@ export default function Services({}: Props) {
           {
             navLink: {
               title: "Get Started",
-              url: "/start-hiring",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",

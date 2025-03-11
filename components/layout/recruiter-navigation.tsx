@@ -261,7 +261,7 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     {
       navLink: {
         title: "Free Strategy Call",
-        url: "/start-hiring",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "secondary",

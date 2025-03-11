@@ -306,7 +306,7 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     { title: "Home", url: "/" },
     { title: "About Us", url: "/about-us" },
     // { title: "For Employers", url: "/recruit" },
-    // { title: "For Job seekers", url: "/candidates" },
+    { title: "For Talents", url: "/talent" },
 
     {
       title: "Services",
@@ -344,28 +344,28 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     },
   ],
   buttons: [
-    {
-      navLink: {
-        title: "Login",
-        url: "/auth",
-        follow: false,
-      },
-      variant: "link2",
-      size: "default",
-    },
-    {
-      navLink: {
-        title: "Find Work",
-        url: "/talent",
-        follow: false,
-      },
-      variant: "outline",
-      size: "default",
-    },
+    // {
+    //   navLink: {
+    //     title: "Login",
+    //     url: "/auth",
+    //     follow: false,
+    //   },
+    //   variant: "link2",
+    //   size: "default",
+    // },
+    // {
+    //   navLink: {
+    //     title: "Find Work",
+    //     url: "/talent",
+    //     follow: false,
+    //   },
+    //   variant: "outline",
+    //   size: "default",
+    // },
     {
       navLink: {
         title: "Free Strategy Call",
-        url: "/start-hiring",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "secondary",
