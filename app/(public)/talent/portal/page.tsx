@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "Find work and access your applicant portal account to manage your job applications, profile, and advanced job search.",
     type: "website",
-    url: "https://www.accessvirtualstaffing.com/talent/portal",
+    url: "https://www.accessvirtualstaffing.com/auth",
     images: "/opengraph-image.jpg",
   },
   twitter: {

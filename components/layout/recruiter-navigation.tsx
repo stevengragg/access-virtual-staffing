@@ -243,7 +243,7 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     {
       navLink: {
         title: "Login",
-        url: "/auth",
+        url: "/talent/portal",
         follow: false,
       },
       variant: "link2",
@@ -252,7 +252,7 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     {
       navLink: {
         title: "Find Work",
-        url: "/auth",
+        url: "/talent/find-work",
         follow: false,
       },
       variant: "outline",

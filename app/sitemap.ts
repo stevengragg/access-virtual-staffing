@@ -44,5 +44,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://accessvirtualstaffing.com/talent/find-work",
     },
+    {
+      url: "https://accessvirtualstaffing.com/talent/portal",
+    },
   ];
 }

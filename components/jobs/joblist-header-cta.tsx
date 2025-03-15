@@ -43,7 +43,7 @@ export const JobListHeaderCtaDefaults: Props = {
     {
       navLink: {
         title: "Join Now",
-        url: "/auth",
+        url: "/talent/portal",
         follow: false,
       },
       variant: "secondary",

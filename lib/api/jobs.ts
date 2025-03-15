@@ -60,7 +60,8 @@ export const fetchJobListings = async (
         ?.value || "N/A";
     const urlFriendlyTitle = `${item.app_item_id}-${title
       ?.toLowerCase()
-      .replace(/ /g, "-")}`;
+      .replace(/ /g, "-")
+      .replace(/\//g, "-")}`;
     const estimatedSalary = item.fields.find(
       (field: any) => field.external_id === "estimated-salary"
     )?.values[0];
@@ -194,6 +195,7 @@ export const getJobPost = async (
 
   // Extract the job ID from the idWithSlug string
   const idMatch = id.match(/^(\d+)-/);
+  console.log(idMatch);
   const finalId = idMatch ? idMatch[1] : null;
 
   if (!finalId) {

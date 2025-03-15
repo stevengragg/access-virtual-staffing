@@ -2,6 +2,7 @@ import { CalendlyForm } from "@/components/form/calendly-form";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqFooter } from "@/components/section/faq-footer";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
+import { StrategyCallHeroHeader } from "@/components/section/strategy-call-hero-header";
 import { ChevronRight } from "lucide-react";
 
 type Props = {};
@@ -10,10 +11,11 @@ export default function BookAMeeting({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
-      <HeroHeaderNormal
+      <StrategyCallHeroHeader />
+      {/* <HeroHeaderNormal
         heading="Book a Free Discovery Call Today"
         context="Book a discovery call with the professional team from Access Virtual Staffing today to learn how we can help you reduce your staffing costs by up to 70% with our talented Virtual Staff."
-      />
+      /> */}
       {/* Calendly Form Section */}
       <CalendlyForm />
       {/* FAQ Footer Section */}
@@ -51,9 +53,19 @@ export default function BookAMeeting({}: Props) {
       />
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Discover our different services or you can send us your requirements so that we can start hiring your first Virtual Staff."
+        heading="For Business Owners"
+        description="Want to know everything about how to work with Virtual Staff and how we close the gap? Schedule a Free strategy call now!"
         buttons={[
+          {
+            navLink: {
+              title: "Schedule a Strategy Session",
+              url: "/book-a-meeting#book",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+
           {
             navLink: {
               title: "Discover Our Services",
@@ -63,15 +75,6 @@ export default function BookAMeeting({}: Props) {
             variant: "secondary",
             size: "xl",
           },
-          // {
-          //   navLink: {
-          //     title: "Start Hiring",
-          //     url: "/start-hiring",
-          //     follow: false,
-          //   },
-          //   variant: "outline",
-          //   size: "xl",
-          // },
         ]}
       />
     </main>

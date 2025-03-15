@@ -9,9 +9,9 @@ export function middleware(req: NextRequest) {
   if (pathname.startsWith("/app")) {
     const session = getSession(req, NextResponse.next());
 
-    // If there is no session, redirect to /auth/login
+    // If there is no session, redirect to /talent/portal
     if (!session) {
-      const loginUrl = new URL("/auth/login", req.url);
+      const loginUrl = new URL("/talent/portal", req.url);
       return NextResponse.redirect(loginUrl);
     }
   }

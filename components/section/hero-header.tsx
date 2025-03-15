@@ -79,7 +79,7 @@ export const Header36Defaults: Header36Props = {
     {
       navLink: {
         title: "Learn more",
-        url: "/talent",
+        url: "/services",
         follow: false,
       },
       variant: "secondary",

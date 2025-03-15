@@ -55,26 +55,25 @@ type NavLink = {
   subMenuLinks?: NavLink[];
 };
 
-type Props = {
+export type SiteNavbarDefaultProps = {
   logo: ImageProps;
   navLinks: NavLink[];
   buttons: LinkButtonProps[];
 };
 
 export type SiteNavbarProps = React.ComponentPropsWithoutRef<"section"> &
-  Partial<Props>;
+  Partial<SiteNavbarDefaultProps>;
 
 export const SiteNavbar = (props: SiteNavbarProps) => {
-  const { user, error, isLoading } = useUser();
-
-  const { logo, navLinks, buttons } = {
-    ...SiteNavbarDefaults,
-    ...props,
-  } as Props;
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
   const url = usePathname();
+  const { user, error, isLoading } = useUser();
+
+  const { logo, navLinks, buttons } = url.includes("talent")
+    ? SiteNavbarDefaultsForTalents
+    : SiteNavbarDefaults;
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <nav
@@ -167,7 +166,12 @@ export const SiteNavbar = (props: SiteNavbarProps) => {
                   href={navLink.url}
                   className={cn(
                     "block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:underline",
-                    url === navLink.url ? "underline" : ""
+                    url === navLink.url
+                      ? "underline"
+                      : navLink.title === "For Talents" &&
+                        url.includes("/talent")
+                      ? "underline"
+                      : ""
                   )}
                 >
                   {navLink.title}
@@ -294,7 +298,7 @@ const SubMenu = ({
   );
 };
 
-export const SiteNavbarDefaults: SiteNavbarProps = {
+const SiteNavbarDefaults: SiteNavbarDefaultProps = {
   logo: {
     url: "/",
     src: "/avs_logo_4.png",
@@ -365,6 +369,86 @@ export const SiteNavbarDefaults: SiteNavbarProps = {
     {
       navLink: {
         title: "Free Strategy Call",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "secondary",
+      size: "default",
+    },
+  ],
+};
+
+const SiteNavbarDefaultsForTalents: SiteNavbarDefaultProps = {
+  logo: {
+    url: "/",
+    src: "/avs_logo_4.png",
+    alt: "Access Virtual Staffing Logo 2",
+    width: 175,
+    height: 50,
+  },
+  navLinks: [
+    { title: "Home", url: "/" },
+    { title: "About Us", url: "/about-us" },
+    // { title: "For Employers", url: "/recruit" },
+    { title: "For Talents", url: "/talent" },
+
+    {
+      title: "Services",
+      url: "/services",
+      subMenuLinks: [
+        {
+          title: "All Services",
+          url: "/services",
+        },
+        { title: "Basic Plan", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
+        {
+          title: "Specialized Services",
+          url: "/services/specialized-services",
+        },
+      ],
+    },
+    {
+      title: "Resources",
+      url: "#",
+      subMenuLinks: [
+        {
+          title: "Blog",
+          url: "https://accessvirtualstaffing.blogspot.com",
+          follow: true,
+        },
+        { title: "FAQs", url: "/faq" },
+        { title: "Contact Us", url: "/contact-us" },
+        // {
+        //   title: "Fiverr with AVS",
+        //   url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
+        //   follow: true,
+        // },
+      ],
+    },
+  ],
+  buttons: [
+    {
+      navLink: {
+        title: "Applicant Portal",
+        url: "/talent/portal",
+        follow: false,
+      },
+      variant: "link2",
+      size: "default",
+    },
+    {
+      navLink: {
+        title: "Find Work",
+        url: "/talent/find-work",
+        follow: false,
+      },
+      variant: "outline",
+      size: "default",
+    },
+    {
+      navLink: {
+        title: "Looking to hire?",
         url: "/book-a-meeting",
         follow: false,
       },

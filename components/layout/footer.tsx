@@ -181,7 +181,7 @@ export const Footer11Defaults: Footer11Props = {
       links: [
         { title: "For Talents", url: "/talent" },
         { title: "Remote Jobs", url: "/talent/find-work" },
-        // { title: "Applicant Portal", url: "/auth" },
+        { title: "Applicant Portal", url: "/talent/portal" },
       ],
     },
   ],

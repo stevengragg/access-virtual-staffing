@@ -135,8 +135,8 @@ export default async function FindWork({
         buttons={[
           {
             navLink: {
-              title: "Find Jobs",
-              url: "/auth",
+              title: "Join now",
+              url: "/talent/portal",
               follow: false,
             },
             variant: "outline",
@@ -144,8 +144,8 @@ export default async function FindWork({
           },
           {
             navLink: {
-              title: "Free Strategy Call",
-              url: "/talent",
+              title: "Looking to hire?",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",

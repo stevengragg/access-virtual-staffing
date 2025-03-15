@@ -2,7 +2,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Product, WithContext, WebSite, BreadcrumbList } from "schema-dts";
 
 import { Footer } from "@/components/layout/footer";
-import { SiteNavbar } from "@/components/layout/site-navigation";
+import {
+  SiteNavbar,
+  SiteNavbarDefaultProps,
+} from "@/components/layout/site-navigation";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 
 export default async function PublicRootLayout({

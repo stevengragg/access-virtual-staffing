@@ -11,6 +11,7 @@ import { HowWeHelpFeature } from "@/components/section/how-we-help-feature";
 // import { Testimonials } from "@/components/section/testimonials";
 import { WhyChoose } from "@/components/section/why-choose";
 import { CtaJobseeker } from "@/components/section/cta-jobseeker";
+import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
 
 export default function Home() {
   return (
@@ -112,6 +113,7 @@ export default function Home() {
           },
         ]}
       />
+      <StrategyCallModal />
     </main>
   );
 }

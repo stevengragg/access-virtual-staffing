@@ -144,7 +144,7 @@ export default async function Talent({
           {
             navLink: {
               title: "Join Now",
-              url: "/auth",
+              url: "/talent/portal",
               follow: false,
             },
             variant: "secondary",
@@ -200,8 +200,8 @@ export default async function Talent({
         buttons={[
           {
             navLink: {
-              title: "Find Jobs",
-              url: "/auth",
+              title: "Join now",
+              url: "/talent/portal",
               follow: false,
             },
             variant: "outline",
@@ -209,8 +209,8 @@ export default async function Talent({
           },
           {
             navLink: {
-              title: "Free Strategy Call",
-              url: "/talent",
+              title: "Looking to hire?",
+              url: "/book-a-meeting",
               follow: false,
             },
             variant: "secondary",
