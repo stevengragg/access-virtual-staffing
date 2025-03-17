@@ -1,16 +1,27 @@
-'use client';
+"use client";
 
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { generalSchema, GeneralSchema } from "@/services/settings/general";
 import Image from "next/image";
-
 
 export default function GeneralSettings() {
   const { user } = useUser();
@@ -20,8 +31,8 @@ export default function GeneralSettings() {
       firstName: "",
       lastName: "",
       email: "",
-      username: ""
-    }
+      username: "",
+    },
   });
 
   const onSubmit = (data: GeneralSchema) => {
@@ -38,15 +49,15 @@ export default function GeneralSettings() {
         <CardContent className="space-y-8">
           <div className="flex flex-col gap-4">
             <h2 className="font-semibold text-sm text-gray-700">
-              Profile Picture
+              Account Profile Image
             </h2>
             <Image
-                src={user?.picture || ""}
-                alt="Avatar"
-                className="size-20 rounded-full object-cover"
-                width={50}
-                height={50}
-              />
+              src={user?.picture || ""}
+              alt="Avatar"
+              className="size-20 rounded-full object-cover"
+              width={50}
+              height={50}
+            />
           </div>
 
           <Form {...form}>
@@ -55,11 +66,17 @@ export default function GeneralSettings() {
               name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">First Name</FormLabel>
+                  <FormLabel className="font-semibold text-sm text-gray-700">
+                    First Name
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className='border-gray-700' placeholder="First Name" />
+                    <Input
+                      {...field}
+                      className="border-gray-700"
+                      placeholder="First Name"
+                    />
                   </FormControl>
-                    <FormMessage className="text-red-500"/>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -68,11 +85,17 @@ export default function GeneralSettings() {
               name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">Last Name</FormLabel>
+                  <FormLabel className="font-semibold text-sm text-gray-700">
+                    Last Name
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className='border-gray-700' placeholder="Last Name" />
+                    <Input
+                      {...field}
+                      className="border-gray-700"
+                      placeholder="Last Name"
+                    />
                   </FormControl>
-                  <FormMessage className="text-red-500"/>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -81,11 +104,18 @@ export default function GeneralSettings() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">Email</FormLabel>
+                  <FormLabel className="font-semibold text-sm text-gray-700">
+                    Email
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className='border-gray-700' type="email" placeholder="Email" />
+                    <Input
+                      {...field}
+                      className="border-gray-700"
+                      type="email"
+                      placeholder="Email"
+                    />
                   </FormControl>
-                  <FormMessage className="text-red-500"/>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -94,11 +124,17 @@ export default function GeneralSettings() {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">Username</FormLabel>
+                  <FormLabel className="font-semibold text-sm text-gray-700">
+                    Username
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className='border-gray-700' placeholder="Username" />
+                    <Input
+                      {...field}
+                      className="border-gray-700"
+                      placeholder="Username"
+                    />
                   </FormControl>
-                  <FormMessage className="text-red-500"/>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -106,7 +142,13 @@ export default function GeneralSettings() {
         </CardContent>
 
         <CardFooter className="flex justify-start space-x-2 my-4">
-          <Button type="submit" variant='default' className="bg-deepBlue text-white min-w-[150px]">Submit</Button>
+          <Button
+            type="submit"
+            variant="default"
+            className="bg-deepBlue text-white min-w-[150px]"
+          >
+            Submit
+          </Button>
         </CardFooter>
       </form>
     </Card>

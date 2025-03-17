@@ -21,6 +21,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -33,14 +39,15 @@ import {
 import { DatePicker } from "@/components/ui/date-picker";
 import { useProfileDetails } from "@/context/profile-details-context";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface EditProfile {}
 
-export default function EditProfile({}: EditProfile) {
+export default function EditProfileForm({}: EditProfile) {
   const profileDetailsForm = useProfileDetails();
   const { user } = useUser();
 
-  const [hasError, setHasError] = useState(false);
+  // const [hasError, setHasError] = useState(false);
   const {
     fields: phoneFields,
     append: addPhone,
@@ -85,71 +92,88 @@ export default function EditProfile({}: EditProfile) {
     control: profileDetailsForm.control,
     name: "contentLinks",
   });
+  const onSubmit = async (data: EditProfileSchema) => {
+    try {
+      const response = await fetch("/api/profile/update-profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-  const onSubmit = (data: EditProfileSchema) => {
-    console.log("Form Data:", data);
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
+
+      const result = await response.json();
+      console.log("Profile updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   return (
     <Form {...profileDetailsForm}>
       <form
-        onSubmit={profileDetailsForm.handleSubmit(onSubmit, (errors) =>
-          setHasError(!hasError)
-        )}
+        onSubmit={profileDetailsForm.handleSubmit(onSubmit)}
         className="max-w-3xl mx-auto p-4"
       >
+        <div className="mb-5">
+          <Card className="w-full max-w-2xl shadow-md">
+            <CardHeader className="font-semibold text-gray-700">
+              <Link
+                href="/app/settings/general"
+                className="underline hover:text-primaryBlue"
+              >
+                Update General Details
+              </Link>
+            </CardHeader>
+
+            <CardContent className="space-y-8">
+              <div className="flex flex-col gap-4">
+                <Label className="font-semibold text-sm text-zinc-700">
+                  Account Profile Image
+                </Label>
+                <Image
+                  src={user?.picture || ""}
+                  alt="Avatar"
+                  className="size-20 rounded-full object-cover"
+                  width={50}
+                  height={50}
+                />
+              </div>
+              <div>
+                <Label className="font-semibold text-sm text-zinc-700">
+                  Full Name
+                </Label>
+                <p>{user?.name}</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
         <div className="grid grid-cols-4 gap-12">
           <FormField
             control={profileDetailsForm.control}
-            name="firstName"
+            name="jobTitle"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <FormLabel className="mt-2 col-span-4 xl:col-span-1">
-                  First Name
+                <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
+                  Job Title <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="Enter your First/Given Name"
-                    className="col-span-4 xl:col-span-3 border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-800" />
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Enter your Job Title"
+                      className=" border-gray-800"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
-
-          <FormField
-            control={profileDetailsForm.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <FormLabel className="mt-2 col-span-4 xl:col-span-1">
-                  Last Name
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="Enter your Last/Family Name"
-                    className="col-span-4 xl:col-span-3 border-gray-800"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          <div className="col-span-4 grid grid-cols-4 gap-2">
-            <Label className="mt-2 col-span-4 xl:col-span-1">
-              Profile Picture
-            </Label>
-            <Image
-              src={user?.picture || ""}
-              alt="Avatar"
-              className="size-20 rounded-full object-cover"
-              width={150}
-              height={150}
-            />
-          </div>
 
           <FormField
             control={profileDetailsForm.control}
@@ -157,17 +181,19 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   Tell us about your experiences and what makes you best fit for
-                  this position. *
+                  this position. <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <Textarea
-                    {...field}
-                    placeholder="Tell us about your experiences and what makes you best fit for this position"
-                    className="w-full border p-2 rounded h-[150px] border-gray-800"
-                  />
-                </FormControl>
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="Tell us about your experiences and what makes you best fit for this position"
+                      className="w-full border p-2 rounded h-[150px] border-gray-800"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -178,17 +204,19 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   What are your strengths? Where do you excel or, at the very
-                  least, perform well? *
+                  least, perform well? <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <Textarea
-                    {...field}
-                    placeholder="What are your strengths? Where do you excel or, at the very least, perform well?"
-                    className="w-full border p-2 rounded h-[150px] border-gray-800"
-                  />
-                </FormControl>
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="What are your strengths? Where do you excel or, at the very least, perform well?"
+                      className="w-full border p-2 rounded h-[150px] border-gray-800"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -199,16 +227,19 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
-                  What areas do you think you will need improvement? *
+                  What areas do you think you will need improvement?{" "}
+                  <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3 space-y-3">
-                  <Textarea
-                    {...field}
-                    placeholder="What areas do you think you will need improvement?"
-                    className="w-full border p-2 rounded h-[150px] border-gray-800"
-                  />
-                </FormControl>
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="What areas do you think you will need improvement?"
+                      className="w-full border p-2 rounded h-[150px] border-gray-800"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -219,7 +250,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   Address
                 </FormLabel>
                 <FormControl className="col-span-4 xl:col-span-3 space-y-3">
@@ -230,6 +260,7 @@ export default function EditProfile({}: EditProfile) {
                     className="w-full border p-2 rounded border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-800" />
               </FormItem>
             )}
           />
@@ -254,23 +285,35 @@ export default function EditProfile({}: EditProfile) {
                         name={`phone.${index}.type`}
                         render={({ field }) => (
                           <FormItem>
-                            <Select
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                            >
-                              <SelectTrigger className="w-[180px] border-gray-800">
-                                <SelectValue placeholder="Type" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectGroup className="bg-white">
-                                  <SelectLabel>Phone Type</SelectLabel>
-                                  <SelectItem value="mobile">Mobile</SelectItem>
-                                  <SelectItem value="landline">
-                                    Landline
-                                  </SelectItem>
-                                </SelectGroup>
-                              </SelectContent>
-                            </Select>
+                            <FormControl>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <SelectTrigger className="w-[180px] border-gray-800">
+                                  <SelectValue placeholder="Type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectGroup className="bg-white">
+                                    <SelectLabel>Phone Type</SelectLabel>
+                                    <SelectItem value="mobile">
+                                      Mobile
+                                    </SelectItem>
+                                    <SelectItem value="work">Work</SelectItem>
+                                    <SelectItem value="home">Home</SelectItem>
+                                    <SelectItem value="main">Main</SelectItem>
+                                    <SelectItem value="work-fax">
+                                      Work Fax
+                                    </SelectItem>
+                                    <SelectItem value="private-fax">
+                                      Private Fax
+                                    </SelectItem>
+                                    <SelectItem value="other">Other</SelectItem>
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                            <FormMessage className="text-red-500" />
                           </FormItem>
                         )}
                       />
@@ -337,54 +380,56 @@ export default function EditProfile({}: EditProfile) {
                       name={`emailAddress.${index}.address`}
                       render={({ field }) => (
                         <FormItem>
-                          <div className="flex items-center gap-2">
-                            {/* Dropdown for Email Type */}
-                            <Select
-                              onValueChange={(value) =>
-                                profileDetailsForm.setValue(
-                                  `emailAddress.${index}.type`,
-                                  value
-                                )
-                              }
-                              defaultValue={profileDetailsForm.watch(
-                                `emailAddress.${index}.type`
-                              )}
-                            >
-                              <SelectTrigger className="w-[180px] border-gray-800">
-                                <SelectValue placeholder="Type" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectGroup className="bg-white">
-                                  <SelectLabel>Email Type</SelectLabel>
-                                  <SelectItem value="personal">
-                                    Personal
-                                  </SelectItem>
-                                  <SelectItem value="work">Work</SelectItem>
-                                </SelectGroup>
-                              </SelectContent>
-                            </Select>
-
-                            {/* Input for Email Address */}
-                            <Input
-                              {...field}
-                              type="email"
-                              placeholder="Email Address"
-                              className="w-full border p-2 rounded border-gray-800"
-                            />
-
-                            {/* Display error message */}
-
-                            {/* Conditional Delete Button */}
-                            {emailFields.length > 1 && (
-                              <Button
-                                variant="ghost"
-                                type="button"
-                                onClick={() => removeEmail(index)}
+                          <FormControl>
+                            <div className="flex items-center gap-2">
+                              {/* Dropdown for Email Type */}
+                              <Select
+                                onValueChange={(value) =>
+                                  profileDetailsForm.setValue(
+                                    `emailAddress.${index}.type`,
+                                    value
+                                  )
+                                }
+                                defaultValue={profileDetailsForm.watch(
+                                  `emailAddress.${index}.type`
+                                )}
                               >
-                                X
-                              </Button>
-                            )}
-                          </div>
+                                <SelectTrigger className="w-[180px] border-gray-800">
+                                  <SelectValue placeholder="Type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectGroup className="bg-white">
+                                    <SelectLabel>Email Type</SelectLabel>
+                                    <SelectItem value="personal">
+                                      Personal
+                                    </SelectItem>
+                                    <SelectItem value="work">Work</SelectItem>
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+
+                              {/* Input for Email Address */}
+                              <Input
+                                {...field}
+                                type="email"
+                                placeholder="Email Address"
+                                className="w-full border p-2 rounded border-gray-800"
+                              />
+
+                              {/* Display error message */}
+
+                              {/* Conditional Delete Button */}
+                              {emailFields.length > 1 && (
+                                <Button
+                                  variant="ghost"
+                                  type="button"
+                                  onClick={() => removeEmail(index)}
+                                >
+                                  X
+                                </Button>
+                              )}
+                            </div>
+                          </FormControl>
                           <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
@@ -410,7 +455,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   Date of Birth *
                 </FormLabel>
                 <FormControl className="col-span-4 xl:col-span-3">
@@ -421,6 +465,7 @@ export default function EditProfile({}: EditProfile) {
                     className="w-full border-gray-700"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -431,7 +476,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   Skype ID
                 </FormLabel>
                 <FormControl className="col-span-4 xl:col-span-3 space-y-3">
@@ -442,6 +486,7 @@ export default function EditProfile({}: EditProfile) {
                     className="w-full border p-2 rounded border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -452,7 +497,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   We pay via PayPal. Do you have a PayPal account?
                 </FormLabel>
                 <FormControl className="col-span-4 xl:col-span-3">
@@ -469,6 +513,7 @@ export default function EditProfile({}: EditProfile) {
                     </SelectContent>
                   </Select>
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -479,7 +524,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   How many children do you have?
                 </FormLabel>
                 <FormControl>
@@ -490,6 +534,7 @@ export default function EditProfile({}: EditProfile) {
                     className="col-span-4 xl:col-span-3 border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -560,6 +605,7 @@ export default function EditProfile({}: EditProfile) {
                     Add link
                   </Button>
                 </div>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -689,7 +735,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormMessage className="text-red-500" />
                   <FormLabel className="mt-2 font-semibold">
                     Internet Provider
                   </FormLabel>
@@ -706,6 +751,7 @@ export default function EditProfile({}: EditProfile) {
                     className="w-full border p-2 rounded border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -716,7 +762,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormMessage className="text-red-500" />
                   <FormLabel className="mt-2 font-semibold">
                     Number of Monitors
                   </FormLabel>
@@ -729,6 +774,7 @@ export default function EditProfile({}: EditProfile) {
                     className="w-full border p-2 rounded border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -739,7 +785,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormMessage className="text-red-500" />
                   <FormLabel className="mt-2 font-semibold">
                     Years of Work Experience
                   </FormLabel>
@@ -752,6 +797,7 @@ export default function EditProfile({}: EditProfile) {
                     className="w-full border p-2 rounded border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -762,7 +808,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormMessage className="text-red-500" />
                   <FormLabel className="mt-2 font-semibold">
                     Desired Salary
                   </FormLabel>
@@ -800,6 +845,7 @@ export default function EditProfile({}: EditProfile) {
                       className="w-full border p-2 rounded border-gray-800"
                     />
                   </FormControl>
+                  <FormMessage className="text-red-500" />
                 </div>
               </FormItem>
             )}
@@ -917,7 +963,6 @@ export default function EditProfile({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  <FormMessage className="text-red-500" />
                   Do you know someone working at Access Insurance? Please state
                   the name if you do.
                 </FormLabel>
@@ -928,6 +973,7 @@ export default function EditProfile({}: EditProfile) {
                     className="col-span-4 xl:col-span-3 border-gray-800"
                   />
                 </FormControl>
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />

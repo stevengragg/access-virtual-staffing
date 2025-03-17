@@ -317,7 +317,7 @@ const SiteNavbarDefaults: SiteNavbarDefaultProps = {
       url: "/services",
       subMenuLinks: [
         {
-          title: "All Services",
+          title: "Our Services",
           url: "/services",
         },
         { title: "Basic Plan", url: "/services/basic-plan" },
@@ -393,11 +393,11 @@ const SiteNavbarDefaultsForTalents: SiteNavbarDefaultProps = {
     { title: "For Talents", url: "/talent" },
 
     {
-      title: "Services",
+      title: "For Employers",
       url: "/services",
       subMenuLinks: [
         {
-          title: "All Services",
+          title: "Our Services",
           url: "/services",
         },
         { title: "Basic Plan", url: "/services/basic-plan" },

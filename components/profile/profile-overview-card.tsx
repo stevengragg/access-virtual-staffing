@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -33,7 +33,7 @@ type IProfileProps = {
     desiredSalary: string;
     workSamples: string[];
   };
-}
+};
 
 const ProfileCard = ({ profile }: IProfileProps) => {
   const { user, error, isLoading } = useUser();
@@ -52,12 +52,12 @@ const ProfileCard = ({ profile }: IProfileProps) => {
 
       <CardContent>
         <Image
-            src={user?.picture || ""}
-            alt="Avatar"
-            className="size-20 rounded-full object-cover"
-            width={150}
-            height={150}
-          />
+          src={user?.picture || ""}
+          alt="Avatar"
+          className="size-20 rounded-full object-cover"
+          width={150}
+          height={150}
+        />
         <h2 className="text-2xl font-bold mt-4">{profile.fullName}</h2>
         <p className="text-gray-500">{profile.email}</p>
         <p className="text-gray-500">{profile.phoneNumber}</p>
@@ -107,7 +107,6 @@ const ProfileCard = ({ profile }: IProfileProps) => {
             </div>
           </div>
         </div>
-
 
         <Separator className="my-4" />
 
@@ -168,7 +167,8 @@ const ProfileCard = ({ profile }: IProfileProps) => {
               className="flex items-center justify-between"
             >
               <a href={link} target="_blank" rel="noopener noreferrer">
-                Work Sample {index + 1} <ExternalLink className="ml-2 w-4 h-4" />
+                Work Sample {index + 1}{" "}
+                <ExternalLink className="ml-2 w-4 h-4" />
               </a>
             </Button>
           ))}

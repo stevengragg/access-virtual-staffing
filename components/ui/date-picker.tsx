@@ -1,26 +1,31 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
+import * as React from "react";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 interface DatePickerProps {
-  date: Date | undefined
-  onChange: (date: Date | undefined) => void
-  placeholder?: string
-  className?: string
+  date: Date | undefined;
+  onChange: (date: Date | undefined) => void;
+  placeholder?: string;
+  className?: string;
 }
 
-export const DatePicker = ({ date, onChange, placeholder = "Pick a date", className }: DatePickerProps) => {
+export const DatePicker = ({
+  date,
+  onChange,
+  placeholder = "Pick a date",
+  className,
+}: DatePickerProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -39,12 +44,15 @@ export const DatePicker = ({ date, onChange, placeholder = "Pick a date", classN
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
+          captionLayout="dropdown-buttons"
           selected={date}
           onSelect={onChange}
           initialFocus
           className="bg-white"
+          fromYear={1960}
+          toYear={2030}
         />
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

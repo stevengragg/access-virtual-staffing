@@ -192,7 +192,7 @@ export const Footer11Defaults: Footer11Props = {
   //   { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
   //   { url: "#", icon: <BiLogoYoutube className="size-6" /> },
   // ],
-  footerText: "© 2024 - 2025 Access Virtual Staffing. All rights reserved.",
+  footerText: `© 2024 - ${new Date().getFullYear()} Access Virtual Staffing. All rights reserved.`,
   footerLinks: [
     { title: "Privacy Policy", url: "/privacy-policy" },
     { title: "Terms of Service", url: "/terms-of-service" },

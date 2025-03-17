@@ -6,16 +6,13 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+export const usersTable = pgTable("users", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   userId: text("user_id").unique().notNull(),
   email: text("email").unique().notNull(),
   profileImage: text("profile_image"),
-  firstName: varchar({ length: 255 }).notNull(),
-  lastName: varchar({ length: 255 }).notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
   name: text("name"),
   createdAt: timestamp("created_at").defaultNow(),
-  phoneNumber: varchar({ length: 20 }),
 });
-
-export { usersTable };

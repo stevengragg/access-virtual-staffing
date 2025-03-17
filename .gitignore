@@ -39,3 +39,7 @@ next-env.d.ts
 
 TODOs.md
 BACKLOGS.md
+
+# database
+
+database/migrations/*

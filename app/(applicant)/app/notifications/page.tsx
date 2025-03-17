@@ -8,7 +8,13 @@ import { getNotificationIcon } from "@/lib/get-icon-type";
 
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const notifications: INotification[] = [
   {
@@ -152,7 +158,9 @@ export default withPageAuthRequired(
   function Notifications() {
     const pageSize = 10;
     const { isLoading, error } = useUser();
-    const [notificationsState, setNotificationsState] = useState<INotification[]>([]);
+    const [notificationsState, setNotificationsState] = useState<
+      INotification[]
+    >([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isFetching, setIsFetching] = useState(false);
@@ -196,7 +204,11 @@ export default withPageAuthRequired(
     const handleLoadMore = async () => {
       const nextPage = page + 1;
       setIsFetching(true);
-      const data = await fetchNotifications(nextPage, filterType, showUnreadOnly);
+      const data = await fetchNotifications(
+        nextPage,
+        filterType,
+        showUnreadOnly
+      );
       setNotificationsState((prev) => [...prev, ...data]);
       setPage(nextPage);
       if (data.length < pageSize) {
@@ -249,11 +261,24 @@ export default withPageAuthRequired(
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
-                  <SelectItem className="hover:bg-gray-100" value="all">All</SelectItem>
-                  <SelectItem className="hover:bg-gray-100" value="recommendation">Recommendation</SelectItem>
-                  <SelectItem className="hover:bg-gray-100" value="reminder">Reminder</SelectItem>
-                  <SelectItem className="hover:bg-gray-100" value="info">Info</SelectItem>
-                  <SelectItem className="hover:bg-gray-100" value="update">Update</SelectItem>
+                  <SelectItem className="hover:bg-gray-100" value="all">
+                    All
+                  </SelectItem>
+                  <SelectItem
+                    className="hover:bg-gray-100"
+                    value="recommendation"
+                  >
+                    Recommendation
+                  </SelectItem>
+                  <SelectItem className="hover:bg-gray-100" value="reminder">
+                    Reminder
+                  </SelectItem>
+                  <SelectItem className="hover:bg-gray-100" value="info">
+                    Info
+                  </SelectItem>
+                  <SelectItem className="hover:bg-gray-100" value="update">
+                    Update
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -265,8 +290,6 @@ export default withPageAuthRequired(
                 onCheckedChange={setShowUnreadOnly}
               />
             </div>
-
-
           </div>
 
           <div className="grid grid-cols-1 gap-4">
@@ -279,9 +302,15 @@ export default withPageAuthRequired(
                 <div>{getNotificationIcon(notification.type)}</div>
                 <div className="flex justify-between items-center flex-1">
                   <div>
-                    <h2 className="font-semibold text-base">{notification.title}</h2>
-                    <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
-                    <p className="text-xs text-gray-500 mt-1">{notification.date}</p>
+                    <h2 className="font-semibold text-base">
+                      {notification.title}
+                    </h2>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {notification.message}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {notification.date}
+                    </p>
                   </div>
 
                   <div className="mt-2">
@@ -304,7 +333,11 @@ export default withPageAuthRequired(
 
           {hasMore && (
             <div className="mt-4 flex justify-center">
-              <Button variant="ghost" onClick={handleLoadMore} disabled={isFetching}>
+              <Button
+                variant="ghost"
+                onClick={handleLoadMore}
+                disabled={isFetching}
+              >
                 {isFetching ? "Loading..." : "Load More"}
               </Button>
             </div>

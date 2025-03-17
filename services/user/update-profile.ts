@@ -1,4 +1,7 @@
-import { isValidPhoneNumber } from "react-phone-number-input";
+import {
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
+} from "react-phone-number-input";
 import * as z from "zod";
 
 const urlSchema = z
@@ -11,41 +14,35 @@ const urlSchema = z
 
 // Main Schema
 export const editProfileSchema = z.object({
-  firstName: z.string().min(1, "First/Given name is required"),
-  lastName: z.string().min(1, "Last/Family name is required"),
+  jobTitle: z.string().min(1, "This field is required"),
   whyFit: z.string().min(1, "This field is required"),
   whatStrengths: z.string().min(1, "This field is required"),
   whatNeedImprovement: z.string().min(1, "This field is required"),
-
-  address: z.string().min(1, "Address is required"),
-
+  address: z.string().min(1, "This field is required"),
   phone: z
     .array(
       z.object({
         number: z
           .string()
-          .refine((num) => num === "" || isValidPhoneNumber(num, "US"), {
-            message: "Please provide a valid US phone number",
+          .refine((num) => num === "" || isPossiblePhoneNumber(num), {
+            message: "Please provide a valid phone number",
           }),
-        type: z.string().min(1, "Phone type is required"),
+        type: z.string().min(1, "This field is required"),
       })
     )
     .min(1, "At least one phone number is required"),
-
   emailAddress: z
     .array(
       z.object({
         address: z
           .string()
           .email("Invalid email format")
-          .min(1, "Email address is required"),
-        type: z.string().min(1, "Email type is required"),
+          .min(1, "This field is required"),
+        type: z.string().min(1, "This field is required"),
       })
     )
     .min(1, "At least one email address is required"),
-
-  skypeId: z.string().min(1, "Skype ID is required"),
-
+  skypeId: z.string().min(1, "This field is required"),
   dateOfBirth: z.coerce.date().refine(
     (date) => {
       const today = new Date();
@@ -54,9 +51,7 @@ export const editProfileSchema = z.object({
     },
     { message: "You must be at least 18 years old" }
   ),
-
-  hasPaypal: z.boolean().optional(),
-
+  hasPaypal: z.string().optional(),
   contentLinks: z
     .array(
       z.object({
@@ -68,18 +63,12 @@ export const editProfileSchema = z.object({
       })
     )
     .min(1, "At least one content link is required"),
-
-  numberOfChildren: z
-    .number()
-    .min(0, "Number of children cannot be negative")
-    .max(20, "Number of children seems too high"),
-
+  numberOfChildren: z.string().min(1, "This field is required"),
   videoLinks: z
     .array(urlSchema)
     .refine((links) => links.every((link) => link.startsWith("https://")), {
       message: "All video links must use 'https://'",
     }),
-
   assessmentTests: z
     .array(
       z.object({
@@ -91,28 +80,21 @@ export const editProfileSchema = z.object({
       })
     )
     .min(1, "At least one assessment test link is required"),
-
-  internetProvider: z.string().min(1, "Internet provider is required"),
-
+  internetProvider: z.string().min(1, "This field is required"),
   numberOfMonitors: z
     .string()
     .min(1, "This field is required")
     .regex(/^[0-9]+$/, "Number of monitors must be a valid number"),
-
   numberOfExperience: z
     .string()
     .min(1, "This field is required")
     .regex(/^[0-9]+$/, "Experience must be a valid number"),
-
   salaryUnit: z.string().min(1, "This field is required"),
-
   desiredSalary: z
     .number()
     .min(1000, "Salary must be at least 1,000")
     .max(1000000, "Salary must not exceed 1,000,000"),
-
   howKnow: z.string().optional(),
-
   workSamples: z
     .array(
       z.object({
@@ -124,7 +106,6 @@ export const editProfileSchema = z.object({
       })
     )
     .min(1, "At least one work sample is required"),
-
   howHear: z.string().optional(),
   someoneName: z.string().optional(),
   referrer: z.string().optional(),

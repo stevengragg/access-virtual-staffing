@@ -4,8 +4,8 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import EditProfile from "@/components/profile/edit/page";
-import FileUploadForm from "@/components/profile/files/page";
+import EditProfileForm from "@/components/profile/edit-profile-form";
+import UploadFileForm from "@/components/profile/upload-files-form";
 import ProfileCard from "@/components/profile/profile-overview-card";
 import ProfileOverviewDialog from "@/components/profile/profile-overview-dialog";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -79,10 +79,10 @@ export default withPageAuthRequired(
             <ProfileCard profile={profileData} />
           </TabsContent>
           <TabsContent value="profile">
-            <EditProfile />
+            <EditProfileForm />
           </TabsContent>
           <TabsContent value="files">
-            <FileUploadForm />
+            <UploadFileForm />
           </TabsContent>
         </Tabs>
       </div>
