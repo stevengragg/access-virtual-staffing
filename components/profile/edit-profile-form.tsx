@@ -1,14 +1,11 @@
 "use client";
 
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  editProfileSchema,
-  EditProfileSchema,
-} from "@/services/user/update-profile";
-import { useFieldArray, useForm } from "react-hook-form";
-
+import Link from "next/link";
+import { useFieldArray } from "react-hook-form";
 import Image from "next/image";
+
+import { EditProfileSchema } from "@/services/user/update-profile";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -38,14 +35,14 @@ import {
 } from "@/components/ui/form";
 import { DatePicker } from "@/components/ui/date-picker";
 import { useProfileDetails } from "@/context/profile-details-context";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useToast } from "@/hooks/use-toast";
 
 interface EditProfile {}
 
 export default function EditProfileForm({}: EditProfile) {
   const profileDetailsForm = useProfileDetails();
   const { user } = useUser();
+  const { toast } = useToast();
 
   // const [hasError, setHasError] = useState(false);
   const {
@@ -93,6 +90,7 @@ export default function EditProfileForm({}: EditProfile) {
     name: "contentLinks",
   });
   const onSubmit = async (data: EditProfileSchema) => {
+    console.log(data);
     try {
       const response = await fetch("/api/profile/update-profile", {
         method: "POST",
@@ -103,13 +101,22 @@ export default function EditProfileForm({}: EditProfile) {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to update profile");
+        toast({
+          title: "Error",
+          description: "Failed to update profile. Please try again.",
+          variant: "destructive",
+        });
       }
 
       const result = await response.json();
       console.log("Profile updated successfully:", result);
     } catch (error) {
       console.error("Error updating profile:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update profile. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -120,7 +127,7 @@ export default function EditProfileForm({}: EditProfile) {
         className="max-w-3xl mx-auto p-4"
       >
         <div className="mb-5">
-          <Card className="w-full max-w-2xl shadow-md">
+          <Card className="w-full max-w-2xl  border border-zinc-400">
             <CardHeader className="font-semibold text-gray-700">
               <Link
                 href="/app/settings/general"
@@ -166,7 +173,7 @@ export default function EditProfileForm({}: EditProfile) {
                     <Input
                       {...field}
                       placeholder="Enter your Job Title"
-                      className=" border-gray-800"
+                      className=" border-zinc-400"
                     />
                   </FormControl>
                   <FormMessage className="text-red-800" />
@@ -189,7 +196,7 @@ export default function EditProfileForm({}: EditProfile) {
                     <Textarea
                       {...field}
                       placeholder="Tell us about your experiences and what makes you best fit for this position"
-                      className="w-full border p-2 rounded h-[150px] border-gray-800"
+                      className="w-full border p-2 rounded h-[150px] border-zinc-400"
                     />
                   </FormControl>
                   <FormMessage className="text-red-800" />
@@ -212,7 +219,7 @@ export default function EditProfileForm({}: EditProfile) {
                     <Textarea
                       {...field}
                       placeholder="What are your strengths? Where do you excel or, at the very least, perform well?"
-                      className="w-full border p-2 rounded h-[150px] border-gray-800"
+                      className="w-full border p-2 rounded h-[150px] border-zinc-400"
                     />
                   </FormControl>
                   <FormMessage className="text-red-800" />
@@ -235,7 +242,7 @@ export default function EditProfileForm({}: EditProfile) {
                     <Textarea
                       {...field}
                       placeholder="What areas do you think you will need improvement?"
-                      className="w-full border p-2 rounded h-[150px] border-gray-800"
+                      className="w-full border p-2 rounded h-[150px] border-zinc-400"
                     />
                   </FormControl>
                   <FormMessage className="text-red-800" />
@@ -250,17 +257,19 @@ export default function EditProfileForm({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  Address
+                  Address <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3 space-y-3">
-                  <Input
-                    {...field}
-                    type="text"
-                    placeholder="Address"
-                    className="w-full border p-2 rounded border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-800" />
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="Address"
+                      className="w-full border p-2 rounded border-zinc-400"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -272,25 +281,28 @@ export default function EditProfileForm({}: EditProfile) {
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <div className="col-span-4 xl:col-span-1">
                   <FormLabel className="mt-2 font-semibold">
-                    Contact Numbers
+                    Contact Numbers <span className="text-red-800">*</span>
                   </FormLabel>
                 </div>
 
                 <div className="col-span-4 xl:col-span-3 space-y-3">
                   {phoneFields.map((phone, index) => (
-                    <div key={phone.id} className="flex items-start gap-2">
+                    <div
+                      key={phone.id}
+                      className="flex  items-start gap-2 w-full"
+                    >
                       {/* Dropdown for Phone Type */}
                       <FormField
                         control={profileDetailsForm.control}
                         name={`phone.${index}.type`}
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className="flex-none">
                             <FormControl>
                               <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
                               >
-                                <SelectTrigger className="w-[180px] border-gray-800">
+                                <SelectTrigger className="w-[180px] border-zinc-400">
                                   <SelectValue placeholder="Type" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -313,7 +325,7 @@ export default function EditProfileForm({}: EditProfile) {
                                 </SelectContent>
                               </Select>
                             </FormControl>
-                            <FormMessage className="text-red-500" />
+                            <FormMessage className="text-red-800" />
                           </FormItem>
                         )}
                       />
@@ -323,16 +335,16 @@ export default function EditProfileForm({}: EditProfile) {
                         control={profileDetailsForm.control}
                         name={`phone.${index}.number`}
                         render={({ field }) => (
-                          <FormItem className="w-full flex flex-col items-start">
+                          <FormItem className="w-full flex-grow flex flex-col items-start">
                             <FormControl>
                               <Input
                                 {...field}
                                 type="text"
                                 placeholder="Enter contact number"
-                                className="w-full border p-2 rounded border-gray-800"
+                                className="w-full border p-2 rounded border-zinc-400"
                               />
                             </FormControl>
-                            <FormMessage className="text-red-500" />
+                            <FormMessage className="text-red-800" />
                           </FormItem>
                         )}
                       />
@@ -354,10 +366,12 @@ export default function EditProfileForm({}: EditProfile) {
                   <Button
                     type="button"
                     variant="outline"
+                    className="mt-2"
                     onClick={() => addPhone({ type: "", number: "" })}
                   >
-                    Add Phone
+                    Add another
                   </Button>
+                  {/* <FormMessage className="text-red-800" /> */}
                 </div>
               </FormItem>
             )}
@@ -366,84 +380,89 @@ export default function EditProfileForm({}: EditProfile) {
           <FormField
             control={profileDetailsForm.control}
             name="emailAddress"
-            render={(f) => (
+            render={({ field, fieldState }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  Email Address
-                </FormLabel>
+                <div className="col-span-4 xl:col-span-1">
+                  <FormLabel className="mt-2 font-semibold">
+                    Email Address <span className="text-red-800">*</span>
+                  </FormLabel>
+                </div>
 
-                <div className="col-span-4 xl:col-span-3 space-y-3">
+                <div className="col-span-4 xl:col-span-3">
                   {emailFields.map((email, index) => (
-                    <FormField
-                      key={email.id}
-                      control={profileDetailsForm.control}
-                      name={`emailAddress.${index}.address`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <div className="flex items-center gap-2">
-                              {/* Dropdown for Email Type */}
+                    <div key={email.id} className="flex items-start gap-2">
+                      {/* Dropdown for Email Type */}
+                      <FormField
+                        control={profileDetailsForm.control}
+                        name={`emailAddress.${index}.type`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
                               <Select
-                                onValueChange={(value) =>
-                                  profileDetailsForm.setValue(
-                                    `emailAddress.${index}.type`,
-                                    value
-                                  )
-                                }
-                                defaultValue={profileDetailsForm.watch(
-                                  `emailAddress.${index}.type`
-                                )}
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
                               >
-                                <SelectTrigger className="w-[180px] border-gray-800">
+                                <SelectTrigger className="w-[180px] border-zinc-400">
                                   <SelectValue placeholder="Type" />
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectGroup className="bg-white">
                                     <SelectLabel>Email Type</SelectLabel>
-                                    <SelectItem value="personal">
-                                      Personal
-                                    </SelectItem>
                                     <SelectItem value="work">Work</SelectItem>
+                                    <SelectItem value="home">Home</SelectItem>
+
+                                    <SelectItem value="other">Other</SelectItem>
                                   </SelectGroup>
                                 </SelectContent>
                               </Select>
+                            </FormControl>
+                            <FormMessage className="text-red-800" />
+                          </FormItem>
+                        )}
+                      />
 
-                              {/* Input for Email Address */}
+                      {/* Input for Phone Number */}
+                      <FormField
+                        control={profileDetailsForm.control}
+                        name={`emailAddress.${index}.address`}
+                        render={({ field }) => (
+                          <FormItem className="w-full flex flex-col items-start">
+                            <FormControl>
                               <Input
                                 {...field}
-                                type="email"
-                                placeholder="Email Address"
-                                className="w-full border p-2 rounded border-gray-800"
+                                type="text"
+                                placeholder="Enter email address"
+                                className="w-full border p-2 rounded border-zinc-400"
                               />
+                            </FormControl>
+                            <FormMessage className="text-red-800" />
+                          </FormItem>
+                        )}
+                      />
 
-                              {/* Display error message */}
-
-                              {/* Conditional Delete Button */}
-                              {emailFields.length > 1 && (
-                                <Button
-                                  variant="ghost"
-                                  type="button"
-                                  onClick={() => removeEmail(index)}
-                                >
-                                  X
-                                </Button>
-                              )}
-                            </div>
-                          </FormControl>
-                          <FormMessage className="text-red-500" />
-                        </FormItem>
+                      {/* Conditional Delete Button */}
+                      {emailFields.length > 1 && (
+                        <Button
+                          variant="ghost"
+                          type="button"
+                          onClick={() => removeEmail(index)}
+                        >
+                          X
+                        </Button>
                       )}
-                    />
+                    </div>
                   ))}
 
                   {/* Always Visible Add Button */}
                   <Button
                     type="button"
                     variant="outline"
+                    className="mt-2"
                     onClick={() => addEmail({ type: "", address: "" })}
                   >
-                    Add Email
+                    Add another
                   </Button>
+                  {/* <FormMessage className="text-red-800" /> */}
                 </div>
               </FormItem>
             )}
@@ -455,17 +474,19 @@ export default function EditProfileForm({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  Date of Birth *
+                  Date of Birth <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <DatePicker
-                    date={field.value}
-                    onChange={field.onChange}
-                    placeholder="Select your date of birth"
-                    className="w-full border-gray-700"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <DatePicker
+                      date={field.value}
+                      onChange={field.onChange}
+                      placeholder="Select your date of birth"
+                      className="w-full border-gray-700"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -476,17 +497,19 @@ export default function EditProfileForm({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  Skype ID
+                  Skype ID <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3 space-y-3">
-                  <Input
-                    {...field}
-                    type="text"
-                    placeholder="Skype ID"
-                    className="w-full border p-2 rounded border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl className="col-span-4 xl:col-span-3 space-y-3">
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="Enter Skype ID"
+                      className="w-full border p-2 rounded border-zinc-400"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -499,21 +522,23 @@ export default function EditProfileForm({}: EditProfile) {
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
                   We pay via PayPal. Do you have a PayPal account?
                 </FormLabel>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <Select onValueChange={field.onChange} defaultValue={""}>
-                    <SelectTrigger className="border-gray-800">
-                      <SelectValue placeholder="Select an option" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup className="bg-white">
-                        <SelectLabel>Options</SelectLabel>
-                        <SelectItem value="yes">Yes</SelectItem>
-                        <SelectItem value="no">No</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage className="text-red-500" />
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Select onValueChange={field.onChange} defaultValue={""}>
+                      <SelectTrigger className="border-zinc-400">
+                        <SelectValue placeholder="Select an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup className="bg-white">
+                          <SelectLabel>Options</SelectLabel>
+                          <SelectItem value="yes">Yes</SelectItem>
+                          <SelectItem value="no">No</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -524,17 +549,20 @@ export default function EditProfileForm({}: EditProfile) {
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
-                  How many children do you have?
+                  How many children do you have?{" "}
+                  <span className="text-red-800">*</span>
                 </FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="Number of children"
-                    type="number"
-                    className="col-span-4 xl:col-span-3 border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Number of children"
+                      type="number"
+                      className="col-span-4 xl:col-span-3 border-zinc-400"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
               </FormItem>
             )}
           />
@@ -560,7 +588,7 @@ export default function EditProfileForm({}: EditProfile) {
                   </FormLabel>
                 </div>
 
-                <div className="col-span-4 xl:col-span-3 space-y-3">
+                <div className="col-span-4 xl:col-span-3">
                   {assessmentFields.map((test, index) => (
                     <FormField
                       key={test.id}
@@ -570,15 +598,17 @@ export default function EditProfileForm({}: EditProfile) {
                         <FormItem>
                           <div className="flex items-center gap-2">
                             {/* Input for Assessment Test Link */}
-                            <FormControl className="w-full">
-                              <Input
-                                {...field}
-                                type="url"
-                                placeholder="Paste your assessment test link here"
-                                className="w-full border p-2 rounded border-gray-800"
-                              />
-                            </FormControl>
-
+                            <div className="w-full">
+                              <FormControl>
+                                <Input
+                                  {...field}
+                                  type="url"
+                                  placeholder="Paste your assessment test link here"
+                                  className="w-full border p-2 rounded border-zinc-400"
+                                />
+                              </FormControl>
+                              <FormMessage className="text-red-800" />
+                            </div>
                             {/* Conditional Delete Button - Hide if only one item */}
                             {assessmentFields.length > 1 && (
                               <Button
@@ -590,7 +620,6 @@ export default function EditProfileForm({}: EditProfile) {
                               </Button>
                             )}
                           </div>
-                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -600,12 +629,12 @@ export default function EditProfileForm({}: EditProfile) {
                   <Button
                     type="button"
                     variant="outline"
+                    className="mt-2"
                     onClick={() => addAssessment({ link: "" })}
                   >
-                    Add link
+                    Add another
                   </Button>
                 </div>
-                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -618,7 +647,8 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
                   <FormLabel className="mt-2 font-semibold">
                     Create a video or voice recording. Our client needs to check
-                    your English proficiency. Paste the link here.
+                    your English proficiency. Paste the link here.{" "}
+                    <span className="text-red-800">*</span>
                   </FormLabel>
                 </div>
 
@@ -632,15 +662,17 @@ export default function EditProfileForm({}: EditProfile) {
                         <FormItem>
                           <div className="flex items-center gap-2">
                             {/* Input for Content Link */}
-                            <FormControl className="w-full">
-                              <Input
-                                {...field}
-                                type="url"
-                                placeholder="Paste your video or voice recording link here"
-                                className="w-full border p-2 rounded border-gray-800"
-                              />
-                            </FormControl>
-
+                            <div className="w-full">
+                              <FormControl>
+                                <Input
+                                  {...field}
+                                  type="url"
+                                  placeholder="Paste your video or voice recording link here"
+                                  className="w-full border p-2 rounded border-zinc-400"
+                                />
+                              </FormControl>
+                              <FormMessage className="text-red-800" />
+                            </div>
                             {/* Conditional Delete Button - Hide if only one item */}
                             {contentFields.length > 1 && (
                               <Button
@@ -652,7 +684,6 @@ export default function EditProfileForm({}: EditProfile) {
                               </Button>
                             )}
                           </div>
-                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -662,14 +693,150 @@ export default function EditProfileForm({}: EditProfile) {
                   <Button
                     type="button"
                     variant="outline"
+                    className="mt-2"
                     onClick={() => addContent({ link: "" })}
                   >
-                    Add link
+                    Add another
                   </Button>
                 </div>
               </FormItem>
             )}
           />
+
+          <FormField
+            control={profileDetailsForm.control}
+            name="internetProvider"
+            render={({ field }) => (
+              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
+                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
+                  <FormLabel className="mt-2 font-semibold">
+                    Internet Provider <span className="text-red-800">*</span>
+                  </FormLabel>
+                  <span className="text-xs">
+                    What is your Internet Service Provider? Please include the
+                    plan.
+                  </span>
+                </div>
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="Internet provider and plan"
+                      className="w-full border p-2 rounded border-zinc-400"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={profileDetailsForm.control}
+            name="numberOfMonitors"
+            render={({ field }) => (
+              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
+                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
+                  <FormLabel className="mt-2 font-semibold">
+                    Number of Monitors <span className="text-red-800">*</span>
+                  </FormLabel>
+                </div>
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="number"
+                      placeholder="Enter number of monitors"
+                      className="w-full border p-2 rounded border-zinc-400"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={profileDetailsForm.control}
+            name="numberOfExperience"
+            render={({ field }) => (
+              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
+                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
+                  <FormLabel className="mt-2 font-semibold">
+                    Years of Work Experience{" "}
+                    <span className="text-red-800">*</span>
+                  </FormLabel>
+                </div>
+                <div className="col-span-4 xl:col-span-3">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="number"
+                      placeholder="Enter years of experience"
+                      className="w-full border p-2 rounded border-zinc-400"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-800" />
+                </div>
+              </FormItem>
+            )}
+          />
+          <div className="col-span-4 grid grid-cols-4 gap-2">
+            <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
+              <FormLabel className="mt-2 font-semibold">
+                Desired Salary <span className="text-red-800">*</span>
+              </FormLabel>
+            </div>
+            <div className="col-span-4 xl:col-span-3 flex items-center gap-2 w-full">
+              <FormField
+                control={profileDetailsForm.control}
+                name="salaryUnit"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="w-[180px] border-zinc-400">
+                          <SelectValue placeholder="Select unit" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                          <SelectGroup className="bg-white">
+                            <SelectItem value="hourly">PHP</SelectItem>
+                            <SelectItem value="monthly">COP</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage className="text-red-800" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={profileDetailsForm.control}
+                name="desiredSalary"
+                render={({ field }) => (
+                  <FormItem className="w-full ">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(parseInt(e.target.value))
+                        }
+                        type="number"
+                        placeholder="Enter amount"
+                        className="w-full border p-2 rounded border-zinc-400"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-800" />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
 
           <FormField
             control={profileDetailsForm.control}
@@ -691,14 +858,17 @@ export default function EditProfileForm({}: EditProfile) {
                       render={({ field }) => (
                         <FormItem>
                           <div className="flex items-center gap-2">
-                            <FormControl className="w-full">
-                              <Input
-                                {...field}
-                                type="url"
-                                placeholder="Enter work sample link"
-                                className="w-full border p-2 rounded border-gray-800"
-                              />
-                            </FormControl>
+                            <div className="w-full">
+                              <FormControl>
+                                <Input
+                                  {...field}
+                                  type="url"
+                                  placeholder="Enter work sample link"
+                                  className="w-full border p-2 rounded border-zinc-400"
+                                />
+                              </FormControl>
+                              <FormMessage className="text-red-800" />
+                            </div>
 
                             {workSampleFields.length > 1 && (
                               <Button
@@ -710,7 +880,6 @@ export default function EditProfileForm({}: EditProfile) {
                               </Button>
                             )}
                           </div>
-                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -720,202 +889,10 @@ export default function EditProfileForm({}: EditProfile) {
                   <Button
                     type="button"
                     variant="outline"
+                    className="mt-2"
                     onClick={() => addWorkSample({ link: "" })}
                   >
                     Add another
-                  </Button>
-                </div>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={profileDetailsForm.control}
-            name="internetProvider"
-            render={({ field }) => (
-              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormLabel className="mt-2 font-semibold">
-                    Internet Provider
-                  </FormLabel>
-                  <span className="text-xs">
-                    What is your Internet Service Provider? Please include the
-                    plan.
-                  </span>
-                </div>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <Input
-                    {...field}
-                    type="text"
-                    placeholder="Internet provider and plan"
-                    className="w-full border p-2 rounded border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={profileDetailsForm.control}
-            name="numberOfMonitors"
-            render={({ field }) => (
-              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormLabel className="mt-2 font-semibold">
-                    Number of Monitors
-                  </FormLabel>
-                </div>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <Input
-                    {...field}
-                    type="number"
-                    placeholder="Enter number of monitors"
-                    className="w-full border p-2 rounded border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={profileDetailsForm.control}
-            name="numberOfExperience"
-            render={({ field }) => (
-              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormLabel className="mt-2 font-semibold">
-                    Years of Work Experience
-                  </FormLabel>
-                </div>
-                <FormControl className="col-span-4 xl:col-span-3">
-                  <Input
-                    {...field}
-                    type="number"
-                    placeholder="Enter years of experience"
-                    className="w-full border p-2 rounded border-gray-800"
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={profileDetailsForm.control}
-            name="desiredSalary"
-            render={({ field }) => (
-              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormLabel className="mt-2 font-semibold">
-                    Desired Salary
-                  </FormLabel>
-                </div>
-                <div className="col-span-4 xl:col-span-3 flex items-center gap-2">
-                  <FormField
-                    control={profileDetailsForm.control}
-                    name="salaryUnit"
-                    render={({ field }) => (
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="w-[180px] border-gray-800">
-                            <SelectValue placeholder="Select unit" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectGroup className="bg-white">
-                            <SelectItem value="hourly">Hourly</SelectItem>
-                            <SelectItem value="monthly">Monthly</SelectItem>
-                            <SelectItem value="yearly">Yearly</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                  <FormControl>
-                    <Input
-                      {...field}
-                      onChange={(e) => field.onChange(parseInt(e.target.value))}
-                      type="number"
-                      placeholder="Enter amount"
-                      className="w-full border p-2 rounded border-gray-800"
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-500" />
-                </div>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={profileDetailsForm.control}
-            name="contentLinks"
-            render={() => (
-              <FormItem className="col-span-4 grid grid-cols-4 gap-2">
-                <div className="col-span-4 xl:col-span-1 font-semibold flex flex-col">
-                  <FormLabel className="mt-2 font-semibold">
-                    Create a video or voice recording. Our client needs to check
-                    your English proficiency. Paste the link here.
-                  </FormLabel>
-                </div>
-
-                <div className="col-span-4 xl:col-span-3 space-y-3">
-                  {contentFields.map((content, index) => (
-                    <FormField
-                      key={content.id}
-                      control={profileDetailsForm.control}
-                      name={`contentLinks.${index}`} // Connects input to validation
-                      render={({ field }) => (
-                        <FormItem>
-                          <div className="flex items-center gap-2">
-                            {/* Input for Content Link */}
-                            <FormControl className="w-full">
-                              <Input
-                                {...field}
-                                type="url"
-                                placeholder="Enter work sample link"
-                                className="w-full border p-2 rounded border-gray-800"
-                                value={field.value?.link ?? ""} // Ensure value is always a string
-                                onChange={
-                                  (e) =>
-                                    field.onChange({
-                                      ...field.value,
-                                      link: e.target.value,
-                                    }) // Update only 'link'
-                                }
-                              />
-                            </FormControl>
-
-                            {/* Show error message for this specific field */}
-
-                            {/* Conditional Delete Button - Hide if only one item */}
-                            {contentFields.length > 1 && (
-                              <Button
-                                variant="ghost"
-                                type="button"
-                                onClick={() => removeContent(index)}
-                              >
-                                X
-                              </Button>
-                            )}
-                          </div>
-                          <FormMessage className="text-red-500" />
-                        </FormItem>
-                      )}
-                    />
-                  ))}
-
-                  {/* Always Visible Add Button */}
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => addContent({ link: "" })}
-                  >
-                    Add link
                   </Button>
                 </div>
               </FormItem>
@@ -936,17 +913,23 @@ export default function EditProfileForm({}: EditProfile) {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-full border-gray-800">
+                      <SelectTrigger className="w-full border-zinc-400">
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup className="bg-white">
-                          <SelectItem value="friend">Friend</SelectItem>
-                          <SelectItem value="social_media">
-                            Social Media
+                          <SelectLabel>Select an option</SelectLabel>
+                          <SelectItem value="online_jobs_ph">
+                            OnlineJobsPH
                           </SelectItem>
-                          <SelectItem value="job_board">Job Board</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          <SelectItem value="craigslist">Craigslist</SelectItem>
+                          <SelectItem value="indeed">Indeed</SelectItem>
+                          <SelectItem value="linkedin">LinkedIn</SelectItem>
+                          <SelectItem value="jora">Jora</SelectItem>
+                          <SelectItem value="fb_group">FB Group</SelectItem>
+                          <SelectItem value="company_referral">
+                            Company Referral
+                          </SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -959,18 +942,18 @@ export default function EditProfileForm({}: EditProfile) {
 
           <FormField
             control={profileDetailsForm.control}
-            name="someoneName"
+            name="referrer"
             render={({ field }) => (
               <FormItem className="col-span-4 grid grid-cols-4 gap-2">
                 <FormLabel className="mt-2 col-span-4 xl:col-span-1 font-semibold">
                   Do you know someone working at Access Insurance? Please state
-                  the name if you do.
+                  the name if you do
                 </FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="Number of children"
-                    className="col-span-4 xl:col-span-3 border-gray-800"
+                    placeholder="Enter referrer"
+                    className="col-span-4 xl:col-span-3 border-zinc-400"
                   />
                 </FormControl>
                 <FormMessage className="text-red-500" />

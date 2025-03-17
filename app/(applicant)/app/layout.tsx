@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { ApplicationShell } from "@/components/layout/app-shell";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Applicant Portal - Access Virtual Staffing",
@@ -31,7 +32,10 @@ export default function AppRootLayout({
 }>) {
   return (
     <>
-      <ApplicationShell>{children}</ApplicationShell>
+      <ApplicationShell>
+        {children}
+        <Toaster />
+      </ApplicationShell>
     </>
   );
 }

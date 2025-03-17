@@ -24,13 +24,14 @@ export const editProfileSchema = z.object({
       z.object({
         number: z
           .string()
+          .min(1, "This field is required")
           .refine((num) => num === "" || isPossiblePhoneNumber(num), {
             message: "Please provide a valid phone number",
           }),
         type: z.string().min(1, "This field is required"),
       })
     )
-    .min(1, "At least one phone number is required"),
+    .min(1, "This field is required"),
   emailAddress: z
     .array(
       z.object({
@@ -64,11 +65,6 @@ export const editProfileSchema = z.object({
     )
     .min(1, "At least one content link is required"),
   numberOfChildren: z.string().min(1, "This field is required"),
-  videoLinks: z
-    .array(urlSchema)
-    .refine((links) => links.every((link) => link.startsWith("https://")), {
-      message: "All video links must use 'https://'",
-    }),
   assessmentTests: z
     .array(
       z.object({
@@ -76,10 +72,11 @@ export const editProfileSchema = z.object({
           .string()
           .url(
             "Each assessment test link must be a valid URL starting with 'http://' or 'https://'"
-          ),
+          )
+          .optional(),
       })
     )
-    .min(1, "At least one assessment test link is required"),
+    .optional(),
   internetProvider: z.string().min(1, "This field is required"),
   numberOfMonitors: z
     .string()
@@ -90,11 +87,7 @@ export const editProfileSchema = z.object({
     .min(1, "This field is required")
     .regex(/^[0-9]+$/, "Experience must be a valid number"),
   salaryUnit: z.string().min(1, "This field is required"),
-  desiredSalary: z
-    .number()
-    .min(1000, "Salary must be at least 1,000")
-    .max(1000000, "Salary must not exceed 1,000,000"),
-  howKnow: z.string().optional(),
+  desiredSalary: z.number().min(1, "This field is required"),
   workSamples: z
     .array(
       z.object({
@@ -107,7 +100,6 @@ export const editProfileSchema = z.object({
     )
     .min(1, "At least one work sample is required"),
   howHear: z.string().optional(),
-  someoneName: z.string().optional(),
   referrer: z.string().optional(),
 } as const);
 
