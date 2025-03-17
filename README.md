@@ -1,8 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Access Virtual Staffing
+
+Access Virtual Staffing is a Next.js application designed to provide virtual staffing services. This project includes features for managing talent requests, job applications, and personal information collection.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- Node.js (>= 14.x)
+- npm (>= 6.x) or yarn (>= 1.x) or pnpm (>= 6.x) or bun (>= 0.x)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-repo/access-virtual-staffing.git
+cd access-virtual-staffing
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Create a `.env.local` file based on `.env.example` and fill in the necessary environment variables.
+
+### Running the Development Server
+
+To start the development server, run:
 
 ```bash
 npm run dev
@@ -14,23 +48,152 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To build the project for production, run:
 
-## Learn More
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+# or
+bun build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Starting the Production Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To start the production server, run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+# or
+bun start
+```
 
-## Deploy on Vercel
+### Running Migrations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To generate and run database migrations, use the following commands:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run migration:generate
+npm run migration:run
+# or
+yarn migration:generate
+yarn migration:run
+# or
+pnpm migration:generate
+pnpm migration:run
+# or
+bun migration:generate
+bun migration:run
+```
+
+### Linting
+
+To lint the codebase, run:
+
+```bash
+npm run lint
+# or
+yarn lint
+# or
+pnpm lint
+# or
+bun lint
+```
+
+## Project Structure
+
+```
+.env.example
+.env.local
+.eslintrc.json
+.gitignore
+.prettierignore
+.prettierrc
+BACKLOGS.md
+components.json
+drizzle.config.ts
+next-env.d.ts
+next.config.mjs
+package.json
+postcss.config.mjs
+README.md
+tailwind.config.ts
+tsconfig.json
+.next/
+    app-build-manifest.json
+    build-manifest.json
+    package.json
+    react-loadable-manifest.json
+    trace
+    cache/
+    server/
+    static/
+    types/
+app/
+    apple-icon.png
+    favicon.ico
+    globals.css
+    icon.png
+    ...
+components/
+context/
+database/
+hooks/
+lib/
+public/
+services/
+types/
+```
+
+### Key Directories
+
+- **app/**: Contains the main application files, including pages and global styles.
+- **components/**: Reusable UI components.
+- **context/**: Context providers for state management.
+- **database/**: Database configuration and migrations.
+- **hooks/**: Custom React hooks.
+- **lib/**: Utility functions and libraries.
+- **public/**: Static assets like images and icons.
+- **services/**: API service functions.
+- **types/**: TypeScript type definitions.
+
+## Technologies Used
+
+- **Next.js**: The primary framework for building the application.
+- **React**: For building UI components.
+- **TypeScript**: For type safety.
+- **Tailwind CSS**: For styling.
+- **Auth0**: For authentication.
+- **Radix UI**: For UI components.
+- **Framer Motion**: For animations.
+- **ESLint**: For linting.
+- **Vercel**: For deployment.
+- **PostgreSQL**: For the database.
+- **Drizzle**: For database ORM and migrations.
+
+## Contributing
+
+We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Contact
+
+If you have any questions, please contact us at:
+
+**Access Virtual Staffing**  
+105 S. Narcissus Ave. Suite 512  
+West Palm Beach, FL 33401  
+Email: support@accessvirtualstaffing.com
