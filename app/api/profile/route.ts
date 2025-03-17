@@ -12,11 +12,12 @@ import {
   workSamples,
 } from "@/database/schema/profiles";
 import { usersTable } from "@/database/schema/users"; // Import usersTable
+import { log } from "@/lib/logs";
 
 export async function GET(req: NextRequest) {
   try {
     const session = await getSession(req, NextResponse.next());
-    console.log(session);
+
     if (!session) {
       return NextResponse.json(
         {
@@ -64,6 +65,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
+    log("GET /api/profile", "info", { profile: existingProfile });
     return NextResponse.json({
       message: "Success!",
       ok: true,
@@ -84,8 +86,8 @@ export async function GET(req: NextRequest) {
         where: eq(workSamples.profileId, existingProfile.id),
       }),
     });
-  } catch (error) {
-    console.error("Error fetching profile:", error);
+  } catch (error: any) {
+    log("Error fetching profile:", "error", { error: error?.message || "" });
     return NextResponse.json(
       {
         error: "Internal Server Error",

@@ -12,7 +12,11 @@ const menuItems = [
   { name: "General", href: "/app/settings/general" },
   { name: "Authentication", href: "/app/settings/authentication" },
   { name: "Notification", href: "/app/settings/notification" },
-  { name: "Delete account", href: "#", className: "text-red-500" },
+  {
+    name: "Delete account",
+    href: "/app/settings/delete-account",
+    className: "text-red-500",
+  },
 ];
 
 export default function SettingsSidebar() {

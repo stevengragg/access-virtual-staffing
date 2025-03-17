@@ -12,11 +12,12 @@ import {
   workSamples,
 } from "@/database/schema/profiles";
 import { usersTable } from "@/database/schema/users"; // Import usersTable
+import { log } from "@/lib/logs";
 
 export async function POST(req: NextRequest) {
   try {
     const session = await getSession(req, NextResponse.next());
-    console.log(session);
+
     if (!session) {
       return NextResponse.json(
         { error: "Unauthorized", message: "Please login.", ok: false },
@@ -25,8 +26,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    console.log(body);
-
+    log("POST /api/profile/update-profile", "info", { body });
     // Fetch the user using session.user.sub
     const user = await db.query.usersTable.findFirst({
       where: eq(usersTable.userId, session.user.sub),
@@ -170,8 +170,8 @@ export async function POST(req: NextRequest) {
       message: "Profile updated successfully",
       ok: true,
     });
-  } catch (error) {
-    console.error("Error updating profile:", error);
+  } catch (error: any) {
+    log("Error fetching profile:", "error", { error: error?.message || "" });
     return NextResponse.json(
       {
         error: "Internal Server Error",
