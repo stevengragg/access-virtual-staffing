@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useUser } from "@auth0/nextjs-auth0/client";
+import React from "react";
 import Link from "next/link";
 import { useFieldArray } from "react-hook-form";
 import Image from "next/image";
+import useSWR from "swr";
 
 import { EditProfileSchema } from "@/services/user/update-profile";
 import { Input } from "@/components/ui/input";
@@ -39,10 +42,14 @@ import { useToast } from "@/hooks/use-toast";
 
 interface EditProfile {}
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function EditProfileForm({}: EditProfile) {
   const profileDetailsForm = useProfileDetails();
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
   const { toast } = useToast();
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const { data, error } = useSWR("/api/profile", fetcher);
 
   // const [hasError, setHasError] = useState(false);
   const {
@@ -89,8 +96,24 @@ export default function EditProfileForm({}: EditProfile) {
     control: profileDetailsForm.control,
     name: "contentLinks",
   });
+
+  React.useEffect(() => {
+    if (data && data.ok) {
+      console.log(data);
+      profileDetailsForm.reset({
+        ...data.profile,
+        phone: data.phones,
+        emailAddress: data.emails,
+        contentLinks: data.contentLinks,
+        assessmentTests: data.assessmentTests,
+        workSamples: data.workSamples,
+        desiredSalary: parseInt(data.profile.desiredSalary, 10),
+      });
+    }
+  }, [data]);
+
   const onSubmit = async (data: EditProfileSchema) => {
-    console.log(data);
+    setLoading(true);
     try {
       const response = await fetch("/api/profile/update-profile", {
         method: "POST",
@@ -110,6 +133,12 @@ export default function EditProfileForm({}: EditProfile) {
 
       const result = await response.json();
       console.log("Profile updated successfully:", result);
+      toast({
+        title: "Success",
+        description: "Profile updated successfully.",
+        variant: "success",
+      });
+      setLoading(false);
     } catch (error) {
       console.error("Error updating profile:", error);
       toast({
@@ -120,6 +149,9 @@ export default function EditProfileForm({}: EditProfile) {
     }
   };
 
+  if (error) return <div>Failed to load profile</div>;
+  if (!data) return <div>Loading...</div>;
+
   return (
     <Form {...profileDetailsForm}>
       <form
@@ -127,37 +159,41 @@ export default function EditProfileForm({}: EditProfile) {
         className="max-w-3xl mx-auto p-4"
       >
         <div className="mb-5">
-          <Card className="w-full max-w-2xl  border border-zinc-400">
-            <CardHeader className="font-semibold text-gray-700">
-              <Link
-                href="/app/settings/general"
-                className="underline hover:text-primaryBlue"
-              >
-                Update General Details
-              </Link>
-            </CardHeader>
+          {isLoading ? (
+            <>...</>
+          ) : (
+            <Card className="w-full max-w-2xl  border border-zinc-400">
+              <CardHeader className="font-semibold text-gray-700">
+                <Link
+                  href="/app/settings/general"
+                  className="underline hover:text-primaryBlue"
+                >
+                  Update General Details
+                </Link>
+              </CardHeader>
 
-            <CardContent className="space-y-8">
-              <div className="flex flex-col gap-4">
-                <Label className="font-semibold text-sm text-zinc-700">
-                  Account Profile Image
-                </Label>
-                <Image
-                  src={user?.picture || ""}
-                  alt="Avatar"
-                  className="size-20 rounded-full object-cover"
-                  width={50}
-                  height={50}
-                />
-              </div>
-              <div>
-                <Label className="font-semibold text-sm text-zinc-700">
-                  Full Name
-                </Label>
-                <p>{user?.name}</p>
-              </div>
-            </CardContent>
-          </Card>
+              <CardContent className="space-y-8">
+                <div className="flex flex-col gap-4">
+                  <Label className="font-semibold text-sm text-zinc-700">
+                    Account Profile Image
+                  </Label>
+                  <Image
+                    src={user?.picture || "#"}
+                    alt="Avatar"
+                    className="size-20 rounded-full object-cover"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div>
+                  <Label className="font-semibold text-sm text-zinc-700">
+                    Full Name
+                  </Label>
+                  <p>{user?.name}</p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
         <div className="grid grid-cols-4 gap-12">
           <FormField
@@ -171,6 +207,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Input
+                      disabled={loading}
                       {...field}
                       placeholder="Enter your Job Title"
                       className=" border-zinc-400"
@@ -194,6 +231,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Textarea
+                      disabled={loading}
                       {...field}
                       placeholder="Tell us about your experiences and what makes you best fit for this position"
                       className="w-full border p-2 rounded h-[150px] border-zinc-400"
@@ -217,6 +255,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Textarea
+                      disabled={loading}
                       {...field}
                       placeholder="What are your strengths? Where do you excel or, at the very least, perform well?"
                       className="w-full border p-2 rounded h-[150px] border-zinc-400"
@@ -240,6 +279,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Textarea
+                      disabled={loading}
                       {...field}
                       placeholder="What areas do you think you will need improvement?"
                       className="w-full border p-2 rounded h-[150px] border-zinc-400"
@@ -262,9 +302,10 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Input
+                      disabled={loading}
                       {...field}
                       type="text"
-                      placeholder="Address"
+                      placeholder="Where are you located?"
                       className="w-full border p-2 rounded border-zinc-400"
                     />
                   </FormControl>
@@ -299,6 +340,7 @@ export default function EditProfileForm({}: EditProfile) {
                           <FormItem className="flex-none">
                             <FormControl>
                               <Select
+                                disabled={loading}
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
                               >
@@ -338,6 +380,7 @@ export default function EditProfileForm({}: EditProfile) {
                           <FormItem className="w-full flex-grow flex flex-col items-start">
                             <FormControl>
                               <Input
+                                disabled={loading}
                                 {...field}
                                 type="text"
                                 placeholder="Enter contact number"
@@ -354,6 +397,7 @@ export default function EditProfileForm({}: EditProfile) {
                         <Button
                           variant="ghost"
                           type="button"
+                          disabled={loading}
                           onClick={() => removePhone(index)}
                         >
                           X
@@ -367,6 +411,7 @@ export default function EditProfileForm({}: EditProfile) {
                     type="button"
                     variant="outline"
                     className="mt-2"
+                    disabled={loading}
                     onClick={() => addPhone({ type: "", number: "" })}
                   >
                     Add another
@@ -388,7 +433,7 @@ export default function EditProfileForm({}: EditProfile) {
                   </FormLabel>
                 </div>
 
-                <div className="col-span-4 xl:col-span-3">
+                <div className="col-span-4 xl:col-span-3 space-y-3">
                   {emailFields.map((email, index) => (
                     <div key={email.id} className="flex items-start gap-2">
                       {/* Dropdown for Email Type */}
@@ -399,6 +444,7 @@ export default function EditProfileForm({}: EditProfile) {
                           <FormItem>
                             <FormControl>
                               <Select
+                                disabled={loading}
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
                               >
@@ -429,6 +475,7 @@ export default function EditProfileForm({}: EditProfile) {
                           <FormItem className="w-full flex flex-col items-start">
                             <FormControl>
                               <Input
+                                disabled={loading}
                                 {...field}
                                 type="text"
                                 placeholder="Enter email address"
@@ -445,6 +492,7 @@ export default function EditProfileForm({}: EditProfile) {
                         <Button
                           variant="ghost"
                           type="button"
+                          disabled={loading}
                           onClick={() => removeEmail(index)}
                         >
                           X
@@ -458,6 +506,7 @@ export default function EditProfileForm({}: EditProfile) {
                     type="button"
                     variant="outline"
                     className="mt-2"
+                    disabled={loading}
                     onClick={() => addEmail({ type: "", address: "" })}
                   >
                     Add another
@@ -479,6 +528,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <DatePicker
+                      disabled={loading}
                       date={field.value}
                       onChange={field.onChange}
                       placeholder="Select your date of birth"
@@ -502,6 +552,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl className="col-span-4 xl:col-span-3 space-y-3">
                     <Input
+                      disabled={loading}
                       {...field}
                       type="text"
                       placeholder="Enter Skype ID"
@@ -524,7 +575,13 @@ export default function EditProfileForm({}: EditProfile) {
                 </FormLabel>
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={""}>
+                    <Select
+                      disabled={loading}
+                      onValueChange={field.onChange}
+                      defaultValue={
+                        field.value?.toString() || data.profile.hasPaypal || ""
+                      }
+                    >
                       <SelectTrigger className="border-zinc-400">
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
@@ -555,6 +612,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Input
+                      disabled={loading}
                       {...field}
                       placeholder="Number of children"
                       type="number"
@@ -588,7 +646,7 @@ export default function EditProfileForm({}: EditProfile) {
                   </FormLabel>
                 </div>
 
-                <div className="col-span-4 xl:col-span-3">
+                <div className="col-span-4 xl:col-span-3 space-y-3">
                   {assessmentFields.map((test, index) => (
                     <FormField
                       key={test.id}
@@ -601,6 +659,7 @@ export default function EditProfileForm({}: EditProfile) {
                             <div className="w-full">
                               <FormControl>
                                 <Input
+                                  disabled={loading}
                                   {...field}
                                   type="url"
                                   placeholder="Paste your assessment test link here"
@@ -612,6 +671,7 @@ export default function EditProfileForm({}: EditProfile) {
                             {/* Conditional Delete Button - Hide if only one item */}
                             {assessmentFields.length > 1 && (
                               <Button
+                                disabled={loading}
                                 variant="ghost"
                                 type="button"
                                 onClick={() => removeAssessment(index)}
@@ -630,6 +690,7 @@ export default function EditProfileForm({}: EditProfile) {
                     type="button"
                     variant="outline"
                     className="mt-2"
+                    disabled={loading}
                     onClick={() => addAssessment({ link: "" })}
                   >
                     Add another
@@ -665,6 +726,7 @@ export default function EditProfileForm({}: EditProfile) {
                             <div className="w-full">
                               <FormControl>
                                 <Input
+                                  disabled={loading}
                                   {...field}
                                   type="url"
                                   placeholder="Paste your video or voice recording link here"
@@ -678,6 +740,7 @@ export default function EditProfileForm({}: EditProfile) {
                               <Button
                                 variant="ghost"
                                 type="button"
+                                disabled={loading}
                                 onClick={() => removeContent(index)}
                               >
                                 X
@@ -694,6 +757,7 @@ export default function EditProfileForm({}: EditProfile) {
                     type="button"
                     variant="outline"
                     className="mt-2"
+                    disabled={loading}
                     onClick={() => addContent({ link: "" })}
                   >
                     Add another
@@ -720,6 +784,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Input
+                      disabled={loading}
                       {...field}
                       type="text"
                       placeholder="Internet provider and plan"
@@ -745,6 +810,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Input
+                      disabled={loading}
                       {...field}
                       type="number"
                       placeholder="Enter number of monitors"
@@ -771,6 +837,7 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Input
+                      disabled={loading}
                       {...field}
                       type="number"
                       placeholder="Enter years of experience"
@@ -796,8 +863,13 @@ export default function EditProfileForm({}: EditProfile) {
                   <FormItem>
                     <FormControl>
                       <Select
+                        disabled={loading}
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        defaultValue={
+                          field.value?.toString() ||
+                          data.profile.salaryUnit ||
+                          ""
+                        }
                       >
                         <SelectTrigger className="w-[180px] border-zinc-400">
                           <SelectValue placeholder="Select unit" />
@@ -805,8 +877,8 @@ export default function EditProfileForm({}: EditProfile) {
 
                         <SelectContent>
                           <SelectGroup className="bg-white">
-                            <SelectItem value="hourly">PHP</SelectItem>
-                            <SelectItem value="monthly">COP</SelectItem>
+                            <SelectItem value="PHP">PHP</SelectItem>
+                            <SelectItem value="COP">COP</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -822,6 +894,7 @@ export default function EditProfileForm({}: EditProfile) {
                   <FormItem className="w-full ">
                     <FormControl>
                       <Input
+                        disabled={loading}
                         {...field}
                         onChange={(e) =>
                           field.onChange(parseInt(e.target.value))
@@ -861,6 +934,7 @@ export default function EditProfileForm({}: EditProfile) {
                             <div className="w-full">
                               <FormControl>
                                 <Input
+                                  disabled={loading}
                                   {...field}
                                   type="url"
                                   placeholder="Enter work sample link"
@@ -874,6 +948,7 @@ export default function EditProfileForm({}: EditProfile) {
                               <Button
                                 variant="ghost"
                                 type="button"
+                                disabled={loading}
                                 onClick={() => removeWorkSample(index)}
                               >
                                 X
@@ -889,6 +964,7 @@ export default function EditProfileForm({}: EditProfile) {
                   <Button
                     type="button"
                     variant="outline"
+                    disabled={loading}
                     className="mt-2"
                     onClick={() => addWorkSample({ link: "" })}
                   >
@@ -910,8 +986,11 @@ export default function EditProfileForm({}: EditProfile) {
                 <div className="col-span-4 xl:col-span-3">
                   <FormControl>
                     <Select
+                      disabled={loading}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      defaultValue={
+                        field.value?.toString() || data.profile.howHear || ""
+                      }
                     >
                       <SelectTrigger className="w-full border-zinc-400">
                         <SelectValue placeholder="Select an option" />
@@ -919,15 +998,15 @@ export default function EditProfileForm({}: EditProfile) {
                       <SelectContent>
                         <SelectGroup className="bg-white">
                           <SelectLabel>Select an option</SelectLabel>
-                          <SelectItem value="online_jobs_ph">
+                          <SelectItem value="online jobs ph">
                             OnlineJobsPH
                           </SelectItem>
                           <SelectItem value="craigslist">Craigslist</SelectItem>
                           <SelectItem value="indeed">Indeed</SelectItem>
                           <SelectItem value="linkedin">LinkedIn</SelectItem>
                           <SelectItem value="jora">Jora</SelectItem>
-                          <SelectItem value="fb_group">FB Group</SelectItem>
-                          <SelectItem value="company_referral">
+                          <SelectItem value="fb group">FB Group</SelectItem>
+                          <SelectItem value="company referral">
                             Company Referral
                           </SelectItem>
                         </SelectGroup>
@@ -951,6 +1030,7 @@ export default function EditProfileForm({}: EditProfile) {
                 </FormLabel>
                 <FormControl>
                   <Input
+                    disabled={loading}
                     {...field}
                     placeholder="Enter referrer"
                     className="col-span-4 xl:col-span-3 border-zinc-400"
@@ -962,10 +1042,11 @@ export default function EditProfileForm({}: EditProfile) {
           />
         </div>
         <Button
+          disabled={loading}
           type="submit"
           className="bg-deepBlue rounded-lg px-4 py-2 w-full xl:w-[300px] self-end mt-12 mb-20 text-white"
         >
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </Button>
       </form>
     </Form>

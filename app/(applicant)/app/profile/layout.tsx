@@ -8,7 +8,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export default function DashboardLayout({ children }: LayoutProps) {
+export default function ProfileLayout({ children }: LayoutProps) {
   return (
     <ProfileTabProvider>
       <ProfileDetailsProvider>

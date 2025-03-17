@@ -13,7 +13,7 @@ import { usersTable } from "./users";
 
 export const profiles = pgTable("profiles", {
   id: serial("id").primaryKey(),
-  jobtitle: text("job_title").notNull(),
+  jobTitle: text("job_title").notNull(),
   userId: integer("user_id")
     .references(() => usersTable.id, { onDelete: "cascade" })
     .notNull(),
@@ -30,9 +30,7 @@ export const profiles = pgTable("profiles", {
   numberOfExperience: text("number_of_experience").notNull(),
   salaryUnit: text("salary_unit").notNull(),
   desiredSalary: text("desired_salary").notNull(),
-  howKnow: text("how_know"),
   howHear: text("how_hear"),
-  someoneName: text("someone_name"),
   referrer: text("referrer"),
 });
 
@@ -62,13 +60,13 @@ export const contentLinks = pgTable("content_links", {
   link: text("link").notNull(),
 });
 
-export const videoLinks = pgTable("video_links", {
-  id: serial("id").primaryKey(),
-  profileId: integer("profile_id").references(() => profiles.id, {
-    onDelete: "cascade",
-  }),
-  link: text("link").notNull(),
-});
+// export const videoLinks = pgTable("video_links", {
+//   id: serial("id").primaryKey(),
+//   profileId: integer("profile_id").references(() => profiles.id, {
+//     onDelete: "cascade",
+//   }),
+//   link: text("link").notNull(),
+// });
 
 export const assessmentTests = pgTable("assessment_tests", {
   id: serial("id").primaryKey(),
@@ -110,7 +108,7 @@ export const profilesRelations = relations(profiles, ({ one, many }) => ({
   phones: many(phones),
   emails: many(emails),
   contentLinks: many(contentLinks),
-  videoLinks: many(videoLinks),
+  // videoLinks: many(videoLinks),
   assessmentTests: many(assessmentTests),
   workSamples: many(workSamples),
   fileUploads: many(fileUploads),
