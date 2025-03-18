@@ -1,6 +1,6 @@
 # Access Virtual Staffing
 
-Access Virtual Staffing is a Next.js application designed to provide virtual staffing services. This project includes features for managing talent requests, job applications, and personal information collection.
+Access Virtual Staffing is a Next.js application designed to promote virtual staffing services that will be provided by the AVS team in Florida, USA. This project includes features for managing talent requests, job applications, and personal information collection.
 
 ## Getting Started
 
@@ -8,8 +8,8 @@ Access Virtual Staffing is a Next.js application designed to provide virtual sta
 
 Ensure you have the following installed on your machine:
 
-- Node.js (>= 14.x)
-- npm (>= 6.x) or yarn (>= 1.x) or pnpm (>= 6.x) or bun (>= 0.x)
+- Node.js (latest)
+- npm (latest)
 
 ### Installation
 
@@ -24,12 +24,7 @@ cd access-virtual-staffing
 
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
+
 ```
 
 3. Create a `.env.local` file based on `.env.example` and fill in the necessary environment variables.
@@ -40,12 +35,7 @@ To start the development server, run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
 Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.
@@ -56,12 +46,7 @@ To build the project for production, run:
 
 ```bash
 npm run build
-# or
-yarn build
-# or
-pnpm build
-# or
-bun build
+
 ```
 
 ### Starting the Production Server
@@ -70,31 +55,26 @@ To start the production server, run:
 
 ```bash
 npm run start
-# or
-yarn start
-# or
-pnpm start
-# or
-bun start
+
 ```
 
 ### Running Migrations
 
-To generate and run database migrations, use the following commands:
+To generate database migrations, use the following commands:
 
 ```bash
 npm run migration:generate
-npm run migration:run
-# or
-yarn migration:generate
-yarn migration:run
-# or
-pnpm migration:generate
-pnpm migration:run
-# or
-bun migration:generate
-bun migration:run
+
 ```
+
+To run the migrations, use the following command:
+
+```bash
+npm run migration:run
+
+```
+
+> Note: Make sure to communicate any needs to change the database schema with the team before generating or running migrations.
 
 ### Linting
 
@@ -102,58 +82,12 @@ To lint the codebase, run:
 
 ```bash
 npm run lint
-# or
-yarn lint
-# or
-pnpm lint
-# or
-bun lint
+
 ```
+
+> Note: Use the prettier config saved on this repository to format the codebase. Do not alter the prettier configuration.
 
 ## Project Structure
-
-```
-.env.example
-.env.local
-.eslintrc.json
-.gitignore
-.prettierignore
-.prettierrc
-BACKLOGS.md
-components.json
-drizzle.config.ts
-next-env.d.ts
-next.config.mjs
-package.json
-postcss.config.mjs
-README.md
-tailwind.config.ts
-tsconfig.json
-.next/
-    app-build-manifest.json
-    build-manifest.json
-    package.json
-    react-loadable-manifest.json
-    trace
-    cache/
-    server/
-    static/
-    types/
-app/
-    apple-icon.png
-    favicon.ico
-    globals.css
-    icon.png
-    ...
-components/
-context/
-database/
-hooks/
-lib/
-public/
-services/
-types/
-```
 
 ### Key Directories
 
@@ -189,9 +123,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-## Contact
-
-If you have any questions, please contact us at:
+## AVS Team
 
 **Access Virtual Staffing**  
 105 S. Narcissus Ave. Suite 512  

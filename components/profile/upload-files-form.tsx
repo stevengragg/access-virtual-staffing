@@ -2,7 +2,7 @@
 
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FileUploadSchema } from "@/services/user/update-files";
+import { FileUploadSchema } from "@/lib/validation/update-files-form-validation";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";

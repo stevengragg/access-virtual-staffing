@@ -8,7 +8,7 @@ import { useFieldArray } from "react-hook-form";
 import Image from "next/image";
 import useSWR from "swr";
 
-import { EditProfileSchema } from "@/services/user/update-profile";
+import { EditProfileSchema } from "@/lib/validation/update-profile-form-validation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,17 +39,21 @@ import {
 import { DatePicker } from "@/components/ui/date-picker";
 import { useProfileDetails } from "@/context/profile-details-context";
 import { useToast } from "@/hooks/use-toast";
+import { fetchApi } from "@/services/fetch-api";
+import { AppError } from "@/utils/app-error";
+import { IProfileResponse } from "@/types/profiles";
 
-interface EditProfile {}
+// const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-export default function EditProfileForm({}: EditProfile) {
+export default function EditProfileForm() {
   const profileDetailsForm = useProfileDetails();
   const { user, isLoading } = useUser();
   const { toast } = useToast();
   const [loading, setLoading] = React.useState<boolean>(false);
-  const { data, error } = useSWR("/api/profile", fetcher);
+  const { data, error } = useSWR<IProfileResponse, AppError>(
+    "/profile",
+    fetchApi
+  );
 
   // const [hasError, setHasError] = useState(false);
   const {
@@ -99,7 +103,6 @@ export default function EditProfileForm({}: EditProfile) {
 
   React.useEffect(() => {
     if (data && data.ok) {
-      console.log(data);
       profileDetailsForm.reset({
         ...data.profile,
         phone: data.phones,
@@ -107,7 +110,7 @@ export default function EditProfileForm({}: EditProfile) {
         contentLinks: data.contentLinks,
         assessmentTests: data.assessmentTests,
         workSamples: data.workSamples,
-        desiredSalary: parseInt(data.profile.desiredSalary, 10),
+        desiredSalary: parseInt(data?.profile?.desiredSalary, 10),
       });
     }
   }, [data]);
@@ -579,7 +582,9 @@ export default function EditProfileForm({}: EditProfile) {
                       disabled={loading}
                       onValueChange={field.onChange}
                       defaultValue={
-                        field.value?.toString() || data.profile.hasPaypal || ""
+                        field.value?.toString() ||
+                        data?.profile?.hasPaypal ||
+                        ""
                       }
                     >
                       <SelectTrigger className="border-zinc-400">
@@ -867,7 +872,7 @@ export default function EditProfileForm({}: EditProfile) {
                         onValueChange={field.onChange}
                         defaultValue={
                           field.value?.toString() ||
-                          data.profile.salaryUnit ||
+                          data?.profile?.salaryUnit ||
                           ""
                         }
                       >
@@ -989,7 +994,7 @@ export default function EditProfileForm({}: EditProfile) {
                       disabled={loading}
                       onValueChange={field.onChange}
                       defaultValue={
-                        field.value?.toString() || data.profile.howHear || ""
+                        field.value?.toString() || data?.profile?.howHear || ""
                       }
                     >
                       <SelectTrigger className="w-full border-zinc-400">

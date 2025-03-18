@@ -2,14 +2,21 @@
 
 import { createContext, useContext } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
-import { fileUploadSchema, FileUploadSchema } from "@/services/user/update-files";
+import {
+  fileUploadSchema,
+  FileUploadSchema,
+} from "@/lib/validation/update-files-form-validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type ProfileFilesContextType = UseFormReturn<FileUploadSchema>;
 
 const ProfileFilesContext = createContext<ProfileFilesContextType | null>(null);
 
-export const ProfileFilesProvider = ({ children }: { children: React.ReactNode }) => {
+export const ProfileFilesProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const formMethods = useForm<FileUploadSchema>({
     resolver: zodResolver(fileUploadSchema),
     defaultValues: {
@@ -32,7 +39,9 @@ export const ProfileFilesProvider = ({ children }: { children: React.ReactNode }
 export const useProfileFiles = () => {
   const context = useContext(ProfileFilesContext);
   if (!context) {
-    throw new Error("useProfileFiles must be used within a ProfileFilesProvider");
+    throw new Error(
+      "useProfileFiles must be used within a ProfileFilesProvider"
+    );
   }
   return context;
 };

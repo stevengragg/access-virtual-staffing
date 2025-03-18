@@ -157,7 +157,7 @@ export const getJobs = async (
   search?: string,
   isApp?: boolean
 ): Promise<FetchJobListingsResponse | null> => {
-  const newAccessToken = await gainRefreshedAccessToken();
+  const newAccessToken = await gainRefreshedAccessToken("jobs");
 
   if (!newAccessToken) {
     return null;
@@ -187,7 +187,7 @@ export const getJobs = async (
 export const getJobPost = async (
   id: string
 ): Promise<FetchJobResponse | null> => {
-  const newAccessToken = await gainRefreshedAccessToken();
+  const newAccessToken = await gainRefreshedAccessToken("jobs");
 
   if (!newAccessToken) {
     return null;

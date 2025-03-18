@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import React from "react";
 
 import {
   Card,
@@ -20,7 +21,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { generalSchema, GeneralSchema } from "@/services/settings/general";
+import {
+  generalSchema,
+  GeneralSchema,
+} from "@/lib/validation/general-settings-form-validation";
 import Image from "next/image";
 
 export default function GeneralSettings() {
@@ -38,6 +42,13 @@ export default function GeneralSettings() {
   const onSubmit = (data: GeneralSchema) => {
     console.log(data);
   };
+
+  // TODO: Sample code for settings default values
+  // React.useEffect(() => {
+  //     form.reset({
+  //       ...data.profile
+  //     })
+  // }, [])
 
   return (
     <Card className="w-full max-w-2xl shadow-md">

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   editProfileSchema,
   EditProfileSchema,
-} from "@/services/user/update-profile";
+} from "@/lib/validation/update-profile-form-validation";
 
 const ProfileDetailsContext = createContext<boolean>(false); // Just a flag to ensure provider is used
 

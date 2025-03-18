@@ -15,4 +15,11 @@ export const usersTable = pgTable("users", {
   lastName: text("last_name").notNull(),
   name: text("name"),
   createdAt: timestamp("created_at").defaultNow(),
+  provider: text("provider"),
+  jobRecommendationNotifPref: varchar("job_recommendation_notif_pref")
+    .default("enabled")
+    .notNull(),
+  jobSubmissionNotifPref: varchar("job_submission_notif_pref")
+    .default("enabled")
+    .notNull(),
 });

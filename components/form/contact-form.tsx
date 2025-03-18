@@ -14,7 +14,10 @@ import {
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ContactFormSchema, contactFormSchema } from "@/lib/form-validation";
+import {
+  ContactFormSchema,
+  contactFormSchema,
+} from "@/lib/validation/contact-form-validation";
 import submitForm from "@/lib/send";
 import { useToast } from "../../hooks/use-toast";
 import { useRouter } from "next/navigation";

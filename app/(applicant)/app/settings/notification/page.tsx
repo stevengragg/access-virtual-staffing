@@ -1,10 +1,19 @@
-'use client';
+"use client";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 
-import { notificationSchema, NotificationSchema } from "@/services/settings/notification";
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  notificationSchema,
+  NotificationSchema,
+} from "@/lib/validation/notification-settings-form-validation";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -30,6 +39,13 @@ export default function NotificationSettings() {
     console.log("Notification Data:", data);
   };
 
+  // TODO: Sample code for settings default values
+  // React.useEffect(() => {
+  //     form.reset({
+  //       ...data.profile
+  //     })
+  // }, [])
+
   return (
     <Card className="w-full max-w-2xl shadow-md">
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -39,7 +55,6 @@ export default function NotificationSettings() {
 
         <CardContent className="space-y-4">
           <Form {...form}>
-            
             <h2 className="font-semibold text-deepBlue">Jobs</h2>
             <Separator className="my-4 bg-gray-300" />
 
@@ -53,7 +68,8 @@ export default function NotificationSettings() {
                       Job Recommendation
                     </FormLabel>
                     <p className="text-xs text-gray-500">
-                      Receive notifications when new job recommendations are available.
+                      Receive notifications when new job recommendations are
+                      available.
                     </p>
                   </div>
                   <FormControl>
@@ -78,7 +94,8 @@ export default function NotificationSettings() {
                       Job Submission
                     </FormLabel>
                     <p className="text-xs text-gray-500">
-                      Receive notifications for job submissions and application updates.
+                      Receive notifications for job submissions and application
+                      updates.
                     </p>
                   </div>
                   <FormControl>

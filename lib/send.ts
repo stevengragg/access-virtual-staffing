@@ -2,7 +2,7 @@
 
 import { Resend } from "resend";
 
-import { ContactFormSchema } from "@/lib/form-validation";
+import { ContactFormSchema } from "@/lib/validation/contact-form-validation";
 import { ContactFormTemplate } from "@/components/emails/contact-form-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY);

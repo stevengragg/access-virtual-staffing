@@ -6,7 +6,9 @@ interface RefreshTokenResponse {
   expires_in: number;
 }
 
-export const gainRefreshedAccessToken = async (): Promise<string> => {
+export const gainRefreshedAccessToken = async (
+  type: "jobs" | "applications"
+): Promise<string> => {
   const url = "https://api.podio.com/oauth/token/v2";
 
   try {
@@ -16,7 +18,10 @@ export const gainRefreshedAccessToken = async (): Promise<string> => {
         grant_type: "refresh_token",
         client_id: process.env.NEXT_PODIO_AVS_CLIENT_ID,
         client_secret: process.env.NEXT_PODIO_AVS_CLIENT_SECRET,
-        refresh_token: process.env.NEXT_PODIO_API_REFRESH_TOKEN,
+        refresh_token:
+          type === "jobs"
+            ? process.env.NEXT_PODIO_API_JOBLISTING_REFRESH_TOKEN
+            : process.env.NEXT_PODIO_API_PH_APPLICANT_REFRESH_TOKEN,
       },
       {
         headers: {

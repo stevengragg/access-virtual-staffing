@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     // }
 
-    const { user_id, email, name, picture, given_name, family_name } =
+    const { user_id, email, name, picture, given_name, family_name, provider } =
       await req.json();
     console.log({ user_id, email, name, picture, given_name, family_name });
 
@@ -33,6 +33,7 @@ export async function POST(req: Request) {
         lastName: family_name ?? "",
         name,
         profileImage: picture ?? "",
+        provider,
       });
     }
 

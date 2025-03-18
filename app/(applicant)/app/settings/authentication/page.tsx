@@ -1,11 +1,19 @@
-'use client';
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { authenticationSchema, AuthenticationSchema } from "@/services/settings/authentication";
+import {
+  authenticationSchema,
+  AuthenticationSchema,
+} from "@/lib/validation/authentication-form-validation";
 
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -124,7 +132,9 @@ export default function ChangePassword() {
                       <button
                         type="button"
                         className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                        onClick={() => setShowConfirmNewPassword((prev) => !prev)}
+                        onClick={() =>
+                          setShowConfirmNewPassword((prev) => !prev)
+                        }
                       >
                         {showConfirmNewPassword ? <FiEyeOff /> : <FiEye />}
                       </button>
