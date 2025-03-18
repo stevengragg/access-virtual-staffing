@@ -7,7 +7,7 @@
 
 ### Commit Messages
 
-- Use the present tense ("Add feature" not "Added feature")
+- Use the present tense ("add feature" not "added feature")
 - Use feat, fix, docs, style, refactor, test, chore, and ci as the type
 - Use the imperative mood in the subject line
 
