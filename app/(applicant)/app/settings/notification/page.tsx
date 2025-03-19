@@ -45,9 +45,11 @@ export default function NotificationSettings() {
         const data = await response.json();
 
         if (data.ok) {
+          console.log("Fetched Data from API:", data);
+
           form.reset({
-            jobRecommendation: data.jobRecommendation,
-            jobSubmission: data.jobSubmission,
+            jobRecommendation: data.jobRecommendation === true,
+            jobSubmission: data.jobSubmission === true,
           });
         }
       } catch (error) {
@@ -61,7 +63,7 @@ export default function NotificationSettings() {
   }, [form]);
 
   const onSubmit = async (data: NotificationSchema) => {
-    console.log("Notification Data:", data);
+    console.log("Notification Data Before Sending:", data);
 
     try {
       const response = await fetch("/api/settings/notifications", {
@@ -70,12 +72,13 @@ export default function NotificationSettings() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          jobRecommendationNotifPref: data.jobRecommendation
-            ? "enabled"
-            : "disabled",
-          jobSubmissionNotifPref: data.jobSubmission ? "enabled" : "disabled",
+          jobRecommendation: data.jobRecommendation,
+          jobSubmission: data.jobSubmission,
         }),
       });
+
+      const result = await response.json();
+      console.log("Response from API:", result);
 
       if (!response.ok) {
         throw new Error("Failed to update notification preferences");

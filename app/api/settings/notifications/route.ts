@@ -6,8 +6,6 @@ import { db } from "@/database";
 import { usersTable } from "@/database/schema/users";
 import { log } from "@/lib/logs";
 
-
-
 export async function GET(req: NextRequest) {
   try {
     const session = await getSession(req, NextResponse.next());
@@ -24,6 +22,8 @@ export async function GET(req: NextRequest) {
       where: eq(usersTable.userId, session.user.sub),
     });
 
+    console.log("Fetched user from DB:", user);
+
     if (!user) {
       return NextResponse.json(
         { error: "User not found", message: "User does not exist.", ok: false },
@@ -38,7 +38,9 @@ export async function GET(req: NextRequest) {
       ok: true,
     });
   } catch (error: any) {
-    log("Error fetching notifications:", "error", { error: error?.message || "" });
+    log("Error fetching notifications:", "error", {
+      error: error?.message || "",
+    });
     return NextResponse.json(
       {
         error: "Internal Server Error",
@@ -49,7 +51,6 @@ export async function GET(req: NextRequest) {
     );
   }
 }
-
 
 export async function POST(req: NextRequest) {
   try {
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    log("POST /api/notifications/update-notifications", "info", { body });
+    log("POST /api/notifications", "info", { body });
 
     // Fetch the user using session.user.sub
     const user = await db.query.usersTable.findFirst({
@@ -77,21 +78,37 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Update notification preferences
+    // Update preferences
     await db
       .update(usersTable)
       .set({
-        jobRecommendationNotifPref: body.jobRecommendation ? "enabled" : "disabled",
+        jobRecommendationNotifPref: body.jobRecommendation
+          ? "enabled"
+          : "disabled",
         jobSubmissionNotifPref: body.jobSubmission ? "enabled" : "disabled",
       })
       .where(eq(usersTable.userId, user.userId));
 
+    // Verify updated user data
+    const updatedUser = await db.query.usersTable.findFirst({
+      where: eq(usersTable.userId, user.userId),
+    });
+
+    console.log("Updated user from DB:", updatedUser);
+
     return NextResponse.json({
       message: "Notification settings updated successfully",
       ok: true,
+      updatedData: {
+        jobRecommendation:
+          updatedUser?.jobRecommendationNotifPref === "enabled",
+        jobSubmission: updatedUser?.jobSubmissionNotifPref === "enabled",
+      },
     });
   } catch (error: any) {
-    log("Error updating notifications:", "error", { error: error?.message || "" });
+    log("Error updating notifications:", "error", {
+      error: error?.message || "",
+    });
     return NextResponse.json(
       {
         error: "Internal Server Error",
