@@ -28,6 +28,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function NotificationSettings() {
   const [loading, setLoading] = useState(true); // Track loading state
+  const [submitting, setSubmitting] = useState(false); // Track form submission state
 
   const form = useForm<NotificationSchema>({
     resolver: zodResolver(notificationSchema),
@@ -64,6 +65,7 @@ export default function NotificationSettings() {
 
   const onSubmit = async (data: NotificationSchema) => {
     console.log("Notification Data Before Sending:", data);
+    setSubmitting(true);
 
     try {
       const response = await fetch("/api/settings/notifications", {
@@ -88,6 +90,8 @@ export default function NotificationSettings() {
     } catch (error) {
       console.error("Error updating notifications:", error);
       alert("Failed to update notifications");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -104,7 +108,9 @@ export default function NotificationSettings() {
             <Separator className="my-4 bg-gray-300" />
 
             {loading ? (
-              <p>Loading notification settings...</p>
+              <p className="text-gray-500 text-center">
+                Loading notification settings...
+              </p>
             ) : (
               <>
                 <FormField
@@ -126,6 +132,7 @@ export default function NotificationSettings() {
                           id="jobRecommendation"
                           checked={field.value}
                           onCheckedChange={field.onChange}
+                          disabled={loading || submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -152,6 +159,7 @@ export default function NotificationSettings() {
                           id="jobSubmission"
                           checked={field.value}
                           onCheckedChange={field.onChange}
+                          disabled={loading || submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -168,8 +176,9 @@ export default function NotificationSettings() {
             type="submit"
             variant="default"
             className="bg-deepBlue text-white min-w-[150px] my-4"
+            disabled={loading || submitting}
           >
-            Update Notifications
+            {submitting ? "Saving..." : "Update Notifications"}
           </Button>
         </CardFooter>
       </form>
