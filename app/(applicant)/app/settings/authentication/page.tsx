@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import {
   Card,
   CardHeader,
@@ -9,42 +10,45 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ChangePassword() {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
+  const router = useRouter(); // Initialize router
+  const { toast } = useToast(); // Initialize toaster
+
+  if (!user) return null; // Prevent rendering before user data is available
 
   const handleChangePassword = async () => {
-    if (!user || !user.email) {
-      alert("User not authenticated or email is missing!");
-      return;
-    }
-
     setLoading(true);
-
     try {
-      console.log(user.email);
       const response = await fetch("/api/auth/change-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: user.sub, // Auth0 user ID
-          email: user.email, // User email is required
-        }),
+        body: JSON.stringify({ userId: user.sub, email: user.email }),
       });
 
-      const result = await response.json();
+      if (!response.ok) throw new Error("Failed to send password reset email");
 
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to send password reset email");
-      }
+      toast({
+        title: "Success",
+        description: "Password reset email sent successfully!",
+      });
 
-      alert("Password reset email sent successfully!");
+      setTimeout(() => {
+        router.push("/api/auth/logout");
+      }, 2000);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "An unknown error occurred";
       console.error("Error sending password reset email:", errorMessage);
-      alert(errorMessage);
+
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -55,11 +59,9 @@ export default function ChangePassword() {
       <CardHeader className="font-semibold text-gray-700">
         Settings / Authentication
       </CardHeader>
-
       <CardContent className="text-gray-600">
         Click the button below to update your password.
       </CardContent>
-
       <CardFooter className="flex justify-start space-x-2">
         <Button
           onClick={handleChangePassword}
