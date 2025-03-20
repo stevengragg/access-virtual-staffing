@@ -1,13 +1,7 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import {
-  authenticationSchema,
-  AuthenticationSchema,
-} from "@/lib/validation/authentication-form-validation";
-
+import { useUser } from "@auth0/nextjs-auth0/client";
 import {
   Card,
   CardHeader,
@@ -15,37 +9,68 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function ChangePassword() {
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
-  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+  const { user } = useUser();
+  const [loading, setLoading] = useState(false);
 
-  const form = useForm<AuthenticationSchema>({
-    resolver: zodResolver(authenticationSchema),
-    defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmNewPassword: "",
-    },
-  });
+  const handleChangePassword = async () => {
+    if (!user || !user.email) {
+      alert("User not authenticated or email is missing!");
+      return;
+    }
 
-  const onSubmit = (data: AuthenticationSchema) => {
-    console.log("Password Change Data:", data);
+    setLoading(true);
+
+    try {
+      console.log(user.email);
+      const response = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user.sub, // Auth0 user ID
+          email: user.email, // User email is required
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send password reset email");
+      }
+
+      alert("Password reset email sent successfully!");
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "An unknown error occurred";
+      console.error("Error sending password reset email:", errorMessage);
+      alert(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Card className="w-full max-w-2xl shadow-md">
+      <CardHeader className="font-semibold text-gray-700">
+        Settings / Authentication
+      </CardHeader>
+
+      <CardContent className="text-gray-600">
+        Click the button below to update your password.
+      </CardContent>
+
+      <CardFooter className="flex justify-start space-x-2">
+        <Button
+          onClick={handleChangePassword}
+          disabled={loading}
+          className="bg-deepBlue text-white min-w-[150px] my-4"
+        >
+          {loading ? "Updating..." : "Reset Password via Email"}
+        </Button>
+      </CardFooter>
+
+      {/* 
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <CardHeader className="font-semibold text-gray-700">
           Settings / Authentication
@@ -82,7 +107,7 @@ export default function ChangePassword() {
                 </FormItem>
               )}
             />
-
+            
             <FormField
               control={form.control}
               name="newPassword"
@@ -112,7 +137,7 @@ export default function ChangePassword() {
                 </FormItem>
               )}
             />
-
+            
             <FormField
               control={form.control}
               name="confirmNewPassword"
@@ -157,6 +182,7 @@ export default function ChangePassword() {
           </Button>
         </CardFooter>
       </form>
+      */}
     </Card>
   );
 }
