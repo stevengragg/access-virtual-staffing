@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import {
   Card,
   CardHeader,
@@ -15,10 +14,9 @@ import { useToast } from "@/hooks/use-toast";
 export default function ChangePassword() {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
-  const router = useRouter(); // Initialize router
-  const { toast } = useToast(); // Initialize toaster
+  const { toast } = useToast();
 
-  if (!user) return null; // Prevent rendering before user data is available
+  if (!user) return null;
 
   const handleChangePassword = async () => {
     setLoading(true);
@@ -37,7 +35,7 @@ export default function ChangePassword() {
       });
 
       setTimeout(() => {
-        router.push("/api/auth/logout");
+        window.location.href = "/api/auth/logout";
       }, 2000);
     } catch (error) {
       const errorMessage =

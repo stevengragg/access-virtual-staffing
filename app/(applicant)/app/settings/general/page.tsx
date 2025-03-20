@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React, { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 import {
   Card,
@@ -29,8 +30,9 @@ import Image from "next/image";
 
 export default function GeneralSettings() {
   const { user } = useUser();
-  const [loading, setLoading] = useState(true); // Start with true to indicate loading
-  const [submitting, setSubmitting] = useState(false); // Separate state for form submission
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<GeneralSchema>({
     resolver: zodResolver(generalSchema),
@@ -39,11 +41,9 @@ export default function GeneralSettings() {
       lastName: "",
       email: "",
       username: "",
-      pfp: undefined,
     },
   });
 
-  // Fetch user settings
   useEffect(() => {
     async function fetchSettings() {
       try {
@@ -55,7 +55,7 @@ export default function GeneralSettings() {
       } catch (error) {
         console.error("Error fetching general settings:", error);
       } finally {
-        setLoading(false); // Stop loading after fetching
+        setLoading(false);
       }
     }
 
@@ -73,10 +73,17 @@ export default function GeneralSettings() {
 
       if (!response.ok) throw new Error("Failed to update general settings");
 
-      alert("General settings updated successfully!");
+      toast({
+        title: "Success",
+        description: "General settings updated successfully!",
+      });
     } catch (error) {
       console.error("Error updating general settings:", error);
-      alert("Failed to update general settings");
+      toast({
+        title: "Error",
+        description: "Failed to update general settings. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setSubmitting(false);
     }

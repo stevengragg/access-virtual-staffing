@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 import {
   notificationSchema,
@@ -27,8 +28,9 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 
 export default function NotificationSettings() {
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [submitting, setSubmitting] = useState(false); // Track form submission state
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const { toast } = useToast(); // Use the toast hook
 
   const form = useForm<NotificationSchema>({
     resolver: zodResolver(notificationSchema),
@@ -47,7 +49,6 @@ export default function NotificationSettings() {
 
         if (data.ok) {
           console.log("Fetched Data from API:", data);
-
           form.reset({
             jobRecommendation: data.jobRecommendation === true,
             jobSubmission: data.jobSubmission === true,
@@ -86,10 +87,17 @@ export default function NotificationSettings() {
         throw new Error("Failed to update notification preferences");
       }
 
-      alert("Notification settings updated successfully!");
+      toast({
+        title: "Success",
+        description: "Notification settings updated successfully!",
+      });
     } catch (error) {
       console.error("Error updating notifications:", error);
-      alert("Failed to update notifications");
+      toast({
+        title: "Error",
+        description: "Failed to update notifications. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setSubmitting(false);
     }
