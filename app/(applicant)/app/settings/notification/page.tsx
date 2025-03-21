@@ -71,6 +71,7 @@ export default function NotificationSettings() {
       toast({
         title: "Success",
         description: "Notification settings updated successfully!",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error updating notifications:", error);

@@ -71,6 +71,7 @@ export default function GeneralSettings() {
       toast({
         title: "Success",
         description: "General settings updated successfully!",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error updating general settings:", error);

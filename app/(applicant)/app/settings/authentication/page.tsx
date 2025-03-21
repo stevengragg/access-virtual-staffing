@@ -32,6 +32,7 @@ export default function ChangePassword() {
       toast({
         title: "Success",
         description: "Password reset email sent successfully!",
+        variant: "success",
       });
 
       setTimeout(() => {
