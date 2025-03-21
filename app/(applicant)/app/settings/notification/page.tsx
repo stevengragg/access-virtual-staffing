@@ -1,14 +1,17 @@
 "use client";
 
+import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { fetchApi } from "@/services/fetch-api";
 
 import {
   notificationSchema,
   NotificationSchema,
 } from "@/lib/validation/notification-settings-form-validation";
+
 import {
   Card,
   CardHeader,
@@ -28,9 +31,13 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 
 export default function NotificationSettings() {
-  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
-  const { toast } = useToast(); // Use the toast hook
+
+  const { data, error } = useSWR<NotificationSchema, Error>(
+    "/settings/notifications",
+    fetchApi
+  );
 
   const form = useForm<NotificationSchema>({
     resolver: zodResolver(notificationSchema),
@@ -40,52 +47,26 @@ export default function NotificationSettings() {
     },
   });
 
-  // Fetch existing notification settings on mount
-  useEffect(() => {
-    async function fetchNotificationSettings() {
-      try {
-        const response = await fetch("/api/settings/notifications");
-        const data = await response.json();
-
-        if (data.ok) {
-          console.log("Fetched Data from API:", data);
-          form.reset({
-            jobRecommendation: data.jobRecommendation === true,
-            jobSubmission: data.jobSubmission === true,
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching notification settings:", error);
-      } finally {
-        setLoading(false);
-      }
+  React.useEffect(() => {
+    if (data) {
+      form.reset({
+        jobRecommendation: data.jobRecommendation === true,
+        jobSubmission: data.jobSubmission === true,
+      });
     }
+  }, [data, form]);
 
-    fetchNotificationSettings();
-  }, [form]);
-
-  const onSubmit = async (data: NotificationSchema) => {
-    console.log("Notification Data Before Sending:", data);
+  const onSubmit = async (formData: NotificationSchema) => {
     setSubmitting(true);
-
     try {
       const response = await fetch("/api/settings/notifications", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          jobRecommendation: data.jobRecommendation,
-          jobSubmission: data.jobSubmission,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-      console.log("Response from API:", result);
-
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error("Failed to update notification preferences");
-      }
 
       toast({
         title: "Success",
@@ -109,13 +90,15 @@ export default function NotificationSettings() {
         <CardHeader className="font-semibold text-gray-700">
           Settings / Notifications
         </CardHeader>
-
         <CardContent className="space-y-4">
           <Form {...form}>
             <h2 className="font-semibold text-deepBlue">Jobs</h2>
             <Separator className="my-4 bg-gray-300" />
-
-            {loading ? (
+            {error ? (
+              <p className="text-red-500 text-center">
+                Failed to load settings.
+              </p>
+            ) : !data ? (
               <p className="text-gray-500 text-center">
                 Loading notification settings...
               </p>
@@ -140,14 +123,13 @@ export default function NotificationSettings() {
                           id="jobRecommendation"
                           checked={field.value}
                           onCheckedChange={field.onChange}
-                          disabled={loading || submitting}
+                          disabled={submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
                     </FormItem>
                   )}
                 />
-
                 <FormField
                   control={form.control}
                   name="jobSubmission"
@@ -167,7 +149,7 @@ export default function NotificationSettings() {
                           id="jobSubmission"
                           checked={field.value}
                           onCheckedChange={field.onChange}
-                          disabled={loading || submitting}
+                          disabled={submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -178,13 +160,12 @@ export default function NotificationSettings() {
             )}
           </Form>
         </CardContent>
-
         <CardFooter className="flex justify-start space-x-2">
           <Button
             type="submit"
             variant="default"
             className="bg-deepBlue text-white min-w-[150px] my-4"
-            disabled={loading || submitting}
+            disabled={submitting}
           >
             {submitting ? "Saving..." : "Update Notifications"}
           </Button>

@@ -1,10 +1,17 @@
 "use client";
 
+import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { fetchApi } from "@/services/fetch-api";
+
+import {
+  generalSchema,
+  GeneralSchema,
+} from "@/lib/validation/general-settings-form-validation";
 
 import {
   Card,
@@ -22,17 +29,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  generalSchema,
-  GeneralSchema,
-} from "@/lib/validation/general-settings-form-validation";
 import Image from "next/image";
 
 export default function GeneralSettings() {
   const { user } = useUser();
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const { data, error } = useSWR<GeneralSchema, Error>(
+    "/settings/general",
+    fetchApi
+  );
 
   const form = useForm<GeneralSchema>({
     resolver: zodResolver(generalSchema),
@@ -44,31 +51,19 @@ export default function GeneralSettings() {
     },
   });
 
-  useEffect(() => {
-    async function fetchSettings() {
-      try {
-        const response = await fetch("/api/settings/general");
-        if (!response.ok) throw new Error("Failed to fetch user settings");
-
-        const data = await response.json();
-        form.reset(data);
-      } catch (error) {
-        console.error("Error fetching general settings:", error);
-      } finally {
-        setLoading(false);
-      }
+  React.useEffect(() => {
+    if (data) {
+      form.reset(data);
     }
+  }, [data, form]);
 
-    fetchSettings();
-  }, [form]);
-
-  const onSubmit = async (data: GeneralSchema) => {
+  const onSubmit = async (formData: GeneralSchema) => {
     setSubmitting(true);
     try {
       const response = await fetch("/api/settings/general", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) throw new Error("Failed to update general settings");
@@ -97,7 +92,9 @@ export default function GeneralSettings() {
         </CardHeader>
 
         <CardContent className="space-y-8">
-          {loading ? (
+          {error ? (
+            <p className="text-red-500 text-center">Failed to load profile.</p>
+          ) : !data ? (
             <p className="text-gray-500 text-center">Loading profile...</p>
           ) : (
             <>
@@ -128,7 +125,7 @@ export default function GeneralSettings() {
                           {...field}
                           className="border-gray-700"
                           placeholder="First Name"
-                          disabled={loading || submitting}
+                          disabled={submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -148,7 +145,7 @@ export default function GeneralSettings() {
                           {...field}
                           className="border-gray-700"
                           placeholder="Last Name"
-                          disabled={loading || submitting}
+                          disabled={submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -169,7 +166,7 @@ export default function GeneralSettings() {
                           className="border-gray-700"
                           type="email"
                           placeholder="Email"
-                          disabled={loading || submitting}
+                          disabled={submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -189,7 +186,7 @@ export default function GeneralSettings() {
                           {...field}
                           className="border-gray-700"
                           placeholder="Username"
-                          disabled={loading || submitting}
+                          disabled={submitting}
                         />
                       </FormControl>
                       <FormMessage className="text-red-500" />
@@ -206,7 +203,7 @@ export default function GeneralSettings() {
             type="submit"
             variant="default"
             className="bg-deepBlue text-white min-w-[150px]"
-            disabled={loading || submitting}
+            disabled={submitting}
           >
             {submitting ? "Saving..." : "Submit"}
           </Button>
