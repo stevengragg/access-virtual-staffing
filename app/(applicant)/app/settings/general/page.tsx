@@ -1,9 +1,17 @@
 "use client";
 
+import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import React from "react";
+import React, { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { fetchApi } from "@/services/fetch-api";
+
+import {
+  generalSchema,
+  GeneralSchema,
+} from "@/lib/validation/general-settings-form-validation";
 
 import {
   Card,
@@ -21,14 +29,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  generalSchema,
-  GeneralSchema,
-} from "@/lib/validation/general-settings-form-validation";
 import Image from "next/image";
 
 export default function GeneralSettings() {
   const { user } = useUser();
+  const [submitting, setSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const { data, error } = useSWR<GeneralSchema, Error>(
+    "/settings/general",
+    fetchApi
+  );
+
   const form = useForm<GeneralSchema>({
     resolver: zodResolver(generalSchema),
     defaultValues: {
@@ -39,16 +51,39 @@ export default function GeneralSettings() {
     },
   });
 
-  const onSubmit = (data: GeneralSchema) => {
-    console.log(data);
-  };
+  React.useEffect(() => {
+    if (data) {
+      form.reset(data);
+    }
+  }, [data, form]);
 
-  // TODO: Sample code for settings default values
-  // React.useEffect(() => {
-  //     form.reset({
-  //       ...data.profile
-  //     })
-  // }, [])
+  const onSubmit = async (formData: GeneralSchema) => {
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/settings/general", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error("Failed to update general settings");
+
+      toast({
+        title: "Success",
+        description: "General settings updated successfully!",
+        variant: "success",
+      });
+    } catch (error) {
+      console.error("Error updating general settings:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update general settings. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Card className="w-full max-w-2xl shadow-md">
@@ -58,98 +93,110 @@ export default function GeneralSettings() {
         </CardHeader>
 
         <CardContent className="space-y-8">
-          <div className="flex flex-col gap-4">
-            <h2 className="font-semibold text-sm text-gray-700">
-              Account Profile Image
-            </h2>
-            <Image
-              src={user?.picture || ""}
-              alt="Avatar"
-              className="size-20 rounded-full object-cover"
-              width={50}
-              height={50}
-            />
-          </div>
+          {error ? (
+            <p className="text-red-500 text-center">Failed to load profile.</p>
+          ) : !data ? (
+            <p className="text-gray-500 text-center">Loading profile...</p>
+          ) : (
+            <>
+              <div className="flex flex-col gap-4">
+                <h2 className="font-semibold text-sm text-gray-700">
+                  Account Profile Image
+                </h2>
+                <Image
+                  src={user?.picture || ""}
+                  alt="Avatar"
+                  className="size-20 rounded-full object-cover"
+                  width={50}
+                  height={50}
+                />
+              </div>
 
-          <Form {...form}>
-            <FormField
-              control={form.control}
-              name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">
-                    First Name
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      className="border-gray-700"
-                      placeholder="First Name"
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-500" />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">
-                    Last Name
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      className="border-gray-700"
-                      placeholder="Last Name"
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-500" />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">
-                    Email
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      className="border-gray-700"
-                      type="email"
-                      placeholder="Email"
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-500" />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-sm text-gray-700">
-                    Username
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      className="border-gray-700"
-                      placeholder="Username"
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-500" />
-                </FormItem>
-              )}
-            />
-          </Form>
+              <Form {...form}>
+                <FormField
+                  control={form.control}
+                  name="firstName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-semibold text-sm text-gray-700">
+                        First Name
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          className="border-gray-700"
+                          placeholder="First Name"
+                          disabled={submitting}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-semibold text-sm text-gray-700">
+                        Last Name
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          className="border-gray-700"
+                          placeholder="Last Name"
+                          disabled={submitting}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-semibold text-sm text-gray-700">
+                        Email
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          className="border-gray-700"
+                          type="email"
+                          placeholder="Email"
+                          disabled={submitting}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-semibold text-sm text-gray-700">
+                        Username
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          className="border-gray-700"
+                          placeholder="Username"
+                          disabled={submitting}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+              </Form>
+            </>
+          )}
         </CardContent>
 
         <CardFooter className="flex justify-start space-x-2 my-4">
@@ -157,8 +204,9 @@ export default function GeneralSettings() {
             type="submit"
             variant="default"
             className="bg-deepBlue text-white min-w-[150px]"
+            disabled={submitting}
           >
-            Submit
+            {submitting ? "Saving..." : "Submit"}
           </Button>
         </CardFooter>
       </form>
