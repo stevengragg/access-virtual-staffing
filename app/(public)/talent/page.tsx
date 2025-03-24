@@ -7,6 +7,7 @@ import { getJobs } from "@/lib/api/jobs";
 import { HowItWorks } from "@/components/section/how-it-works";
 import { CtaFooterJobseeker } from "@/components/section/cta-footer-jobseeker";
 import { FaqFooter } from "@/components/section/faq-footer";
+import { WhyChooseUs } from "@/components/section/why-choose-us";
 // import { JobListHeader } from "@/components/jobs/joblist-header";
 
 export const metadata: Metadata = {
@@ -91,25 +92,6 @@ export default async function Talent({
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       <JobListHeader />
-
-      <JobListContainer
-        heading="Current Job Openings"
-        description=""
-        positions={positions?.success ? positions.items : []}
-        buttons={[
-          {
-            navLink: {
-              title: "View All",
-              url: "/talent/find-work",
-              follow: false,
-            },
-            variant: "link2",
-            size: "xl",
-            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
-          },
-        ]}
-      />
-
       {/* How it works Section */}
       <HowItWorks
         tagline="Your Career, Your Way – Work from Anywhere"
@@ -153,8 +135,62 @@ export default async function Talent({
         ]}
       />
 
-      {/* FAQ section */}
+      <JobListContainer
+        heading="Current Job Openings"
+        description=""
+        positions={positions?.success ? positions.items : []}
+        buttons={[
+          {
+            navLink: {
+              title: "View All",
+              url: "/talent/find-work",
+              follow: false,
+            },
+            variant: "link2",
+            size: "xl",
+            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          },
+        ]}
+      />
 
+      <WhyChooseUs
+        tagline="Why Choose Us?"
+        heading="Scale Your Business with Dedicated Virtual Talent"
+        description="We provide top-tier virtual assistants to help entrepreneurs and businesses focus on growth. Our team of skilled professionals ensures your daily operations run smoothly."
+        bulletPoints={[
+          "Hire pre-vetted, highly skilled virtual assistants.",
+          "Reduce operational costs while improving efficiency.",
+          "Focus on strategic growth while we handle the tasks.",
+        ]}
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Consultation",
+              url: "/book-consultation",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+          {
+            navLink: {
+              title: "Apply as a VA →",
+              url: "/apply",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+        ]}
+        image={{
+          src: "https://images.unsplash.com/photo-1487611459768-bd414656ea10?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          alt: "Businesswoman working in office",
+          width: 600,
+          height: 400,
+        }}
+      />
+
+      {/* FAQ section */}
       {/* FAQ Footer Section */}
       <FaqFooter
         heading="FAQs"
@@ -217,6 +253,12 @@ export default async function Talent({
             size: "xl",
           },
         ]}
+        image={{
+          src: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          alt: "Meeting with team",
+          width: 1000,
+          height: 1000,
+        }}
       />
     </main>
   );
