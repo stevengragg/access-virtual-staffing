@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-
 import { AccessPortalContainer } from "@/components/auth/access-portal-container";
 
 export const metadata: Metadata = {
@@ -25,18 +24,19 @@ export const metadata: Metadata = {
 
 export default function Auth() {
   return (
-    <section id="header" className="px-[5%]">
-      <div className="relative flex min-h-svh flex-col justify-start overflow-auto py-24 lg:py-20">
-        <div className="mx-auto w-full max-w-sm">
-          <div className="rb-6 mb-6 text-center md:mb-8">
-            <h1 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
-              Applicant Portal
-            </h1>
-            <p className="md:text-md">
-              Discover jobs that fits your skills and access your account to
-              manage your profile and job applications
-            </p>
-          </div>
+    <section className="flex items-center justify-center min-h-screen px-6 bg-gray-50">
+      <div className="w-full max-w-lg bg-white p-10 rounded-3xl shadow-2xl border border-gray-200">
+        {/* Header Section */}
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-900">Applicant Portal</h1>
+          <p className="mt-3 text-lg text-gray-600">
+            Find jobs that match your skills and access your account to manage
+            applications.
+          </p>
+        </div>
+
+        {/* Login & Signup Buttons */}
+        <div className="mt-8">
           <AccessPortalContainer />
         </div>
       </div>
