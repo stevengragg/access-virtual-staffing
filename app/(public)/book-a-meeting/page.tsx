@@ -17,7 +17,90 @@ export default function BookAMeeting({}: Props) {
         context="Book a discovery call with the professional team from Access Virtual Staffing today to learn how we can help you reduce your staffing costs by up to 70% with our talented Virtual Staff."
       /> */}
       {/* Calendly Form Section */}
-      <CalendlyForm />
+      <section className="flex flex-col md:flex-row px-[5%] py-16 md:py-24 lg:py-28 items-start justify-center align gap-x-6 md:gap-x-10 bg-gray-100">
+        {/* Left Pane */}
+        <div className="md:w-1/3 text-center md:text-left mt-3">
+          {/* Heading & Subheading */}
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+            Scale Your Business Efficiently with Top Virtual Talent
+          </h2>
+          <p className="text-lg font-semibold text-primaryBrightAqua mt-2">
+            Get the Support You Need to Focus on Growth
+          </p>
+
+          {/* Agenda Section */}
+          <div className="mt-6">
+            <h3 className="text-xl font-bold text-gray-900">
+              What We&apos;ll Cover:
+            </h3>
+            <ul className="mt-4 space-y-4">
+              <li className="flex items-start space-x-3">
+                <span className="text-primaryBrightAqua">✔</span>
+                <div>
+                  <p className="font-semibold text-gray-900">
+                    Understand Your Business Needs:
+                  </p>
+                  <p className="text-gray-600">
+                    We’ll discuss your challenges and how a virtual team can
+                    help optimize operations.
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start space-x-3">
+                <span className="text-primaryBrightAqua">✔</span>
+                <div>
+                  <p className="font-semibold text-gray-900">
+                    Identify the Right Virtual Assistant:
+                  </p>
+                  <p className="text-gray-600">
+                    Discover the skill set needed to streamline your daily tasks
+                    and boost efficiency.
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start space-x-3">
+                <span className="text-primaryBrightAqua">✔</span>
+                <div>
+                  <p className="font-semibold text-gray-900">
+                    Build a Scalable Virtual Staffing Plan:
+                  </p>
+                  <p className="text-gray-600">
+                    Learn how to integrate a remote team that supports your
+                    long-term business goals.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-6">
+            <p className="text-gray-600">
+              Can’t find a suitable time?{" "}
+              <a
+                href="mailto:support@accessvirtualstaffing.com"
+                className="text-primaryBrightAqua font-semibold"
+              >
+                Email us
+              </a>
+              , and we’ll set up a custom session for you.
+            </p>
+            <p className="mt-3 text-gray-600">
+              Looking for a VA role?{" "}
+              <a href="/apply" className="text-primaryBrightAqua font-semibold">
+                Apply Here!
+              </a>{" "}
+              Join our team and make an impact.
+            </p>
+          </div>
+        </div>
+
+        {/* Right Pane - Calendly Form */}
+        <div className="md:w-1/3">
+          <CalendlyForm />
+        </div>
+      </section>
+
       {/* FAQ Footer Section */}
       <FaqFooter
         heading="FAQs"
