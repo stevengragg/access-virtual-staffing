@@ -6,7 +6,7 @@ type Props = {};
 
 export const CalendlyForm = () => {
   return (
-    <div className="bg-white shadow-2xl rounded-lg shadow-[0px_5px_30px_rgba(0,0,0,0.5)] p-6 w-full max-w-[512px]">
+    <div className="bg-white shadow-2xl rounded-lg shadow-[0px_5px_30px_rgba(0,0,0,0.5)] pt-2 w-full max-w-[512px]">
       <InlineWidget
         url={
           process.env.NEXT_PUBLIC_CALENDLY_LINK ||
