@@ -1,8 +1,6 @@
-import { CalendlyForm } from "@/components/form/calendly-form";
 import { BusinessScalingCTA } from "@/components/section/business-scale-cta";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqFooter } from "@/components/section/faq-footer";
-import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { StrategyCallHeroHeader } from "@/components/section/strategy-call-hero-header";
 import { ChevronRight } from "lucide-react";
 
