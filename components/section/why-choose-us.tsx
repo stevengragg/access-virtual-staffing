@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-interface ButtonProps {
+type ButtonProps = {
   navLink: {
     title: string;
     url: string;
@@ -8,23 +8,23 @@ interface ButtonProps {
   };
   variant: "outline" | "secondary" | "link2";
   size: "xl" | "lg";
-}
+};
 
-interface ImageProps {
+type ImageProps = {
   src: string;
   alt: string;
   width: number;
   height: number;
-}
+};
 
-interface WhyChooseUsProps {
+type WhyChooseUsProps = {
   tagline: string;
   heading: string;
   description?: string;
   bulletPoints: string[];
   buttons: ButtonProps[];
   image: ImageProps;
-}
+};
 
 export const WhyChooseUs = ({
   tagline,
