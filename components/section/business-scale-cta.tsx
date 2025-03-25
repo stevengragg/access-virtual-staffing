@@ -1,5 +1,5 @@
 import { CalendlyForm } from "../form/calendly-form";
-import LinkButton, { LinkButtonProps } from "../ui/link-button";
+import { LinkButtonProps } from "../ui/link-button";
 
 type BusinessScalingCTAProps = {
   heading: string;
