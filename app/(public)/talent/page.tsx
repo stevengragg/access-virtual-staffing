@@ -190,7 +190,6 @@ export default async function Talent({
         }}
       />
 
-      {/* FAQ section */}
       {/* FAQ Footer Section */}
       <FaqFooter
         heading="FAQs"

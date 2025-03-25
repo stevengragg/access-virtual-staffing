@@ -53,7 +53,7 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
             <p className="mt-4 text-gray-700">
               {additionalInfo}{" "}
               <a
-                href="mailto:support@accessvirtualstaffing.com"
+                href="mailto:test@accessvirtualstaffing.com"
                 className="text-primaryBrightAqua underline"
               >
                 contact us

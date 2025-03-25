@@ -78,13 +78,13 @@ export const WhyChooseUs = ({
 
       {/* Right Section (Image) */}
       <div className="md:w-1/2 flex justify-center">
-        <div className="relative w-full h-80 md:h-full">
+        <div className="relative w-full h-80 md:h-full overflow-hidden rounded-lg group">
           <Image
             src={image.src}
             alt={image.alt}
             width={image.width}
             height={image.height}
-            className="w-full h-auto rounded-lg object-cover"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       </div>
