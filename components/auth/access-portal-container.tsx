@@ -1,7 +1,6 @@
 "use client";
 
 import { useUser } from "@auth0/nextjs-auth0/client";
-
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 type Props = {
@@ -14,52 +13,53 @@ export type AuthContainerProps = React.ComponentPropsWithoutRef<"section"> &
 
 export const AccessPortalContainer = (props: AuthContainerProps) => {
   const { user, isLoading, error } = useUser();
-  console.log(user);
   const { logInButton, signUpButton } = {
     ...AuthContainerDefaults,
     ...props,
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  if (isLoading)
+    return <div className="text-center text-gray-500">Loading...</div>;
+  if (error)
+    return <div className="text-center text-red-500">{error.message}</div>;
 
   if (user) {
     return (
-      <div className="grid grid-cols-1 gap-6">
+      <div className="mt-6">
         <LinkButton
           navLink={{
-            title: "Go to App",
+            title: "Go to Dashboard",
             url: "/app/overview",
             follow: false,
           }}
-          variant="default"
+          variant="primary"
           size="xl"
-          className="gap-x-3"
+          className="w-full py-3 rounded-lg text-lg font-semibold"
         />
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <LinkButton {...logInButton} className="gap-x-3" />
-
-      <LinkButton {...signUpButton} className="gap-x-3" />
+    <div className="grid gap-4 mt-6">
+      <LinkButton
+        {...logInButton}
+        className="w-full py-3 rounded-lg text-lg font-semibold"
+      />
+      <LinkButton
+        {...signUpButton}
+        className="w-full py-3 rounded-lg text-lg font-semibold"
+      />
     </div>
   );
 };
 
 export const AuthContainerDefaults: Props = {
   logInButton: {
-    navLink: {
-      title: "Login",
-      url: "/api/auth/login",
-      follow: false,
-    },
+    navLink: { title: "Login", url: "/api/auth/login", follow: false },
     variant: "default",
     size: "xl",
   },
-
   signUpButton: {
     navLink: {
       title: "Create Account",

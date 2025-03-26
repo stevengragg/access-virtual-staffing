@@ -1,7 +1,6 @@
-import { CalendlyForm } from "@/components/form/calendly-form";
+import { BusinessScalingCTA } from "@/components/section/business-scale-cta";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqFooter } from "@/components/section/faq-footer";
-import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { StrategyCallHeroHeader } from "@/components/section/strategy-call-hero-header";
 import { ChevronRight } from "lucide-react";
 
@@ -17,7 +16,34 @@ export default function BookAMeeting({}: Props) {
         context="Book a discovery call with the professional team from Access Virtual Staffing today to learn how we can help you reduce your staffing costs by up to 70% with our talented Virtual Staff."
       /> */}
       {/* Calendly Form Section */}
-      <CalendlyForm />
+      <BusinessScalingCTA
+        heading="Partner with Expert Virtual Assistants"
+        subheading="Let’s discuss how we can help streamline your business operations."
+        agenda={[
+          {
+            title: "Our Hiring Process",
+            description: "How we source and vet top-tier virtual assistants.",
+          },
+          {
+            title: "Tailored Solutions",
+            description: "Customizing services to fit your business needs.",
+          },
+        ]}
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Consultation",
+              url: "/schedule",
+              follow: true,
+            },
+            variant: "primary",
+            size: "lg",
+          },
+        ]}
+        footerText="Following our discussion, we will assess whether our solutions align with your business objectives. If so, we will collaborate to optimize your operations with highly skilled virtual assistants."
+        additionalInfo="If you’re unable to find a suitable time,"
+      />
+
       {/* FAQ Footer Section */}
       <FaqFooter
         heading="FAQs"

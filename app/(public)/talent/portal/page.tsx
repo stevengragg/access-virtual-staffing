@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-
+import Image from "next/image";
 import { AccessPortalContainer } from "@/components/auth/access-portal-container";
 
 export const metadata: Metadata = {
@@ -23,22 +23,42 @@ export const metadata: Metadata = {
   },
 };
 
+const image = {
+  src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80",
+  alt: "Modern office workspace",
+  width: 1920,
+  height: 1080,
+};
+
 export default function Auth() {
   return (
-    <section id="header" className="px-[5%]">
-      <div className="relative flex min-h-svh flex-col justify-start overflow-auto py-24 lg:py-20">
-        <div className="mx-auto w-full max-w-sm">
-          <div className="rb-6 mb-6 text-center md:mb-8">
-            <h1 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
-              Applicant Portal
-            </h1>
-            <p className="md:text-md">
-              Discover jobs that fits your skills and access your account to
-              manage your profile and job applications
-            </p>
-          </div>
-          <AccessPortalContainer />
+    <section className="relative flex items-center justify-center min-h-screen">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          className="w-full h-full object-cover"
+          layout="fill"
+          priority
+        />
+        <div className="absolute inset-0 bg-deepBlue bg-opacity-70"></div>
+      </div>
+
+      {/* Centered Card */}
+      <div className="relative z-10 w-full max-w-md bg-white p-12 rounded-3xl shadow-[0px_10px_80px_rgba(0,0,0,0.7)] border border-gray-200 bg-opacity-90 backdrop-blur-lg">
+        {/* Header Section */}
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold text-gray-900">
+            Applicant Portal
+          </h1>
+          <p className="mt-4 text-md text-gray-600 leading-relaxed">
+            Find jobs that match your skills and access your account to manage
+            applications.
+          </p>
         </div>
+
+        {/* Login & Signup Button */}
+        <AccessPortalContainer />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 import { JobListContainer } from "@/components/jobs/joblist-container";
 import { JobListHeader } from "@/components/jobs/joblist-header";
@@ -7,6 +7,7 @@ import { getJobs } from "@/lib/api/jobs";
 import { HowItWorks } from "@/components/section/how-it-works";
 import { CtaFooterJobseeker } from "@/components/section/cta-footer-jobseeker";
 import { FaqFooter } from "@/components/section/faq-footer";
+import { WhyChooseUs } from "@/components/section/why-choose-us";
 // import { JobListHeader } from "@/components/jobs/joblist-header";
 
 export const metadata: Metadata = {
@@ -91,23 +92,42 @@ export default async function Talent({
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       <JobListHeader />
-
-      <JobListContainer
-        heading="Current Job Openings"
-        description=""
-        positions={positions?.success ? positions.items : []}
+      <WhyChooseUs
+        tagline="Why Join Us?"
+        heading="Unlock New Opportunities as a Virtual Talent"
+        description="Join a network of skilled professionals and work with top-tier clients worldwide. We connect you with meaningful remote opportunities that align with your expertise and career goals."
+        bulletPoints={[
+          "Access high-quality remote job opportunities.",
+          "Work with reputable companies and entrepreneurs.",
+          "Enjoy flexibility while advancing your career.",
+        ]}
         buttons={[
           {
             navLink: {
-              title: "View All",
-              url: "/talent/find-work",
+              title: "Join Now",
+              url: "/talent/portal",
               follow: false,
             },
-            variant: "link2",
+            variant: "outline",
             size: "xl",
-            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          },
+          {
+            navLink: {
+              title: "Browse Jobs",
+              url: "#joblist_container",
+              follow: false,
+            },
+            icon: () => <ArrowRight className="text-white w-6 h-6" />,
+            variant: "secondary",
+            size: "xl",
           },
         ]}
+        image={{
+          src: "/img/laptop-desk-image.webp",
+          alt: "Remote professional working on a laptop",
+          width: 600,
+          height: 400,
+        }}
       />
 
       {/* How it works Section */}
@@ -153,7 +173,23 @@ export default async function Talent({
         ]}
       />
 
-      {/* FAQ section */}
+      <JobListContainer
+        heading="Current Job Openings"
+        description=""
+        positions={positions?.success ? positions.items : []}
+        buttons={[
+          {
+            navLink: {
+              title: "View All",
+              url: "/talent/find-work",
+              follow: false,
+            },
+            variant: "link2",
+            size: "xl",
+            icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
+          },
+        ]}
+      />
 
       {/* FAQ Footer Section */}
       <FaqFooter
@@ -217,6 +253,12 @@ export default async function Talent({
             size: "xl",
           },
         ]}
+        image={{
+          src: "/img/office-with-team.webp",
+          alt: "Meeting with team",
+          width: 1000,
+          height: 1000,
+        }}
       />
     </main>
   );

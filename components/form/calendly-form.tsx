@@ -2,23 +2,16 @@
 
 import { InlineWidget } from "react-calendly";
 
-type Props = {};
-
-export const CalendlyForm = (props: Props) => {
+export const CalendlyForm = () => {
   return (
-    <section
-      id="book"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBrightAqua"
-    >
-      <div className="container-xl h-full overflow-hidden">
-        <InlineWidget
-          url={
-            process.env.NEXT_PUBLIC_CALENDLY_LINK ||
-            "https://calendly.com/themorningrush/access-virtual-staffing-strategy-session-1?preview_source=et_card&month=2025-03"
-          }
-          styles={{ height: "700px" }}
-        />
-      </div>
-    </section>
+    <div className="bg-white shadow-2xl rounded-lg shadow-[0px_5px_30px_rgba(0,0,0,0.5)] pt-2 w-full max-w-[512px]">
+      <InlineWidget
+        url={
+          process.env.NEXT_PUBLIC_CALENDLY_LINK ||
+          "https://calendly.com/themorningrush/access-virtual-staffing-strategy-session-1?preview_source=et_card&month=2025-03"
+        }
+        styles={{ height: "1100px", width: "100%" }}
+      />
+    </div>
   );
 };
