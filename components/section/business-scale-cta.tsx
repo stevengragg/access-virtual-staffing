@@ -20,25 +20,25 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
         {/* Left Pane */}
         <div className="md:w-1/2 text-center md:text-left max-w-[512px]">
           {/* Heading & Subheading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
             {heading}
           </h2>
-          <p className="text-lg font-semibold text-primaryBrightAqua mt-2">
+          <p className="text-lg font-semibold text-deepBlue mt-2">
             {subheading}
           </p>
 
           {/* Agenda Section */}
           <div className="mt-6">
-            <h3 className="text-xl font-bold text-gray-900">
+            <h3 className="text-xl font-bold text-zinc-900">
               What We&apos;ll Cover:
             </h3>
             <ul className="mt-4 space-y-4">
               {agenda.map((item, index) => (
                 <li key={index} className="flex items-start space-x-3">
-                  <span className="text-primaryBrightAqua">✔</span>
+                  <span className="text-deepBlue">✔</span>
                   <div>
-                    <p className="font-semibold text-gray-900">{item.title}</p>
-                    <p className="text-gray-600">{item.description}</p>
+                    <p className="font-semibold text-zinc-900">{item.title}</p>
+                    <p className="text-zinc-600">{item.description}</p>
                   </div>
                 </li>
               ))}
@@ -46,22 +46,22 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
           </div>
 
           {/* Footer Text */}
-          {footerText && <p className="mt-6 text-gray-700">{footerText}</p>}
+          {footerText && <p className="mt-6 text-zinc-700">{footerText}</p>}
 
           {/* Additional Info with Links */}
           {additionalInfo && (
-            <p className="mt-4 text-gray-700">
+            <p className="mt-4 text-zinc-700">
               {additionalInfo}{" "}
               <a
                 href="mailto:test@accessvirtualstaffing.com"
-                className="text-primaryBrightAqua underline"
+                className="text-deepBlue underline"
               >
                 contact us
               </a>
               , and we’ll arrange a suitable time for you.
               <br />
               Are you applying as a Virtual Assistant?{" "}
-              <a href="/apply" className="text-primaryBrightAqua underline">
+              <a href="/apply" className="text-deepBlue underline">
                 Submit your application here.
               </a>
             </p>

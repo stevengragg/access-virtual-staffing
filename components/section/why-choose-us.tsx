@@ -1,14 +1,5 @@
 import Image from "next/image";
-
-type ButtonProps = {
-  navLink: {
-    title: string;
-    url: string;
-    follow?: boolean;
-  };
-  variant: "outline" | "secondary" | "link2";
-  size: "xl" | "lg";
-};
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 type ImageProps = {
   src: string;
@@ -22,8 +13,8 @@ type WhyChooseUsProps = {
   heading: string;
   description?: string;
   bulletPoints: string[];
-  buttons: ButtonProps[];
   image: ImageProps;
+  buttons: LinkButtonProps[];
 };
 
 export const WhyChooseUs = ({
@@ -59,19 +50,7 @@ export const WhyChooseUs = ({
         {/* Buttons */}
         <div className="mt-6 flex gap-4">
           {buttons.map((button, index) => (
-            <a
-              key={index}
-              href={button.navLink.url}
-              className={`px-5 py-2 border ${
-                button.variant === "outline"
-                  ? "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
-                  : button.variant === "secondary"
-                  ? "border-transparent bg-gray-900 text-white hover:bg-gray-700"
-                  : "text-gray-900 hover:underline"
-              } rounded-lg font-semibold transition`}
-            >
-              {button.navLink.title}
-            </a>
+            <LinkButton key={index} {...button} />
           ))}
         </div>
       </div>
