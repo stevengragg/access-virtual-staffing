@@ -1,10 +1,10 @@
 import { pgTable, serial, integer, text, timestamp } from "drizzle-orm/pg-core";
-import { usersTable } from "./users"; // Assuming users schema is defined in users.ts
+import { users } from "./users"; // Assuming users schema is defined in users.ts
 import { relations } from "drizzle-orm"; // Import relations
 
 export const notifications = pgTable("notifications", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => usersTable.id),
+  userId: integer("user_id").references(() => users.id),
   message: text("message"),
   createdAt: timestamp("created_at").defaultNow(),
   type: text("type"),
@@ -13,8 +13,8 @@ export const notifications = pgTable("notifications", {
 
 // Define relationships
 export const notificationsRelations = relations(notifications, ({ one }) => ({
-  user: one(usersTable, {
+  user: one(users, {
     fields: [notifications.userId],
-    references: [usersTable.id],
+    references: [users.id],
   }),
 }));

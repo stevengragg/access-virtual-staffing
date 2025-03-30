@@ -11,7 +11,7 @@ import {
   assessmentTests,
   workSamples,
 } from "@/database/schema/profiles";
-import { usersTable } from "@/database/schema/users"; // Import usersTable
+import { users } from "@/database/schema/users"; // Import users
 import { log } from "@/lib/logs";
 
 export async function GET(req: NextRequest) {
@@ -30,8 +30,8 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const user = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, session.user.sub),
+    const user = await db.query.users.findFirst({
+      where: eq(users.userId, session.user.sub),
     });
 
     if (!user) {

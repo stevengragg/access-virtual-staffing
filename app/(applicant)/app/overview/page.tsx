@@ -10,7 +10,7 @@ const stepper = {
   message: "Your application is 50% complete",
   maxValue: 13,
   currentValue: 10,
-}
+};
 
 export default withPageAuthRequired(
   function Overview() {
@@ -20,19 +20,18 @@ export default withPageAuthRequired(
     return (
       <div className="h-fit overflow-auto">
         <div className="container flex flex-col mt-4 gap-4 px-4">
-          <div className="w-full justify-end items-end py-2">
+          {/* <div className="w-full justify-end items-end py-2">
             <h1 className=" text-end">Profile last updated on: <span className="font-medium">Feb 12, 2025</span></h1>
-          </div>
+          </div> */}
           <Stepper
             message={stepper.message}
             maxValue={stepper.maxValue}
             currentValue={stepper.currentValue}
           />
           <Profile />
-          <RecommendedJobs/>
-          <AppliedJobs/>
+          <RecommendedJobs />
+          <AppliedJobs />
         </div>
-    
       </div>
     );
   },

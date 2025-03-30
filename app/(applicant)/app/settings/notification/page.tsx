@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { fetchApi } from "@/services/fetch-api";
+import { useUserInfo } from "@/hooks/use-user-info";
 
 import {
   notificationSchema,
@@ -34,10 +35,7 @@ export default function NotificationSettings() {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
 
-  const { data, error } = useSWR<NotificationSchema, Error>(
-    "/settings/notifications",
-    fetchApi
-  );
+  const { userInfo, error: userInfoError, isLoading } = useUserInfo();
 
   const form = useForm<NotificationSchema>({
     resolver: zodResolver(notificationSchema),
@@ -48,13 +46,13 @@ export default function NotificationSettings() {
   });
 
   React.useEffect(() => {
-    if (data) {
+    if (userInfo) {
       form.reset({
-        jobRecommendation: data.jobRecommendation === true,
-        jobSubmission: data.jobSubmission === true,
+        jobRecommendation: userInfo.jobRecommendationNotifPref === "enabled",
+        jobSubmission: userInfo.jobSubmissionNotifPref === "enabled",
       });
     }
-  }, [data, form]);
+  }, [userInfo, form]);
 
   const onSubmit = async (formData: NotificationSchema) => {
     setSubmitting(true);
@@ -95,11 +93,11 @@ export default function NotificationSettings() {
           <Form {...form}>
             <h2 className="font-semibold text-deepBlue">Jobs</h2>
             <Separator className="my-4 bg-gray-300" />
-            {error ? (
+            {userInfoError ? (
               <p className="text-red-500 text-center">
                 Failed to load settings.
               </p>
-            ) : !data ? (
+            ) : isLoading ? (
               <p className="text-gray-500 text-center">
                 Loading notification settings...
               </p>
@@ -164,8 +162,8 @@ export default function NotificationSettings() {
         <CardFooter className="flex justify-start space-x-2">
           <Button
             type="submit"
-            variant="default"
-            className="bg-deepBlue text-white min-w-[150px] my-4"
+            variant="primary"
+            className="min-w-[150px] my-4"
             disabled={submitting}
           >
             {submitting ? "Saving..." : "Update Notifications"}

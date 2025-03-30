@@ -1,10 +1,6 @@
-"usse client"
+"usse client";
 
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import ProfileCard from "./profile-overview-card";
 
@@ -33,22 +29,20 @@ const profileData = {
 };
 
 function ProfileOverviewDialog() {
-    return (
-        <Dialog>
-            <DialogTrigger>
-                <Button variant="ghostBlue" size="sm" className="font-medium">
-                    Preview Profile
-                </Button>
-            </DialogTrigger>
-            <DialogContent 
-                className="max-w-[90vw] sm:max-w-[80vw] md:max-w-[60vw] lg:max-w-[50vw] h-[80vh] flex flex-col"
-            >
-                <div className="flex-1 overflow-y-auto p-4">
-                    <ProfileCard profile={profileData} />
-                </div>
-            </DialogContent>
-        </Dialog>
-    );
+  return (
+    <Dialog>
+      <DialogTrigger>
+        <Button variant="ghostPrimary" size="sm" className="font-medium">
+          Preview Profile
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-[90vw] sm:max-w-[80vw] md:max-w-[60vw] lg:max-w-[50vw] h-[80vh] flex flex-col">
+        <div className="flex-1 overflow-y-auto p-4">
+          <ProfileCard profile={profileData} />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 export default ProfileOverviewDialog;
