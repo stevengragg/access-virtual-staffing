@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
 import { eq } from "drizzle-orm";
 import { fileUploads, profiles } from "@/database/schema/profiles";
-import { usersTable } from "@/database/schema/users";
+import { users } from "@/database/schema/users";
 import { db } from "@/database";
 import { gainRefreshedAccessToken } from "@/lib/api/authorization";
 import { log } from "@/lib/logs";
@@ -18,8 +18,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const user = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, session.user.sub),
+    const user = await db.query.users.findFirst({
+      where: eq(users.userId, session.user.sub),
     });
 
     if (!user) {

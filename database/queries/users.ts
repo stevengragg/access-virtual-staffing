@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/database";
-import { usersTable } from "@/database/schema";
+import { users } from "@/database/schema";
 import { IUserResponse } from "@/types/users";
 import { sql, eq } from "drizzle-orm";
 import { log } from "@/lib/logs";
@@ -10,8 +10,8 @@ export async function getUser(userId: number): Promise<IUserResponse> {
   try {
     const user = await db
       .select()
-      .from(usersTable)
-      .where(eq(usersTable.id, userId))
+      .from(users)
+      .where(eq(users.id, userId))
       .execute();
 
     if (user.length === 0) {

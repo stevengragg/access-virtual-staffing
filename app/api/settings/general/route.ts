@@ -3,7 +3,7 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { eq } from "drizzle-orm";
 
 import { db } from "@/database";
-import { usersTable } from "@/database/schema/users";
+import { users } from "@/database/schema/users";
 import { log } from "@/lib/logs";
 import { generalSchema } from "@/lib/validation/general-settings-form-validation";
 
@@ -19,8 +19,8 @@ export async function GET(req: NextRequest) {
     }
 
     // Fetch the user from the database
-    const user = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, session.user.sub),
+    const user = await db.query.users.findFirst({
+      where: eq(users.userId, session.user.sub),
     });
 
     if (!user) {
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
 
     // Update user settings in the database
     await db
-      .update(usersTable)
+      .update(users)
       .set({
         firstName,
         lastName,
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
         name: username,
         // profileImage: pfp
       })
-      .where(eq(usersTable.userId, session.user.sub));
+      .where(eq(users.userId, session.user.sub));
 
     return NextResponse.json({
       message: "General settings updated successfully!",

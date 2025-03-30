@@ -3,7 +3,7 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { eq } from "drizzle-orm";
 
 import { db } from "@/database";
-import { usersTable } from "@/database/schema/users";
+import { users } from "@/database/schema/users";
 import { log } from "@/lib/logs";
 
 export async function GET(req: NextRequest) {
@@ -18,8 +18,8 @@ export async function GET(req: NextRequest) {
     }
 
     // Fetch the user from the database
-    const user = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, session.user.sub),
+    const user = await db.query.users.findFirst({
+      where: eq(users.userId, session.user.sub),
     });
 
     console.log("Fetched user from DB:", user);
@@ -67,8 +67,8 @@ export async function POST(req: NextRequest) {
     log("POST /api/notifications", "info", { body });
 
     // Fetch the user using session.user.sub
-    const user = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, session.user.sub),
+    const user = await db.query.users.findFirst({
+      where: eq(users.userId, session.user.sub),
     });
 
     if (!user) {
@@ -80,18 +80,18 @@ export async function POST(req: NextRequest) {
 
     // Update preferences
     await db
-      .update(usersTable)
+      .update(users)
       .set({
         jobRecommendationNotifPref: body.jobRecommendation
           ? "enabled"
           : "disabled",
         jobSubmissionNotifPref: body.jobSubmission ? "enabled" : "disabled",
       })
-      .where(eq(usersTable.userId, user.userId));
+      .where(eq(users.userId, user.userId));
 
     // Verify updated user data
-    const updatedUser = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, user.userId),
+    const updatedUser = await db.query.users.findFirst({
+      where: eq(users.userId, user.userId),
     });
 
     console.log("Updated user from DB:", updatedUser);
