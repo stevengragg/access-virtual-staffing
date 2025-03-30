@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
 import Link from "next/link";
 import { useFieldArray } from "react-hook-form";
 import Image from "next/image";
 import useSWR from "swr";
 
+import { useUserInfo } from "@/hooks/use-user-info";
 import { EditProfileSchema } from "@/lib/validation/update-profile-form-validation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,12 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -43,11 +38,9 @@ import { fetchApi } from "@/services/fetch-api";
 import { AppError } from "@/utils/app-error";
 import { IProfileResponse } from "@/types/profiles";
 
-// const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 export default function EditProfileForm() {
   const profileDetailsForm = useProfileDetails();
-  const { user, isLoading } = useUser();
+  const { userInfo: user, isLoading } = useUserInfo();
   const { toast } = useToast();
   const [loading, setLoading] = React.useState<boolean>(false);
   const { data, error } = useSWR<IProfileResponse, AppError>(
@@ -178,10 +171,10 @@ export default function EditProfileForm() {
               <CardContent className="space-y-8">
                 <div className="flex flex-col gap-4">
                   <Label className="font-semibold text-sm text-zinc-700">
-                    Account Profile Image
+                    Profile Image
                   </Label>
                   <Image
-                    src={user?.picture || "#"}
+                    src={user?.profileImage || "#"}
                     alt="Avatar"
                     className="size-20 rounded-full object-cover"
                     width={50}
@@ -192,7 +185,9 @@ export default function EditProfileForm() {
                   <Label className="font-semibold text-sm text-zinc-700">
                     Full Name
                   </Label>
-                  <p>{user?.name}</p>
+                  <p>
+                    {user?.firstName} {user?.lastName}
+                  </p>
                 </div>
               </CardContent>
             </Card>

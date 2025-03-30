@@ -164,8 +164,8 @@ export default function NotificationSettings() {
         <CardFooter className="flex justify-start space-x-2">
           <Button
             type="submit"
-            variant="default"
-            className="bg-deepBlue text-white min-w-[150px] my-4"
+            variant="primary"
+            className="min-w-[150px] my-4"
             disabled={submitting}
           >
             {submitting ? "Saving..." : "Update Notifications"}

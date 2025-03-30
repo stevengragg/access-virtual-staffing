@@ -37,7 +37,7 @@ import {
   UserPen,
   Cog,
 } from "lucide-react";
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { useUserInfo } from "@/hooks/use-user-info";
 import { INotification } from "@/types/notification";
 
 import { ImageProps } from "@/types/general";
@@ -139,7 +139,7 @@ export type ApplicationShellProps = React.ComponentPropsWithoutRef<"section"> &
   };
 
 export const ApplicationShell = (props: ApplicationShellProps) => {
-  const { user } = useUser();
+  const { userInfo: user, isLoading } = useUserInfo(); // Added isLoading
   const { logo, navLinks, dropdown, children } = {
     ...ApplicationShellDefaults,
     ...props,
@@ -283,59 +283,73 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                   </div>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <DropdownMenu
-                onOpenChange={(open) => setIsUserDropdownOpen(open)}
-              >
-                <DropdownMenuTrigger className="flex items-center p-0">
-                  <Image
-                    src={user?.picture || ""}
-                    alt="Avatar"
-                    className="size-10 rounded-full object-cover"
-                    width={40}
-                    height={40}
-                  />
-
-                  <div className="ml-3 hidden md:flex md:items-center md:gap-2">
-                    <p>{user?.name || user?.nickname}</p>
-                    <RxChevronDown
-                      className={clsx(
-                        "shrink-0 text-text-primary transition-transform duration-300",
-                        {
-                          "rotate-180": isUserDropdownOpen,
-                          "rotate-0": !isUserDropdownOpen,
-                        }
-                      )}
-                    />
-                  </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="end"
-                  sideOffset={0}
-                  className="mt-1.5 min-w-32 px-0 py-2 md:min-w-48 bg-white "
+              {isLoading ? ( // Display loading state
+                <div className="animate-pulse rounded-full bg-gray-300 size-10"></div>
+              ) : (
+                <DropdownMenu
+                  onOpenChange={(open) => setIsUserDropdownOpen(open)}
                 >
-                  <DropdownMenuGroup>
-                    {dropdown &&
-                      dropdown.map((dropdownItem, idx) => (
-                        <DropdownMenuItem
-                          key={idx}
-                          className="hover:bg-zinc-100 hover:rounded-lg x-2"
-                        >
-                          <a
-                            target={dropdownItem.follow ? "_blank" : ""}
-                            href={dropdownItem.url || "#"}
-                          >
-                            {dropdownItem.title}
-                          </a>
-                        </DropdownMenuItem>
-                      ))}
+                  <DropdownMenuTrigger className="flex items-center p-0">
+                    <Image
+                      src={user?.profileImage || "/icons/default_avatar.png"}
+                      alt="Avatar"
+                      className="size-10 rounded-full object-cover"
+                      width={40}
+                      height={40}
+                    />
 
-                    <DropdownMenuSeparator className="mx-4" />
-                    <DropdownMenuItem>
-                      <a href="/api/auth/logout">Log Out</a>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                    <div className="ml-3 hidden md:flex md:items-center md:gap-2">
+                      <p>
+                        {user?.firstName && user?.lastName
+                          ? `${user?.firstName} ${user?.lastName}`
+                          : user?.username}
+                      </p>
+
+                      <RxChevronDown
+                        className={clsx(
+                          "shrink-0 text-text-primary transition-transform duration-300",
+                          {
+                            "rotate-180": isUserDropdownOpen,
+                            "rotate-0": !isUserDropdownOpen,
+                          }
+                        )}
+                      />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    sideOffset={0}
+                    className="mt-1.5 min-w-32 px-0 py-2 md:min-w-48 bg-white rounded-md  border border-zinc-300 "
+                  >
+                    <DropdownMenuGroup>
+                      {dropdown &&
+                        dropdown.map((dropdownItem, idx) => (
+                          <DropdownMenuItem
+                            key={idx}
+                            className="hover:bg-zinc-100 hover:rounded-lg x-2"
+                          >
+                            <a
+                              target={dropdownItem.follow ? "_blank" : ""}
+                              href={dropdownItem.url || "#"}
+                            >
+                              {dropdownItem.title}
+                            </a>
+                          </DropdownMenuItem>
+                        ))}
+
+                      <DropdownMenuSeparator className="mx-4" />
+                      <DropdownMenuItem>
+                        <a
+                          href="/api/auth/logout"
+                          className="text-deepBlue font-bold"
+                        >
+                          Log Out
+                        </a>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
             </div>
           </div>
         </div>

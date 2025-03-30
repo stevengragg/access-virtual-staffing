@@ -65,7 +65,8 @@ export default function ChangePassword() {
         <Button
           onClick={handleChangePassword}
           disabled={loading}
-          className="bg-deepBlue text-white min-w-[150px] my-4"
+          variant="primary"
+          className=" min-w-[150px] my-4"
         >
           {loading ? "Updating..." : "Reset Password via Email"}
         </Button>

@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 
 import { useUserInfo } from "@/hooks/use-user-info";
-
 import {
   generalSchema,
   GeneralSchema,
@@ -99,15 +102,42 @@ export default function GeneralSettings() {
             <>
               <div className="flex flex-col gap-4">
                 <h2 className="font-semibold text-sm text-gray-700">
-                  Account Profile Image
+                  Profile Image
                 </h2>
-                <Image
-                  src={userInfo?.profileImage || ""}
-                  alt="Avatar"
-                  className="size-20 rounded-full object-cover"
-                  width={50}
-                  height={50}
-                />
+                <div className="flex flex-row gap-5 items-center">
+                  <Image
+                    src={userInfo?.profileImage || ""}
+                    alt="Avatar"
+                    className="size-20 rounded-full object-cover"
+                    width={50}
+                    height={50}
+                  />
+                  <CldUploadWidget
+                    onSuccess={(result: CloudinaryUploadWidgetResults) => {
+                      if (typeof result.info !== "string") {
+                        // console.log(result.info?.url);
+                        console.log(result.info?.secure_url);
+                      }
+                    }}
+                    uploadPreset={
+                      process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_FOR_AVATARS?.toString() ||
+                      "ProfileImagePreset"
+                    }
+                  >
+                    {({ open }) => {
+                      return (
+                        <Button
+                          type="button"
+                          variant="primary"
+                          onClick={() => open()}
+                          disabled={submitting}
+                        >
+                          Replace
+                        </Button>
+                      );
+                    }}
+                  </CldUploadWidget>
+                </div>
               </div>
 
               <Form {...form}>
@@ -200,8 +230,8 @@ export default function GeneralSettings() {
         <CardFooter className="flex justify-start space-x-2 my-4">
           <Button
             type="submit"
-            variant="default"
-            className="bg-deepBlue text-white min-w-[150px]"
+            variant="primary"
+            className="min-w-[150px]"
             disabled={submitting}
           >
             {submitting ? "Saving..." : "Submit"}
