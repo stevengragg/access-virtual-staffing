@@ -17,4 +17,6 @@ export interface UserInfo {
   createdAt: Date;
   jobRecommendationNotifPref: string;
   jobSubmissionNotifPref: string;
+  jobSearchStatus: string;
+  isNewUser: boolean;
 }

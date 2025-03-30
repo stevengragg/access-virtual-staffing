@@ -7,7 +7,7 @@ export function useUserInfo() {
   const { data, error, isLoading } = useSWR<
     { userInfo: UserInfo; message: string; ok: boolean },
     Error
-  >("/settings/general", fetchApi);
+  >("/user", fetchApi);
 
   return {
     userInfo: data?.userInfo,

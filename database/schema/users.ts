@@ -19,12 +19,14 @@ export const users = pgTable("users", {
   provider: text("provider"),
   jobRecommendationNotifPref: varchar("job_recommendation_notif_pref")
     .default("enabled")
-    .notNull(),
+    .notNull(), //enabled,disabled
   jobSubmissionNotifPref: varchar("job_submission_notif_pref")
     .default("enabled")
-    .notNull(),
+    .notNull(), //enabed,disabled
   apiToken: text("api_token"),
   apiTokenExpiration: timestamp("api_token_expiration"),
   isNewUser: boolean("is_new_user").default(true).notNull(),
-  jobSearchStatus: text("job_search_status"), //ready_to_interview,open_to_offers,closed_to_offers
+  jobSearchStatus: text("job_search_status")
+    .default("ready_to_interview")
+    .notNull(), //ready_to_interview,open_to_offers,closed_to_offers
 });

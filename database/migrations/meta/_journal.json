@@ -57,6 +57,20 @@
       "when": 1743337870934,
       "tag": "0007_dizzy_guardian",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1743339196922,
+      "tag": "0008_empty_killmonger",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1743340013144,
+      "tag": "0009_whole_the_spike",
+      "breakpoints": true
     }
   ]
 }
