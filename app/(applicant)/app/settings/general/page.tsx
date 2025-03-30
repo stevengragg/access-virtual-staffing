@@ -1,12 +1,11 @@
 "use client";
 
-import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { fetchApi } from "@/services/fetch-api";
+
+import { useUserInfo } from "@/hooks/use-user-info";
 
 import {
   generalSchema,
@@ -32,14 +31,10 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
 export default function GeneralSettings() {
-  const { user } = useUser();
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const { data, error } = useSWR<GeneralSchema, Error>(
-    "/settings/general",
-    fetchApi
-  );
+  const { userInfo, error, isLoading } = useUserInfo();
 
   const form = useForm<GeneralSchema>({
     resolver: zodResolver(generalSchema),
@@ -52,10 +47,13 @@ export default function GeneralSettings() {
   });
 
   React.useEffect(() => {
-    if (data) {
-      form.reset(data);
+    if (userInfo) {
+      form.reset({
+        ...userInfo,
+        username: userInfo?.username || "",
+      });
     }
-  }, [data, form]);
+  }, [userInfo, form]);
 
   const onSubmit = async (formData: GeneralSchema) => {
     setSubmitting(true);
@@ -95,7 +93,7 @@ export default function GeneralSettings() {
         <CardContent className="space-y-8">
           {error ? (
             <p className="text-red-500 text-center">Failed to load profile.</p>
-          ) : !data ? (
+          ) : isLoading ? (
             <p className="text-gray-500 text-center">Loading profile...</p>
           ) : (
             <>
@@ -104,7 +102,7 @@ export default function GeneralSettings() {
                   Account Profile Image
                 </h2>
                 <Image
-                  src={user?.picture || ""}
+                  src={userInfo?.profileImage || ""}
                   alt="Avatar"
                   className="size-20 rounded-full object-cover"
                   width={50}

@@ -22,4 +22,6 @@ export const users = pgTable("users", {
   jobSubmissionNotifPref: varchar("job_submission_notif_pref")
     .default("enabled")
     .notNull(),
+  apiToken: text("api_token"),
+  apiTokenExpiration: timestamp("api_token_expiration"),
 });

@@ -32,10 +32,17 @@ export async function GET(req: NextRequest) {
 
     // Return the general settings
     return NextResponse.json({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      username: user.name,
+      userInfo: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.name,
+        profileImage: user.profileImage,
+        createdAt: user.createdAt,
+        jobRecommendationNotifPref: user.jobRecommendationNotifPref,
+        jobSubmissionNotifPref: user.jobSubmissionNotifPref,
+      },
+      message: "User info fetched successfully.",
       // pfp: user.profileImage,
       ok: true,
     });
