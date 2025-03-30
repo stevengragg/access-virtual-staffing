@@ -1,6 +1,6 @@
 {
-  "id": "e85cac2e-b261-4d1a-ac74-c0f5b3a80982",
-  "prevId": "77cd24ac-5ef8-4206-9c7c-743320d180ec",
+  "id": "8ccd8e1d-9a4d-41a7-9eaa-38b1920cfa1e",
+  "prevId": "cc349590-7018-4a0b-bb00-e1e6535763ef",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -94,14 +94,14 @@
           "primaryKey": false,
           "notNull": false
         },
-        "text": {
-          "name": "text",
+        "api_token_expiration": {
+          "name": "api_token_expiration",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         },
-        "isNewUser": {
-          "name": "isNewUser",
+        "is_new_user": {
+          "name": "is_new_user",
           "type": "boolean",
           "primaryKey": false,
           "notNull": true,

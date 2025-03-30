@@ -40,8 +40,22 @@
     {
       "idx": 5,
       "version": "7",
-      "when": 1743319825064,
-      "tag": "0005_parched_warhawk",
+      "when": 1743337698060,
+      "tag": "0005_perfect_leper_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1743337829232,
+      "tag": "0006_strong_thunderball",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1743337870934,
+      "tag": "0007_dizzy_guardian",
       "breakpoints": true
     }
   ]

@@ -1,4 +1,5 @@
 import {
+  boolean,
   integer,
   pgTable,
   text,
@@ -24,4 +25,6 @@ export const users = pgTable("users", {
     .notNull(),
   apiToken: text("api_token"),
   apiTokenExpiration: timestamp("api_token_expiration"),
+  isNewUser: boolean("is_new_user").default(true).notNull(),
+  jobSearchStatus: text("job_search_status"), //ready_to_interview,open_to_offers,closed_to_offers
 });
