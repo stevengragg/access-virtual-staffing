@@ -42,6 +42,7 @@ import { INotification } from "@/types/notification";
 
 import { ImageProps } from "@/types/general";
 import { getNotificationIcon } from "@/lib/get-icon-type";
+import { useNotifications } from "@/hooks/use-notifications";
 
 type NavLink = {
   url: string;
@@ -56,82 +57,6 @@ type Props = {
   navLinks: NavLink[];
   dropdown: NavLink[];
 };
-
-const notifications = [
-  {
-    title: "New Job",
-    message:
-      "New notification alert, click to open. sdsw asdawd awdaw dawd awd awd awdsdasdaw dawda dawd ",
-    date: "11 Jan 2022",
-    type: "recommendation",
-    link: "/app/jobs",
-    id: "1",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "reminder",
-    link: "#",
-    id: "2",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "job",
-    link: "#",
-    id: "3",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "info",
-    link: "#",
-    id: "4",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "update",
-    link: "#",
-    id: "5",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "job",
-    link: "#",
-    id: "6",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "job",
-    link: "#",
-    id: "7",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "job",
-    link: "#",
-    id: "8",
-  },
-  {
-    title: "New Job",
-    message: "New notification alert, click to open.",
-    date: "11 Jan 2022",
-    type: "job",
-    link: "#",
-    id: "9",
-  },
-];
 
 export type ApplicationShellProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props> & {
@@ -150,6 +75,11 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
     useState<boolean>(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
+
+  const { notifications } = useNotifications({
+    page: 1,
+    filter: "all",
+  });
 
   return (
     <section id="header" className="relative flex flex-col lg:flex-row">
