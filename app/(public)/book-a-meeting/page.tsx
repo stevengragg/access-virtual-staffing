@@ -17,31 +17,44 @@ export default function BookAMeeting({}: Props) {
       /> */}
       {/* Calendly Form Section */}
       <BusinessScalingCTA
-        heading="Partner with Expert Virtual Assistants"
-        subheading="Let’s discuss how we can help streamline your business operations."
+        heading="AVS Free Strategy Session"
+        subheading="Thank you for your interest in AVS! This 15-minute strategy session is designed to help you find the best virtual staffing solutions for your business. During this call, we’ll discuss your goals, challenges, and how AVS can help you scale efficiently with expert virtual support."
         agenda={[
           {
-            title: "Our Hiring Process",
-            description: "How we source and vet top-tier virtual assistants.",
+            title: "Discover how AVS can streamline your operations",
+            description: "",
           },
           {
-            title: "Tailored Solutions",
-            description: "Customizing services to fit your business needs.",
+            title: "Get insights on building a high-performing remote team",
+            description: "",
           },
-        ]}
-        buttons={[
           {
-            navLink: {
-              title: "Book a Consultation",
-              url: "/schedule",
-              follow: true,
-            },
-            variant: "primary",
-            size: "lg",
+            title: "Find the right staffing solutions tailored to your needs",
+            description: "",
           },
         ]}
         footerText="Following our discussion, we will assess whether our solutions align with your business objectives. If so, we will collaborate to optimize your operations with highly skilled virtual assistants."
-        additionalInfo="If you’re unable to find a suitable time,"
+        additionalInfo={
+          <p className="mt-4 text-zinc-700">
+            If you’re unable to find a suitable time, please{" "}
+            <a
+              href="mailto:support@accessvirtualstaffing.com"
+              className="text-deepBlue underline"
+            >
+              contact us
+            </a>
+            , and we’ll arrange a suitable time for you.
+            <br />
+            Are you applying as a Virtual Assistant?{" "}
+            <a href="/talent/portal" className="text-deepBlue underline">
+              Create a free account here
+            </a>{" "}
+            or{" "}
+            <a href="/talent" className="text-deepBlue underline">
+              Explore jobs.
+            </a>
+          </p>
+        }
       />
 
       {/* FAQ Footer Section */}
@@ -85,7 +98,7 @@ export default function BookAMeeting({}: Props) {
           {
             navLink: {
               title: "Schedule a Strategy Session",
-              url: "/book-a-meeting#book",
+              url: "/book-a-meeting#calendly",
               follow: false,
             },
             variant: "outline",

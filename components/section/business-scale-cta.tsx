@@ -5,17 +5,20 @@ type BusinessScalingCTAProps = {
   heading: string;
   subheading: string;
   agenda: { title: string; description: string }[];
-  buttons: LinkButtonProps[];
-  footerText?: string; // Main paragraph text
-  additionalInfo?: string; // New additional text (from the image)
+
+  footerText?: string;
+  additionalInfo?: React.ReactNode;
 };
 export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
-  const { heading, subheading, agenda, buttons, footerText, additionalInfo } = {
+  const { heading, subheading, agenda, footerText, additionalInfo } = {
     ...props,
   } as BusinessScalingCTAProps;
 
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-gray-100">
+    <section
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-gray-100"
+      id="calendly"
+    >
       <div className="container mx-auto flex flex-col md:flex-row items-start justify-center gap-x-6 md:gap-x-10 ">
         {/* Left Pane */}
         <div className="md:w-1/2 text-center md:text-left max-w-[512px]">
@@ -49,23 +52,7 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
           {footerText && <p className="mt-6 text-zinc-700">{footerText}</p>}
 
           {/* Additional Info with Links */}
-          {additionalInfo && (
-            <p className="mt-4 text-zinc-700">
-              {additionalInfo}{" "}
-              <a
-                href="mailto:test@accessvirtualstaffing.com"
-                className="text-deepBlue underline"
-              >
-                contact us
-              </a>
-              , and we’ll arrange a suitable time for you.
-              <br />
-              Are you applying as a Virtual Assistant?{" "}
-              <a href="/apply" className="text-deepBlue underline">
-                Submit your application here.
-              </a>
-            </p>
-          )}
+          {additionalInfo}
         </div>
 
         {/* Right Pane - Calendly Form */}
