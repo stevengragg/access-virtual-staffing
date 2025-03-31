@@ -1,6 +1,7 @@
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ImageProps } from "@/types/general";
 
 type Props = {
   heading: string;
@@ -20,7 +21,7 @@ export const StrategyCallHeroHeader = (props: StrategyCallHeroHeaderProps) => {
   return (
     <section
       id="relume"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-deepBlue"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
     >
       <div className="container">
         <div className="flex flex-col items-center">
@@ -45,10 +46,10 @@ export const StrategyCallHeroHeader = (props: StrategyCallHeroHeaderProps) => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="group">
             <Image
               src={image.src}
-              className="size-full object-cover rounded-lg "
+              className="size-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105 "
               alt={image.alt}
               width={image.width}
               height={image.height}
@@ -61,14 +62,14 @@ export const StrategyCallHeroHeader = (props: StrategyCallHeroHeaderProps) => {
 };
 
 export const StrategyCallHeroHeaderDefaults: Props = {
-  heading: "Free Strategy Session",
+  heading: "Schedule A Call With Us",
   description:
-    "Book a strategy session with the professional team from Access Virtual Staffing today to learn how we can help you reduce your staffing costs by up to 70% with our talented Virtual Staff.",
+    "In this personalized call, we’ll take the time to understand you, your business, and your virtual staffing needs. With years of experience helping businesses optimize their workforce, we’ll guide you in identifying key areas where hiring remote professionals can make the biggest impact. We’ll also introduce you to how AVS can support your growth with top-tier staffing solutions. Our goal is for you to leave this session with a clear understanding of your hiring priorities and actionable insights to move forward with confidence.",
   buttons: [
     {
       navLink: {
         title: "Schedule a Strategy Session",
-        url: "/book-a-meeting#book",
+        url: "/book-a-meeting#calendly",
         follow: false,
       },
       variant: "outline",

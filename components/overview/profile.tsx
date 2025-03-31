@@ -2,29 +2,41 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 import Image from "next/image";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { useUserInfo } from "@/hooks/use-user-info"; // Updated import
 import ProfileOverviewDialog from "../profile/profile-overview-dialog";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
+import { IProfileResponse } from "@/types/profiles";
+import { AppError } from "@/utils/app-error";
+import { fetchApi } from "@/services/fetch-api";
 
 const Profile = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { userInfo, isLoading } = useUserInfo(); // Updated hook usage
+  const { data, error } = useSWR<IProfileResponse, AppError>(
+    "/profile",
+    fetchApi
+  );
+  if (isLoading) {
+    return <p>Loading...</p>; // Handle loading state
+  }
+
   return (
     <Card className="w-full p-6 border border-gray-200 flex flex-col justify-between">
       <div className=" flex justify-between items-start gap-4">
         <div className="flex justify-between items-start gap-4">
           <div className="flex items-center gap-4">
             <Image
-              src={user?.picture || ""}
+              src={userInfo?.profileImage || ""}
               alt="Avatar"
               className="size-20 rounded-full object-cover"
               width={150}
@@ -33,14 +45,23 @@ const Profile = () => {
           </div>
           <div className="">
             <div className="mb-4">
-              <h2 className="text-lg font-semibold">{user?.name}</h2>
-              <p className="text-sm text-gray-500">Lead Developer @ MedSurf</p>
-              <p className="text-sm text-gray-500">Philippines</p>
+              <h2 className="text-lg font-semibold">
+                {" "}
+                {userInfo?.firstName && userInfo?.lastName
+                  ? `${userInfo?.firstName} ${userInfo?.lastName}`
+                  : userInfo?.username}
+              </h2>
+              <p className="text-sm text-gray-500">
+                {data?.profile?.jobTitle || "..."}
+              </p>
+              <p className="text-sm text-gray-500">
+                {data?.profile?.address || "..."}
+              </p>
             </div>
           </div>
         </div>
         <div>
-          <ProfileOverviewDialog />
+          {/* <ProfileOverviewDialog /> */}
           <Button
             variant="ghostPrimary"
             size="sm"
@@ -52,7 +73,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 p-4">
+      {/* <div className="flex flex-col gap-2 p-4">
         <p className="text-sm font-semibold">
           Where are you in your job search?
         </p>
@@ -72,7 +93,7 @@ const Profile = () => {
             <SelectItem value="not-interested">Not Interested</SelectItem>
           </SelectContent>
         </Select>{" "}
-      </div>
+      </div> */}
     </Card>
   );
 };

@@ -66,6 +66,9 @@ export const fetchJobListings = async (
       (field: any) => field.external_id === "estimated-salary"
     )?.values[0];
     console.log(estimatedSalary);
+    const description =
+      item.fields?.find((field: any) => field.external_id === "job-description")
+        ?.values[0]?.value || "No description provided";
     return {
       id: item.app_item_id,
       title,
@@ -80,6 +83,7 @@ export const fetchJobListings = async (
       //"https://podio.com/webforms/29994876/2499223"
       createdAt: item.created_on,
       postedBy: item.created_by.name,
+      description,
     };
   });
 

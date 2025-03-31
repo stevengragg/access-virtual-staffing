@@ -6,7 +6,7 @@ import { useProfileFiles } from "@/context/profile-files-context";
 import { useProfileTabContext } from "@/context/profile-tab-context";
 import { FileUploadSchema } from "@/lib/validation/update-files-form-validation";
 
-import ProfileOverviewDialog from "@/components/profile/profile-overview-dialog";
+// import ProfileOverviewDialog from "@/components/profile/profile-overview-dialog";
 
 const ProfileHeader = () => {
   const { currentTab, setCurrentTab } = useProfileTabContext();
@@ -72,7 +72,7 @@ const ProfileHeader = () => {
         <div className="w-full flex items-center justify-between border-t border-b p-2">
           <h1 className=" text-2xl font-bold md:text-3xl">Profile</h1>
           <div className="flex gap-2">
-            {currentTab === "Profile" && <ProfileOverviewDialog />}
+            {/* {currentTab === "Profile" && <ProfileOverviewDialog />} */}
             {currentTab === "Profile" && (
               <Button
                 variant="primaryBlue"

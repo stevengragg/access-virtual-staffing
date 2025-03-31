@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     const profileId = existingProfile.id;
 
     const formData = await req.formData();
-    console.log(formData);
+    log("POST /api/profile/update-files", "info", { formData });
     const fileEntries = Array.from(formData.entries());
     console.log(fileEntries);
 

@@ -7,6 +7,7 @@ import {
   SiteNavbarDefaultProps,
 } from "@/components/layout/site-navigation";
 import ScrollToTop from "@/components/ui/scroll-to-top";
+import { CtaNewsLetter } from "@/components/section/cta-newsletter";
 
 export default async function PublicRootLayout({
   children,
@@ -48,6 +49,7 @@ export default async function PublicRootLayout({
     <>
       <SiteNavbar />
       {children}
+      <CtaNewsLetter />
       <Footer />
       <SpeedInsights />
       <ScrollToTop />

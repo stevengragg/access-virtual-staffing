@@ -8,6 +8,7 @@ import {
   CldUploadWidget,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
+import { fetchApi } from "@/services/fetch-api";
 
 import { useUserInfo } from "@/hooks/use-user-info";
 import {
@@ -61,9 +62,10 @@ export default function GeneralSettings() {
   const onSubmit = async (formData: GeneralSchema) => {
     setSubmitting(true);
     try {
-      const response = await fetch("/api/settings/general", {
+      // TODO: infer the type of response
+      const response = await fetchApi<any>("/settings/general", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+
         body: JSON.stringify(formData),
       });
 
@@ -113,16 +115,48 @@ export default function GeneralSettings() {
                     height={50}
                   />
                   <CldUploadWidget
-                    onSuccess={(result: CloudinaryUploadWidgetResults) => {
+                    options={{
+                      sources: ["local", "google_drive", "dropbox", "unsplash"],
+                      resourceType: "image",
+                      clientAllowedFormats: ["png", "jpg", "jpeg", "gif"],
+                    }}
+                    onSuccess={async (
+                      result: CloudinaryUploadWidgetResults
+                    ) => {
                       if (typeof result.info !== "string") {
-                        // console.log(result.info?.url);
-                        console.log(result.info?.secure_url);
+                        const secureUrl = result.info?.secure_url;
+                        console.log(secureUrl);
+                        if (secureUrl) {
+                          try {
+                            await fetch("/api/profile/update-avatar", {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                              body: JSON.stringify({
+                                profileImageURL: secureUrl,
+                              }),
+                            });
+                            window.location.reload();
+                            toast({
+                              title: "Success",
+                              description:
+                                "Profile image updated successfully!",
+                              variant: "success",
+                            });
+                          } catch (error) {
+                            console.error("Error updating avatar:", error);
+                            toast({
+                              title: "Error",
+                              description:
+                                "Failed to update profile image. Please try again.",
+                              variant: "destructive",
+                            });
+                          }
+                        }
                       }
                     }}
-                    uploadPreset={
-                      process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_FOR_AVATARS?.toString() ||
-                      "ProfileImagePreset"
-                    }
+                    uploadPreset={"ProfileImagePreset"}
                   >
                     {({ open }) => {
                       return (
