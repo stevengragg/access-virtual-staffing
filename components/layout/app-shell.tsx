@@ -138,7 +138,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                   <div
                     className={clsx(
                       "transition-all p-2 rounded-full",
-                      isNotificationsOpen ? "bg-deepBlue" : "bg-white"
+                      isNotificationsOpen ? "bg-deepBlue" : "bg-zinc-300"
                     )}
                   >
                     <BiBell
