@@ -18,6 +18,7 @@ export const OnboardingModal = () => {
     fetchApi
   );
   const [activeStep, setActiveStep] = useState(1);
+  const [open, setOpen] = useState(true);
 
   const isNewUser = data?.isNewUser ?? false;
 
@@ -37,16 +38,17 @@ export const OnboardingModal = () => {
       const result: UserResponse = await response.json();
       if (result.ok) {
         mutate({ isNewUser: false, ok: true }, false);
+        setOpen(false);
       }
     } catch (error) {
       console.error("Error updating user status:", error);
     }
   };
 
-  if (!isNewUser) return null;
+  if (!isNewUser || !open) return null;
 
   return (
-    <Dialog defaultOpen={true} modal>
+    <Dialog defaultOpen={true} modal open={open} onOpenChange={setOpen}>
       <DialogContent
         className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg text-center [&>button]:hidden"
         onPointerDownOutside={(e) => e.preventDefault()} // Prevent closing when clicking outside

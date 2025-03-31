@@ -11,6 +11,7 @@ export function useNotifications({ page = 1, filter = "all" }) {
     const fetchNotifications = async () => {
       setLoading(true);
       try {
+        // TODO: Lee fetchApi
         const response = await fetch(
           `/api/notifications?page=${page}&limit=10&filter=${filter}`
         );

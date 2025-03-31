@@ -6,12 +6,6 @@ import Stepper from "@/components/overview/progress";
 import RecommendedJobs from "@/components/overview/recommended-jobs";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-const stepper = {
-  message: "Your application is 50% complete",
-  maxValue: 13,
-  currentValue: 10,
-};
-
 export default withPageAuthRequired(
   function Overview() {
     const { isLoading, error } = useUser();

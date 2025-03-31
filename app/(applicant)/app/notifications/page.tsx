@@ -53,55 +53,67 @@ function NotificationsPage() {
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent className="bg-white">
-                <SelectItem value="all">All</SelectItem>
+                {/* <SelectItem value="all">All</SelectItem>
                 <SelectItem value="recommendation">Recommendation</SelectItem>
                 <SelectItem value="reminder">Reminder</SelectItem>
                 <SelectItem value="info">Info</SelectItem>
-                <SelectItem value="update">Update</SelectItem>
+                <SelectItem value="update">Update</SelectItem> */}
+
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="job_submissions">Recommendation</SelectItem>
+                <SelectItem value="jobs">Jobs</SelectItem>
+                <SelectItem value="info">Info</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           {/* Unread Toggle */}
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <label className="text-sm font-medium">Show Unread Only:</label>
             <Switch
               checked={showUnreadOnly}
               onCheckedChange={setShowUnreadOnly}
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Notifications List */}
-        <div className="grid grid-cols-1 gap-4">
-          {loading && <p>Loading notifications...</p>}
-          {error && <p className="text-red-500">Error: {error}</p>}
-          {notifications.length === 0 && !loading && (
-            <p>No notifications found.</p>
-          )}
 
-          {notifications.map((notification: INotification) => (
-            <a
-              key={notification.id}
-              href={notification.link}
-              className="flex items-start gap-4 p-4 border rounded-lg cursor-pointer border-gray-200 hover:bg-gray-100"
-            >
-              <div>{getNotificationIcon(notification.type)}</div>
-              <div>
-                <p className="text-sm text-gray-600">{notification.message}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {notification.date}
-                </p>
-              </div>
-            </a>
-          ))}
-        </div>
+        {loading ? (
+          <p>Loading notifications...</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4">
+            {error && <p className="text-red-500">Error: {error}</p>}
+            {notifications.length === 0 && !loading && (
+              <p>No notifications found.</p>
+            )}
+
+            {notifications.map((notification: INotification) => (
+              <a
+                key={notification.id}
+                href={notification.link}
+                className="flex items-start gap-4 p-4 border rounded-lg cursor-pointer border-gray-200 hover:bg-gray-100"
+              >
+                <div>{getNotificationIcon(notification.type)}</div>
+                <div>
+                  <p className="text-sm text-gray-600">
+                    {notification.message}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notification.date}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
 
         {/* Load More Button */}
         {hasMore && (
           <div className="mt-4 flex justify-center">
+            {/* TODO Lee: make the blank spinner */}
             <Button variant="ghost" onClick={handleLoadMore} disabled={loading}>
-              {loading ? "Loading..." : "Load More"}
+              {loading ? " " : "Load More"}
             </Button>
           </div>
         )}
