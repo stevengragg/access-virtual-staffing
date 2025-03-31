@@ -1,12 +1,6 @@
 import Image from "next/image";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from "@/types/general";
 
 type WhyChooseUsProps = {
   tagline: string;
