@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { db } from "@/database";
 import { notifications } from "@/database/schema/notifications";
-import { usersTable } from "@/database/schema/users";
+import { users } from "@/database/schema/users";
 
 export async function GET(req: NextRequest) {
   try {
@@ -19,9 +19,9 @@ export async function GET(req: NextRequest) {
 
     // Find the user in the database
     const user = await db
-      .select({ id: usersTable.id })
-      .from(usersTable)
-      .where(eq(usersTable.userId, session.user.sub))
+      .select({ id: users.id })
+      .from(users)
+      .where(eq(users.userId, session.user.sub))
       .limit(1);
 
     if (!user.length) {

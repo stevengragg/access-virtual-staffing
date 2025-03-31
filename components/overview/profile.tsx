@@ -42,7 +42,7 @@ const Profile = () => {
         <div>
           <ProfileOverviewDialog />
           <Button
-            variant="ghostBlue"
+            variant="ghostPrimary"
             size="sm"
             className="font-medium"
             onClick={() => router.push("/app/profile")}

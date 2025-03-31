@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 
 import { db } from "@/database";
-import { usersTable } from "@/database/schema";
+import { users } from "@/database/schema";
 
 export async function POST(req: Request) {
   try {
@@ -21,12 +21,12 @@ export async function POST(req: Request) {
     console.log({ user_id, email, name, picture, given_name, family_name });
 
     // Check if user already exists
-    const existingUser = await db.query.usersTable.findFirst({
-      where: eq(usersTable.userId, user_id),
+    const existingUser = await db.query.users.findFirst({
+      where: eq(users.userId, user_id),
     });
 
     if (!existingUser) {
-      await db.insert(usersTable).values({
+      await db.insert(users).values({
         userId: user_id,
         email,
         firstName: given_name ?? "",

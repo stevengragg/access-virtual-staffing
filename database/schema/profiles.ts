@@ -2,20 +2,19 @@ import {
   pgTable,
   serial,
   text,
-  boolean,
   integer,
   date,
   varchar,
   timestamp,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
-import { usersTable } from "./users";
+import { users } from "./users";
 
 export const profiles = pgTable("profiles", {
   id: serial("id").primaryKey(),
   jobTitle: text("job_title").notNull(),
   userId: integer("user_id")
-    .references(() => usersTable.id, { onDelete: "cascade" })
+    .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
   whyFit: text("why_fit").notNull(),
   whatStrengths: text("what_strengths").notNull(),
@@ -96,14 +95,14 @@ export const fileUploads = pgTable("file_uploads", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const usersRelations = relations(usersTable, ({ many }) => ({
+export const usersRelations = relations(users, ({ many }) => ({
   profiles: many(profiles),
 }));
 
 export const profilesRelations = relations(profiles, ({ one, many }) => ({
-  user: one(usersTable, {
+  user: one(users, {
     fields: [profiles.userId],
-    references: [usersTable.id],
+    references: [users.id],
   }),
   phones: many(phones),
   emails: many(emails),

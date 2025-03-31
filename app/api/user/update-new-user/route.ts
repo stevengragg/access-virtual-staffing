@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
 import { db } from "@/database";
-import { usersTable } from "@/database/schema";
+import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
 
 export async function GET(req: NextRequest) {
@@ -17,9 +17,9 @@ export async function GET(req: NextRequest) {
 
     // Fetch user data
     const user = await db
-      .select({ isNewUser: usersTable.isNewUser })
-      .from(usersTable)
-      .where(eq(usersTable.userId, session.user.sub))
+      .select({ isNewUser: users.isNewUser })
+      .from(users)
+      .where(eq(users.userId, session.user.sub))
       .limit(1);
 
     if (!user.length) {
@@ -59,9 +59,9 @@ export async function POST(req: NextRequest) {
 
     // Update isNewUser to false in the database
     await db
-      .update(usersTable)
+      .update(users)
       .set({ isNewUser: false })
-      .where(eq(usersTable.userId, session.user.sub));
+      .where(eq(users.userId, session.user.sub));
 
     return NextResponse.json({
       message: "User updated successfully!",
