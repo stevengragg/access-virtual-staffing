@@ -4,6 +4,7 @@ import {
   text,
   timestamp,
   varchar,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
@@ -22,4 +23,5 @@ export const usersTable = pgTable("users", {
   jobSubmissionNotifPref: varchar("job_submission_notif_pref")
     .default("enabled")
     .notNull(),
+  isNewUser: boolean("is_new_user").default(true).notNull(),
 });

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import { ApplicationShell } from "@/components/layout/app-shell";
 import { Toaster } from "@/components/ui/toaster";
+import { OnboardingModal } from "@/components/on-boarding/on-boarding-modal";
 
 export const metadata: Metadata = {
   title: "Applicant Portal - Access Virtual Staffing",
@@ -36,6 +37,8 @@ export default function AppRootLayout({
         {children}
         <Toaster />
       </ApplicationShell>
+
+      <OnboardingModal />
     </>
   );
 }
