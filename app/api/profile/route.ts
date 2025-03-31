@@ -10,6 +10,7 @@ import {
   contentLinks,
   assessmentTests,
   workSamples,
+  fileUploads, // Import fileUploads
 } from "@/database/schema/profiles";
 import { usersTable } from "@/database/schema/users"; // Import usersTable
 import { log } from "@/lib/logs";
@@ -66,6 +67,7 @@ export async function GET(req: NextRequest) {
     }
 
     log("GET /api/profile", "info", { profile: existingProfile });
+
     return NextResponse.json({
       message: "Success!",
       ok: true,
@@ -84,6 +86,9 @@ export async function GET(req: NextRequest) {
       }),
       workSamples: await db.query.workSamples.findMany({
         where: eq(workSamples.profileId, existingProfile.id),
+      }),
+      fileUploads: await db.query.fileUploads.findMany({
+        where: eq(fileUploads.profileId, existingProfile.id),
       }),
     });
   } catch (error: any) {
