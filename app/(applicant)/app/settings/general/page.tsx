@@ -62,9 +62,10 @@ export default function GeneralSettings() {
   const onSubmit = async (formData: GeneralSchema) => {
     setSubmitting(true);
     try {
-      const response = await fetch("/api/settings/general", {
+      // TODO: infer the type of response
+      const response = await fetchApi<any>("/settings/general", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+
         body: JSON.stringify(formData),
       });
 
@@ -155,10 +156,7 @@ export default function GeneralSettings() {
                         }
                       }
                     }}
-                    uploadPreset={
-                      process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_FOR_AVATARS?.toString() ||
-                      "ProfileImagePreset"
-                    }
+                    uploadPreset={"ProfileImagePreset"}
                   >
                     {({ open }) => {
                       return (

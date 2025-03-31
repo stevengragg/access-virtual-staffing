@@ -5,6 +5,18 @@ export interface IProfileResponse {
     hasPaypal: string;
     salaryUnit: string;
     howHear: string;
+    jobTitle: string;
+    whyFit: string;
+    whatStrengths: string;
+    whatNeedImprovement: string;
+    address: string;
+    skypeId: string;
+    dateOfBirth: string;
+    numberOfChildren: string;
+    internetProvider: string;
+    numberOfMonitors: string;
+    numberOfExperience: string;
+    referrer?: string;
   };
   phones: { type: string; number: string }[];
   emails: { type: string; address: string }[];

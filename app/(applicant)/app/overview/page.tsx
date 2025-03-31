@@ -1,10 +1,9 @@
-"use client";
-
 import AppliedJobs from "@/components/overview/applied-jobs";
 import Profile from "@/components/overview/profile";
 import Stepper from "@/components/overview/progress";
 import RecommendedJobs from "@/components/overview/recommended-jobs";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { getJobs } from "@/lib/api/jobs";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 const stepper = {
   message: "Your application is 50% complete",
@@ -13,10 +12,25 @@ const stepper = {
 };
 
 export default withPageAuthRequired(
-  function Overview() {
-    const { isLoading, error } = useUser();
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>{error.message}</div>;
+  async function Overview() {
+    const positionsResponse = await getJobs(
+      {
+        offset: 0,
+        sort_by: "created_on",
+        sort_desc: true,
+        limit: 3,
+        filters: {
+          "job-posting-status": 3,
+        },
+      },
+      undefined,
+      true
+    );
+
+    const positions = Array.isArray(positionsResponse?.items)
+      ? positionsResponse.items
+      : [];
+
     return (
       <div className="h-fit overflow-auto">
         <div className="container flex flex-col mt-4 gap-4 px-4">
@@ -29,7 +43,7 @@ export default withPageAuthRequired(
             currentValue={stepper.currentValue}
           />
           <Profile />
-          <RecommendedJobs />
+          <RecommendedJobs positions={positions || []} />
           <AppliedJobs />
         </div>
       </div>

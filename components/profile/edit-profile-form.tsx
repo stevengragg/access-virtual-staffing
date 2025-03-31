@@ -104,6 +104,9 @@ export default function EditProfileForm() {
         assessmentTests: data.assessmentTests,
         workSamples: data.workSamples,
         desiredSalary: parseInt(data?.profile?.desiredSalary, 10),
+        dateOfBirth: data.profile.dateOfBirth
+          ? new Date(data.profile.dateOfBirth)
+          : undefined,
       });
     }
   }, [data]);

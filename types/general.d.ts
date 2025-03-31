@@ -16,7 +16,7 @@ export interface JobListing {
   postedBy: string;
 }
 
-export type Position = {
+export type PositionProps = {
   position: JobListing;
 };
 

@@ -1,171 +1,201 @@
 "use client";
 
-import { useForm, useFieldArray } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FileUploadSchema } from "@/lib/validation/update-files-form-validation";
-import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
-import FileUpload from "@/components/profile/file-upload";
-import { useProfileFiles } from "@/context/profile-files-context";
+import { useToast } from "@/hooks/use-toast";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
+import useSWR from "swr";
+import { fetchApi } from "@/services/fetch-api";
+import { X } from "lucide-react";
+import { useState } from "react";
+
+interface ProfileData {
+  fileAttachments: {
+    id: string;
+    filename: string;
+    link: string;
+    type: string;
+  }[];
+}
 
 const UploadFilesForm = () => {
-  const { handleSubmit, control, watch, formState } = useProfileFiles();
-  // Define useFieldArray for each file field
-  const resumeArray = useFieldArray({ control, name: "resume" });
-  const pfpArray = useFieldArray({ control, name: "pfp" });
-  const internetScreenshotArray = useFieldArray({
-    control,
-    name: "internetScreenshot",
-  });
-  const computerSpecsArray = useFieldArray({
-    control,
-    name: "computerSpecsScreenshot",
-  });
-  const workstationPhotoArray = useFieldArray({
-    control,
-    name: "workstationPhoto",
-  });
-  const attachmentsArray = useFieldArray({ control, name: "attachments" });
+  const { toast } = useToast();
+  const [uploading, setUploading] = useState(false);
 
-  //Sample request body that is sent
-  /*
-    "resume": [
-      {
-        "file": {}
-      }
-    ],
-    "pfp": [],
-    "internetScreenshot": [],
-    "computerSpecsScreenshot": [],
-    "workstationPhoto": [],
-    "attachments": []
-  }
-  */
+  const { data, error, isLoading, mutate } = useSWR<ProfileData>(
+    "/profile",
+    fetchApi
+  );
 
-  const onSubmit = (data: FileUploadSchema) => {
-    console.log(
-      "📤 Data before FormData conversion:",
-      JSON.stringify(data, null, 2)
-    );
+  const fileFields = [
+    {
+      label: "Resume",
+      name: "resume",
+      type: "resume",
+      preset: "ProfileResume",
+    },
+    {
+      label: "1x1 Picture",
+      name: "pfp",
+      type: "professional_picture",
+      preset: "ProfessionalPicture",
+    },
+    {
+      label: "Internet Screenshot",
+      name: "internetScreenshot",
+      type: "internet",
+      preset: "ProfileInternetScreenshot",
+    },
+    {
+      label: "Computer Specs Screenshot",
+      name: "computerSpecsScreenshot",
+      type: "computer_specs",
+      preset: "ProfileComputerSpecs",
+    },
+    {
+      label: "Workstation Photo",
+      name: "workstationPhoto",
+      type: "work_station",
+      preset: "ProfileWorkStation",
+    },
+  ];
 
-    const formData = new FormData();
-
-    Object.entries(data).forEach(([key, files]) => {
-      if (Array.isArray(files)) {
-        files.forEach(({ file }) => {
-          if (file) formData.append(key, file);
+  const handleUploadSuccess = async (
+    type: string,
+    result: CloudinaryUploadWidgetResults
+  ) => {
+    const info = result.info as CloudinaryUploadWidgetResults["info"];
+    if (info && typeof info !== "string") {
+      const { public_id, secure_url, original_filename } = info;
+      setUploading(true);
+      try {
+        const response = await fetchApi<any>("/profile/upload-file", {
+          method: "POST",
+          body: JSON.stringify({
+            type,
+            publicId: public_id,
+            fileUrl: secure_url,
+            filename: original_filename || "Unknown",
+          }),
         });
-      }
-    });
 
-    console.log("📤 FormData Contents:");
-    Array.from(formData.entries()).forEach(([key, value]) => {
-      console.log(
-        `${key}:`,
-        value instanceof File
-          ? `(File: ${value.name}, Size: ${value.size} bytes)`
-          : value
-      );
-    });
+        if (!response.ok) throw new Error("Failed to upload file");
+
+        toast({
+          title: "Success",
+          description: `${type} uploaded successfully!`,
+          variant: "success",
+        });
+
+        mutate(); // Refresh the data after successful upload
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        toast({
+          title: "Error",
+          description: `Failed to upload ${type}. Please try again.`,
+          variant: "destructive",
+        });
+      } finally {
+        setUploading(false);
+      }
+    }
   };
 
+  const handleDeleteFile = async (fileId: string) => {
+    try {
+      const response = await fetchApi<any>("/profile/upload-file", {
+        method: "DELETE",
+        body: JSON.stringify({ fileId }),
+      });
+
+      if (!response.ok) throw new Error("Failed to delete file");
+
+      toast({
+        title: "Success",
+        description: "File deleted successfully!",
+        variant: "success",
+      });
+
+      mutate(); // Refresh the data after successful deletion
+    } catch (error) {
+      console.error("Error deleting file:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete file. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading file attachments.</p>;
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 mb-24 p-4 w-full"
-    >
+    <form className="space-y-6 mb-24 p-4 w-full">
       <div className="space-y-4">
-        {[
-          {
-            label: "Resume",
-            field: resumeArray,
-            name: "resume",
-            types: ["application/pdf"],
-            maxSize: 5,
-          },
-          {
-            label: "1x1 Picture",
-            field: pfpArray,
-            name: "pfp",
-            types: ["image/jpeg", "image/png", "image/webp"],
-            maxSize: 2,
-          },
-          {
-            label: "Internet Screenshot",
-            field: internetScreenshotArray,
-            name: "internetScreenshot",
-            types: ["image/jpeg", "image/png", "image/webp"],
-            maxSize: 5,
-          },
-          {
-            label: "Computer Specs Screenshot",
-            field: computerSpecsArray,
-            name: "computerSpecsScreenshot",
-            types: ["image/jpeg", "image/png", "image/webp"],
-            maxSize: 5,
-          },
-          {
-            label: "Workstation Photo",
-            field: workstationPhotoArray,
-            name: "workstationPhoto",
-            types: ["image/jpeg", "image/png", "image/webp"],
-            maxSize: 5,
-          },
-          {
-            label: "Attachments",
-            field: attachmentsArray,
-            name: "attachments",
-            types: [],
-            maxSize: 10,
-          },
-        ].map(({ label, field, name, types, maxSize }) => (
+        {fileFields.map(({ label, name, type, preset }) => (
           <div
             key={name}
             className="grid grid-cols-4 items-start gap-4 border-b pb-8"
           >
             <label className="text-gray-700 font-medium text-sm">{label}</label>
-
             <div className="col-span-3 space-y-2">
-              {field.fields.map((file, index) => (
-                <FileUpload
-                  key={file.id}
-                  fieldName={`${name}.${index}.file`}
-                  label={`File ${index + 1}`}
-                  acceptedTypes={types}
-                  maxSizeMB={maxSize}
-                  value={
-                    watch(`${name as keyof FileUploadSchema}.${index}.file`) ||
-                    null
-                  }
-                  onChange={(newFile) => {
-                    if (newFile) {
-                      field.update(index, { file: newFile });
-                    } else {
-                      field.remove(index);
-                    }
-                  }}
-                />
-              ))}
-
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => field.append({ file: null })}
-                className="text-sm"
+              <CldUploadWidget
+                options={{
+                  sources: ["local", "google_drive", "dropbox"],
+                  resourceType: "auto",
+                  clientAllowedFormats: ["png", "jpg", "jpeg", "pdf"],
+                }}
+                onSuccess={(result) => handleUploadSuccess(type, result)}
+                uploadPreset={preset}
               >
-                + Add More
-              </Button>
+                {({ open }) => (
+                  <Button
+                    type="button"
+                    variant="primary"
+                    size="sm"
+                    onClick={() => open()}
+                    disabled={uploading}
+                  >
+                    {uploading ? "Uploading..." : `Upload ${label}`}
+                  </Button>
+                )}
+              </CldUploadWidget>
+              <ul className="mt-2 space-y-1">
+                {data?.fileAttachments
+                  ?.filter((file) => file.type === type)
+                  .map((file) => (
+                    <li
+                      key={file.id}
+                      className="flex items-center justify-between space-x-4 p-2 rounded-lg border border-zinc-300"
+                    >
+                      <div className="flex items-center space-x-2 text-xs lg:text-sm">
+                        <span>{file.filename}</span>
+                        <a
+                          href={file.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 underline"
+                        >
+                          View
+                        </a>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteFile(file.id)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <X size={16} />
+                      </button>
+                    </li>
+                  ))}
+              </ul>
             </div>
           </div>
         ))}
       </div>
-      <Button
-        type="submit"
-        className="bg-deepBlue rounded-lg px-4 py-2 w-full xl:w-[300px] self-end mt-12 mb-20 text-white"
-      >
-        Submit
-      </Button>
     </form>
   );
 };
