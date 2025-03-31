@@ -18,6 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { profileImageURL } = await req.json();
+    log("POST /api/profile/update-avatar", "info", { profileImageURL });
 
     if (!profileImageURL) {
       return NextResponse.json(
@@ -79,7 +80,14 @@ export async function POST(req: NextRequest) {
     );
 
     if (!auth0Response.ok) {
-      throw new Error("Failed to update profile image in Auth0");
+      return NextResponse.json(
+        {
+          error: "Failed to update profile.",
+          message: "Failed to update profile image in Auth0",
+          ok: false,
+        },
+        { status: 400 }
+      );
     }
 
     // Update profile image in the database
@@ -88,7 +96,7 @@ export async function POST(req: NextRequest) {
       .set({ profileImage: profileImageURL })
       .where(eq(users.userId, session.user.sub));
 
-    log("Profile image updated successfully", "info", {
+    log("POST /api/profile/update-avatar: success", "info", {
       userId: session.user.sub,
       profileImageURL,
     });

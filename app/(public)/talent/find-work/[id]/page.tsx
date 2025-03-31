@@ -6,6 +6,7 @@ import { ViewJobHeader } from "@/components/jobs/view-job-header";
 import { getJobPost } from "@/lib/api/jobs";
 import { ViewJobApplyContainer } from "@/components/jobs/view-job-apply-container";
 import { notFound } from "next/navigation";
+import { CtaFooterJobseeker } from "@/components/section/cta-footer-jobseeker";
 
 export async function generateMetadata({
   params,
@@ -68,6 +69,37 @@ export default async function ViewJob({ params }: { params: Params }) {
       </ViewJobContent>
 
       <ViewJobApplyContainer />
+      {/* CTA footer for jobseeker */}
+      <CtaFooterJobseeker
+        heading="Join AVS today and start working the way you want"
+        description=""
+        buttons={[
+          {
+            navLink: {
+              title: "Join now",
+              url: "/talent/portal",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+          {
+            navLink: {
+              title: "Looking to hire?",
+              url: "/book-a-meeting",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+        ]}
+        image={{
+          src: "/img/office-with-team.webp",
+          alt: "Meeting with team",
+          width: 1000,
+          height: 1000,
+        }}
+      />
     </main>
   );
 }

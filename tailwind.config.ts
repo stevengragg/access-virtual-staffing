@@ -33,6 +33,7 @@ const config: Config = {
       heroHeaderBg: "url(/bg/heroheaderbg.webp)",
       heroFeatureBg: "url(/bg/herofeaturebg.webp)",
       ctaFooterBg: "url(/bg/ctafooterbg.webp)",
+      ctaFooterBg2: "url(/bg/ctafooterbg_new.webp)",
     },
   },
   presets: [require("@relume_io/relume-tailwind")],

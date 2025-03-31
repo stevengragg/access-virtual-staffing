@@ -91,6 +91,7 @@ export const fileUploads = pgTable("file_uploads", {
   type: text("type").notNull(),
   link: text("link").notNull(),
   podioFileId: text("podio_field_id").notNull(),
+  cloudinaryId: text("cloudinary_id"),
   filename: text("filename").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });

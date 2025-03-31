@@ -6,6 +6,7 @@ import { db } from "@/database";
 import { users } from "@/database/schema/users";
 import { log } from "@/lib/logs";
 import { generalSchema } from "@/lib/validation/general-settings-form-validation";
+import { getManagementApiToken } from "@/utils/get-management-token";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     const parsedData = generalSchema.safeParse(body);
-
+    log("POST /api/settings/general", "info", { body });
     if (!parsedData.success) {
       return NextResponse.json(
         {
@@ -51,6 +52,36 @@ export async function POST(req: NextRequest) {
         // profileImage: pfp
       })
       .where(eq(users.userId, session.user.sub));
+
+    // Update Auth0 user profile
+    const managementApiToken = await getManagementApiToken();
+    const auth0Response = await fetch(
+      `${process.env.AUTH0_OAUTH_AUDIENCE}users/${session.user.sub}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${managementApiToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          given_name: firstName,
+          family_name: lastName,
+          email,
+          nickname: username,
+        }),
+      }
+    );
+
+    if (!auth0Response.ok) {
+      return NextResponse.json(
+        {
+          error: "Failed to update Auth0 profile",
+          message: "Error updating user profile in Auth0",
+          ok: false,
+        },
+        { status: 400 }
+      );
+    }
 
     return NextResponse.json({
       message: "General settings updated successfully!",

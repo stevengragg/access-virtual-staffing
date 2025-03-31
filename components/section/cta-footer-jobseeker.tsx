@@ -1,4 +1,5 @@
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
+import { ImageProps } from "@/types/general";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 type Props = {

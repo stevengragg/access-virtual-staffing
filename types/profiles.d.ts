@@ -17,7 +17,18 @@ export interface IProfileResponse {
     numberOfExperience: string;
     salaryUnit: string;
     desiredSalary: string;
-    howHear?: string;
+    howHear: string;
+    jobTitle: string;
+    whyFit: string;
+    whatStrengths: string;
+    whatNeedImprovement: string;
+    address: string;
+    skypeId: string;
+    dateOfBirth: string;
+    numberOfChildren: string;
+    internetProvider: string;
+    numberOfMonitors: string;
+    numberOfExperience: string;
     referrer?: string;
   };
   phones: { type: string; number: string }[];
@@ -31,6 +42,7 @@ export interface IProfileResponse {
     type: string; // "resume", "professional_picture", etc.
     link: string;
     podioFileId: string;
+    cloudinaryId: string;
     filename: string;
     createdAt: string; // ISO date string
   }[];

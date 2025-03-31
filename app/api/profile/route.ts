@@ -10,7 +10,7 @@ import {
   contentLinks,
   assessmentTests,
   workSamples,
-  fileUploads, // Import fileUploads
+  fileUploads,
 } from "@/database/schema/profiles";
 import { users } from "@/database/schema/users"; // Import users
 import { log } from "@/lib/logs";
@@ -66,6 +66,10 @@ export async function GET(req: NextRequest) {
       );
     }
 
+    const fileAttachments = await db.query.fileUploads.findMany({
+      where: eq(fileUploads.profileId, existingProfile.id),
+    });
+
     log("GET /api/profile", "info", { profile: existingProfile });
 
     return NextResponse.json({
@@ -97,7 +101,7 @@ export async function GET(req: NextRequest) {
       {
         error: "Internal Server Error",
         ok: false,
-        message: "Error updating profile",
+        message: "Error fetching profile",
         profile: null,
       },
       { status: 500 }
