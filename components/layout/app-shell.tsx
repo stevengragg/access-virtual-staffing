@@ -158,9 +158,9 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
                       <DropdownMenuLabel className="p-0 text-sm font-medium">
                         Recent Notifications
                       </DropdownMenuLabel>
-                      <a href="#" className="text-xs">
+                      {/* <a href="#" className="text-xs">
                         Mark all as read
-                      </a>
+                      </a> */}
                     </div>
                     <div className="w-full max-w-[50rem] max-h-[24rem] overflow-y-auto overflow-x-hidden px-2 py-1 scrollbar-hide">
                       {notifications?.map((notification: INotification) => (
