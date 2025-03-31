@@ -5,12 +5,6 @@ import RecommendedJobs from "@/components/overview/recommended-jobs";
 import { getJobs } from "@/lib/api/jobs";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const stepper = {
-  message: "Your application is 50% complete",
-  maxValue: 13,
-  currentValue: 10,
-};
-
 export default withPageAuthRequired(
   async function Overview() {
     const positionsResponse = await getJobs(
@@ -37,11 +31,7 @@ export default withPageAuthRequired(
           {/* <div className="w-full justify-end items-end py-2">
             <h1 className=" text-end">Profile last updated on: <span className="font-medium">Feb 12, 2025</span></h1>
           </div> */}
-          <Stepper
-            message={stepper.message}
-            maxValue={stepper.maxValue}
-            currentValue={stepper.currentValue}
-          />
+          <Stepper />
           <Profile />
           <RecommendedJobs positions={positions || []} />
           <AppliedJobs />

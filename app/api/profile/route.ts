@@ -71,6 +71,7 @@ export async function GET(req: NextRequest) {
     });
 
     log("GET /api/profile", "info", { profile: existingProfile });
+
     return NextResponse.json({
       message: "Success!",
       ok: true,
@@ -90,7 +91,9 @@ export async function GET(req: NextRequest) {
       workSamples: await db.query.workSamples.findMany({
         where: eq(workSamples.profileId, existingProfile.id),
       }),
-      fileAttachments,
+      fileUploads: await db.query.fileUploads.findMany({
+        where: eq(fileUploads.profileId, existingProfile.id),
+      }),
     });
   } catch (error: any) {
     log("Error fetching profile:", "error", { error: error?.message || "" });
