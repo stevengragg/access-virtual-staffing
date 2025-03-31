@@ -29,7 +29,7 @@ export const WhyChooseUs = ({
     <section className="flex flex-col md:flex-row items-center justify-between gap-10 px-[5%] py-16 md:py-24 lg:py-28">
       {/* Left Content */}
       <div className="md:w-1/2">
-        <p className="text-sm font-semibold text-primaryBrightAqua uppercase">
+        <p className="text-sm font-semibold text-deepBlue uppercase">
           {tagline}
         </p>
         <h2 className="text-3xl font-bold text-gray-900 leading-tight mt-2">
@@ -41,7 +41,7 @@ export const WhyChooseUs = ({
         <ul className="mt-6 space-y-3">
           {bulletPoints.map((item, index) => (
             <li key={index} className="flex items-center space-x-3">
-              <span className="text-primaryBrightAqua">✔</span>
+              <span className="text-deepBlue">✔</span>
               <p className="text-gray-700">{item}</p>
             </li>
           ))}
