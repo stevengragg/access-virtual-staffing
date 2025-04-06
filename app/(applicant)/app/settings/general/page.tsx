@@ -65,7 +65,6 @@ export default function GeneralSettings() {
       // TODO: infer the type of response
       const response = await fetchApi<any>("/settings/general", {
         method: "POST",
-
         body: JSON.stringify(formData),
       });
 
@@ -128,11 +127,9 @@ export default function GeneralSettings() {
                         console.log(secureUrl);
                         if (secureUrl) {
                           try {
-                            await fetch("/api/profile/update-avatar", {
+                            // TODO: Pass the public id it can be used to replace existing image in cloudinary
+                            await fetchApi("/profile/update-avatar", {
                               method: "POST",
-                              headers: {
-                                "Content-Type": "application/json",
-                              },
                               body: JSON.stringify({
                                 profileImageURL: secureUrl,
                               }),

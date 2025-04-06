@@ -32,7 +32,8 @@ export const OnboardingModal = () => {
 
   const handleGetStarted = async () => {
     try {
-      const response = await fetch("/api/user/update-new-user", {
+      // Infer the return type of the fetchApi here
+      const response = await fetchApi<any>("/user/update-new-user", {
         method: "POST",
       });
       const result: UserResponse = await response.json();

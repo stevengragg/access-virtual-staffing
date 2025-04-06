@@ -81,7 +81,14 @@ const UploadFilesForm = () => {
           }),
         });
 
-        if (!response.ok) throw new Error("Failed to upload file");
+        if (!response.ok) {
+          toast({
+            title: "Error",
+            description: `Failed to upload file. Please try again.`,
+            variant: "destructive",
+          });
+          return;
+        }
 
         toast({
           title: "Success",

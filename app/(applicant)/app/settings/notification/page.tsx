@@ -57,9 +57,9 @@ export default function NotificationSettings() {
   const onSubmit = async (formData: NotificationSchema) => {
     setSubmitting(true);
     try {
-      const response = await fetch("/api/settings/notifications", {
+      //  TODO: Infer the return type def of fetchApi here
+      const response = await fetchApi<any>("/settings/notifications", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
