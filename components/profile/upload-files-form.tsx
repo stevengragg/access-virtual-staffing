@@ -12,7 +12,7 @@ import { X } from "lucide-react";
 import { useState } from "react";
 
 interface ProfileData {
-  fileAttachments: {
+  fileUploads: {
     id: string;
     filename: string;
     link: string;
@@ -164,7 +164,7 @@ const UploadFilesForm = () => {
                 )}
               </CldUploadWidget>
               <ul className="mt-2 space-y-1">
-                {data?.fileAttachments
+                {data?.fileUploads
                   ?.filter((file) => file.type === type)
                   .map((file) => (
                     <li

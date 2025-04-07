@@ -22,7 +22,7 @@ export const jobApplications = pgTable("job_applications", {
   submittedAt: timestamp("submitted_at").defaultNow(),
   status: text("status").notNull(), // e.g., pending, approved, rejected
   progress: text("progress").notNull(), // e.g., in_review, completed
-  podioItemId: text("podio_item_id"),
+  podioItemId: text("podio_item_id"), // jobId
 });
 
 export const jobApplicationsRelations = relations(

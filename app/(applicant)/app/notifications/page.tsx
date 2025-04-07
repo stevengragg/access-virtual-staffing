@@ -60,7 +60,9 @@ function NotificationsPage() {
                 <SelectItem value="update">Update</SelectItem> */}
 
                 <SelectItem value="all">All</SelectItem>
-                <SelectItem value="job_submissions">Recommendation</SelectItem>
+                <SelectItem value="job_submissions">
+                  Job Applications
+                </SelectItem>
                 <SelectItem value="jobs">Jobs</SelectItem>
                 <SelectItem value="info">Info</SelectItem>
               </SelectContent>
