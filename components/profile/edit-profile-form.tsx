@@ -114,11 +114,9 @@ export default function EditProfileForm() {
   const onSubmit = async (data: EditProfileSchema) => {
     setLoading(true);
     try {
-      const response = await fetch("/api/profile/update-profile", {
+      //  TODO: Infer the return type of the fetchApi here
+      const response = await fetchApi<any>("/profile/update-profile", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(data),
       });
 

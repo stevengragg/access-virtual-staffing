@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
+
 import {
   Card,
   CardHeader,
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { fetchApi } from "@/services/fetch-api";
 
 export default function ChangePassword() {
   const { user } = useUser();
@@ -21,9 +23,9 @@ export default function ChangePassword() {
   const handleChangePassword = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/auth/change-password", {
+      // TODO: Infer the real type of response of the fetchApi
+      const response = await fetchApi<any>("/auth/change-password", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.sub, email: user.email }),
       });
 

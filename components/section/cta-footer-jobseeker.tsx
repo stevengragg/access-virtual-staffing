@@ -26,8 +26,9 @@ export const CtaFooterJobseeker = (props: CtaFooterJobseekerProps) => {
       <div className="absolute inset-0 z-0">
         <Image
           src={image.src}
+          width={image.width}
+          height={image.height}
           alt={image.alt}
-          layout="fill"
           objectFit="cover"
           className="opacity-50"
         />

@@ -1,3 +1,4 @@
+import { fetchApi } from "@/services/fetch-api";
 import { INotification } from "@/types/notification";
 import { useState, useEffect } from "react";
 
@@ -11,9 +12,9 @@ export function useNotifications({ page = 1, filter = "all" }) {
     const fetchNotifications = async () => {
       setLoading(true);
       try {
-        // TODO: Lee fetchApi
-        const response = await fetch(
-          `/api/notifications?page=${page}&limit=10&filter=${filter}`
+        // TODO: Infer the return type of the fetchApi here
+        const response = await fetchApi<any>(
+          `/notifications?page=${page}&limit=10&filter=${filter}`
         );
 
         if (!response.ok) throw new Error("Failed to fetch notifications");
