@@ -1,3 +1,4 @@
+import { getJobId } from "@/utils/get-job-id";
 import { gainRefreshedAccessToken } from "./authorization";
 import { JobListing } from "@/types/general";
 
@@ -198,12 +199,10 @@ export const getJobPost = async (
   }
 
   // Extract the job ID from the idWithSlug string
-  const idMatch = id.match(/^(\d+)-/);
-  console.log(idMatch);
-  const finalId = idMatch ? idMatch[1] : null;
+  const finalId = getJobId(id);
 
   if (!finalId) {
-    console.log("Invalid job ID");
+    console.error("Invalid job ID");
     return null;
   }
 

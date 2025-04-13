@@ -128,8 +128,6 @@ export default function EditProfileForm() {
         });
       }
 
-      const result = await response.json();
-      console.log("Profile updated successfully:", result);
       toast({
         title: "Success",
         description: "Profile updated successfully.",

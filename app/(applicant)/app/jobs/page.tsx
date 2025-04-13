@@ -9,7 +9,8 @@ import { JobListItemPosition } from "@/components/jobs/joblist-item-position";
 import { JobListPaginationContainer } from "@/components/jobs/joblist-pagination-container";
 
 export const metadata: Metadata = {
-  title: "Explore Jobs - Access Virtual Staffing",
+  title: "Explore Jobs",
+  description: "Explore and apply for jobs through Applicant portal",
 };
 
 // export const dynamic = "force-dynamic";

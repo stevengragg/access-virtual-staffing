@@ -8,7 +8,7 @@ export interface IUserResponse {
   };
 }
 
-export interface UserInfo {
+export interface IUserInfo {
   email: string;
   profileImage?: string | null;
   firstName: string;

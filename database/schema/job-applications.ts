@@ -20,8 +20,8 @@ export const jobApplications = pgTable("job_applications", {
     .references(() => profiles.id)
     .notNull(),
   submittedAt: timestamp("submitted_at").defaultNow(),
-  status: text("status").notNull(), // e.g., pending, approved, rejected
-  progress: text("progress").notNull(), // e.g., in_review, completed
+  status: text("status").notNull(), // e.g., on_going, archived
+  progress: text("progress").notNull(), // e.g., in_review, reviewed, declined_initial_interview,initial_interview, for_client_interview, declined_after_interview, make_offer, hired_signed, endorsed,reserved_for_future_opening
   jobId: text("job_id"), // jobId -> podio item id
 });
 

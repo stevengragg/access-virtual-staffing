@@ -4,7 +4,13 @@ import Stepper from "@/components/overview/progress";
 import RecommendedJobs from "@/components/overview/recommended-jobs";
 import { getJobs } from "@/lib/api/jobs";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Overview",
+  description:
+    "Here are the latest updates on the AVS applicant portal with recommended jobs",
+};
 export default withPageAuthRequired(
   async function Overview() {
     const positionsResponse = await getJobs(

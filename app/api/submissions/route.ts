@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
 
     if (!session) {
       return NextResponse.json(
-        { error: "Unauthorized", message: "Please login.", ok: false },
+        { message: "Please login.", ok: false },
         { status: 401 }
       );
     }
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
 
     if (!user.length) {
       return NextResponse.json(
-        { error: "User not found", ok: false },
+        { message: "User not found", ok: false },
         { status: 404 }
       );
     }
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
     if (!profile.length) {
       return NextResponse.json(
-        { error: "Profile not found", ok: false },
+        { message: "Profile not found", ok: false },
         { status: 404 }
       );
     }
@@ -56,12 +56,13 @@ export async function POST(req: NextRequest) {
     const existingApplication = await db
       .select()
       .from(jobApplications)
-      .where(eq(jobApplications.jobId, jobId))
-      .limit(1);
+      .where(eq(jobApplications.jobId, jobId));
+
+    console.log("existingApplication", existingApplication);
 
     if (existingApplication.length) {
       return NextResponse.json(
-        { error: "Already applied", ok: false },
+        { message: "Already applied", ok: false },
         { status: 400 }
       );
     }
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest) {
         userId: user[0].id,
         profileId: profile[0].id,
         jobId,
-        status: "pending",
+        status: "on_going",
         progress: "in_review",
       })
       .returning({ id: jobApplications.id });

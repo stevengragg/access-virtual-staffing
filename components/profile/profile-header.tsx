@@ -1,53 +1,119 @@
 "use client";
 
+import React from "react";
+import { useParams, useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { useProfileDetails } from "@/context/profile-details-context";
-import { useProfileFiles } from "@/context/profile-files-context";
 import { useProfileTabContext } from "@/context/profile-tab-context";
-import { FileUploadSchema } from "@/lib/validation/update-files-form-validation";
 import { fetchApi } from "@/services/fetch-api";
+import { useToast } from "@/hooks/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 
 const ProfileHeader = () => {
-  const { currentTab, setCurrentTab } = useProfileTabContext();
-  const {
-    handleSubmit: handleSubmitFiles,
-    control: controlFiles,
-    watch,
-    formState,
-  } = useProfileFiles();
+  const router = useRouter();
+  const params = useParams();
+  const jobId = params.id;
+  const { toast } = useToast();
+  const { currentTab, setCurrentTab, setJobSubmissionId } =
+    useProfileTabContext();
+
   const profileDetailsForm = useProfileDetails();
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const jobId = "123"; // Replace with actual logic to get jobId
+  const onFileSubmit = async () => {
+    setLoading(true);
+    try {
+      // TODO: Infer the return type of the fetchApi here
+      const response = await fetchApi<any>("/submissions", {
+        method: "POST",
+        body: JSON.stringify({ jobId }),
+      });
+      console.log("Response from file submit:", response);
+      if (!response.ok) {
+        toast({
+          title: "Error",
+          description: `Failed to submit job application. ${
+            response.message || "Please try again."
+          }`,
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
 
-  const onFileSubmit = async (data: FileUploadSchema) => {
-    // try {
-    //   const response = await fetchApi("/submissions", {
-    //     method: "POST",
-    //     body: JSON.stringify({ jobId, files: data }),
-    //   });
-    //   console.log("Job application submitted successfully:", response);
-    // } catch (error) {
-    //   console.error("Error submitting job application:", error);
-    // }
+      toast({
+        title: "Success",
+        description:
+          "Job application submitted successfully. Redirecting to submissions page...",
+        variant: "success",
+      });
+      setLoading(false);
+      setTimeout(() => {
+        setCurrentTab("Finish");
+        setJobSubmissionId(response.applicationId);
+      }, 2000);
+    } catch (error) {
+      console.error("Error submitting job application:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit job application. Please try again.",
+        variant: "destructive",
+      });
+      setLoading(false);
+    }
   };
 
   const onDetailsSubmit = async () => {
-    console.log("clicked");
-
     const result = await profileDetailsForm.trigger(); // Manually validate the form
 
     if (!result) {
-      console.log(
-        "Validation failed, showing errors:",
-        profileDetailsForm.formState.errors
-      );
+      toast({
+        title: "Error",
+        description: "Failed to update profile. Please try again.",
+        variant: "destructive",
+      });
       return;
     }
 
-    profileDetailsForm.handleSubmit((data) => {
-      console.log("clicked 2");
-      console.log("Profile Details:", data);
-      setCurrentTab("Files");
+    profileDetailsForm.handleSubmit(async (data) => {
+      setLoading(true);
+      try {
+        //  TODO: Infer the return type of the fetchApi here
+        const response = await fetchApi<any>("/profile/update-profile", {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          toast({
+            title: "Error",
+            description: "Failed to update profile. Please try again.",
+            variant: "destructive",
+          });
+        }
+
+        setLoading(false);
+        setCurrentTab("Files");
+      } catch (error) {
+        console.error("Error updating profile:", error);
+        toast({
+          title: "Error",
+          description: "Failed to update profile. Please try again.",
+          variant: "destructive",
+        });
+      }
     })();
   };
 
@@ -59,25 +125,57 @@ const ProfileHeader = () => {
         <div className="w-full flex items-center justify-between border-t border-b p-2">
           <h1 className=" text-2xl font-bold md:text-3xl">Profile</h1>
           <div className="flex gap-2">
+            <Button
+              size="sm"
+              onClick={() => router.push(`/app/jobs/v/${jobId}`)}
+            >
+              Cancel
+            </Button>
             {currentTab === "Profile" && (
               <Button
-                variant="primaryBlue"
+                variant="primary"
                 size="sm"
-                className="font-medium"
                 onClick={onDetailsSubmit}
+                disabled={loading}
               >
-                Submit Profile
+                {loading ? "Loading..." : "Share Profile Details"}{" "}
+                <ArrowRight />
               </Button>
             )}
             {currentTab === "Files" && (
-              <Button
-                variant="primaryBlue"
-                size="sm"
-                className="font-medium"
-                onClick={handleSubmitFiles(onFileSubmit)}
-              >
-                Submit Files
-              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="primary" size="sm" disabled={loading}>
+                    {loading ? "Loading..." : " Share Profile Attachments"}{" "}
+                    <ArrowRight />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent className="bg-zinc-300">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you sure you want to proceed?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      By continuing, you are confirming that you want to share
+                      your profile details and attachments with the employer.
+                      <br />
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction asChild>
+                      <Button
+                        className="bg-deepBlue hover:bg-deepBlue/75 text-white"
+                        size="sm"
+                        disabled={loading}
+                        onClick={onFileSubmit}
+                      >
+                        {loading ? "Sharing..." : "Continue"}
+                      </Button>
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             )}
           </div>
         </div>

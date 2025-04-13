@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const post = await getJobPost(id);
 
   return {
-    title: post ? `${post.item?.title} - Access Virtual Staffing` : "View Job",
+    title: post ? `${post.item?.title}` : "View Job",
   };
 }
 

@@ -10,6 +10,7 @@ import useSWR from "swr";
 import { fetchApi } from "@/services/fetch-api";
 import { X } from "lucide-react";
 import { useState } from "react";
+import { all } from "axios";
 
 interface ProfileData {
   fileUploads: {
@@ -35,30 +36,35 @@ const UploadFilesForm = () => {
       name: "resume",
       type: "resume",
       preset: "ProfileResume",
+      allowedFileTypes: ["pdf", "doc", "docx"],
     },
     {
       label: "1x1 Picture",
       name: "pfp",
       type: "professional_picture",
       preset: "ProfessionalPicture",
+      allowedFileTypes: ["png", "jpg", "jpeg"],
     },
     {
       label: "Internet Screenshot",
       name: "internetScreenshot",
       type: "internet",
       preset: "ProfileInternetScreenshot",
+      allowedFileTypes: ["png", "jpg", "jpeg"],
     },
     {
       label: "Computer Specs Screenshot",
       name: "computerSpecsScreenshot",
       type: "computer_specs",
       preset: "ProfileComputerSpecs",
+      allowedFileTypes: ["png", "jpg", "jpeg"],
     },
     {
       label: "Workstation Photo",
       name: "workstationPhoto",
       type: "work_station",
       preset: "ProfileWorkStation",
+      allowedFileTypes: ["png", "jpg", "jpeg"],
     },
   ];
 
@@ -71,6 +77,7 @@ const UploadFilesForm = () => {
       const { public_id, secure_url, original_filename } = info;
       setUploading(true);
       try {
+        // TODO: Infer types from the API response
         const response = await fetchApi<any>("/profile/upload-file", {
           method: "POST",
           body: JSON.stringify({
@@ -142,7 +149,7 @@ const UploadFilesForm = () => {
   return (
     <form className="space-y-6 mb-24 p-4 w-full">
       <div className="space-y-4">
-        {fileFields.map(({ label, name, type, preset }) => (
+        {fileFields.map(({ label, name, type, preset, allowedFileTypes }) => (
           <div
             key={name}
             className="grid grid-cols-4 items-start gap-4 border-b pb-8"
@@ -153,7 +160,7 @@ const UploadFilesForm = () => {
                 options={{
                   sources: ["local", "google_drive", "dropbox"],
                   resourceType: "auto",
-                  clientAllowedFormats: ["png", "jpg", "jpeg", "pdf"],
+                  clientAllowedFormats: allowedFileTypes,
                 }}
                 onSuccess={(result) => handleUploadSuccess(type, result)}
                 uploadPreset={preset}
@@ -178,8 +185,8 @@ const UploadFilesForm = () => {
                       key={file.id}
                       className="flex items-center justify-between space-x-4 p-2 rounded-lg border border-zinc-300"
                     >
-                      <div className="flex items-center space-x-2 text-xs lg:text-sm">
-                        <span>{file.filename}</span>
+                      <div className="flex flex-wrap items-center space-x-2 text-xs lg:text-sm">
+                        <div>{file.filename}</div>
                         <a
                           href={file.link}
                           target="_blank"
