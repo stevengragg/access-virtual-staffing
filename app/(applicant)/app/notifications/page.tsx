@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { useNotifications } from "@/hooks/use-notifications";
 import { INotification } from "@/types/notification";
 
-import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -19,18 +18,13 @@ import {
 
 function NotificationsPage() {
   const { user, isLoading: userLoading } = useUser();
-  const [page, setPage] = useState(1);
   const [filterType, setFilterType] = useState("all");
-  const [showUnreadOnly, setShowUnreadOnly] = useState(false);
 
-  const { notifications, loading, error, hasMore } = useNotifications({
-    page,
-    filter: filterType,
-  });
-
-  const handleLoadMore = () => {
-    if (hasMore) setPage((prev) => prev + 1);
-  };
+  const { notifications, loading, error, hasMore, loadMore } = useNotifications(
+    {
+      filter: filterType,
+    }
+  );
 
   if (userLoading) return <p>Loading user...</p>;
 
@@ -44,7 +38,7 @@ function NotificationsPage() {
         </div>
       </section>
 
-      {/* Filters and Unread Toggle */}
+      {/* Filters */}
       <div className="container py-8 md:py-10 px-4 lg:py-12">
         <div className="flex flex-col gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4 w-[150px]">
@@ -53,12 +47,6 @@ function NotificationsPage() {
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent className="bg-white">
-                {/* <SelectItem value="all">All</SelectItem>
-                <SelectItem value="recommendation">Recommendation</SelectItem>
-                <SelectItem value="reminder">Reminder</SelectItem>
-                <SelectItem value="info">Info</SelectItem>
-                <SelectItem value="update">Update</SelectItem> */}
-
                 <SelectItem value="all">All</SelectItem>
                 <SelectItem value="job_submissions">
                   Job Applications
@@ -68,20 +56,10 @@ function NotificationsPage() {
               </SelectContent>
             </Select>
           </div>
-
-          {/* Unread Toggle */}
-          {/* <div className="flex items-center gap-4">
-            <label className="text-sm font-medium">Show Unread Only:</label>
-            <Switch
-              checked={showUnreadOnly}
-              onCheckedChange={setShowUnreadOnly}
-            />
-          </div> */}
         </div>
 
         {/* Notifications List */}
-
-        {loading ? (
+        {loading && notifications.length === 0 ? (
           <p>Loading notifications...</p>
         ) : (
           <div className="grid grid-cols-1 gap-4">
@@ -113,9 +91,8 @@ function NotificationsPage() {
         {/* Load More Button */}
         {hasMore && (
           <div className="mt-4 flex justify-center">
-            {/* TODO Lee: make the blank spinner */}
-            <Button variant="ghost" onClick={handleLoadMore} disabled={loading}>
-              {loading ? " " : "Load More"}
+            <Button variant="ghost" onClick={loadMore} disabled={loading}>
+              {loading ? "Loading..." : "Load More"}
             </Button>
           </div>
         )}

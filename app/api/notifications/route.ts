@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 import { db } from "@/database";
 import { notifications } from "@/database/schema/notifications";
@@ -58,12 +58,21 @@ export async function GET(req: NextRequest) {
       .limit(limit)
       .offset(offset);
 
-    return NextResponse.json({ notifications: userNotifications });
-  } catch (error: unknown) {
+    const totalCountResult = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(notifications)
+      .where(eq(notifications.userId, userId));
+
+    return NextResponse.json({
+      ok: true,
+      notifications: userNotifications,
+      total: totalCountResult[0].count,
+    });
+  } catch (error: any) {
     return NextResponse.json(
       {
         error: "Internal Server Error",
-        message: error instanceof Error ? error.message : "Unknown error",
+        message: error.message ?? "Internal Server Error",
       },
       { status: 500 }
     );
