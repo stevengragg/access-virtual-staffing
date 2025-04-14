@@ -21,7 +21,7 @@ const menuItems = [
 
 export default function SettingsSidebar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname(); // Get current path
+  const pathname = usePathname();
 
   return (
     <div className="lg:w-64 w-full lg:block flex justify-between items-center">

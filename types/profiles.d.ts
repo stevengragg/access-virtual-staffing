@@ -9,7 +9,7 @@ export interface IProfileResponse {
     whatNeedImprovement: string;
     address: string;
     skypeId: string;
-    dateOfBirth: string; // Assuming date is stored as a string (ISO format)
+    dateOfBirth: string;
     hasPaypal: string;
     numberOfChildren: string;
     internetProvider: string;

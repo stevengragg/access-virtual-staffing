@@ -88,6 +88,6 @@ export class FetchError extends Error {
     super(message);
     this.status = status;
     this.info = info;
-    Object.setPrototypeOf(this, FetchError.prototype); // Ensure correct prototype chain
+    Object.setPrototypeOf(this, FetchError.prototype);
   }
 }

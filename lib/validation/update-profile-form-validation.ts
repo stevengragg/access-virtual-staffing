@@ -12,7 +12,6 @@ const urlSchema = z
     "URL must be a valid website with a proper domain"
   );
 
-// Main Schema
 export const editProfileSchema = z.object({
   jobTitle: z.string().min(1, "This field is required"),
   whyFit: z.string().min(1, "This field is required"),

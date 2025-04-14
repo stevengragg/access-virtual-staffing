@@ -1,8 +1,3 @@
-// import {
-
-//     getSession,
-//   } from "@auth0/nextjs-auth0";
-
 import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 
@@ -13,16 +8,10 @@ import { sendEmailNotification } from "@/services/send-email-notif";
 
 export async function POST(req: Request) {
   try {
-    // const session = await getSession();
-    // if (!session?.user) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
-
     const { user_id, email, name, picture, given_name, family_name, provider } =
       await req.json();
     console.log({ user_id, email, name, picture, given_name, family_name });
 
-    // Check if user already exists
     const existingUser = await db.query.users.findFirst({
       where: eq(users.userId, user_id),
     });

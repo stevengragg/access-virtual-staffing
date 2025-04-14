@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Find the user in the database
     const user = await db
       .select({ id: users.id })
       .from(users)
@@ -33,7 +32,6 @@ export async function GET(req: NextRequest) {
 
     const userId = user[0].id;
 
-    // Extract pagination and filter parameters
     const url = new URL(req.url);
     const page = Number(url.searchParams.get("page")) || 1;
     const limit = Number(url.searchParams.get("limit")) || 10;
@@ -52,10 +50,10 @@ export async function GET(req: NextRequest) {
       .from(notifications)
       .where(
         filter === "all"
-          ? eq(notifications.userId, userId) // No type filter
-          : eq(notifications.userId, userId) && eq(notifications.type, filter) // Type filter applied
+          ? eq(notifications.userId, userId)
+          : eq(notifications.userId, userId) && eq(notifications.type, filter)
       )
-      .orderBy(desc(notifications.createdAt)) // Sort by newest first
+      .orderBy(desc(notifications.createdAt))
       .limit(limit)
       .offset(offset);
 

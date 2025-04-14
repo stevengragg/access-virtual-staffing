@@ -11,7 +11,7 @@ export type StatusResponse = { ok: boolean };
 export async function fetchApi<T>(
   url: string,
   payload: Payload | object = {},
-  timeoutDuration?: number // Optional timeout in milliseconds
+  timeoutDuration?: number
 ): Promise<T> {
   const timeoutPromise = (delay: number): Promise<T> =>
     new Promise((_, reject) =>
@@ -37,10 +37,9 @@ export async function fetchApi<T>(
       return result;
     });
 
-    // If a timeoutDuration is provided, use Promise.race to race the fetch promise against the timeout
     return timeoutDuration !== undefined
       ? await Promise.race([fetchPromise, timeoutPromise(timeoutDuration)])
-      : await fetchPromise; // If no timeout is specified, just wait for the fetch promise
+      : await fetchPromise;
   } catch (err) {
     // captureException(err);
 
@@ -86,7 +85,7 @@ export async function fetchAndParseNdJson<T>(
     const processChunk = (chunk: string) => {
       buffer += chunk;
       const lines = buffer.split("\n");
-      buffer = lines.pop() || ""; // Keep the last incomplete line in the buffer
+      buffer = lines.pop() || "";
 
       lines.forEach((line) => {
         if (line) {
@@ -112,7 +111,6 @@ export async function fetchAndParseNdJson<T>(
       processChunk(chunk);
     }
 
-    // Process any remaining data in the buffer
     if (buffer) {
       processChunk("\n");
     }

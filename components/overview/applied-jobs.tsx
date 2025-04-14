@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
-import JobCard from "@/components/submissions/job-card";
+import JobCard from "@/components/submissions/job-application-card";
 
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";

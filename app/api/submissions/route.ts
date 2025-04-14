@@ -4,7 +4,7 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { jobApplications } from "@/database/schema/job-applications";
 import { db } from "@/database";
 import { profiles, users } from "@/database/schema";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { log } from "@/lib/logs";
 import { createNotification } from "@/database/mutations/job_applicants";
 import { getJobPost } from "@/lib/api/jobs";
@@ -23,14 +23,14 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const jobId = searchParams.get("jobId");
-
-    if (!jobId) {
-      return NextResponse.json(
-        { message: "jobId is required", ok: false },
-        { status: 400 }
-      );
-    }
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const limit = parseInt(searchParams.get("limit") || "10", 10);
+    const filter = searchParams.get("filter") || "on_going";
+    console.log("data", {
+      page,
+      limit,
+      filter,
+    });
 
     const user = await db
       .select()
@@ -45,32 +45,65 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const application = await db
-      .select()
-      .from(jobApplications)
-      .where(
-        and(
-          eq(jobApplications.jobId, jobId),
-          eq(jobApplications.userId, user[0].id)
-        )
-      )
-      .limit(1);
+    const offset = (page - 1) * limit;
 
-    if (!application.length) {
-      return NextResponse.json(
-        { message: "No application found", ok: false },
-        { status: 404 }
-      );
-    }
+    const [applications, total] = await Promise.all([
+      db
+        .select()
+        .from(jobApplications)
+        .where(
+          and(
+            eq(jobApplications.userId, user[0].id),
+            eq(jobApplications.status, filter)
+          )
+        )
+        .limit(limit)
+        .offset(offset),
+      db
+        .select({ count: sql<number>`count(*)` })
+        .from(jobApplications)
+        .where(
+          and(
+            eq(jobApplications.userId, user[0].id),
+            eq(jobApplications.status, filter)
+          )
+        ),
+    ]);
+
+    const mergedApplications = await Promise.all(
+      applications.map(async (application) => {
+        const jobDetails = await getJobPost(application.jobId ?? "");
+        return {
+          ...application,
+          job: {
+            id: jobDetails?.item?.id || "N/A",
+            title: jobDetails?.item?.title || "Unknown Job",
+            pay: jobDetails?.item?.pay || "Not provided",
+            url: jobDetails?.item?.url || "",
+            createdAt: jobDetails?.item?.createdAt || "",
+            postedBy: jobDetails?.item?.postedBy || "Unknown",
+            description:
+              jobDetails?.item?.description || "No description provided",
+          },
+        };
+      })
+    );
 
     log("GET /api/submissions", "info", {
-      message: "Application fetched successfully",
+      message: "Applications fetched successfully",
       userId: user[0].id,
-      jobId,
+      page,
+      limit,
+      filter,
     });
 
     return NextResponse.json(
-      { message: "Application found", ok: true, application: application[0] },
+      {
+        message: "Applications fetched successfully",
+        ok: true,
+        jobApplications: mergedApplications,
+        total: total[0]?.count || 0,
+      },
       { status: 200 }
     );
   } catch (error: any) {
@@ -80,7 +113,7 @@ export async function GET(request: NextRequest) {
       {
         error: "Internal Server Error",
         ok: false,
-        message: "Error fetching application",
+        message: "Error fetching applications",
       },
       { status: 500 }
     );
@@ -100,7 +133,6 @@ export async function POST(req: NextRequest) {
 
     const { jobId } = await req.json();
 
-    // Fetch user data
     const user = await db
       .select()
       .from(users)
@@ -127,7 +159,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check if user already applied for the job
     const existingApplication = await db
       .select()
       .from(jobApplications)
@@ -142,7 +173,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Insert new application
     const [newApplication] = await db
       .insert(jobApplications)
       .values({

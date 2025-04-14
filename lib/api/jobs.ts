@@ -5,8 +5,8 @@ import { JobListing } from "@/types/general";
 interface FetchJobListingsResponse {
   success: boolean;
   items: JobListing[];
-  total: number; //filtered
-  all: number; // all total
+  total: number;
+  all: number;
 }
 
 type FetchJobListingsConfig = {
@@ -124,7 +124,6 @@ export const fetchJob = async (
   }
 
   const data = await response.json();
-  // console.log(data);
 
   const title =
     data.fields?.find((field: any) => field.external_id === "title")?.values[0]
@@ -198,9 +197,8 @@ export const getJobPost = async (
     return null;
   }
 
-  // Extract the job ID from the idWithSlug string
   const finalId = getJobId(id);
-
+  console.log("Final ID", finalId);
   if (!finalId) {
     console.error("Invalid job ID");
     return null;

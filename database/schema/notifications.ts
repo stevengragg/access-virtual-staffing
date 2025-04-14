@@ -1,6 +1,6 @@
 import { pgTable, serial, integer, text, timestamp } from "drizzle-orm/pg-core";
-import { users } from "./users"; // Assuming users schema is defined in users.ts
-import { relations } from "drizzle-orm"; // Import relations
+import { users } from "./users";
+import { relations } from "drizzle-orm";
 
 export const notifications = pgTable("notifications", {
   id: serial("id").primaryKey(),
@@ -11,7 +11,6 @@ export const notifications = pgTable("notifications", {
   linkTo: text("link_to"),
 });
 
-// Define relationships
 export const notificationsRelations = relations(notifications, ({ one }) => ({
   user: one(users, {
     fields: [notifications.userId],

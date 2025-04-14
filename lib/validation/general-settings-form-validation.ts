@@ -16,7 +16,6 @@ export const generalSchema = z.object({
   pfp: z
     .instanceof(File, { message: "Profile picture must be a valid file" })
     .optional(),
-  // Remove optional when pfp is already implemented
 
   username: z
     .string()

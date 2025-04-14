@@ -5,12 +5,10 @@ type Props = {
   className?: string;
 };
 const GoogleMapLink = ({ address, className }: Props) => {
-  // Encode the address to be URL-safe
   const encodedAddress = encodeURIComponent(address);
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
 
   return (
-    // Use 'a' tag for external link opening
     <a
       href={googleMapsUrl}
       target="_blank"

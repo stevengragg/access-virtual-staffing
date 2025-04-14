@@ -1,6 +1,5 @@
 type Props = {
   heading: string;
-  // image: ImageProps;
   children: React.ReactNode;
 };
 

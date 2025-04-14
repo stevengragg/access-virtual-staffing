@@ -9,12 +9,10 @@ type ProfileTabContextType = {
   setJobSubmissionId: (id: string | null) => void;
 };
 
-// Create the context
 const ProfileTabContext = createContext<ProfileTabContextType | undefined>(
   undefined
 );
 
-// Custom hook for consuming the context
 export function useProfileTabContext() {
   const context = useContext(ProfileTabContext);
   if (!context) {
@@ -25,7 +23,6 @@ export function useProfileTabContext() {
   return context;
 }
 
-// Context provider component
 export function ProfileTabProvider({ children }: { children: ReactNode }) {
   const [currentTab, setCurrentTab] = useState("Profile");
   const [jobSubmissionId, setJobSubmissionId] = useState<string | null>(null);

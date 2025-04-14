@@ -1,3 +1,5 @@
+import { JobListing } from "./general";
+
 export type JobSearchFilter = {
   searchText: string;
 };
@@ -23,10 +25,19 @@ export interface IJobApplicationDetails {
 
 export interface IJobApplication {
   id: number;
-  company: string;
-  position: string;
-  status: "Pending" | "Not Accepted" | "Accepted";
-  date: string;
-  logo: string;
-  job?: IJob;
+  status: "on_going" | "archived";
+  progress:
+    | "in_review"
+    | "reviewed"
+    | "declined_initial_interview"
+    | "initial_interview"
+    | "for_client_interview"
+    | "declined_after_interview"
+    | "make_offer"
+    | "hired_signed"
+    | "endorsed"
+    | "reserved_for_future_opening";
+  submittedAt: string;
+  job: JobListing;
+  applicationPublicId: string;
 }

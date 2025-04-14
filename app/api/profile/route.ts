@@ -49,7 +49,6 @@ export async function GET(req: NextRequest) {
 
     const userId = user.id;
 
-    // Check if profile exists
     const existingProfile = await db.query.profiles.findFirst({
       where: eq(profiles.userId, userId),
     });

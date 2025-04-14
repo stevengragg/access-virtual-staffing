@@ -48,7 +48,6 @@ export default function EditProfileForm() {
     fetchApi
   );
 
-  // const [hasError, setHasError] = useState(false);
   const {
     fields: phoneFields,
     append: addPhone,

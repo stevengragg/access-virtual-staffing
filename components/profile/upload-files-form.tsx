@@ -103,7 +103,7 @@ const UploadFilesForm = () => {
           variant: "success",
         });
 
-        mutate(); // Refresh the data after successful upload
+        mutate();
       } catch (error) {
         console.error("Error uploading file:", error);
         toast({
@@ -132,7 +132,7 @@ const UploadFilesForm = () => {
         variant: "success",
       });
 
-      mutate(); // Refresh the data after successful deletion
+      mutate();
     } catch (error) {
       console.error("Error deleting file:", error);
       toast({

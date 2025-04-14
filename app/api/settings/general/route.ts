@@ -33,15 +33,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const {
-      firstName,
-      lastName,
-      email,
-      username,
-      // pfp
-    } = parsedData.data;
+    const { firstName, lastName, email, username } = parsedData.data;
 
-    // Update user settings in the database
     await db
       .update(users)
       .set({
@@ -49,11 +42,9 @@ export async function POST(req: NextRequest) {
         lastName,
         email,
         name: username,
-        // profileImage: pfp
       })
       .where(eq(users.userId, session.user.sub));
 
-    // Update Auth0 user profile
     const managementApiToken = await getManagementApiToken();
     const auth0Response = await fetch(
       `${process.env.AUTH0_OAUTH_AUDIENCE}users/${session.user.sub}`,
