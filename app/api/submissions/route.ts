@@ -192,22 +192,23 @@ export async function POST(req: NextRequest) {
     });
 
     const job = await getJobPost(jobId);
+    if (user[0].jobSubmissionNotifPref === "enabled") {
+      createNotification(
+        user[0].id,
+        `You sent a job application to "${job?.item?.title}". Please wait for the recruiter to reach out. `,
+        "info",
+        `/app/submissions/${newApplication.applicationId}`
+      );
 
-    createNotification(
-      user[0].id,
-      `You sent a job application to "${job?.item?.title}". Please wait for the recruiter to reach out. `,
-      "info",
-      `/app/submissions/${newApplication.applicationId}`
-    );
-
-    sendEmailNotification({
-      to: [user[0].email],
-      subject: `You sent a job application to "${job?.item?.title}"`,
-      message:
-        "Cheers! We received your application. Please wait for the recruiter to reach out.",
-      footer:
-        "If you have any questions, feel free to reach out 👉 support@accessvirtualstaffing.com",
-    });
+      sendEmailNotification({
+        to: [user[0].email],
+        subject: `You sent a job application to "${job?.item?.title}"`,
+        message:
+          "Cheers! We received your application. Please wait for the recruiter to reach out.",
+        footer:
+          "If you have any questions, feel free to reach out 👉 support@accessvirtualstaffing.com",
+      });
+    }
 
     return NextResponse.json(
       {

@@ -82,7 +82,7 @@ export const ApplicationShell = (props: ApplicationShellProps) => {
 
   return (
     <section id="header" className="relative flex flex-col lg:flex-row">
-      <div className="bg-white fixed top-0  flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] border-b lg:border-r border-zinc-300 lg:px-0 lg:py-6">
+      <div className="bg-white fixed z-10 top-0  flex min-h-16 flex-col px-6 md:min-h-18 md:px-8 lg:sticky lg:h-screen lg:min-h-[auto] lg:w-[19.5rem] lg:min-w-[19.5rem] border-b lg:border-r border-zinc-300 lg:px-0 lg:py-6">
         <div className="flex flex-1 flex-row items-center lg:flex-col lg:items-stretch">
           {logo && (
             <a

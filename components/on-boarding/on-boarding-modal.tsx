@@ -36,8 +36,8 @@ export const OnboardingModal = () => {
       const response = await fetchApi<any>("/user/update-new-user", {
         method: "POST",
       });
-      const result: UserResponse = await response.json();
-      if (result.ok) {
+
+      if (response.ok) {
         mutate({ isNewUser: false, ok: true }, false);
         setOpen(false);
       }
