@@ -47,7 +47,7 @@ export const Navbar = (props: Navbar1Props) => {
           <a href={logo.url}>
             <Image
               src={logo.src}
-              alt={logo.alt || "AVS Logo 2024"}
+              alt={logo.alt || "AVS Logo"}
               width={logo.width || 175}
               height={logo.height || 50}
             />
@@ -248,8 +248,8 @@ export const Navbar1Defaults: Navbar1Props = {
     // },
     {
       navLink: {
-        title: "Hire a Virtual Staff",
-        url: "/start-hiring",
+        title: "Free Strategy Call",
+        url: "/book-a-meeting",
         follow: false,
       },
       variant: "secondary",

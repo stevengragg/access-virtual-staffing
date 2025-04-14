@@ -1,0 +1,1 @@
+ALTER TABLE "users" RENAME COLUMN "text" TO "api_token_expiration";

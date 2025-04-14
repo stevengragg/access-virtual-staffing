@@ -1,0 +1,1 @@
+ALTER TABLE "job_applications" ADD COLUMN "application_public_id" text NOT NULL;

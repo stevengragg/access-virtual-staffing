@@ -1,26 +1,25 @@
 "use client";
 
-import { useState } from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  RadioGroup,
-  RadioGroupItem,
   Input,
   Label,
-  Checkbox,
   Textarea,
   Button,
 } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ContactFormSchema, contactFormSchema } from "@/lib/form-validation";
+import {
+  ContactFormSchema,
+  contactFormSchema,
+} from "@/lib/validation/contact-form-validation";
 import submitForm from "@/lib/send";
-import { useToast } from "../hooks/use-toast";
+import { useToast } from "../../hooks/use-toast";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -70,8 +69,12 @@ export const ContactForm = (props: Contact2Props) => {
     },
     { value: "second-choice", label: "Payment or Invoicing concern" },
     { value: "third-choice", label: "General support request" },
-    { value: "fourth-choice", label: "I have a unique requirements" },
-    { value: "fifth-choice", label: "Others" },
+    { value: "fourth-choice", label: "I have a unique staffing requirements" },
+    {
+      value: "fifth-choice",
+      label: "I am looking for a job and I have questions",
+    },
+    { value: "sixth-choice", label: "Others" },
   ];
 
   const roleItems = [
@@ -80,6 +83,7 @@ export const ContactForm = (props: Contact2Props) => {
     { value: "third-choice", label: "Head of Recruitment" },
     { value: "fourth-choice", label: "Recruiter" },
     { value: "fifth-choice", label: "Account Manager" },
+    { value: "fifth-choice", label: "I am a Jobseeker/Virtual Staff" },
     { value: "other", label: "Other" },
   ];
 

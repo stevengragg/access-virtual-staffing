@@ -11,6 +11,21 @@ body,
 }
 
 @layer utilities {
+  .animate-bounce {
+    animation: bounce 1s infinite;
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+  }
   .text-balance {
     text-wrap: balance;
   }
@@ -24,4 +39,31 @@ body,
     @apply text-zinc-800 font-bold;
     font-family: "Montserrat", sans-serif;
   }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar in Firefox/Edge/IE */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.tab-trigger[data-state="active"] {
+  background: white;
+  color: slate-950;
+}
+
+.tab-trigger:focus {
+  background: white;
+}
+
+:root {
+  --background: 217.78, 19.71%, 26.86%;
+}
+
+.rdp-vhidden {
+  @apply hidden;
 }

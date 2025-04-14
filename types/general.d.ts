@@ -5,3 +5,7 @@ export type ImageProps = {
   width: number;
   height: number;
 };
+
+export type NormalParamsWithId = { id?: string };
+export type AppRouterWithNormalParamsWithId = AppRouterPageRouteOpts &
+  NormalParamsWithId;

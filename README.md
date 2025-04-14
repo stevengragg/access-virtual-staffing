@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Access Virtual Staffing
+
+Access Virtual Staffing is a Next.js application designed to promote virtual staffing services that will be provided by the AVS team in Florida, USA. This project includes features for managing talent requests, job applications, and personal information collection.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- Node.js (latest)
+- npm (latest)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-repo/access-virtual-staffing.git
+cd access-virtual-staffing
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+
+```
+
+3. Create a `.env.local` file based on `.env.example` and fill in the necessary environment variables.
+
+### Running the Development Server
+
+To start the development server, run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> Note that you need ngrok to expose localhost to the internet in order to test the Auth0 login flow. You would need to update the Auth0 triggers to point to the ngrok URL.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Building for Production
 
-## Learn More
+To build the project for production, run:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Starting the Production Server
 
-## Deploy on Vercel
+To start the production server, run:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+
+### Running Migrations
+
+To generate database migrations, use the following commands:
+
+```bash
+npm run migration:generate
+
+```
+
+To run the migrations, use the following command:
+
+```bash
+npm run migration:run
+
+```
+
+> Note: Make sure to communicate any needs to change the database schema with the team before generating or running migrations.
+
+### Linting
+
+To lint the codebase, run:
+
+```bash
+npm run lint
+
+```
+
+> Note: Use the prettier config saved on this repository to format the codebase. Do not alter the prettier configuration.
+
+## Project Structure
+
+### Key Directories
+
+- **app/**: Contains the main application files, including pages and global styles.
+- **components/**: Reusable UI components.
+- **context/**: Context providers for state management.
+- **database/**: Database configuration and migrations.
+- **hooks/**: Custom React hooks.
+- **lib/**: Utility functions and libraries.
+- **public/**: Static assets like images and icons.
+- **services/**: API service functions.
+- **types/**: TypeScript type definitions.
+
+## Technologies Used
+
+- **Next.js**: The primary framework for building the application.
+- **React**: For building UI components.
+- **TypeScript**: For type safety.
+- **Tailwind CSS**: For styling.
+- **Auth0**: For authentication.
+- **Radix UI**: For UI components.
+- **Framer Motion**: For animations.
+- **ESLint**: For linting.
+- **Vercel**: For deployment.
+- **PostgreSQL**: For the database.
+- **Drizzle**: For database ORM and migrations.
+
+## Contributing
+
+We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## AVS Team
+
+**Access Virtual Staffing**  
+105 S. Narcissus Ave. Suite 512  
+West Palm Beach, FL 33401  
+Email: support@accessvirtualstaffing.com

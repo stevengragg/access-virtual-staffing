@@ -1,0 +1,2 @@
+ALTER TABLE "users" ADD COLUMN "job_recommendation_notif_pref" varchar DEFAULT 'enabled' NOT NULL;--> statement-breakpoint
+ALTER TABLE "users" ADD COLUMN "job_submission_notif_pref" varchar DEFAULT 'enabled' NOT NULL;

@@ -41,7 +41,7 @@ export const ContactCTA = (props: Cta7Props) => {
 export const Cta7Defaults: Cta7Props = {
   heading: "Talk To Us",
   description:
-    "You can book a call through our Calendly page and we'll explain the whole process or you can directly send us your inquiry through our Contact Us page .",
+    "Contact us and send us your inquiry. We'll explain the whole process and answer your questions.",
   buttons: [
     // {
     //   navLink: {

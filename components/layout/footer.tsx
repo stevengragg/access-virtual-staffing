@@ -81,12 +81,11 @@ export const Footer = (props: Footer11Props) => {
               <div className="space-x-2 flex flex-row items-start">
                 <span>{address.icon()}</span>
                 <GoogleMapLink address={address.value} />
-                {/* <p className="mb-5 text-sm md:mb-6">{address.value}</p> */}
               </div>
               <div className="space-x-2 flex flex-row items-start">
                 <span>{contact.icon()}</span>
                 <a
-                  className="mb-5 text-sm md:mb-6"
+                  className="mb-5 text-sm md:mb-6 hover:underline"
                   href={`mailto:${contact.email}`}
                 >
                   {contact.email}
@@ -94,12 +93,16 @@ export const Footer = (props: Footer11Props) => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-2 md:gap-x-8 md:gap-y-4 text-white">
+          <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-8 md:gap-y-4 text-white">
             {columnLinks.map((column, index) => (
               <ul key={index}>
                 {column.links.map((link, linkIndex) => (
                   <li key={linkIndex} className="py-2 text-sm font-semibold">
-                    <a href={link.url} target={link.follow ? "_blank" : ""}>
+                    <a
+                      href={link.url}
+                      className="hover:underline"
+                      target={link.follow ? "_blank" : ""}
+                    >
                       {link.title}
                     </a>
                   </li>
@@ -108,12 +111,15 @@ export const Footer = (props: Footer11Props) => {
             ))}
           </div>
         </div>
+
         <div className="flex flex-col-reverse items-start justify-between pb-4 pt-6 text-sm md:flex-row md:items-center md:pb-0 md:pt-8">
           <p className="mt-8 md:mt-0 text-white">{footerText}</p>
           <ul className="grid grid-flow-row grid-cols-[max-content] justify-center gap-x-0 gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0 text-white">
             {footerLinks.map((link, index) => (
               <li key={index} className="underline">
-                <a href={link.url}>{link.title}</a>
+                <a href={link.url} className="hover:underline">
+                  {link.title}
+                </a>
               </li>
             ))}
           </ul>
@@ -144,8 +150,7 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "About Us", url: "/about-us" },
-        { title: "Hire Virtual Staff", url: "/start-hiring" },
-        // { title: "Book A Discovery Call", url: "/book-a-meeting" },
+        { title: "Hire Virtual Staff", url: "/book-a-meeting" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
         {
@@ -171,18 +176,17 @@ export const Footer11Defaults: Footer11Props = {
         },
       ],
     },
+    {
+      links: [
+        { title: "For Talents", url: "/talent" },
+        { title: "Remote Jobs", url: "/talent/find-work" },
+        { title: "Applicant Portal", url: "/talent/portal" },
+      ],
+    },
   ],
-  // socialMediaLinks: [
-  //   { url: "#", icon: <BiLogoFacebookCircle className="size-6" /> },
-  //   { url: "#", icon: <BiLogoInstagram className="size-6" /> },
-  //   { url: "#", icon: <FaXTwitter className="size-6 p-0.5" /> },
-  //   { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
-  //   { url: "#", icon: <BiLogoYoutube className="size-6" /> },
-  // ],
-  footerText: "© 2024 Access Virtual Staffing. All rights reserved.",
+  footerText: `© 2024 - ${new Date().getFullYear()} Access Virtual Staffing. All rights reserved.`,
   footerLinks: [
     { title: "Privacy Policy", url: "/privacy-policy" },
-    // { title: "Terms of Service", url: "#" },
-    // { title: "Cookies Settings", url: "#" },
+    { title: "Terms of Service", url: "/terms-of-service" },
   ],
 };

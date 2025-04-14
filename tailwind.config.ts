@@ -25,14 +25,18 @@ const config: Config = {
         softGray: "#F2F2F2",
         orangeStar: "#FFB800",
       },
+      animation: {
+        bounce: "bounce 1s infinite",
+      },
     },
     backgroundImage: {
       heroHeaderBg: "url(/bg/heroheaderbg.webp)",
       heroFeatureBg: "url(/bg/herofeaturebg.webp)",
       ctaFooterBg: "url(/bg/ctafooterbg.webp)",
+      ctaFooterBg2: "url(/bg/ctafooterbg_new.webp)",
     },
   },
   presets: [require("@relume_io/relume-tailwind")],
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
