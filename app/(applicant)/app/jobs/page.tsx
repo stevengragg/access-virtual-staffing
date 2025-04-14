@@ -39,7 +39,7 @@ export default withPageAuthRequired(
 
     return (
       <main className="w-full mx-auto bg-white overflow-hidden">
-        <section id="joblist_header" className="relative px-[5%] pt-8 md:pt-12">
+        <section id="joblist_header" className=" px-[5%] pt-8 md:pt-12">
           <div className="container ">
             <div className="w-full max-w-lg">
               <h1 className=" text-2xl font-bold md:text-3xl">Explore Jobs</h1>
