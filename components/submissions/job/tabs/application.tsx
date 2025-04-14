@@ -1,7 +1,10 @@
-import { FileText } from "lucide-react";
 import { getProgressReadableText, getProgressColor } from "@/lib/get-progress";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import { Progress, Status } from "@/types/jobs";
+import { Hand } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 type JobContentProps = {
   status: Status;
@@ -77,29 +80,40 @@ const ApplicationContent = ({ status, progress }: JobContentProps) => {
 
   return (
     <>
-      {/* TODO: make this a downloadable file onClick, Resume Attachment */}
-      <div className="mt-4 flex items-center p-3 border rounded-lg bg-zinc-50 cursor-pointer">
-        <h3 className="ml-2 text-sm text-zinc-800">
-          You shared your profile details and file attachments to the recruiter.
-        </h3>
+      <div className="my-2">
+        <Badge variant={status === "on_going" ? "warning" : "archived"}>
+          {status === "on_going" ? "Ongoing" : "Archived"}
+        </Badge>
       </div>
+      {/* TODO: make this a downloadable file onClick, Resume Attachment */}
+      <Alert>
+        <Hand className="h-4 w-4" />
+        <AlertTitle className="font-semibold">Heads up!</AlertTitle>
+        <AlertDescription>
+          You shared your profile details and file attachments to the recruiter.
+        </AlertDescription>
+      </Alert>
 
       {/* Application Progress */}
-      <div
-        className={`mt-6 p-4 border rounded-lg ${progressConfig[progress].bgColor} flex items-center`}
+      <Alert
+        className={cn(
+          `mt-6 p-4 border rounded-lg ${progressConfig[progress].bgColor} flex items-center`
+        )}
       >
         <div
           className={`h-4 w-4 ${progressConfig[progress].dotColor} rounded-full mr-3`}
         ></div>
         <div>
-          <p className={`font-semibold ${progressConfig[progress].textColor}`}>
+          <AlertTitle
+            className={cn("font-semibold", progressConfig[progress].textColor)}
+          >
             {getProgressReadableText(progress)}
-          </p>
-          <p className="text-sm text-zinc-800">
+          </AlertTitle>
+          <AlertDescription className="text-sm text-zinc-800">
             {progressConfig[progress].message}
-          </p>
+          </AlertDescription>
         </div>
-      </div>
+      </Alert>
     </>
   );
 };
