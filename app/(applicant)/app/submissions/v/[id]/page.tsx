@@ -33,6 +33,7 @@ export default withPageAuthRequired(
   async function ViewJobSubmission({
     params,
   }: AppRouterWithNormalParamsWithId) {
+    console.log("params", params);
     return (
       <div className="h-fit overflow-auto p-6 bg-white rounded-lg shadow-md max-w-2xl mx-auto">
         <JobHeader jobData={job} />

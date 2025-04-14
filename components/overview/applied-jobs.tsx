@@ -4,31 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import JobCard from "@/components/submissions/job-application-card";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { useRouter } from "next/navigation";
-
-import { IJobApplication } from "@/types/jobs";
-
-const jobApplications: IJobApplication[] = [
-  {
-    id: 1,
-    company: "Google",
-    position: "Software Engineer",
-    status: "Pending",
-    date: "2024-02-28",
-    logo: "https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA",
-  },
-  {
-    id: 2,
-    company: "Facebook",
-    position: "Product Manager",
-    status: "Not Accepted",
-    date: "2024-02-20",
-    logo: "https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA",
-  },
-];
+import { useJobSubmissions } from "@/hooks/use-job-submissions";
 
 const AppliedJobs = () => {
+  const { jobApplications, loading, hasMore, loadMore } = useJobSubmissions({
+    filter: "on_going",
+  });
+
+  if (loading) return <p className="text-center text-zinc-500">Loading...</p>;
+
   return (
     <Card className="w-full p-6 border border-gray-200 flex flex-col justify-between">
       <div className="flex flex-col">
@@ -39,15 +23,26 @@ const AppliedJobs = () => {
       </div>
 
       <div className="flex flex-col gap-2 py-4">
-        {jobApplications.map((job, index) => (
-          <JobCard key={index} job={job} />
+        {jobApplications.map((j) => (
+          <JobCard key={j.applicationPublicId} jobApplication={j} />
         ))}
+        {jobApplications.length === 0 && !loading && (
+          <p className="text-center text-zinc-500">No applied jobs</p>
+        )}
       </div>
-      <div className="flex justify-center w-full">
-        <Button variant="ghostBlue" size="sm" className="font-medium">
-          View All Applied Jobs
-        </Button>
-      </div>
+
+      {hasMore && !loading && (
+        <div className="flex justify-center w-full">
+          <Button
+            variant="ghostBlue"
+            size="sm"
+            onClick={loadMore}
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "View All Applied Jobs"}
+          </Button>
+        </div>
+      )}
     </Card>
   );
 };

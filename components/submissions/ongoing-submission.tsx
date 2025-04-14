@@ -9,15 +9,17 @@ const OngoingSubmission = () => {
     filter: "on_going",
   });
 
+  if (loading) return <p className="text-center text-zinc-500">Loading...</p>;
+
   return (
     <div className="grid grid-cols-1 gap-4">
       {jobApplications.map((j) => (
         <JobApplicationCard jobApplication={j} key={j.applicationPublicId} />
       ))}
       {jobApplications.length === 0 && !loading && (
-        <p className="text-center text-gray-500">No ongoing submissions</p>
+        <p className="text-center text-zinc-500">No ongoing submissions</p>
       )}
-      {loading && <p className="text-center text-gray-500">Loading...</p>}
+
       {hasMore && !loading && (
         <div className="mt-4 flex justify-center">
           <Button variant="ghost" onClick={loadMore} disabled={loading}>
