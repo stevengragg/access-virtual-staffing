@@ -6,6 +6,8 @@ import { db } from "@/database";
 import { profiles, users } from "@/database/schema";
 import { and, eq } from "drizzle-orm";
 import { log } from "@/lib/logs";
+import { createNotification } from "@/database/mutations/job_applicants";
+import { getJobPost } from "@/lib/api/jobs";
 
 export async function GET(request: NextRequest) {
   try {
@@ -50,7 +52,6 @@ export async function GET(request: NextRequest) {
           eq(jobApplications.userId, user[0].id)
         )
       )
-
       .limit(1);
 
     if (!application.length) {
@@ -156,6 +157,16 @@ export async function POST(req: NextRequest) {
       userId: user[0].id,
       jobId,
     });
+
+    const job = await getJobPost(jobId);
+
+    createNotification(
+      user[0].id,
+      `You sent a job application to "${job?.item?.title}". Please wait for the recruiter to reach out. `,
+      "info",
+      `/app/submissions/${newApplication.id}`
+    );
+
     return NextResponse.json(
       {
         message: "Application submitted successfully",

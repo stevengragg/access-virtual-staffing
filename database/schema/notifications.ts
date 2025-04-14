@@ -7,7 +7,7 @@ export const notifications = pgTable("notifications", {
   userId: integer("user_id").references(() => users.id),
   message: text("message"),
   createdAt: timestamp("created_at").defaultNow(),
-  type: text("type"),
+  type: text("type"), // info, jobs, job_submissions
   linkTo: text("link_to"),
 });
 

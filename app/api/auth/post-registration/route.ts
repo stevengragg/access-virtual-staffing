@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 
 import { db } from "@/database";
 import { users } from "@/database/schema";
+import { createNotification } from "@/database/mutations/job_applicants";
 
 export async function POST(req: Request) {
   try {
@@ -26,15 +27,25 @@ export async function POST(req: Request) {
     });
 
     if (!existingUser) {
-      await db.insert(users).values({
-        userId: user_id,
-        email,
-        firstName: given_name ?? "",
-        lastName: family_name ?? "",
-        name,
-        profileImage: picture ?? "",
-        provider,
-      });
+      const user = await db
+        .insert(users)
+        .values({
+          userId: user_id,
+          email,
+          firstName: given_name ?? "",
+          lastName: family_name ?? "",
+          name,
+          profileImage: picture ?? "",
+          provider,
+        })
+        .returning({ userId: users.id });
+
+      createNotification(
+        user[0].userId,
+        "Welcome to AVS Applicant Portal! Setup your profile and start exploring jobs.",
+        "info",
+        "#"
+      );
     }
 
     return NextResponse.json({
