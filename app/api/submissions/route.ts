@@ -8,6 +8,7 @@ import { and, eq } from "drizzle-orm";
 import { log } from "@/lib/logs";
 import { createNotification } from "@/database/mutations/job_applicants";
 import { getJobPost } from "@/lib/api/jobs";
+import { sendEmailNotification } from "@/services/send-email-notif";
 
 export async function GET(request: NextRequest) {
   try {
@@ -166,6 +167,15 @@ export async function POST(req: NextRequest) {
       "info",
       `/app/submissions/${newApplication.id}`
     );
+
+    sendEmailNotification({
+      to: [user[0].email],
+      subject: `You sent a job application to "${job?.item?.title}"`,
+      message:
+        "Cheers! We received your application. Please wait for the recruiter to reach out.",
+      footer:
+        "If you have any questions, feel free to reach out 👉 support@accessvirtualstaffing.com",
+    });
 
     return NextResponse.json(
       {

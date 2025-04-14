@@ -9,6 +9,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/database";
 import { users } from "@/database/schema";
 import { createNotification } from "@/database/mutations/job_applicants";
+import { sendEmailNotification } from "@/services/send-email-notif";
 
 export async function POST(req: Request) {
   try {
@@ -46,6 +47,15 @@ export async function POST(req: Request) {
         "info",
         "#"
       );
+
+      sendEmailNotification({
+        to: [email],
+        subject: "Welcome to AVS Applicant Portal",
+        message:
+          "Welcome to AVS Applicant Portal! Setup your profile and start exploring jobs.",
+        footer:
+          "If you have any questions, feel free to reach out 👉 support@accessvirtualstaffing.com",
+      });
     }
 
     return NextResponse.json({
