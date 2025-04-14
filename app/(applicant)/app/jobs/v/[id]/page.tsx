@@ -8,6 +8,8 @@ import LinkButton from "@/components/ui/link-button";
 import { getJobPost } from "@/lib/api/jobs";
 import { AppRouterWithNormalParamsWithId } from "@/types/general";
 import { ViewJobContent } from "@/components/jobs/view-job-content";
+import { getJobApplication } from "@/database/queries/job_applications";
+import { Button } from "@/components/ui/button";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -23,14 +25,8 @@ export default withPageAuthRequired(
     const post = await getJobPost(
       Array.isArray(params?.id) ? params?.id[0] : params?.id || ""
     );
-
-    // if (
-    //   post?.item?.title?.toLowerCase() !==
-    //   params?.id?.toString()?.split("-")?.splice(1)?.join(" ")?.toLowerCase()
-    // ) {
-
-    //   return notFound();
-    // }
+    const jobApplication = await getJobApplication(params?.id || "");
+    const alreadyApplied = jobApplication.ok && jobApplication.application;
 
     if (!post) {
       return notFound();
@@ -39,6 +35,7 @@ export default withPageAuthRequired(
     return (
       <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
         <ViewJobHeader
+          jobId={post?.item?.id}
           heading={post?.item?.title || "..."}
           details={[
             {
@@ -49,10 +46,6 @@ export default withPageAuthRequired(
               label: post?.item?.pay || "Not specified",
               icon: Banknote,
             },
-            // {
-            //   label: post?.item?.postedBy || "Not available",
-            //   icon: UserRound,
-            // },
             {
               label: formatDistanceToNow(
                 new Date(post?.item?.createdAt || ""),
@@ -64,15 +57,26 @@ export default withPageAuthRequired(
             },
           ]}
           applyBtn={
-            <LinkButton
-              size="xl"
-              variant="primary"
-              navLink={{
-                title: "APPLY FOR THIS JOB",
-                url: `/app/jobs/v/${params?.id}/apply`,
-                follow: false,
-              }}
-            />
+            alreadyApplied ? (
+              <Button
+                size="xl"
+                variant="outline"
+                disabled
+                className=" disabled:cursor-not-allowed"
+              >
+                You already applied
+              </Button>
+            ) : (
+              <LinkButton
+                size="xl"
+                variant="primary"
+                navLink={{
+                  title: "APPLY FOR THIS JOB",
+                  url: `/app/jobs/v/${params?.id}/apply`,
+                  follow: false,
+                }}
+              />
+            )
           }
         />
         <ViewJobContent heading="Overview">

@@ -124,7 +124,7 @@ export const fetchJob = async (
   }
 
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
 
   const title =
     data.fields?.find((field: any) => field.external_id === "title")?.values[0]

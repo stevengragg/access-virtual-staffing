@@ -4,12 +4,84 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { jobApplications } from "@/database/schema/job-applications";
 import { db } from "@/database";
 import { profiles, users } from "@/database/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { log } from "@/lib/logs";
 
 export async function GET(request: NextRequest) {
-  const applications = await db.select().from(jobApplications);
-  return NextResponse.json(applications);
+  try {
+    const session = await getSession(request, NextResponse.next());
+
+    if (!session) {
+      return NextResponse.json(
+        { message: "Please login.", ok: false },
+        { status: 401 }
+      );
+    }
+
+    const { searchParams } = new URL(request.url);
+    const jobId = searchParams.get("jobId");
+
+    if (!jobId) {
+      return NextResponse.json(
+        { message: "jobId is required", ok: false },
+        { status: 400 }
+      );
+    }
+
+    const user = await db
+      .select()
+      .from(users)
+      .where(eq(users.userId, session.user.sub))
+      .limit(1);
+
+    if (!user.length) {
+      return NextResponse.json(
+        { message: "User not found", ok: false },
+        { status: 404 }
+      );
+    }
+
+    const application = await db
+      .select()
+      .from(jobApplications)
+      .where(
+        and(
+          eq(jobApplications.jobId, jobId),
+          eq(jobApplications.userId, user[0].id)
+        )
+      )
+
+      .limit(1);
+
+    if (!application.length) {
+      return NextResponse.json(
+        { message: "No application found", ok: false },
+        { status: 404 }
+      );
+    }
+
+    log("GET /api/submissions", "info", {
+      message: "Application fetched successfully",
+      userId: user[0].id,
+      jobId,
+    });
+
+    return NextResponse.json(
+      { message: "Application found", ok: true, application: application[0] },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    log("GET /api/submissions", "error", { error: error.message });
+
+    return NextResponse.json(
+      {
+        error: "Internal Server Error",
+        ok: false,
+        message: "Error fetching application",
+      },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: NextRequest) {
