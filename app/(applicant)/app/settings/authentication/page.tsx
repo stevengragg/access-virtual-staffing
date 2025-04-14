@@ -28,26 +28,27 @@ export default function ChangePassword() {
         method: "POST",
         body: JSON.stringify({ userId: user.sub, email: user.email }),
       });
+      console.log(response);
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Password reset email sent successfully!",
+          variant: "success",
+        });
 
-      if (!response.ok) throw new Error("Failed to send password reset email");
-
-      toast({
-        title: "Success",
-        description: "Password reset email sent successfully!",
-        variant: "success",
-      });
-
-      setTimeout(() => {
-        window.location.href = "/api/auth/logout";
-      }, 2000);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "An unknown error occurred";
-      console.error("Error sending password reset email:", errorMessage);
+        setTimeout(() => {
+          window.location.href = "/api/auth/logout";
+        }, 2000);
+      }
+    } catch (error: any) {
+      console.error("Error sending password reset email:", { error });
 
       toast({
         title: "Error",
-        description: errorMessage,
+        description:
+          error?.internalMessage ||
+          error?.publicMessage ||
+          "Failed to request password change",
         variant: "destructive",
       });
     } finally {

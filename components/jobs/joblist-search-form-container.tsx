@@ -54,8 +54,8 @@ export const JobListSearchFormContainer = ({
             <div className="flex items-center  rounded-lg px-2">
               <Input
                 {...register("searchText")}
-                placeholder="Search..."
-                className="flex-1 p-2 h-14"
+                placeholder="Search with keywords..."
+                className="flex-1 p-2 h-12 rounded-xl"
               />
               <button
                 type="button"

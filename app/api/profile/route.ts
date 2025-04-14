@@ -54,20 +54,22 @@ export async function GET(req: NextRequest) {
     });
 
     if (!existingProfile) {
-      return NextResponse.json(
-        {
-          error: "Profile not found",
-          message: "Profile does not exist.",
-          ok: false,
-          profile: null,
-        },
-        { status: 404 }
-      );
+      return NextResponse.json({
+        message: "Success!",
+        ok: true,
+        profile: null,
+        phones: [],
+        emails: [],
+        contentLinks: [],
+        assessmentTests: [],
+        workSamples: [],
+        fileUploads: [],
+      });
     }
 
-    const fileAttachments = await db.query.fileUploads.findMany({
-      where: eq(fileUploads.profileId, existingProfile.id),
-    });
+    // const fileAttachments = await db.query.fileUploads.findMany({
+    //   where: eq(fileUploads.profileId, existingProfile.id),
+    // });
 
     log("GET /api/profile", "info", { profile: existingProfile });
 

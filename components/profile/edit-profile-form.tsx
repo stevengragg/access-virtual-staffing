@@ -96,15 +96,15 @@ export default function EditProfileForm() {
   React.useEffect(() => {
     if (data && data.ok) {
       profileDetailsForm.reset({
-        ...data.profile,
-        phone: data.phones,
-        emailAddress: data.emails,
-        contentLinks: data.contentLinks,
-        assessmentTests: data.assessmentTests,
-        workSamples: data.workSamples,
+        ...data?.profile,
+        phone: data?.phones,
+        emailAddress: data?.emails,
+        contentLinks: data?.contentLinks,
+        assessmentTests: data?.assessmentTests,
+        workSamples: data?.workSamples,
         desiredSalary: parseInt(data?.profile?.desiredSalary, 10),
-        dateOfBirth: data.profile.dateOfBirth
-          ? new Date(data.profile.dateOfBirth)
+        dateOfBirth: data?.profile?.dateOfBirth
+          ? new Date(data?.profile?.dateOfBirth)
           : undefined,
       });
     }
