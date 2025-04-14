@@ -82,16 +82,19 @@ export default async function FindWork({
 
   const page = parseInt(resolvedSearchParams.page as string, 10) || 1;
   const offset = (page - 1) * 10;
-  const positions = await getJobs({
-    offset,
-    sort_by: "created_on",
-    sort_desc: true,
-    limit: 10,
-    filters: {
-      "job-posting-status": 3,
-      title: resolvedSearchParams.search || undefined,
+  const positions = await getJobs(
+    {
+      offset,
+      sort_by: "created_on",
+      sort_desc: true,
+      limit: 10,
+      filters: {
+        "job-posting-status": 3,
+      },
     },
-  });
+    resolvedSearchParams?.search?.toString() || undefined,
+    false
+  );
 
   const totalFilteredCount = positions?.success ? positions.total : 0;
   return (

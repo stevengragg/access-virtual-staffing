@@ -174,6 +174,7 @@ export const getJobs = async (
     isApp
   );
   let jobListing: IJobListing[] = [];
+
   if (search) {
     jobListing = response.items.filter((job) => {
       const regex = new RegExp(search, "i");
