@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { PositionProps } from "@/types/general";
+import { PositionProps } from "@/types/jobs";
 import { formatDistanceToNow } from "date-fns";
 import { Banknote, MapPin } from "lucide-react";
 import LinkButton from "../ui/link-button";

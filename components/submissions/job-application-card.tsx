@@ -29,7 +29,7 @@ const JobApplicationCard = ({ jobApplication }: JobApplicationCardProps) => {
             <h3 className="font-semibold text-base lg:text-lg text-zinc-800">
               {jobApplication?.job?.title || "..."}
             </h3>
-            <p className="text-sm text-gray-600">Access Virtual Staffing</p>
+            <p className="text-sm text-zinc-600">Access Virtual Staffing</p>
           </div>
           <p
             className={`text-xs font-semibold mt-1 ${getProgressColor(
@@ -41,12 +41,12 @@ const JobApplicationCard = ({ jobApplication }: JobApplicationCardProps) => {
         </div>
       </div>
       <div className="flex items-center space-x-2">
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-zinc-400">
           {formatDistanceToNow(new Date(jobApplication?.submittedAt), {
             addSuffix: true,
           })}
         </span>
-        <FaChevronRight className="text-gray-400" />
+        <FaChevronRight className="text-zinc-400" />
       </div>
     </Link>
   );

@@ -1,22 +1,40 @@
-import { IJobApplication } from "@/types/jobs"
+import { formatDistanceToNow } from "date-fns";
+import Image from "next/image";
+
+import { IJobApplicationHeaderDetails } from "@/types/jobs";
 
 type JobHeaderProps = {
-    jobData: IJobApplication
-}
+  jobApplication: IJobApplicationHeaderDetails;
+};
 
-const JobHeader = ({jobData}: JobHeaderProps) => {
-    return (
-        <div className="flex items-start justify-between">
-            <div>
-                <img src={jobData.logo} alt={jobData.company} className="w-12 h-12 mb-4 rounded-md object-contain" />
-                <h2 className="text-xl font-semibold">{jobData.company}</h2>
-                <p className="text-sm text-gray-600">
-                    {jobData.position}
-                </p>
-                <p className="text-sm text-gray-500">{jobData.date}</p>
-            </div>
+const JobHeader = ({ jobApplication }: JobHeaderProps) => {
+  return (
+    <div className="flex items-center space-x-4">
+      <Image
+        src={"/avs_logo.webp"}
+        alt="Company logo"
+        width={72}
+        height={72}
+        className="w-18 h-18 rounded-md object-contain border border-zinc-300"
+      />
+      <div>
+        <div className="flex flex-col">
+          <h3 className="font-semibold text-base lg:text-lg text-zinc-800">
+            {jobApplication?.title || "..."}
+          </h3>
+          <p className="text-sm text-zinc-600">Access Virtual Staffing</p>
         </div>
-    )
-}
+        <p className="text-xs font-semibold mt-1">
+          Applied{" "}
+          {jobApplication?.submittedAt
+            ? formatDistanceToNow(new Date(jobApplication.submittedAt), {
+                addSuffix: true,
+              })
+            : "Submission date not available"}
+        </p>
+      </div>
+    </div>
+  );
+};
 
-export default JobHeader
+export default JobHeader;

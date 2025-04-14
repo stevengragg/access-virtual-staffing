@@ -1,9 +1,9 @@
 import { Card } from "@/components/ui/card";
 
 import RecommendedJobCard from "./recommended-job-card";
-import { JobListing } from "@/types/general";
+import { IJobListing } from "@/types/jobs";
 
-const RecommendedJobs = ({ positions }: { positions: JobListing[] }) => {
+const RecommendedJobs = ({ positions }: { positions: IJobListing[] }) => {
   return (
     <Card className="w-full p-6 border border-gray-200 flex flex-col justify-between">
       <div className="flex flex-col">
@@ -18,7 +18,7 @@ const RecommendedJobs = ({ positions }: { positions: JobListing[] }) => {
 
       <div className="flex flex-col gap-2 py-4">
         {positions && positions?.length ? (
-          positions.map((position: JobListing, index: number) => (
+          positions.map((position: IJobListing, index: number) => (
             <RecommendedJobCard key={index} position={{ ...position }} />
           ))
         ) : (

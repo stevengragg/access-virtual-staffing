@@ -1,7 +1,3 @@
-import LinkButton, { LinkButtonProps } from "../ui/link-button";
-import { JobListing } from "@/types/general";
-import { JobListItemPosition } from "./joblist-item-position";
-
 export const JobListContainerAdvanced = (
   props: React.ComponentPropsWithoutRef<"section">
 ) => {

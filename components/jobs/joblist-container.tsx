@@ -2,13 +2,13 @@ import { Banknote, MapPin, UserRound } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
-import { JobListing } from "@/types/general";
+import { IJobListing } from "@/types/jobs";
 import { JobListItemPosition } from "./joblist-item-position";
 
 type Props = {
   heading: string;
   description: string;
-  positions: JobListing[];
+  positions: IJobListing[];
   buttons: LinkButtonProps[];
 };
 

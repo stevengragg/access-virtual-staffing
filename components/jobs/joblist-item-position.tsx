@@ -1,7 +1,7 @@
 import { Banknote, MapPin, UserRound } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
-import { PositionProps } from "@/types/general";
+import { PositionProps } from "@/types/jobs";
 import LinkButton from "../ui/link-button";
 import {
   Card,

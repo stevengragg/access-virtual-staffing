@@ -8,7 +8,7 @@ import LinkButton from "@/components/ui/link-button";
 import { getJobPost } from "@/lib/api/jobs";
 import { AppRouterWithNormalParamsWithId } from "@/types/general";
 import { ViewJobContent } from "@/components/jobs/view-job-content";
-import { getJobApplication } from "@/database/queries/job_applications";
+import { getJobApplicationByJobId } from "@/database/queries/job_applications";
 import { Button } from "@/components/ui/button";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
@@ -25,7 +25,7 @@ export default withPageAuthRequired(
     const post = await getJobPost(
       Array.isArray(params?.id) ? params?.id[0] : params?.id || ""
     );
-    const jobApplication = await getJobApplication(params?.id || "");
+    const jobApplication = await getJobApplicationByJobId(params?.id || "");
     const alreadyApplied = jobApplication.ok && jobApplication.application;
 
     if (!post) {

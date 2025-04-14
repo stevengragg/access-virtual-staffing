@@ -28,7 +28,7 @@ const SubmissionPages = () => {
         </TabsContent>
 
         <TabsContent value="archived">
-          <ArchivedSubmissions jobApplications={[]} />
+          <ArchivedSubmissions />
         </TabsContent>
       </Tabs>
     </div>
