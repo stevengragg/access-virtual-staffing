@@ -13,6 +13,7 @@ import { profiles } from "./profiles";
 
 export const jobApplications = pgTable("job_applications", {
   id: serial("id").primaryKey(),
+  applicationPublicId: text("application_public_id").notNull(), // e.g., 1234567890
   userId: integer("user_id")
     .references(() => users.id)
     .notNull(),

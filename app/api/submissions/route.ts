@@ -9,6 +9,7 @@ import { log } from "@/lib/logs";
 import { createNotification } from "@/database/mutations/job_applicants";
 import { getJobPost } from "@/lib/api/jobs";
 import { sendEmailNotification } from "@/services/send-email-notif";
+import { generateNumericId } from "@/utils/generate-numeric-id";
 
 export async function GET(request: NextRequest) {
   try {
@@ -146,12 +147,13 @@ export async function POST(req: NextRequest) {
       .insert(jobApplications)
       .values({
         userId: user[0].id,
+        applicationPublicId: generateNumericId(),
         profileId: profile[0].id,
         jobId,
         status: "on_going",
         progress: "in_review",
       })
-      .returning({ id: jobApplications.id });
+      .returning({ applicationId: jobApplications.applicationPublicId });
 
     log("POST /api/submissions", "info", {
       message: "Application submitted successfully",
@@ -165,7 +167,7 @@ export async function POST(req: NextRequest) {
       user[0].id,
       `You sent a job application to "${job?.item?.title}". Please wait for the recruiter to reach out. `,
       "info",
-      `/app/submissions/${newApplication.id}`
+      `/app/submissions/${newApplication.applicationId}`
     );
 
     sendEmailNotification({
@@ -181,7 +183,7 @@ export async function POST(req: NextRequest) {
       {
         message: "Application submitted successfully",
         ok: true,
-        applicationId: newApplication.id,
+        applicationId: newApplication.applicationId,
       },
       { status: 200 }
     );

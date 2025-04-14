@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
-import { eq, sql } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 
 import { db } from "@/database";
 import { notifications } from "@/database/schema/notifications";
@@ -55,6 +55,7 @@ export async function GET(req: NextRequest) {
           ? eq(notifications.userId, userId) // No type filter
           : eq(notifications.userId, userId) && eq(notifications.type, filter) // Type filter applied
       )
+      .orderBy(desc(notifications.createdAt)) // Sort by newest first
       .limit(limit)
       .offset(offset);
 
