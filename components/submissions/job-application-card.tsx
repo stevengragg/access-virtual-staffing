@@ -2,11 +2,9 @@ import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import { IJobApplication } from "@/types/jobs";
 import { getProgressReadableText, getProgressColor } from "@/lib/get-progress";
-import { getJobPost } from "@/lib/api/jobs";
 
 type JobApplicationCardProps = {
   jobApplication: IJobApplication;

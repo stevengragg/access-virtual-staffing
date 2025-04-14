@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
-import JobCard from "@/components/submissions/job-application-card";
+import JobApplicationCard from "@/components/submissions/job-application-card";
 
 import { useJobSubmissions } from "@/hooks/use-job-submissions";
 
@@ -24,7 +24,7 @@ const AppliedJobs = () => {
 
       <div className="flex flex-col gap-2 py-4">
         {jobApplications.map((j) => (
-          <JobCard key={j.applicationPublicId} jobApplication={j} />
+          <JobApplicationCard key={j.applicationPublicId} jobApplication={j} />
         ))}
         {jobApplications.length === 0 && !loading && (
           <p className="text-center text-zinc-500">No applied jobs</p>
