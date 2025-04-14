@@ -8,8 +8,9 @@ import {
   SearchFormSchema,
 } from "@/lib/validation/contact-form-validation";
 import { useFilter } from "../../hooks/use-filter";
-import { Input } from "@relume_io/relume-ui";
+
 import { XIcon } from "lucide-react";
+import { Input } from "../ui/input";
 
 type Props = {
   totalSearchResult: number;
@@ -50,11 +51,11 @@ export const JobListSearchFormContainer = ({
           onSubmit={handleSubmit(onSubmitForm)}
         >
           <div className=" w-full items-center">
-            <div className="">
+            <div className="flex items-center  rounded-lg px-2">
               <Input
                 {...register("searchText")}
                 placeholder="Search..."
-                className="rounded-lg border border-zinc-300"
+                className="flex-1 p-2 h-14"
               />
               <button
                 type="button"
@@ -62,11 +63,9 @@ export const JobListSearchFormContainer = ({
                   reset({ searchText: "" });
                   clearFilters();
                 }}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 ml-2"
               >
-                <span>
-                  <XIcon />
-                </span>
+                <XIcon />
               </button>
             </div>
 
