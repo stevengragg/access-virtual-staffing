@@ -37,7 +37,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Fetch the user using session.user.sub
     const user = await db.query.users.findFirst({
       where: eq(users.userId, session.user.sub),
     });
@@ -49,7 +48,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Fetch the corresponding profile using user.id
     const profile = await db.query.profiles.findFirst({
       where: eq(profiles.userId, user.id),
     });
@@ -61,7 +59,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Insert the file upload record linked to the profile
     await db.insert(fileUploads).values({
       type,
       link: fileUrl,

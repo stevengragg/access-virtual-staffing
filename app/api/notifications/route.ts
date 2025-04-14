@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
-import { eq } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 
 import { db } from "@/database";
 import { notifications } from "@/database/schema/notifications";
@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Find the user in the database
     const user = await db
       .select({ id: users.id })
       .from(users)
@@ -33,7 +32,6 @@ export async function GET(req: NextRequest) {
 
     const userId = user[0].id;
 
-    // Extract pagination and filter parameters
     const url = new URL(req.url);
     const page = Number(url.searchParams.get("page")) || 1;
     const limit = Number(url.searchParams.get("limit")) || 10;
@@ -52,18 +50,28 @@ export async function GET(req: NextRequest) {
       .from(notifications)
       .where(
         filter === "all"
-          ? eq(notifications.userId, userId) // No type filter
-          : eq(notifications.userId, userId) && eq(notifications.type, filter) // Type filter applied
+          ? eq(notifications.userId, userId)
+          : eq(notifications.userId, userId) && eq(notifications.type, filter)
       )
+      .orderBy(desc(notifications.createdAt))
       .limit(limit)
       .offset(offset);
 
-    return NextResponse.json({ notifications: userNotifications });
-  } catch (error: unknown) {
+    const totalCountResult = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(notifications)
+      .where(eq(notifications.userId, userId));
+
+    return NextResponse.json({
+      ok: true,
+      notifications: userNotifications,
+      total: totalCountResult[0].count,
+    });
+  } catch (error: any) {
     return NextResponse.json(
       {
         error: "Internal Server Error",
-        message: error instanceof Error ? error.message : "Unknown error",
+        message: error.message ?? "Internal Server Error",
       },
       { status: 500 }
     );

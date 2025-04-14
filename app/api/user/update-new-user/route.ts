@@ -15,7 +15,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Fetch user data
     const user = await db
       .select({ isNewUser: users.isNewUser })
       .from(users)
@@ -57,7 +56,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Update isNewUser to false in the database
     await db
       .update(users)
       .set({ isNewUser: false })

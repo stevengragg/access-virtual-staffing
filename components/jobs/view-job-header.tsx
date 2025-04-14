@@ -9,15 +9,17 @@ type Props = {
   heading: string;
   details: Details[];
   applyBtn: JSX.Element;
+  jobId: string;
 };
 
 export type ViewJobHeaderProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const ViewJobHeader = (props: ViewJobHeaderProps) => {
-  const { heading, details, applyBtn } = {
+  const { heading, details, applyBtn, jobId } = {
     ...props,
   };
+
   return (
     <section id="header" className="px-[5%] bg-zinc-200">
       <div className="mx-auto max-w-lg py-16 text-center md:py-24 lg:py-28">

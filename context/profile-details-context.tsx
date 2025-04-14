@@ -8,7 +8,7 @@ import {
   EditProfileSchema,
 } from "@/lib/validation/update-profile-form-validation";
 
-const ProfileDetailsContext = createContext<boolean>(false); // Just a flag to ensure provider is used
+const ProfileDetailsContext = createContext<boolean>(false);
 
 export const ProfileDetailsProvider = ({
   children,

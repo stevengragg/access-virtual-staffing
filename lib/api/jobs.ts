@@ -1,11 +1,13 @@
+import { getJobId } from "@/utils/get-job-id";
 import { gainRefreshedAccessToken } from "./authorization";
-import { JobListing } from "@/types/general";
+import { IJobApplication, IJobListing } from "@/types/jobs";
+import { getJobApplicationById } from "@/database/queries/job_applications";
 
 interface FetchJobListingsResponse {
   success: boolean;
-  items: JobListing[];
-  total: number; //filtered
-  all: number; // all total
+  items: IJobListing[];
+  total: number;
+  all: number;
 }
 
 type FetchJobListingsConfig = {
@@ -19,7 +21,7 @@ type FetchJobListingsConfig = {
 
 interface FetchJobResponse {
   success: boolean;
-  item: JobListing | null;
+  item: IJobListing | null;
 }
 
 export const fetchJobListings = async (
@@ -123,7 +125,6 @@ export const fetchJob = async (
   }
 
   const data = await response.json();
-  console.log(data);
 
   const title =
     data.fields?.find((field: any) => field.external_id === "title")?.values[0]
@@ -172,7 +173,7 @@ export const getJobs = async (
     config,
     isApp
   );
-  let jobListing: JobListing[] = [];
+  let jobListing: IJobListing[] = [];
   if (search) {
     jobListing = response.items.filter((job) => {
       const regex = new RegExp(search, "i");
@@ -191,19 +192,17 @@ export const getJobs = async (
 export const getJobPost = async (
   id: string
 ): Promise<FetchJobResponse | null> => {
+  console.log(" ID", id);
   const newAccessToken = await gainRefreshedAccessToken("jobs");
 
   if (!newAccessToken) {
     return null;
   }
 
-  // Extract the job ID from the idWithSlug string
-  const idMatch = id.match(/^(\d+)-/);
-  console.log(idMatch);
-  const finalId = idMatch ? idMatch[1] : null;
-
+  const finalId = getJobId(id);
+  console.log("Final ID", finalId);
   if (!finalId) {
-    console.log("Invalid job ID");
+    console.error("Invalid job ID");
     return null;
   }
 
@@ -212,4 +211,45 @@ export const getJobPost = async (
     process.env.NEXT_PODIO_JOBLISTING_APP_ID?.toString() || "",
     finalId
   );
+};
+
+export const getJobApplicationWithJobDetails = async (
+  jobApplicationId: string
+): Promise<IJobApplication | null> => {
+  const fetchedJobApplication = await getJobApplicationById(jobApplicationId);
+  if (!fetchedJobApplication || !fetchedJobApplication.ok) {
+    console.error("Invalid job application");
+    return null;
+  }
+  const newAccessToken = await gainRefreshedAccessToken("jobs");
+
+  if (!newAccessToken) {
+    return null;
+  }
+
+  const finalId = getJobId(fetchedJobApplication.application?.jobId || "");
+  console.log("Final ID", finalId);
+  if (!finalId) {
+    console.error("Invalid job ID");
+    return null;
+  }
+
+  const response = await fetchJob(
+    newAccessToken,
+    process.env.NEXT_PODIO_JOBLISTING_APP_ID?.toString() || "",
+    finalId
+  );
+
+  if (!response.success || !response.item) {
+    return null;
+  }
+
+  return {
+    id: fetchedJobApplication?.application?.id ?? 0,
+    status: "on_going",
+    progress: "in_review",
+    submittedAt: fetchedJobApplication?.application?.submittedAt ?? new Date(),
+    job: response.item,
+    applicationPublicId: response.item.id.toString(),
+  };
 };

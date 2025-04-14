@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { PositionProps } from "@/types/general";
+import { PositionProps } from "@/types/jobs";
 import { formatDistanceToNow } from "date-fns";
 import { Banknote, MapPin } from "lucide-react";
 import LinkButton from "../ui/link-button";
@@ -27,7 +27,7 @@ const RecommendedJobCard = ({ position }: PositionProps) => {
   return (
     <Card className="w-full p-2 border border-zinc-300 rounded-lg shadow-sm flex flex-col gap-4 ">
       <CardHeader className="flex flex-col lg:flex-row justify-between gap-4">
-        <CardTitle className="flex items-center gap-4">
+        <CardTitle className="flex lg:flex-row flex-col lg:items-center gap-4">
           <Image
             src={"/avs_logo.webp"}
             alt="Company logo"
@@ -37,7 +37,7 @@ const RecommendedJobCard = ({ position }: PositionProps) => {
           />
           <div className="flex flex-col">
             <a
-              className="font-semibold text-base lg:text-lg text-zinc-800 underline hover:text-deepBlue"
+              className="font-semibold text-base lg:text-lg text-zinc-800 hover:text-deepBlue hover:underline underline lg:no-underline"
               href={position.url || "#"}
             >
               {position.title}

@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Fetch the user from the database
     const user = await db.query.users.findFirst({
       where: eq(users.userId, session.user.sub),
     });
@@ -29,7 +28,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Return the general settings
     return NextResponse.json({
       userInfo: {
         firstName: user.firstName,
@@ -44,7 +42,6 @@ export async function GET(req: NextRequest) {
         jobSearchStatus: user.jobSearchStatus,
       },
       message: "User info fetched successfully.",
-      // pfp: user.profileImage,
       ok: true,
     });
   } catch (error: any) {

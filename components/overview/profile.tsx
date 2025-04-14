@@ -1,20 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
+import useSWR from "swr";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { useUserInfo } from "@/hooks/use-user-info"; // Updated import
-import ProfileOverviewDialog from "../profile/profile-overview-dialog";
-import { useRouter } from "next/navigation";
-import useSWR from "swr";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useUserInfo } from "@/hooks/use-user-info";
+// import ProfileOverviewDialog from "../profile/profile-overview-dialog";
 import { IProfileResponse } from "@/types/profiles";
 import { AppError } from "@/utils/app-error";
 import { fetchApi } from "@/services/fetch-api";
@@ -68,7 +61,7 @@ const Profile = () => {
             className="font-medium"
             onClick={() => router.push("/app/profile")}
           >
-            Edit
+            Edit Profile
           </Button>
         </div>
       </div>

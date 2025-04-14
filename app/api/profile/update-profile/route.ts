@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@auth0/nextjs-auth0";
 import { eq } from "drizzle-orm";
 
-import { db } from "@/database"; // Assuming db is exported from your database configuration file
+import { db } from "@/database";
 import {
   profiles,
   phones,
@@ -11,7 +11,7 @@ import {
   assessmentTests,
   workSamples,
 } from "@/database/schema/profiles";
-import { users } from "@/database/schema/users"; // Import users
+import { users } from "@/database/schema/users";
 import { log } from "@/lib/logs";
 
 export async function POST(req: NextRequest) {
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     log("POST /api/profile/update-profile", "info", { body });
-    // Fetch the user using session.user.sub
+
     const user = await db.query.users.findFirst({
       where: eq(users.userId, session.user.sub),
     });
@@ -41,7 +41,6 @@ export async function POST(req: NextRequest) {
 
     const userId = user.id;
 
-    // Check if profile exists
     const existingProfile = await db.query.profiles.findFirst({
       where: eq(profiles.userId, userId),
     });
@@ -49,7 +48,6 @@ export async function POST(req: NextRequest) {
     let profileId;
 
     if (existingProfile) {
-      // Update existing profile
       const updatedProfile = await db
         .update(profiles)
         .set({
@@ -75,7 +73,6 @@ export async function POST(req: NextRequest) {
 
       profileId = updatedProfile[0].id;
 
-      // Delete existing related entries
       await db.delete(phones).where(eq(phones.profileId, profileId));
       await db.delete(emails).where(eq(emails.profileId, profileId));
       await db
@@ -86,12 +83,11 @@ export async function POST(req: NextRequest) {
         .where(eq(assessmentTests.profileId, profileId));
       await db.delete(workSamples).where(eq(workSamples.profileId, profileId));
     } else {
-      // Insert new profile
       const profile = await db
         .insert(profiles)
         .values({
           jobTitle: body.jobTitle,
-          userId: userId, // Use fetched user.id
+          userId: userId,
           whyFit: body.whyFit,
           whatStrengths: body.whatStrengths,
           whatNeedImprovement: body.whatNeedImprovement,
@@ -113,7 +109,6 @@ export async function POST(req: NextRequest) {
       profileId = profile[0].id;
     }
 
-    // Insert phones
     await Promise.all(
       body.phone.map((phone: any) =>
         db.insert(phones).values({
@@ -124,7 +119,6 @@ export async function POST(req: NextRequest) {
       )
     );
 
-    // Insert emails
     await Promise.all(
       body.emailAddress.map((email: any) =>
         db.insert(emails).values({
@@ -135,7 +129,6 @@ export async function POST(req: NextRequest) {
       )
     );
 
-    // Insert content links
     await Promise.all(
       body.contentLinks.map((link: any) =>
         db.insert(contentLinks).values({
@@ -145,7 +138,6 @@ export async function POST(req: NextRequest) {
       )
     );
 
-    // Insert assessment tests
     await Promise.all(
       body.assessmentTests.map((test: any) =>
         db.insert(assessmentTests).values({
@@ -155,7 +147,6 @@ export async function POST(req: NextRequest) {
       )
     );
 
-    // Insert work samples
     await Promise.all(
       body.workSamples.map((sample: any) =>
         db.insert(workSamples).values({
@@ -165,7 +156,6 @@ export async function POST(req: NextRequest) {
       )
     );
 
-    // Proceed with your logic for authenticated users
     return NextResponse.json({
       message: "Profile updated successfully",
       ok: true,

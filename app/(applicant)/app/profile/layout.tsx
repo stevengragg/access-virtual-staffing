@@ -1,9 +1,15 @@
 import { ReactNode } from "react";
-import EditProfileTabs from "@/components/profile/edit-profile-tabs";
+import { Metadata } from "next";
+// import EditProfileTabs from "@/components/profile/edit-profile-tabs";
 import { ProfileTabProvider } from "@/context/profile-tab-context";
 import { ProfileDetailsProvider } from "@/context/profile-details-context";
 import { ProfileFilesProvider } from "@/context/profile-files-context";
 
+export const metadata: Metadata = {
+  title: "My Profile",
+  description:
+    "Edit your universal profile that you will use to apply for jobs",
+};
 interface LayoutProps {
   children: ReactNode;
 }

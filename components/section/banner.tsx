@@ -26,24 +26,22 @@ export const Banner2 = (props: Banner2Props) => {
   } as Props;
 
   const [isBannerVisible, setIsBannerVisible] = useState(true);
-  const [isLoading, setIsLoading] = useState(true); // Loading state to handle the initial flash
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    // Check if the banner has been closed before using cookies
     const isBannerClosed = Cookies.get("bannerClosed");
     if (isBannerClosed) {
       setIsBannerVisible(false);
     }
-    setIsLoading(false); // Set loading to false after the check
+    setIsLoading(false);
   }, []);
 
   const handleCloseBanner = () => {
-    // Set a cookie when the user closes the banner
-    Cookies.set("bannerClosed", "true", { expires: 30 }); // Expires in 30 days
+    Cookies.set("bannerClosed", "true", { expires: 30 });
     setIsBannerVisible(false);
   };
-  // While loading, do not render the component
+
   if (isLoading) return null;
-  if (!isBannerVisible) return null; // Don't render the banner if it's closed
+  if (!isBannerVisible) return null;
   return (
     <section id="banner" className="">
       <div className="w-full relative flex flex-col items-stretch justify-start border border-black bg-white p-4 md:flex-row md:items-center md:px-4 md:py-3">

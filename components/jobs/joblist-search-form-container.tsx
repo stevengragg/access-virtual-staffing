@@ -42,7 +42,7 @@ export const JobListSearchFormContainer = ({
   };
 
   return (
-    <section id="search_container" className="px-[5%] pt-12 md:pt-24">
+    <section id="search_container" className="px-[5%] pt-12 md:pt-24 ">
       <div className="container">
         <form
           id="search_form"
@@ -50,7 +50,7 @@ export const JobListSearchFormContainer = ({
           onSubmit={handleSubmit(onSubmitForm)}
         >
           <div className=" w-full items-center">
-            <div className="relative">
+            <div className="">
               <Input
                 {...register("searchText")}
                 placeholder="Search..."

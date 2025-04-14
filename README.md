@@ -40,6 +40,8 @@ npm run dev
 
 Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.
 
+> Note that you need ngrok to expose localhost to the internet in order to test the Auth0 login flow. You would need to update the Auth0 triggers to point to the ngrok URL.
+
 ### Building for Production
 
 To build the project for production, run:

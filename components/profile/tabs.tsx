@@ -22,15 +22,16 @@ const ProfileTabs = () => {
           <div key={tab.path} className="flex items-center">
             <Button
               variant="ghost"
-              onClick={() => setCurrentTab(tab.name)}
               className={`flex flex-col items-center text-xs ${
-                isActive ? "text-black" : "text-gray-500"
+                isActive ? "text-black" : "text-zinc-500"
               }`}
             >
               <div className="flex flex-col items-center">
                 <div
                   className={`rounded-full p-2 flex items-center justify-center ${
-                    isActive ? "bg-primaryBrightAqua text-white" : "bg-gray-300 text-gray-700"
+                    isActive
+                      ? "bg-deepBlue text-white"
+                      : "bg-zinc-300 text-zinc-700"
                   }`}
                 >
                   <tab.icon className="w-6 h-6" />
@@ -42,7 +43,7 @@ const ProfileTabs = () => {
             {/* Center the line with the icon */}
             {index < tabs.length - 1 && (
               <div className="flex items-center">
-                <div className="xl:w-32 w-20 h-[2px] bg-gray-400 mt-[-25px]"></div>
+                <div className="xl:w-32 w-20 h-[2px] bg-zinc-400 mt-[-25px]"></div>
               </div>
             )}
           </div>

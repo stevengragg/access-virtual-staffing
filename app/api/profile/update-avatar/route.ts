@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
     const tokenExpiration = new Date(user.apiTokenExpiration || 0);
     const currentTime = new Date();
 
-    // Check if token is missing or expired
     if (
       !managementApiToken ||
       tokenExpiration.getTime() - currentTime.getTime() < 23 * 60 * 60 * 1000
@@ -56,7 +55,6 @@ export async function POST(req: NextRequest) {
         currentTime.getTime() + 24 * 60 * 60 * 1000
       ).toISOString();
 
-      // Update the user's API token and expiration in the database
       await db
         .update(users)
         .set({
@@ -66,7 +64,6 @@ export async function POST(req: NextRequest) {
         .where(eq(users.userId, session.user.sub));
     }
 
-    // Update profile image in Auth0
     const auth0Response = await fetch(
       `${process.env.AUTH0_OAUTH_AUDIENCE}users/${session.user.sub}`,
       {
@@ -90,7 +87,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Update profile image in the database
     await db
       .update(users)
       .set({ profileImage: profileImageURL })

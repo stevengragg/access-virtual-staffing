@@ -15,17 +15,15 @@ export function useFilter() {
 
   const handleSearch = ({ searchText }: JobSearchFilter) => {
     const newParams = new URLSearchParams(params.toString());
-    // Search Text
+
     if (!searchText) {
       newParams.delete("search");
     } else {
       newParams.set("search", searchText);
     }
 
-    // page
     newParams.set("page", "1");
 
-    // console.log("Updated Params:", newParams.toString());
     router.push(`${pathname}?${newParams.toString()}`);
   };
 

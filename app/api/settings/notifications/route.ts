@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Fetch the user from the database
     const user = await db.query.users.findFirst({
       where: eq(users.userId, session.user.sub),
     });
@@ -31,7 +30,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Return the current notification settings
     return NextResponse.json({
       jobRecommendation: user.jobRecommendationNotifPref === "enabled",
       jobSubmission: user.jobSubmissionNotifPref === "enabled",
@@ -66,7 +64,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     log("POST /api/notifications", "info", { body });
 
-    // Fetch the user using session.user.sub
     const user = await db.query.users.findFirst({
       where: eq(users.userId, session.user.sub),
     });
@@ -78,7 +75,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Update preferences
     await db
       .update(users)
       .set({
@@ -89,7 +85,6 @@ export async function POST(req: NextRequest) {
       })
       .where(eq(users.userId, user.userId));
 
-    // Verify updated user data
     const updatedUser = await db.query.users.findFirst({
       where: eq(users.userId, user.userId),
     });

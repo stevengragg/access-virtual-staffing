@@ -108,7 +108,6 @@ export const profilesRelations = relations(profiles, ({ one, many }) => ({
   phones: many(phones),
   emails: many(emails),
   contentLinks: many(contentLinks),
-  // videoLinks: many(videoLinks),
   assessmentTests: many(assessmentTests),
   workSamples: many(workSamples),
   fileUploads: many(fileUploads),

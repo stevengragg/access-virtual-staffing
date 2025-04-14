@@ -23,7 +23,6 @@ const Stepper = () => {
 
   const { data: profileData } = useSWR<IProfileResponse>("/profile", fetchApi);
 
-  // Required fields
   const requiredFields = [
     profileData?.profile?.jobTitle,
     profileData?.profile?.whyFit,
@@ -45,7 +44,6 @@ const Stepper = () => {
   ];
   const completedFields = requiredFields.filter(Boolean).length;
 
-  // Required file uploads
   const uploadedFileTypes = new Set(
     profileData?.fileUploads?.map((file) => file.type)
   );
@@ -53,7 +51,6 @@ const Stepper = () => {
     uploadedFileTypes.has(fileType)
   ).length;
 
-  // Total completed steps
   const completedSteps = completedFields + completedFiles;
   const isProfileComplete = completedSteps === TOTAL_STEPS;
 

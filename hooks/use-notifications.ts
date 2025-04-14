@@ -1,40 +1,35 @@
+import { fetchApi } from "@/services/fetch-api";
 import { INotification } from "@/types/notification";
-import { useState, useEffect } from "react";
+import useSWRInfinite from "swr/infinite";
 
-export function useNotifications({ page = 1, filter = "all" }) {
-  const [notifications, setNotifications] = useState<INotification[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [hasMore, setHasMore] = useState(true);
+export function useNotifications({ filter = "all" }) {
+  const PAGE_SIZE = 10;
 
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      setLoading(true);
-      try {
-        // TODO: Lee fetchApi
-        const response = await fetch(
-          `/api/notifications?page=${page}&limit=10&filter=${filter}`
-        );
+  const getKey = (pageIndex: number, previousPageData: any): string | null => {
+    if (previousPageData && !previousPageData.notifications.length) return null;
+    return `/notifications?page=${
+      pageIndex + 1
+    }&limit=${PAGE_SIZE}&filter=${filter}`;
+  };
 
-        if (!response.ok) throw new Error("Failed to fetch notifications");
+  const { data, error, size, setSize, isValidating } = useSWRInfinite<{
+    notifications: INotification[];
+    total: number;
+  }>(getKey, fetchApi);
 
-        const data = await response.json();
+  const notifications = data ? data.flatMap((page) => page.notifications) : [];
+  const total = data?.[0]?.total || 0;
+  const hasMore = notifications.length < total;
 
-        setNotifications((prev) =>
-          page === 1 ? data.notifications : [...prev, ...data.notifications]
-        );
-        setHasMore(data.notifications.length > 0);
-      } catch (err: unknown) {
-        setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNotifications();
-  }, [page, filter]);
-
-  return { notifications, loading, error, hasMore };
+  return {
+    notifications,
+    loading: isValidating && size === 1,
+    error: error
+      ? error instanceof Error
+        ? error.message
+        : "An unknown error occurred"
+      : null,
+    hasMore,
+    loadMore: () => setSize(size + 1),
+  };
 }

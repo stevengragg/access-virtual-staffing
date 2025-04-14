@@ -152,6 +152,12 @@ export default async function FindWork({
             size: "xl",
           },
         ]}
+        image={{
+          src: "/img/office-with-team.webp",
+          alt: "Meeting with team",
+          width: 1000,
+          height: 1000,
+        }}
       />
     </main>
   );

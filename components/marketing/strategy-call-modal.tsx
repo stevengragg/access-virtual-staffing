@@ -2,25 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogClose } from "@/components/ui/dialog";
 import LinkButton from "../ui/link-button";
 import { XIcon } from "lucide-react";
 import { NoCloseDialogContent } from "../ui/no-close-dialog-content";
 
-// type Props = {
-//   heading: string;
-//   description: string;
-//   button: ButtonProps;
-// };
-
-// export type StrategyCallModalProps = React.ComponentPropsWithoutRef<"section"> &
-//   Partial<Props>;
-
 export const StrategyCallModal = () => {
   const [isBannerVisible, setIsBannerVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Loading state to handle the initial flash
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    // Check if the banner has been closed before using cookies
     const isBannerClosed = Cookies.get("bannerClosed");
     if (isBannerClosed && isBannerClosed === "true") {
       setIsBannerVisible(false);
@@ -29,18 +19,16 @@ export const StrategyCallModal = () => {
         setIsBannerVisible(true);
       }, 3000);
     }
-    setIsLoading(false); // Set loading to false after the check
+    setIsLoading(false);
   }, []);
 
   const handleCloseBanner = () => {
-    // Set a cookie when the user closes the banner
-    Cookies.set("bannerClosed", "true", { expires: 30 }); // Expires in 30 days
+    Cookies.set("bannerClosed", "true", { expires: 30 });
     setIsBannerVisible(false);
   };
-  // While loading, do not render the component
-  if (isLoading) return null;
-  if (!isBannerVisible) return null; // Don't render the banner if it's closed
 
+  if (isLoading) return null;
+  if (!isBannerVisible) return null;
   return (
     <Dialog defaultOpen={isBannerVisible}>
       <NoCloseDialogContent

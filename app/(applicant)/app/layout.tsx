@@ -5,7 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { OnboardingModal } from "@/components/on-boarding/on-boarding-modal";
 
 export const metadata: Metadata = {
-  title: "Applicant Portal - Access Virtual Staffing",
+  title: {
+    template: "%s | Applicant Portal - Access Virtual Staffing",
+    default: "Applicant Portal - Access Virtual Staffing",
+  },
   description:
     "Applicant portal for job seekers that applies and manage job applications - Access Virtual Staffing",
 
