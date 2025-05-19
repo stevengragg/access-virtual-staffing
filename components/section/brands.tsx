@@ -17,10 +17,13 @@ export const Brands = (props: Logo3Props) => {
   return (
     <section
       id="brands"
-      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBrightAqua"
+      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-deepBlue"
     >
       <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
-        <h1 className="text-center text-base font-bold leading-[1.2] md:text-md md:leading-[1.2]">
+        <h1
+          className="text-center text-xl font-bold leading-[1.2] md:text-2xl lg:text-4xl md:leading-[1.2] text-white"
+          data-aos="fade-up"
+        >
           {heading}
         </h1>
       </div>

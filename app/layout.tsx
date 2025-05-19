@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 const manrope = Manrope({
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {

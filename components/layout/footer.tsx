@@ -64,7 +64,7 @@ export const Footer = (props: Footer11Props) => {
   return (
     <footer id="footer" className="px-[5%] py-12 md:py-18 lg:py-20 bg-deepBlue">
       <div className="container-xl">
-        <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  border border-neutralLightZinc rounded-lg p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
+        <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
           <div className="flex flex-col">
             <div className="mb-6 md:mb-8  ">
               <a href={logo.url} className="w-full">
@@ -91,6 +91,13 @@ export const Footer = (props: Footer11Props) => {
                   {contact.email}
                 </a>
               </div>
+            </div>
+            <div className="grid grid-flow-col grid-cols-[max-content] items-start justify-start gap-x-3">
+              {socialMediaLinks.map((link, index) => (
+                <a key={index} href={link.url}>
+                  {link.icon}
+                </a>
+              ))}
             </div>
           </div>
           <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-8 md:gap-y-4 text-white">
@@ -146,6 +153,13 @@ export const Footer11Defaults: Footer11Props = {
 
     email: "support@accessvirtualstaffing.com",
   },
+  socialMediaLinks: [
+    { url: "#", icon: <BiLogoFacebookCircle className="size-6 text-white" /> },
+    { url: "#", icon: <BiLogoInstagram className="size-6 text-white" /> },
+    { url: "#", icon: <FaXTwitter className="size-6 p-0.5 text-white" /> },
+    { url: "#", icon: <BiLogoLinkedinSquare className="size-6 text-white" /> },
+    { url: "#", icon: <BiLogoYoutube className="size-6 text-white" /> },
+  ],
   columnLinks: [
     {
       links: [
@@ -155,7 +169,7 @@ export const Footer11Defaults: Footer11Props = {
         { title: "FAQs", url: "/faq" },
         {
           title: "Blog",
-          url: "https://accessvirtualstaffing.blogspot.com/",
+          url: "/blog",
           follow: true,
         },
         {
@@ -168,25 +182,30 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "Services", url: "/services" },
-        { title: "Basic Plan", url: "/services/basic-plan" },
-        { title: "Standard Plan", url: "/services/standard-plan" },
-        {
-          title: "Specialized Services",
-          url: "/services/specialized-services",
-        },
+        { title: "Use case", url: "/use-case" },
+        { title: "Hire a Virtual Assistant", url: "/hire-virtual-assistant" },
       ],
     },
     {
       links: [
-        { title: "For Talents", url: "/talent" },
-        { title: "Remote Jobs", url: "/talent/find-work" },
-        { title: "Applicant Portal", url: "/talent/portal" },
+        {
+          title: "Access Virtual Jobs",
+          url: "https://www.accessvirtualjobs.com",
+          follow: true,
+        },
+        {
+          title: "Remote Jobs",
+          url: "https://www.accessvirtualjobs.com/browse-jobs",
+          follow: true,
+        },
+        {
+          title: "Applicant Portal",
+          url: "https://www.accessvirtualjobs.com/login",
+          follow: true,
+        },
       ],
     },
   ],
   footerText: `© 2024 - ${new Date().getFullYear()} Access Virtual Staffing. All rights reserved.`,
-  footerLinks: [
-    { title: "Privacy Policy", url: "/privacy-policy" },
-    { title: "Terms of Service", url: "/terms-of-service" },
-  ],
+  footerLinks: [{ title: "Privacy Policy", url: "/privacy-policy" }],
 };

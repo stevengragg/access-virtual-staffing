@@ -2,6 +2,7 @@ import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 type Props = {
   heading: string;
+  heading2: string;
   description: string;
   buttons: LinkButtonProps[];
 };
@@ -10,21 +11,40 @@ export type Cta25Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const CTAFooter = (props: Cta25Props) => {
-  const { heading, description, buttons } = {
+  const { heading, heading2, description, buttons } = {
     // ...Cta25Defaults,
     ...props,
   } as Props;
   return (
     <section
       id="cta_footer"
-      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-deepBlue/90 bg-ctaFooterBg2 bg-center bg-no-repeat bg-cover bg-blend-multiply"
+      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-deepBlue/80 bg-ctaFooterBg2 bg-center bg-no-repeat bg-cover bg-blend-multiply"
     >
-      <div className="container text-center max-w-xl ">
-        <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white">
+      <div className="container text-center max-w-lg ">
+        <h2
+          className=" text-5xl font-bold  md:text-7xl lg:text-8xl text-white"
+          data-aos="fade-up"
+        >
           {heading}
         </h2>
-        <p className="md:text-md text-white">{description}</p>
-        <div className="mt-6 flex flex-col lg:flex-row items-center justify-center gap-4 md:mt-8">
+        <h2
+          className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white"
+          data-aos="fade-up"
+        >
+          {heading2}
+        </h2>
+        <p
+          className="md:text-md text-white"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          {description}
+        </p>
+        <div
+          className="mt-6 flex flex-col lg:flex-row items-center justify-center gap-4 md:mt-8"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           {buttons.map((button, index) => (
             <LinkButton key={index} {...button} />
           ))}

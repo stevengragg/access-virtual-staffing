@@ -13,7 +13,7 @@ type Testimonial = {
 
 type Props = {
   heading: string;
-
+  footerText: string;
   testimonials: Testimonial[];
 };
 
@@ -21,22 +21,29 @@ export type Testimonial17Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const Testimonials = (props: Testimonial17Props) => {
-  const { heading, testimonials } = {
+  const { heading, testimonials, footerText } = {
     ...Testimonial17Defaults,
     ...props,
   } as Props;
   return (
     <section
       id="testimonials"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-softGray"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBrightAqua/25"
     >
       <div className="container-xl">
-        <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20 bg-gre">
+        <div
+          className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20"
+          data-aos="fade-up"
+        >
           <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl">
             {heading}
           </h1>
         </div>
-        <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 ">
+        <div
+          className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 "
+          data-aos-delay="200"
+          data-aos="fade-up"
+        >
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -75,13 +82,23 @@ export const Testimonials = (props: Testimonial17Props) => {
             </div>
           ))}
         </div>
+        <div
+          className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20"
+          data-aos-delay="200"
+          data-aos="fade-up"
+        >
+          <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl">
+            {footerText}
+          </h1>
+        </div>
       </div>
     </section>
   );
 };
 
 export const Testimonial17Defaults: Testimonial17Props = {
-  heading: "Our Satisfied Clients Say About Us",
+  heading: "Hear what clients say about us",
+  footerText: "Effortless Staffing Solutions.",
 
   testimonials: [
     {
