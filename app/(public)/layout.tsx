@@ -14,6 +14,7 @@ import {
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { CtaNewsLetter } from "@/components/section/cta-newsletter";
 import { SiteNavigation2 } from "@/components/layout/site-navigation-2";
+import LiveChatWidget from "@/components/livechat/live-chat-widget";
 
 export default function PublicRootLayout({
   children,
@@ -64,6 +65,7 @@ export default function PublicRootLayout({
     <>
       <SiteNavigation2 />
       {children}
+      <LiveChatWidget />
       <CtaNewsLetter />
       <Footer />
       <SpeedInsights />
