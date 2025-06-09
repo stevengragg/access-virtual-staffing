@@ -1,0 +1,221 @@
+---
+description: This rule outlines best practices for using latest version of Payload CMS
+globs: src/app/(payload)/**/*
+alwaysApply: false
+---
+
+# Payload CMS Rules and Best Practices
+
+## Core Concepts
+
+### Collections
+
+- Use TypeScript interfaces for collection types
+- Implement proper access control using Payload's built-in access control
+- Follow naming conventions: PascalCase for collection names
+- Group related fields using field groups
+- Use field-level validation with Zod schemas
+
+```typescript
+interface User {
+  id: string;
+  email: string;
+  password: string;
+  role: "admin" | "user";
+  // ... other fields
+}
+
+const Users: CollectionConfig = {
+  slug: "users",
+  auth: true,
+  admin: {
+    useAsTitle: "email",
+  },
+  access: {
+    read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: () => true,
+  },
+  fields: [
+    {
+      name: "email",
+      type: "email",
+      required: true,
+      unique: true,
+    },
+    // ... other fields
+  ],
+};
+```
+
+### Fields
+
+- Use appropriate field types for data
+- Implement proper validation
+- Use field hooks for complex logic
+- Group related fields
+- Use field-level access control
+
+```typescript
+{
+  name: 'title',
+  type: 'text',
+  required: true,
+  validate: (value) => {
+    if (value.length < 3) {
+      return 'Title must be at least 3 characters long';
+    }
+    return true;
+  },
+  hooks: {
+    beforeValidate: [
+      ({ value }) => value.trim(),
+    ],
+  },
+}
+```
+
+### Access Control
+
+- Implement role-based access control
+- Use field-level access control
+- Document access control rules
+- Test access control thoroughly
+
+```typescript
+access: {
+  read: ({ req: { user } }) => {
+    if (user?.role === 'admin') return true;
+    return {
+      status: {
+        equals: 'published',
+      },
+    };
+  },
+}
+```
+
+### Hooks
+
+- Use hooks for complex business logic
+- Implement proper error handling
+- Keep hooks pure and testable
+- Document hook behavior
+
+```typescript
+hooks: {
+  beforeChange: [
+    async ({ data, req }) => {
+      // Transform data
+      return data;
+    },
+  ],
+  afterChange: [
+    async ({ doc, req }) => {
+      // Handle side effects
+    },
+  ],
+}
+```
+
+## Best Practices
+
+### Configuration
+
+- Use environment variables for sensitive data
+- Implement proper error handling
+- Use TypeScript for type safety
+- Follow Payload's recommended project structure
+
+```typescript
+import { buildConfig } from "payload/config";
+import path from "path";
+
+export default buildConfig({
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  admin: {
+    user: Users.slug,
+  },
+  collections: [
+    Users,
+    // ... other collections
+  ],
+  typescript: {
+    outputFile: path.resolve(__dirname, "payload-types.ts"),
+  },
+});
+```
+
+### API Design
+
+- Use RESTful endpoints
+- Implement proper error handling
+- Use proper HTTP status codes
+- Document API endpoints
+
+### Performance
+
+- Use proper indexing
+- Implement caching where appropriate
+- Use proper query optimization
+- Monitor performance
+
+### Security
+
+- Implement proper authentication
+- Use proper authorization
+- Sanitize user input
+- Use proper CORS configuration
+
+## Project Structure
+
+```
+src/
+  collections/
+    Users.ts
+    Posts.ts
+  fields/
+    custom-fields.ts
+  hooks/
+    before-change.ts
+  access/
+    isAdmin.ts
+  payload.config.ts
+```
+
+## Testing
+
+- Write unit tests for collections
+- Test access control
+- Test hooks
+- Test API endpoints
+
+## Deployment
+
+- Use proper environment variables
+- Implement proper backup strategy
+- Use proper monitoring
+- Follow security best practices
+
+## Version Control
+
+- Use proper branching strategy
+- Document changes
+- Use proper commit messages
+- Review code changes
+
+## Documentation
+
+- Document collections
+- Document fields
+- Document access control
+- Document hooks
+- Document API endpoints
+
+## Maintenance
+
+- Keep dependencies up to date
+- Monitor performance
+- Monitor security
+- Monitor errors
