@@ -18,7 +18,7 @@ export const CTAFooter = (props: Cta25Props) => {
   return (
     <section
       id="cta_footer"
-      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-deepBlue/80 bg-ctaFooterBg2 bg-center bg-no-repeat bg-cover bg-blend-multiply"
+      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-primaryBlue/80 bg-ctaFooterBg2 bg-center bg-no-repeat bg-cover bg-blend-multiply"
     >
       <div className="container text-center max-w-lg ">
         <h2

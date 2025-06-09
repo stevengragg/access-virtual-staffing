@@ -1,5 +1,6 @@
 import { ImageProps } from "@/types/general";
 import Image from "next/image";
+import { Star } from "lucide-react";
 
 type Props = {
   heading: string;
@@ -17,7 +18,7 @@ export const Brands = (props: Logo3Props) => {
   return (
     <section
       id="brands"
-      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-deepBlue"
+      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBlue"
     >
       <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
         <h1
@@ -27,7 +28,7 @@ export const Brands = (props: Logo3Props) => {
           {heading}
         </h1>
       </div>
-      <div className="flex items-center pt-7 md:pt-0">
+      {/* <div className="flex items-center pt-7 md:pt-0">
         {Array(2)
           .fill(0)
           .map((_, index) => (
@@ -47,6 +48,18 @@ export const Brands = (props: Logo3Props) => {
               ))}
             </div>
           ))}
+      </div> */}
+      <div className="flex items-center pt-7 md:pt-0">
+        <div className="flex justify-center w-full">
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className="w-5 h-5 fill-yellow-400 text-yellow-400"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

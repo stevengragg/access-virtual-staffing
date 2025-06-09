@@ -24,7 +24,7 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
       <div className="container flex flex-col items-center">
         <div className="rb-12 mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
           <h1
-            className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl"
+            className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl"
             data-aos="fade-up"
           >
             {heading}
@@ -97,6 +97,15 @@ export const HeroHeaderV2Defaults: Props = {
   description:
     "Access top-tier professionals while saving up to 70% on salaries and 90% on operations. Our tailored solutions help your business grow efficiently—with expert support every step of the way.",
   buttons: [
+    {
+      navLink: {
+        title: "Our Services",
+        url: "/services",
+        follow: false,
+      },
+      variant: "outline",
+      size: "xl",
+    },
     {
       navLink: {
         title: "Schedule a Call",

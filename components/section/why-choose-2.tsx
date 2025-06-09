@@ -38,18 +38,18 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
   return (
     <section
       id="relume"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBrightAqua/25"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
     >
       <div className="container">
         <div className="mb-12 md:mb-18 lg:mb-20">
           <div className="mx-auto max-w-lg text-center">
             <h2
-              className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl"
+              className="mb-5 text-5xl font-semibold md:mb-6 md:text-7xl lg:text-8xl text-white"
               data-aos="fade-up"
             >
               {heading}
             </h2>
-            <p className="md:text-md" data-aos="fade-up">
+            <p className="md:text-md text-white" data-aos="fade-up">
               {description}
             </p>
           </div>
@@ -73,7 +73,9 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
           className="mt-12 text-center gap-4 md:mt-18 lg:mt-20"
           data-aos="fade-up"
         >
-          <h3 className="text-xl md:text-2xl lg:text-4xl">{footerText}</h3>
+          <h3 className="text-xl md:text-2xl lg:text-4xl text-white">
+            {footerText}
+          </h3>
         </div>
       </div>
     </section>
@@ -81,7 +83,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
 };
 
 const FeatureSection = ({ sections }: { sections: SectionProps[] }) => (
-  <div className="grid w-full grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16">
+  <div className="grid w-full grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 text-white">
     {sections.map((section, index) => (
       <div
         key={index}

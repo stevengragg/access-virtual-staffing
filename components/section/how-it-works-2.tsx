@@ -32,7 +32,7 @@ export const HowItWorks2 = (props: HowItWorks2Props) => {
   };
   return (
     <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
+      <div className="container-xl">
         <div className="flex flex-col items-center">
           <div className="mb-12 md:mb-18 lg:mb-20">
             <div className="mx-auto max-w-2xl text-center">
@@ -57,15 +57,17 @@ export const HowItWorks2 = (props: HowItWorks2Props) => {
                       className="flex flex-row items-center gap-2 lg:gap-8 p-2  "
                     >
                       <div className="mb-5 md:mb-6 ">
-                        <h1 className="text-[128px] font-extrabold ">
+                        <h1 className="text-[128px] font-extrabold text-deepBlue ">
                           {section.stepNumber}
                         </h1>
                       </div>
                       <div>
-                        <h3 className="mb-5 text-xl font-bold md:mb-6 md:text-2xl ">
+                        <h3 className="mb-5 text-xl font-bold md:mb-6 md:text-2xl text-left md:text-center ">
                           {section.heading}
                         </h3>
-                        <p className="mb-5 md:mb-6 ">{section.description}</p>
+                        <p className="mb-5 md:mb-6 text-left md:text-center">
+                          {section.description}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -79,7 +81,7 @@ export const HowItWorks2 = (props: HowItWorks2Props) => {
             </div>
           </div>
           <Dialog>
-            <DialogTrigger className="relative flex w-full items-center justify-center rounded-md">
+            <DialogTrigger className="relative flex items-center justify-center rounded-md">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -117,12 +119,12 @@ export const HowItWorks2Defaults: Props = {
     },
   ],
   image: {
-    src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-video-thumbnail-landscape.svg",
-    alt: "Relume placeholder image",
+    src: "/img/thumbnail_avs.webp",
+    alt: "Thumbnail of the video",
     width: 1000,
     height: 1000,
   },
-  video: "https://www.youtube.com/embed/8DKLYsikxTs?si=Ch9W0KrDWWUiCMMW",
+  video: "https://www.youtube.com/embed/9o4U6hxVnoY?si=xFkU2vrITmJgNsrU",
   sections: [
     {
       stepNumber: 1,

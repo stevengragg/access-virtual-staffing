@@ -98,7 +98,7 @@ export const Testimonials = (props: Testimonial17Props) => {
 
 export const Testimonial17Defaults: Testimonial17Props = {
   heading: "Hear what clients say about us",
-  footerText: "Effortless Staffing Solutions.",
+  footerText: "Effortless Staffing Solutions",
 
   testimonials: [
     {

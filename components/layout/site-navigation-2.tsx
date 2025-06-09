@@ -108,6 +108,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
             ) : (
               <Link
                 key={index}
+                target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
                 className={cn(
                   "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2",
@@ -213,6 +214,7 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
   navLinks: [
     { title: "Home", url: "/" },
     { title: "About Us", url: "/about-us" },
+
     {
       title: "Services",
       url: "/services",
@@ -234,6 +236,11 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
           follow: true,
         },
       ],
+    },
+    {
+      title: "For Talents",
+      url: "https://www.accessvirtualjobs.com",
+      follow: true,
     },
   ],
   buttons: [
