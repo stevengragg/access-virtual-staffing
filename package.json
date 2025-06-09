@@ -17,6 +17,7 @@
     "@neondatabase/serverless": "^0.10.4",
     "@payloadcms/db-postgres": "^3.41.0",
     "@payloadcms/next": "^3.41.0",
+    "@payloadcms/payload-cloud": "^3.41.0",
     "@payloadcms/richtext-lexical": "^3.41.0",
     "@radix-ui/react-alert-dialog": "^1.1.7",
     "@radix-ui/react-dialog": "^1.1.6",
