@@ -225,8 +225,7 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
       subMenuLinks: [
         {
           title: "Blog",
-          url: "/blog",
-          follow: true,
+          url: "/posts",
         },
         { title: "FAQs", url: "/faq" },
         { title: "Contact Us", url: "/contact-us" },

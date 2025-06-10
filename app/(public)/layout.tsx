@@ -1,75 +1,79 @@
-"use client";
+import type { Metadata, Viewport } from "next";
+import { Manrope } from "next/font/google";
 
-import { useEffect } from "react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Product, WithContext, WebSite, BreadcrumbList } from "schema-dts";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import "./globals.css";
+import { cn } from "@/lib/utils";
 
-import { Footer } from "@/components/layout/footer";
-import {
-  SiteNavbar,
-  SiteNavbarDefaultProps,
-} from "@/components/layout/site-navigation";
-import ScrollToTop from "@/components/ui/scroll-to-top";
-import { CtaNewsLetter } from "@/components/section/cta-newsletter";
-import { SiteNavigation2 } from "@/components/layout/site-navigation-2";
-import LiveChatWidget from "@/components/livechat/live-chat-widget";
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: "400",
+});
 
-export default function PublicRootLayout({
+export const metadata: Metadata = {
+  title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
+  description:
+    "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
+  keywords: [
+    "virtual staffing",
+    "remote staffing",
+    "virtual assistants",
+    "Florida staffing agency",
+    "remote professionals",
+    "Access Virtual Staffing",
+    "virtual team",
+    "business solutions",
+    "top staffing agency Florida",
+    "virtual workforce",
+    "virtual staffing agency",
+    "administrative support staff",
+    "data entry staff",
+    "customer service staff",
+    "specialized skilled staff",
+    "staffing agency",
+  ],
+  authors: [
+    {
+      name: "Iona Innovation Labs",
+      url: "https://www.linkedin.com/company/iona-innovation-labs",
+    },
+  ],
+  publisher: "Vercel",
+  metadataBase: new URL("https://www.accessvirtualstaffing.com"),
+  alternates: {
+    canonical: "https://www.accessvirtualstaffing.com",
+  },
+  openGraph: {
+    title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
+    description:
+      "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
+    type: "website",
+    url: "https://www.accessvirtualstaffing.com", // Replace with your actual URL
+    images: "/opengraph-image.jpg", // Replace with your actual image URL
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
+    description:
+      "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
+    images: "/twitter-image.jpg", // Replace with your actual image URL
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    AOS.init({
-      once: true,
-      disable: "phone",
-      duration: 600,
-      easing: "ease-out-sine",
-    });
-  });
-
-  const jsonLd: WithContext<BreadcrumbList> = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.accessvirtualstaffing.com/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "About Us",
-        item: "https://www.accessvirtualstaffing.com/about",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "Services",
-        item: "https://www.accessvirtualstaffing.com/services",
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: "Free Strategy Call",
-        item: "https://www.accessvirtualstaffing.com/book-a-meeting",
-      },
-    ],
-  };
-
+  // const session = await getSession();
+  // console.log(session);
   return (
-    <>
-      <SiteNavigation2 />
-      {children}
-      <LiveChatWidget />
-      <CtaNewsLetter />
-      <Footer />
-      <SpeedInsights />
-      <ScrollToTop />
-    </>
+    <html lang="en">
+      <body className={cn(manrope.className)}>{children}</body>
+    </html>
   );
 }

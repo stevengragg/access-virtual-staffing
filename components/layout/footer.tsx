@@ -172,8 +172,7 @@ export const Footer11Defaults: Footer11Props = {
         { title: "FAQs", url: "/faq" },
         {
           title: "Blog",
-          url: "/blog",
-          follow: true,
+          url: "/posts",
         },
         {
           title: "Fiverr with AVS",

@@ -42,7 +42,7 @@ export interface LinkButtonProps
   navLink: {
     url: string;
     title: string;
-    follow: boolean;
+    follow?: boolean;
   };
   className?: string;
   icon?: () => React.JSX.Element;
