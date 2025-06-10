@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/components/cms/ui/pagination";
 import { cn } from "@/utils/ui";
 import { useRouter } from "next/navigation";
 import React from "react";

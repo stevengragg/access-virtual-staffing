@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/cms/ui/button";
 import { cn } from "@/utils/ui";
 import Link from "next/link";
 import React from "react";
@@ -58,7 +58,6 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
       </Link>
     );
   }
-
   return (
     <Button asChild className={className} size={size} variant={appearance}>
       <Link className={cn(className)} href={href || url || ""} {...newTabProps}>
