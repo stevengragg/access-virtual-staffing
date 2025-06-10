@@ -1,1 +1,0 @@
-ALTER TABLE "users" RENAME COLUMN "isNewUser" TO "is_new_user";

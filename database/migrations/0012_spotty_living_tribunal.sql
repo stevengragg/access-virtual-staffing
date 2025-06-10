@@ -1,1 +1,0 @@
-ALTER TABLE "job_applications" RENAME COLUMN "podio_item_id" TO "job_id";

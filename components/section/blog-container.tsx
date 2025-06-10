@@ -4,6 +4,9 @@ import { RxChevronRight } from "react-icons/rx";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import Image from "next/image";
 import { ImageProps } from "@/types/general";
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
+import { Post } from "@/payload-types";
 
 type BlogPost = {
   url: string;
@@ -25,11 +28,46 @@ type Props = {
 export type Blog44Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const BlogContainer = (props: Blog44Props) => {
-  const { heading, description, button, blogPosts } = {
+export const BlogContainer = async (props: Blog44Props) => {
+  const { heading, description, button } = {
     ...Blog44Defaults,
     ...props,
   } as Props;
+
+  // Fetch latest 3 posts from Payload CMS
+  const payload = await getPayload({ config: configPromise });
+  const posts = await payload.find({
+    collection: "posts",
+    depth: 1,
+    limit: 3,
+    sort: "-createdAt",
+    overrideAccess: false,
+  });
+
+  // Transform Payload posts to match BlogPost type
+  const blogPosts = posts.docs.map((post: Post) => ({
+    url: `/posts/${post.slug}`,
+    image: {
+      src:
+        post.meta?.image && typeof post.meta.image !== "number"
+          ? post.meta.image.url
+          : "/blog/blog1.webp", // Fallback image if none provided
+      alt:
+        post.meta?.image && typeof post.meta.image !== "number"
+          ? post.meta.image.alt
+          : post.title,
+      width: 1000,
+      height: 1000,
+    },
+    category:
+      post.categories?.[0] && typeof post.categories[0] !== "number"
+        ? post.categories[0].title
+        : "Blog",
+    readTime: "5 min read", // You might want to calculate this based on content length
+    title: post.title,
+    description: post.meta?.description || "",
+  }));
+
   return (
     <section id="blog_list" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl">
@@ -50,8 +88,8 @@ export const BlogContainer = (props: Blog44Props) => {
             >
               <div className="relative w-full overflow-hidden pt-[66%]">
                 <Image
-                  src={post.image.src}
-                  alt={post.image.alt}
+                  src={post.image.src || ""}
+                  alt={post.image.alt || ""}
                   className="absolute inset-0 size-full object-cover"
                   width={post.image.width}
                   height={post.image.height}
@@ -73,13 +111,11 @@ export const BlogContainer = (props: Blog44Props) => {
                   </h2>
                   <p>{post.description}</p>
                   <Button
-                    variant={post.button.variant}
-                    size={post.button.size}
-                    iconRight={post.button.iconRight}
-                    iconLeft={post.button.iconLeft}
+                    variant="primary"
+                    size="sm"
                     className="mt-6 flex items-center justify-center gap-x-1"
                   >
-                    {post.button.title}
+                    Read More
                   </Button>
                 </div>
               </div>
@@ -101,73 +137,11 @@ export const Blog44Defaults: Blog44Props = {
   button: {
     navLink: {
       title: "Read more insights",
-      url: "https://accessvirtualstaffing.blogspot.com/",
-      follow: true,
+      url: "/posts",
+      follow: false,
     },
     variant: "secondary",
     size: "lg",
   },
-  blogPosts: [
-    {
-      url: "https://accessvirtualstaffing.blogspot.com/2024/09/how-virtual-staffing-supercharged.html",
-      image: {
-        src: "/blog/blog1.webp",
-        alt: "Blog 1 Image",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Virtual Staffing",
-      readTime: "5 min read",
-      title:
-        "How Virtual Staffing Supercharged Access Insurance Underwriting: Our Transformation Story",
-      description:
-        "Access Insurance Underwriting, led by CEO Phil Wardell, transformed their business with virtual staffing, cutting costs, boosting efficiency, and driving unexpected growth. Here’s the full story.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "https://accessvirtualstaffing.blogspot.com/2024/09/why-virtual-staffing-is-key-to-growing.html",
-      image: {
-        src: "/blog/blog2.webp",
-        alt: "Blog 2 image",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Business",
-      readTime: "5 min read",
-      title: "Why Virtual Staffing is Key to Growing Your Business in Florida",
-      description:
-        "Virtual staffing, particularly through Access Virtual Staffing's bilingual team, enables Florida businesses to cut overhead costs and strategically expand by reaching a broader, diverse audience. Read the full article.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "https://accessvirtualstaffing.blogspot.com/2024/09/why-philippines-is-go-to-hub-for.html",
-      image: {
-        src: "/blog/blog3.webp",
-        alt: "Blog image 3",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Virtual Staffing",
-      readTime: "5 min read",
-      title: "Why the Philippines Is the Go-To Hub for Offshore Virtual Staff",
-      description:
-        "Have you ever wondered why so many companies are tapping into the virtual talent pool in the Philippines?. Here’s the full story.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-  ],
+  blogPosts: [], // This will be populated from Payload CMS
 };

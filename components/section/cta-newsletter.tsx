@@ -71,7 +71,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
                 type="submit"
                 name="subscribe"
                 id="mc-embedded-subscribe"
-                className="bg-primaryBlue text-white py-2 px-6 rounded-md hover:bg-oceanBlue mt-5"
+                className="bg-deepBlue text-white py-2 px-6 rounded-md hover:bg-oceanBlue mt-5"
               >
                 Subscribe
               </Button>
@@ -90,7 +90,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
 export const CtaNewsLetterDefaults: Props = {
   heading: "AVS Newsletter",
   description:
-    "Subscribe to our newsletter to get the latest updates and offers in Hiring Virtual Staff and Finding work as a VA!",
+    "Subscribe to our newsletter to get the latest updates and offers in Hiring Virtual Staff",
   inputPlaceholder: "Enter your email",
   termsAndConditions: `
     <p class='text-xs'>
