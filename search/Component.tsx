@@ -2,7 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useState, useEffect } from "react";
-import { useDebounce } from "@/utils/useDebounce";
+import { useDebounce } from "@/hooks/useDebounce";
 import { useRouter } from "next/navigation";
 
 export const Search: React.FC = () => {
