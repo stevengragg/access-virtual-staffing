@@ -10,42 +10,69 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: "https://accessvirtualstaffing.com/faq",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: "https://accessvirtualstaffing.com/about-us",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: "https://accessvirtualstaffing.com/contact-us",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: "https://accessvirtualstaffing.com/book-a-meeting",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
-    // {
-    //   url: "https://accessvirtualstaffing.com/start-hiring",
-    // },
     {
       url: "https://accessvirtualstaffing.com/services",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
-
     {
       url: "https://accessvirtualstaffing.com/services/basic-plan",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
-
     {
       url: "https://accessvirtualstaffing.com/services/standard-plan",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
-
     {
       url: "https://accessvirtualstaffing.com/services/specialized-services",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
-      url: "https://accessvirtualstaffing.com/talent",
+      url: "https://accessvirtualstaffing.com/privacy-policy",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
     },
     {
-      url: "https://accessvirtualstaffing.com/talent/find-work",
+      url: "https://accessvirtualstaffing.com/search",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.6,
     },
     {
-      url: "https://accessvirtualstaffing.com/talent/portal",
+      url: "https://accessvirtualstaffing.com/posts",
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.6,
     },
   ];
 }
