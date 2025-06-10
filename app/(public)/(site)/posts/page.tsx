@@ -32,7 +32,15 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+          <div className="text-center mb-12 ">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-zinc-800">
+              The AVS Blog
+            </h1>
+            <p className="text-lg text-zinc-700">
+              Find the latest news and insights about Virtual Staffing and
+              Remote Talents
+            </p>
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 
 import { CTAFooter } from "@/components/section/cta-footer";
@@ -164,24 +164,17 @@ export default function StandardPlan({}: Props) {
       {/* <Testimonials /> */}
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Send us your requirements or inquiries so that we can start hiring your first Virtual Staff."
+        heading="Take the First Step with"
+        heading2="Access Virtual Staffing"
+        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
         buttons={[
           {
             navLink: {
-              title: "Get Started",
+              title: "Schedule a Free Strategy Call",
               url: "/book-a-meeting",
               follow: false,
             },
-            variant: "secondary",
-            size: "xl",
-          },
-          {
-            navLink: {
-              title: "Contact Us",
-              url: "/contact-us",
-              follow: false,
-            },
+            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
             variant: "outline",
             size: "xl",
           },

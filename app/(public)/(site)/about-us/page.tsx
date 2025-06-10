@@ -5,6 +5,8 @@ import { HeroHeader2 } from "@/components/section/hero-header-2";
 import { LongFormContent } from "@/components/section/long-form-content";
 import { LongFormContent2 } from "@/components/section/long-form-content2";
 import { LongFormHeader } from "@/components/section/long-form-header";
+import { HeaderWithBg } from "@/components/section/header-with-bg";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Access Virtual Staffing",
@@ -18,7 +20,7 @@ export default function AboutUs({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* About Us Hero Header Section */}
-      <HeroHeader2 />
+      <HeaderWithBg />
       {/* Long Form Content Header Section */}
       <LongFormHeader />
       {/* Long Form Content Section */}
@@ -49,24 +51,17 @@ Phil's innovative model offers more than just a staffing solution; it provides a
       />
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Discover our different services or you can send us your requirements so that we can start hiring your first Virtual Staff."
+        heading="Take the First Step with"
+        heading2="Access Virtual Staffing"
+        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
         buttons={[
           {
             navLink: {
-              title: "Discover Our Services",
-              url: "/services",
-              follow: false,
-            },
-            variant: "secondary",
-            size: "xl",
-          },
-          {
-            navLink: {
-              title: "Free Startegy Call",
+              title: "Schedule a Free Strategy Call",
               url: "/book-a-meeting",
               follow: false,
             },
+            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
             variant: "outline",
             size: "xl",
           },

@@ -218,13 +218,21 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
     {
       title: "Services",
       url: "/services",
+      // subMenuLinks: [
+      //   { title: "Basic Plan", url: "/services/basic-plan" },
+      //   { title: "Standard Plan", url: "/services/standard-plan" },
+      //   {
+      //     title: "Specialized Services",
+      //     url: "/services/specialized-services",
+      //   },
+      // ],
     },
     {
       title: "Resources",
       url: "#",
       subMenuLinks: [
         {
-          title: "Blog",
+          title: "The AVS Blog",
           url: "/posts",
         },
         { title: "FAQs", url: "/faq" },
@@ -236,11 +244,11 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
         },
       ],
     },
-    {
-      title: "For Talents",
-      url: "https://www.accessvirtualjobs.com",
-      follow: true,
-    },
+    // {
+    //   title: "For Talents",
+    //   url: "https://www.accessvirtualjobs.com",
+    //   follow: true,
+    // },
   ],
   buttons: [
     // {

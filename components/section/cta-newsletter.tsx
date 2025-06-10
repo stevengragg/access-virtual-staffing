@@ -34,7 +34,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <form
-            action="https://medsurf.us9.list-manage.com/subscribe/post?u=aafc6579016a0403f3ee6bef7&amp;id=24ac809d44&amp;f_id=00f7e8e3f0"
+            action="https://accessvirtualstaffing.us7.list-manage.com/subscribe/post?u=8af96849d97864dc4fc3babe7&amp;id=3dab04282a&amp;f_id=00d1ace4f0"
             method="post"
             id="mc-embedded-subscribe-form"
             name="mc-embedded-subscribe-form"
@@ -63,7 +63,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
               >
                 <input
                   type="text"
-                  name="b_aafc6579016a0403f3ee6bef7_24ac809d44"
+                  name="b_8af96849d97864dc4fc3babe7_3dab04282a"
                   tabIndex={-1}
                 />
               </div>

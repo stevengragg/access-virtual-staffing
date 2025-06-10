@@ -171,7 +171,7 @@ export const Footer11Defaults: Footer11Props = {
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
         {
-          title: "Blog",
+          title: "The AVS Blog",
           url: "/posts",
         },
         {
@@ -184,30 +184,33 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "Services", url: "/services" },
-        { title: "Basic Plan", url: "/basic-plan" },
-        { title: "Standard Plan", url: "/standard-plan" },
-        { title: "Specialized Services", url: "/specialized-services" },
-      ],
-    },
-    {
-      links: [
+        { title: "Basic Plan", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
         {
-          title: "Access Virtual Jobs",
-          url: "https://www.accessvirtualjobs.com",
-          follow: true,
-        },
-        {
-          title: "Remote Jobs",
-          url: "https://www.accessvirtualjobs.com/browse-jobs",
-          follow: true,
-        },
-        {
-          title: "Applicant Portal",
-          url: "https://www.accessvirtualjobs.com/login",
-          follow: true,
+          title: "Specialized Services",
+          url: "/services/specialized-services",
         },
       ],
     },
+    // {
+    //   links: [
+    //     {
+    //       title: "Access Virtual Jobs",
+    //       url: "https://www.accessvirtualjobs.com",
+    //       follow: true,
+    //     },
+    //     {
+    //       title: "Remote Jobs",
+    //       url: "https://www.accessvirtualjobs.com/browse-jobs",
+    //       follow: true,
+    //     },
+    //     {
+    //       title: "Applicant Portal",
+    //       url: "https://www.accessvirtualjobs.com/login",
+    //       follow: true,
+    //     },
+    //   ],
+    // },
   ],
   footerText: `© 2024 - ${new Date().getFullYear()} Access Virtual Staffing. All rights reserved.`,
   footerLinks: [{ title: "Privacy Policy", url: "/privacy-policy" }],
