@@ -22,8 +22,16 @@ const config: Config = {
         deepBlue: "#003B59",
         deepZinc: "#1F2937",
         oceanBlue: "#206E95",
-        softGray: "#F2F2F2",
+        softZinc: "#F2F2F2", // renamed from softGray
         orangeStar: "#FFB800",
+        robinsEggBlueDark: "#009BA2",
+        robinsEggBlueLight: "#CCF2F4",
+        robinsEggBlueLighter: "#CCF2F4",
+        robinsEggBlue: "#00C2CB",
+        midnightBlue: "#002860",
+        midnightBlueLight: "#4C688F",
+        neutralDark: "#4C4D50",
+        neutralDarker: "#191B1E",
       },
       animation: {
         bounce: "bounce 1s infinite",

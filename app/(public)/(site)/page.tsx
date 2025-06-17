@@ -9,26 +9,27 @@ import { Testimonials } from "@/components/section/testimonials";
 import { WhyChoose2 } from "@/components/section/why-choose-2";
 import { HowItWorks2 } from "@/components/section/how-it-works-2";
 import { HeroFeature3 } from "@/components/section/hero-feature-3";
+import HowItWorks3 from "@/components/section/how-it-works-3";
 
 export default function Home() {
   return (
     <main className="w-full mx-auto bg-white overflow-hidden">
       {/* Landing Hero Header Section */}
       <HeroHeaderV2 />
+      {/* How it works Section */}
+      <HowItWorks3 />
       {/* Why Choose Section */}
       <WhyChoose2 />
-      {/* How it works Section */}
-      <HowItWorks2 />
       {/* Feature 1 Section  */}
       <HeroFeature3 />
-
-      {/* How We Help Feature Section */}
-      {/* <HowWeHelpFeature /> */}
-
       {/* Testimonials Section */}
       <Testimonials />
       {/* Brands section */}
       <Brands />
+
+      {/* How We Help Feature Section */}
+      {/* <HowWeHelpFeature /> */}
+
       {/* Blog Container Section*/}
       <BlogContainer />
       {/* For Employees Section */}
@@ -37,18 +38,18 @@ export default function Home() {
       {/* <ContactCTA /> */}
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Take the First Step with"
-        heading2="Access Virtual Staffing"
-        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
+        heading="Stop Doing Everything."
+        heading2="Start Leading with Leverage."
+        description="Your next level of growth is waiting. Book your free strategy call today and discover how our premium virtual assistants can transform your business operations."
         buttons={[
           {
             navLink: {
-              title: "Schedule a Free Strategy Call",
+              title: "Book a Free Strategy Call",
               url: "/book-a-meeting",
               follow: false,
             },
             icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
-            variant: "outline",
+            variant: "cta1",
             size: "xl",
           },
         ]}

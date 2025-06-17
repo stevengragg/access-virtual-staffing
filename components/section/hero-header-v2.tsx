@@ -20,16 +20,19 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
     ...props,
   };
   return (
-    <section id="hero" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="hero"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-midnightBlue"
+    >
       <div className="container flex flex-col items-center">
         <div className="rb-12 mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
           <h1
-            className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl"
+            className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white"
             data-aos="fade-up"
           >
             {heading}
           </h1>
-          <p className="md:text-md" data-aos="fade-up">
+          <p className="md:text-md text-white" data-aos="fade-up">
             {description}
           </p>
           <div
@@ -99,62 +102,62 @@ export const HeroHeaderV2Defaults: Props = {
   buttons: [
     {
       navLink: {
-        title: "Our Services",
-        url: "/services",
+        title: "Book a Free Strategy Call",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "cta1",
+      size: "xl",
+      icon: () => <ArrowRight className="" />,
+    },
+    {
+      navLink: {
+        title: "Learn How it Works",
+        url: "/#how-it-works",
         follow: false,
       },
       variant: "outline",
       size: "xl",
     },
-    {
-      navLink: {
-        title: "Schedule a Call",
-        url: "/book-a-meeting",
-        follow: false,
-      },
-      variant: "secondary",
-      size: "xl",
-      icon: () => <ArrowRight className="" />,
-    },
   ],
   images: [
     {
-      src: "/svg_display/undraw_browsing_g1ne.svg",
+      src: "/img/carousel_img1.webp",
       alt: " placeholder image 1",
       width: 1000,
       height: 1000,
     },
 
     {
-      src: "/svg_display/undraw_building-a-website_1wrp.svg",
+      src: "/img/carousel_img2.webp",
       alt: " placeholder image 2",
       width: 1000,
       height: 1000,
     },
 
     {
-      src: "/svg_display/undraw_designer_efwz.svg",
+      src: "/img/carousel_img3.webp",
       alt: " placeholder image 3",
       width: 1000,
       height: 1000,
     },
 
     {
-      src: "/svg_display/undraw_voice-control_qghj.svg",
+      src: "/img/carousel_img4.webp",
       alt: " placeholder image 4",
       width: 1000,
       height: 1000,
     },
 
     {
-      src: "/svg_display/undraw_designer-life_6g9c.svg",
+      src: "/img/carousel_img5.webp",
       alt: " placeholder image 5",
       width: 1000,
       height: 1000,
     },
 
     {
-      src: "/svg_display/undraw_building-websites_k2zp.svg",
+      src: "/img/carousel_img6.webp",
       alt: " placeholder image 6",
       width: 1000,
       height: 1000,

@@ -11,6 +11,7 @@ import { ImageProps } from "@/types/general";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 
 type NavLink = {
   url: string;
@@ -40,7 +41,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
   return (
     <section
       id="navigation"
-      className="z-[999] flex w-full items-center bg-background-primary lg:min-h-18 lg:px-[5%]"
+      className="z-[999] flex w-full items-center bg-neutralDarker lg:min-h-18 lg:px-[5%]"
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
@@ -111,7 +112,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
                 className={cn(
-                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2",
+                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 font-medium text-white",
                   url === navLink.url ? "underline" : ""
                 )}
               >
@@ -147,7 +148,7 @@ const SubMenu = ({
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base"
+        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base text-white font-medium"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         <span>{navLink.title}</span>
@@ -189,7 +190,7 @@ const SubMenu = ({
                 href={subMenuLink.url}
                 target={subMenuLink.follow ? "_blank" : ""}
                 className={cn(
-                  "block py-3 text-center lg:px-4 lg:py-2 lg:text-left",
+                  "block py-3 text-center lg:px-4 lg:py-2 lg:text-left font-medium ",
                   pathname === navLink.url ? "underline" : ""
                 )}
               >
@@ -214,7 +215,7 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
   navLinks: [
     { title: "Home", url: "/" },
     { title: "About Us", url: "/about-us" },
-
+    { title: "Success Stories", url: "/success-stories" },
     {
       title: "Services",
       url: "/services",
@@ -271,12 +272,13 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
     // },
     {
       navLink: {
-        title: "Free Strategy Call",
+        title: "Book a Call",
         url: "/book-a-meeting",
         follow: false,
       },
-      variant: "secondary",
-      size: "default",
+      variant: "cta1",
+      size: "xl",
+      icon: () => <ArrowRight className="" />,
     },
   ],
 };

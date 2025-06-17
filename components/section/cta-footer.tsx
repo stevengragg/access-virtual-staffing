@@ -28,7 +28,7 @@ export const CTAFooter = (props: Cta25Props) => {
           {heading}
         </h2>
         <h2
-          className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white"
+          className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-robinsEggBlue"
           data-aos="fade-up"
         >
           {heading2}

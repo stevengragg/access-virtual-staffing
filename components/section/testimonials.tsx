@@ -1,6 +1,7 @@
 import { ImageProps } from "@/types/general";
 import Image from "next/image";
 import { BiSolidStar } from "react-icons/bi";
+import StatsSection from "./stats-section";
 
 type Testimonial = {
   quote: string;
@@ -28,14 +29,14 @@ export const Testimonials = (props: Testimonial17Props) => {
   return (
     <section
       id="testimonials"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBrightAqua/25"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-midnightBlue"
     >
       <div className="container-xl">
         <div
           className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20"
           data-aos="fade-up"
         >
-          <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl">
+          <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-white">
             {heading}
           </h1>
         </div>
@@ -47,7 +48,7 @@ export const Testimonials = (props: Testimonial17Props) => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex w-full flex-col items-start justify-between border border-deepZinc rounded-md p-6 md:p-8"
+              className="flex w-full flex-col items-start justify-between border  rounded-md p-6 md:p-8 bg-zinc-800 border-zinc-700 text-center  shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
             >
               <div className="mb-5 md:mb-6">
                 <div className="mb-6 flex">
@@ -60,7 +61,7 @@ export const Testimonials = (props: Testimonial17Props) => {
                       />
                     ))}
                 </div>
-                <blockquote className="md:text-md">
+                <blockquote className="md:text-md text-white">
                   {testimonial.quote}
                 </blockquote>
               </div>
@@ -72,7 +73,7 @@ export const Testimonials = (props: Testimonial17Props) => {
                   height={testimonial.avatar.height}
                   className="mb-4 mr-0 size-12 min-h-12 min-w-12 rounded-full object-cover md:mb-0 md:mr-4"
                 />
-                <div>
+                <div className="text-white">
                   <p className="font-semibold">{testimonial.name}</p>
                   <p>
                     {testimonial.position}, {testimonial.companyName}
@@ -87,9 +88,16 @@ export const Testimonials = (props: Testimonial17Props) => {
           data-aos-delay="200"
           data-aos="fade-up"
         >
-          <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl">
+          <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-white">
             {footerText}
           </h1>
+        </div>
+        <div
+          className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20"
+          data-aos-delay="200"
+          data-aos="fade-up"
+        >
+          <StatsSection />
         </div>
       </div>
     </section>
@@ -103,44 +111,44 @@ export const Testimonial17Defaults: Testimonial17Props = {
   testimonials: [
     {
       quote:
-        '"Access Virtual Staffing has been instrumental in helping us find top-tier talent. Their personalized approach and efficiency have exceeded our ...."',
+        "“I LOVE that Wendy is answering our calls FIRST thing in the morning. It gets busy when we open. Knowing that Wendy is fielding those calls while we tend to our customer at the register is wonderful! Wendy is great with communicating in our Microsoft Teams about her calls with our patients. The calls can be very detail oriented with compounded medications - Wendy captures it all! Staff is saying “Wendy is a lifesaver!”",
       avatar: {
-        src: "/img/avatar1.png",
+        src: "/img/testimonial1.png",
         alt: "Testimonial avatar 1",
         width: 48,
         height: 48,
       },
-      name: "John Doe",
-      position: "CEO",
-      companyName: "XYZ Company",
+      name: "Tracy Christian",
+      position: "Owner/Pharmacist",
+      companyName: "Premier Custom Pharmacy",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Working with Access Virtual Staffing has been a game-changer for our company. The quality of talent they provide is unmatched."',
+        "“We love working with Michie. She is great at following directions on assignments, and her ability to complete assignments accurately and in a timely manner is stellar. Also, her positivity and desire to learn and grow are refreshing to work with.”",
       avatar: {
-        src: "/img/avatar2.png",
+        src: "/img/testimonial2.png",
         alt: "Testimonial avatar 2",
         width: 48,
         height: 48,
       },
-      name: "Jane Smith",
-      position: "Marketing Manager",
-      companyName: "ABC Inc.",
-      numberOfStars: 4,
+      name: "Kristi",
+      position: "Attorney",
+      companyName: "Moran Law",
+      numberOfStars: 5,
     },
     {
       quote:
-        '"Access Virtual Staffing has truly transformed our business. Their professionalism and dedication have made a significant impact."',
+        '“Edrich is doing great and adding massive value to our team. Some notable accomplishments are enhancing our employee handbooks, assisting with reporting, and SOP creation. She has been a joy to work with!"',
       avatar: {
-        src: "/img/avatar3.png",
+        src: "/img/testimonial3.png",
         alt: "Testimonial avatar 3",
         width: 48,
         height: 48,
       },
-      name: "Mark Johnson",
-      position: "COO",
-      companyName: "XYZ Corporation ",
+      name: "Sheryl",
+      position: "Partner",
+      companyName: "HR Consulting Firm",
       numberOfStars: 5,
     },
   ],

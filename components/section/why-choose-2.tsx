@@ -4,6 +4,8 @@ import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronRight } from "react-icons/rx";
 
 import Image from "next/image";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
+import { ArrowRight } from "lucide-react";
 
 type SectionProps = {
   heading: string;
@@ -17,6 +19,7 @@ type Props = {
   rightSections: SectionProps[];
   footerText: string;
   image: ImageProps;
+  buttons: LinkButtonProps[];
 };
 
 export type WhyChoose2Props = React.ComponentPropsWithoutRef<"section"> &
@@ -30,6 +33,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
     rightSections,
     footerText,
     image,
+    buttons,
   } = {
     ...props,
     ...WhyChoose2Defaults,
@@ -38,7 +42,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
   return (
     <section
       id="relume"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-midnightBlue"
     >
       <div className="container">
         <div className="mb-12 md:mb-18 lg:mb-20">
@@ -76,6 +80,11 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
           <h3 className="text-xl md:text-2xl lg:text-4xl text-white">
             {footerText}
           </h3>
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-4 md:mt-8">
+          {buttons.map((button, index) => (
+            <LinkButton key={index} {...button} />
+          ))}
         </div>
       </div>
     </section>
@@ -133,4 +142,16 @@ export const WhyChoose2Defaults: Props = {
     width: 1000,
     height: 1000,
   },
+  buttons: [
+    {
+      navLink: {
+        title: "Find your perfect VA match",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "cta1",
+      size: "xl",
+      icon: () => <ArrowRight className="" />,
+    },
+  ],
 };

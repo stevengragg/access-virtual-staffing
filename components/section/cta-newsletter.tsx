@@ -21,7 +21,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
   return (
     <section
       id="newsletter"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-softGray"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-softZinc"
     >
       <div className="container grid w-full grid-cols-1 items-start justify-between gap-6 md:gap-x-12 md:gap-y-8 lg:grid-cols-[1fr_max-content] lg:gap-x-20">
         <div className="w-full max-w-lg">
@@ -44,7 +44,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
             <div className="flex-1">
               <Label
                 htmlFor="mce-EMAIL"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                className="block text-sm font-medium text-zinc-700 mb-2"
               >
                 Email Address <span className="text-red-500">*</span>
               </Label>
@@ -54,7 +54,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
                 id="mce-EMAIL"
                 required
                 placeholder={inputPlaceholder}
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-primaryBlue focus:ring-primaryBlue sm:text-sm"
+                className="w-full rounded-md border-zinc-300 shadow-sm focus:border-primaryBlue focus:ring-primaryBlue sm:text-sm"
               />
               <div
                 className="hidden"
