@@ -16,7 +16,7 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
 
   return (
     <section
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-gray-100"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-zinc-100"
       id="calendly"
     >
       <div className="container mx-auto flex flex-col md:flex-row items-start justify-center gap-x-6 md:gap-x-10 ">

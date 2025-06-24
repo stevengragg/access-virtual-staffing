@@ -18,7 +18,7 @@ export const CTAFooter = (props: Cta25Props) => {
   return (
     <section
       id="cta_footer"
-      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-primaryBlue/80 bg-ctaFooterBg2 bg-center bg-no-repeat bg-cover bg-blend-multiply"
+      className=" px-[5%] py-16 md:py-24 lg:py-28 border border-zinc-800 bg-primaryBlue/95 bg-ctaFooterBg2 bg-center bg-no-repeat bg-cover bg-blend-multiply"
     >
       <div className="container text-center max-w-lg ">
         <h2
@@ -28,7 +28,7 @@ export const CTAFooter = (props: Cta25Props) => {
           {heading}
         </h2>
         <h2
-          className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white"
+          className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-robinsEggBlue"
           data-aos="fade-up"
         >
           {heading2}

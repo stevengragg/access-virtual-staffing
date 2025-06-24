@@ -31,7 +31,7 @@ export const HowItWorks2 = (props: HowItWorks2Props) => {
     ...props,
   };
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="how-it-works" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container-xl">
         <div className="flex flex-col items-center">
           <div className="mb-12 md:mb-18 lg:mb-20">

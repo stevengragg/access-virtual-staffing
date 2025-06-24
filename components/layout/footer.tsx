@@ -64,7 +64,7 @@ export const Footer = (props: Footer11Props) => {
   return (
     <footer
       id="footer"
-      className="px-[5%] py-12 md:py-18 lg:py-20 bg-primaryBlue"
+      className="px-[5%] py-12 md:py-18 lg:py-20 bg-neutralDarker text-zinc-100"
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
@@ -168,10 +168,11 @@ export const Footer11Defaults: Footer11Props = {
       links: [
         { title: "About Us", url: "/about-us" },
         { title: "Hire Virtual Staff", url: "/book-a-meeting" },
+        { title: "Success Stories", url: "/success-stories" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
         {
-          title: "Blog",
+          title: "The AVS Blog",
           url: "/posts",
         },
         {
@@ -184,30 +185,33 @@ export const Footer11Defaults: Footer11Props = {
     {
       links: [
         { title: "Services", url: "/services" },
-        { title: "Basic Plan", url: "/basic-plan" },
-        { title: "Standard Plan", url: "/standard-plan" },
-        { title: "Specialized Services", url: "/specialized-services" },
-      ],
-    },
-    {
-      links: [
+        { title: "Basic Plan", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
         {
-          title: "Access Virtual Jobs",
-          url: "https://www.accessvirtualjobs.com",
-          follow: true,
-        },
-        {
-          title: "Remote Jobs",
-          url: "https://www.accessvirtualjobs.com/browse-jobs",
-          follow: true,
-        },
-        {
-          title: "Applicant Portal",
-          url: "https://www.accessvirtualjobs.com/login",
-          follow: true,
+          title: "Specialized Services",
+          url: "/services/specialized-services",
         },
       ],
     },
+    // {
+    //   links: [
+    //     {
+    //       title: "Access Virtual Jobs",
+    //       url: "https://www.accessvirtualjobs.com",
+    //       follow: true,
+    //     },
+    //     {
+    //       title: "Remote Jobs",
+    //       url: "https://www.accessvirtualjobs.com/browse-jobs",
+    //       follow: true,
+    //     },
+    //     {
+    //       title: "Applicant Portal",
+    //       url: "https://www.accessvirtualjobs.com/login",
+    //       follow: true,
+    //     },
+    //   ],
+    // },
   ],
   footerText: `© 2024 - ${new Date().getFullYear()} Access Virtual Staffing. All rights reserved.`,
   footerLinks: [{ title: "Privacy Policy", url: "/privacy-policy" }],

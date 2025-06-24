@@ -22,7 +22,7 @@ export const HeroFeature3 = (props: HeroFeature3Props) => {
     ...props,
   };
   return (
-    <section id="cta" className="px-[5%] py-8 md:py-12 bg-primaryBlue">
+    <section id="cta" className="px-[5%] py-8 md:py-12 bg-neutralDarker">
       <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div className="text-white">
@@ -78,20 +78,11 @@ export const HeroFeature3Defaults: Props = {
   buttons: [
     {
       navLink: {
-        title: "Hire Virtual Staff",
+        title: "Start Hiring Today",
         url: "/book-a-meeting",
         follow: false,
       },
-      variant: "primary",
-      size: "xl",
-    },
-    {
-      navLink: {
-        title: "Contact Us",
-        url: "/contact-us",
-        follow: false,
-      },
-      variant: "outline",
+      variant: "cta1",
       size: "xl",
     },
   ],

@@ -24,7 +24,6 @@ export default function PublicRootLayout({
   useEffect(() => {
     AOS.init({
       once: true,
-      disable: "phone",
       duration: 600,
       easing: "ease-out-sine",
     });
@@ -65,11 +64,11 @@ export default function PublicRootLayout({
     <>
       <SiteNavigation2 />
       {children}
+      <ScrollToTop />
       <LiveChatWidget />
       <CtaNewsLetter />
       <Footer />
       <SpeedInsights />
-      <ScrollToTop />
     </>
   );
 }
