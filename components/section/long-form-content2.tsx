@@ -20,23 +20,29 @@ export const LongFormContent2 = (props: LongFormContent2Props) => {
     ...props,
   } as Props;
   return (
-    <section id="long_form_content" className="px-[5%] py-4 lg:py-6">
-      <div className="container-xl">
+    <section
+      id="long_form_content"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
+    >
+      <div className="container">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className="order-first mx-auto">
+          <div className="relative lg:order-last w-full sm:col-span-2 order-first lg:col-span-1 duration-200 hover:scale-105 ">
             <Image
               src={image.src}
-              className="object-cover rounded-lg "
               alt={image.alt}
               width={image.width}
               height={image.height}
+              className="mx-auto size-full object-cover rounded-full aspect-square object-center shadow transition-transform  hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
+              data-aos="fade-up"
             />
           </div>
           <div className="order-last">
-            <h1 className="mb-5 text-2xl font-bold md:mb-6 lg:text-4xl">
+            <h1 className="mb-5 text-white text-xl md:text-2xl lg:text-4xl max-w-2xl mx-auto leading-relaxed">
               {quote}
             </h1>
-            <p className="text-xs lg:text-sm font-normal">{author}</p>
+            <p className="text-md lg:text-lg font-semibold text-white leading-relaxed">
+              {author}
+            </p>
 
             <div className="mt-6 md:mt-8">
               {button && <LinkButton {...button} className="py-2 px-0" />}
@@ -44,9 +50,13 @@ export const LongFormContent2 = (props: LongFormContent2Props) => {
           </div>
         </div>
         <div className="mt-8 md:mt-12 lg:mt-14">
-          <p className="text-md lg:text-lg font-medium">{description}</p>
+          <p className="text-md lg:text-lg font-semibold text-white leading-relaxed">
+            {description}
+          </p>
 
-          <p className="text-md lg:text-lg font-medium mt-4">{description2}</p>
+          <p className="text-md lg:text-lg font-semibold text-white leading-relaxed mt-4">
+            {description2}
+          </p>
         </div>
       </div>
     </section>

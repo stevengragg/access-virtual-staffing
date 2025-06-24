@@ -23,17 +23,34 @@ export const HeaderWithBg = (props: HeaderWithBgProps) => {
       id="relume"
       className="bg-heroHeaderBg bg-center bg-no-repeat bg-cover "
     >
-      <div className=" bg-primaryBlue/80   ">
+      <div className=" bg-neutralBase/90   ">
         <div className="container relative px-[5%] py-16 md:py-24 lg:py-28">
           <div className="w-full max-w-lg">
-            <p className="mb-3 font-semibold text-text-alternative md:mb-4">
+            <p
+              className="mb-3 font-semibold text-text-alternative md:mb-4"
+              data-aos="fade-up"
+            >
               {tagline}
             </p>
-            <h1 className="mb-5 text-6xl font-bold text-text-alternative md:mb-6 md:text-9xl lg:text-10xl">
+            <h1
+              className="mb-5 text-6xl font-bold text-text-alternative md:mb-6 md:text-9xl lg:text-10xl"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               {heading}
             </h1>
-            <p className="text-text-alternative md:text-md">{description}</p>
-            <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
+            <p
+              className="text-text-alternative md:text-md"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              {description}
+            </p>
+            <div
+              className="mt-6 flex flex-wrap gap-4 md:mt-8"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               {buttons.map((button, index) => (
                 <LinkButton
                   key={index}
@@ -66,11 +83,22 @@ export const HeaderWithBgDefaults: Props = {
   heading: "Find the Right Talent for Your Business",
   description:
     "Running a business is easier when you have the right team. At Access Virtual Staffing, we connect you with skilled professionals to help your business grow.",
-  buttons: [],
+
   image: {
     src: "/bg/heroheaderbg.webp",
     alt: "Hero background image",
     width: 1920,
     height: 500,
   },
+  buttons: [
+    {
+      navLink: {
+        title: "Get Started",
+        url: "/start-hiring",
+        follow: false,
+      },
+      variant: "cta1",
+      size: "xl",
+    },
+  ],
 };
