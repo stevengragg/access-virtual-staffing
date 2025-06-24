@@ -12,7 +12,7 @@ export default function HowItWorks3() {
             How It <span className="text-robinsEggBlue">Works</span>
           </h2>
           <p className="text-zinc-100 text-lg max-w-2xl mx-auto leading-relaxed">
-            Our streamlined process ensures you're matched with the perfect
+            Our streamlined process ensures you&apos;re matched with the perfect
             virtual assistant to elevate your business operations.
           </p>
         </div>

@@ -114,11 +114,11 @@ export const BlogContainer = async (props: Blog44Props) => {
                   </h2>
                   <p>{post.description}</p>
                   <Button
-                    variant="primary"
+                    variant="ghost"
                     size="sm"
-                    className="mt-6 flex items-center justify-center gap-x-1"
+                    className="mt-6 flex items-center justify-center gap-x-1 rounded-lg bg-deepBlue text-white "
                   >
-                    Read More
+                    Click to View post
                   </Button>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export const Blog44Defaults: Blog44Props = {
       follow: false,
     },
     variant: "secondary",
-    size: "lg",
+    size: "xl",
   },
   blogPosts: [], // This will be populated from Payload CMS
 };

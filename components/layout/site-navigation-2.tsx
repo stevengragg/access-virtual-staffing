@@ -46,7 +46,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           {logo && (
-            <a href={logo.url}>
+            <a href={logo.url} className="block lg:hidden">
               <Image
                 src={isMobile ? "/avs_logo_5.png" : logo.src}
                 alt={logo.alt || "AVS Logo"}

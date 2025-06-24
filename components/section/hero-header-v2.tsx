@@ -5,8 +5,10 @@ import { ImageProps } from "@/types/general";
 import { ArrowRight } from "lucide-react";
 
 type Props = {
-  heading: string;
-  description: string;
+  heading1: string;
+  heading2: string;
+  description1: string;
+  description2: string;
   buttons: LinkButtonProps[];
   images: ImageProps[];
 };
@@ -15,78 +17,105 @@ export type HeroHeaderV2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
-  const { heading, description, buttons, images } = {
+  const { heading1, heading2, description1, description2, buttons, images } = {
     ...HeroHeaderV2Defaults,
     ...props,
   };
   return (
     <section
       id="hero"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-midnightBlue"
+      className="bg-heroHeaderBg lg:bg-center bg-no-repeat bg-cover bg-top"
     >
-      <div className="container flex flex-col items-center">
-        <div className="rb-12 mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
-          <h1
-            className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white"
-            data-aos="fade-up"
-          >
-            {heading}
-          </h1>
-          <p className="md:text-md text-white" data-aos="fade-up">
-            {description}
-          </p>
-          <div
-            className="mt-6 flex items-center justify-center gap-x-4 md:mt-8"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            {buttons.map((button, index) => (
-              <LinkButton key={index} {...button} />
-            ))}
-          </div>
-        </div>
-
-        <div className="flex w-screen justify-start overflow-hidden">
-          <div className="grid shrink-0 grid-cols-1 gap-y-4">
-            <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
-              {[...new Array(2)].map((e, index) => (
-                <div key={index} className="grid w-full grid-flow-col gap-4">
-                  {images.map((image, imageIndex) => (
-                    <div
-                      key={imageIndex}
-                      className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem] border border-deepZinc rounded-md"
-                    >
-                      <Image
-                        className="absolute inset-0 size-full object-cover"
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.width}
-                        height={image.height}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
+      <div className="px-[5%] py-16  bg-neutralBase/85">
+        <div className="container-xl flex flex-col ">
+          <div className="flex items-center justify-start flex-col-reverse lg:flex-row  gap-8  text-left mb-5 lg:mb-0 ">
+            <div className="hidden lg:block">
+              <Image
+                src="/avs_logo_2025.png"
+                alt="AVS Logo"
+                width={1000}
+                height={1000}
+                className="w-full max-w-xs md:max-w-md lg:max-w-lg h-1/2 object-contain"
+                data-aos="fade-up"
+              />
             </div>
-            <div className="grid w-full animate-marquee-bottom grid-cols-2 gap-4 self-center">
-              {[...new Array(2)].map((e, index) => (
-                <div key={index} className="grid w-full grid-flow-col gap-4">
-                  {images.map((image, imageIndex) => (
+            <div className="flex flex-col items-center justify-center lg:items-start  text-center lg:text-left">
+              <h1 className="text-6xl font-semibold md:text-9xl lg:text-[4.5rem] text-white">
+                {heading1}
+              </h1>
+              <h1
+                className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-[4.5rem] text-white"
+                data-aos="fade-up"
+              >
+                {heading2}
+              </h1>
+              <p className="md:text-md text-white" data-aos="fade-up">
+                {description1}
+              </p>
+              <p className="md:text-md text-white" data-aos="fade-up">
+                {description2}
+              </p>
+              <div
+                className="mt-6 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-8"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                {buttons.map((button, index) => (
+                  <LinkButton key={index} {...button} />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="container flex flex-col items-center  rb-12 mb-12 md:mb-18 lg:mb-20 ">
+            <div className="flex w-screen justify-start overflow-hidden">
+              <div className="grid shrink-0 grid-cols-1 gap-y-4">
+                <div className="grid w-full animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
+                  {[...new Array(2)].map((e, index) => (
                     <div
-                      key={imageIndex}
-                      className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem] border border-deepZinc rounded-md"
+                      key={index}
+                      className="grid w-full grid-flow-col gap-4"
                     >
-                      <Image
-                        className="absolute inset-0 size-full object-cover"
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.width}
-                        height={image.height}
-                      />
+                      {images.map((image, imageIndex) => (
+                        <div
+                          key={imageIndex}
+                          className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem] "
+                        >
+                          <Image
+                            className="absolute inset-0 size-full object-cover rounded-lg"
+                            src={image.src}
+                            alt={image.alt}
+                            width={image.width}
+                            height={image.height}
+                          />
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
-              ))}
+                <div className="grid w-full animate-marquee-bottom grid-cols-2 gap-4 self-center">
+                  {[...new Array(2)].map((e, index) => (
+                    <div
+                      key={index}
+                      className="grid w-full grid-flow-col gap-4"
+                    >
+                      {images.map((image, imageIndex) => (
+                        <div
+                          key={imageIndex}
+                          className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem] "
+                        >
+                          <Image
+                            className="absolute inset-0 size-full object-cover rounded-lg"
+                            src={image.src}
+                            alt={image.alt}
+                            width={image.width}
+                            height={image.height}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -96,9 +125,12 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
 };
 
 export const HeroHeaderV2Defaults: Props = {
-  heading: "Scale Smarter with Global Talent",
-  description:
-    "Access top-tier professionals while saving up to 70% on salaries and 90% on operations. Our tailored solutions help your business grow efficiently—with expert support every step of the way.",
+  heading1: "Scale Smarter with",
+  heading2: "Global Talent",
+  description1:
+    "Access top-tier professionals while saving up to 70% on salaries and 90% on operations. ",
+  description2:
+    "Our tailored solutions help your business grow efficiently—with expert support every step of the way.",
   buttons: [
     {
       navLink: {

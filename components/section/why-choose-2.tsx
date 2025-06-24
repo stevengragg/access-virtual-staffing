@@ -66,7 +66,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className="h-auto w-full object-cover rounded-md"
+              className="h-auto w-full object-cover rounded-lg"
               data-aos="fade-up"
               data-aos-delay="200"
             />

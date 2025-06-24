@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+import { ne } from "drizzle-orm";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -32,6 +34,7 @@ const config: Config = {
         midnightBlueLight: "#4C688F",
         neutralDark: "#4C4D50",
         neutralDarker: "#191B1E",
+        neutralBase: "#7F8082",
       },
       animation: {
         bounce: "bounce 1s infinite",

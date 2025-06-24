@@ -65,11 +65,11 @@ export default function PublicRootLayout({
     <>
       <SiteNavigation2 />
       {children}
+      <ScrollToTop />
       <LiveChatWidget />
       <CtaNewsLetter />
       <Footer />
       <SpeedInsights />
-      <ScrollToTop />
     </>
   );
 }
