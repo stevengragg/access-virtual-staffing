@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 type Props = {
   heading1: string;
   heading2: string;
+  logo: ImageProps;
   description1: string;
   description2: string;
   buttons: LinkButtonProps[];
@@ -17,7 +18,15 @@ export type HeroHeaderV2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
-  const { heading1, heading2, description1, description2, buttons, images } = {
+  const {
+    heading1,
+    heading2,
+    description1,
+    description2,
+    buttons,
+    images,
+    logo,
+  } = {
     ...HeroHeaderV2Defaults,
     ...props,
   };
@@ -26,15 +35,15 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
       id="hero"
       className="bg-heroHeaderBg lg:bg-center bg-no-repeat bg-cover bg-top"
     >
-      <div className="px-[5%] py-16  bg-neutralBase/85">
+      <div className="px-[5%] py-16  bg-neutralBase/90">
         <div className="container-xl flex flex-col ">
           <div className="flex items-center justify-start flex-col-reverse lg:flex-row  gap-8  text-left mb-5 lg:mb-0 ">
             <div className="hidden lg:block">
               <Image
-                src="/avs_logo_2025.png"
-                alt="AVS Logo"
-                width={1000}
-                height={1000}
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
                 className="w-full max-w-xs md:max-w-md lg:max-w-lg h-1/2 object-contain"
                 data-aos="fade-up"
               />
@@ -161,6 +170,12 @@ export const HeroHeaderV2Defaults: Props = {
       size: "xl",
     },
   ],
+  logo: {
+    src: "/avs_logo_2025.png",
+    alt: "Access Virtual Staffing Logo",
+    width: 1000,
+    height: 1000,
+  },
   images: [
     {
       src: "/img/carousel_img1.webp",

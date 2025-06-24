@@ -22,7 +22,7 @@ export const Brands = (props: Logo3Props) => {
     >
       <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
         <h1
-          className="text-center text-xl font-bold leading-[1.2] md:text-2xl lg:text-4xl md:leading-[1.2] text-zinc-900"
+          className="text-center text-xl font-bold leading-[1.2] md:text-2xl lg:text-4xl md:leading-[1.2] text-black"
           data-aos="fade-up"
         >
           {heading}
@@ -49,7 +49,11 @@ export const Brands = (props: Logo3Props) => {
             </div>
           ))}
       </div> */}
-      <div className="flex items-center pt-7 md:pt-0">
+      <div
+        className="flex items-center pt-7 md:pt-0"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="flex justify-center w-full">
           <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (

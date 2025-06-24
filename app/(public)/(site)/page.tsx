@@ -9,6 +9,8 @@ import { Testimonials } from "@/components/section/testimonials";
 import { WhyChoose2 } from "@/components/section/why-choose-2";
 import { HeroFeature3 } from "@/components/section/hero-feature-3";
 import HowItWorks3 from "@/components/section/how-it-works-3";
+import { HeroQuote } from "@/components/section/hero-quote";
+import VaServices from "@/components/section/va-services-section";
 
 export default function Home() {
   return (
@@ -23,8 +25,10 @@ export default function Home() {
       <Brands />
       {/* Testimonials Section */}
       <Testimonials />
+      {/* VA Services Section */}
+      <VaServices />
       {/* Feature 1 Section  */}
-      <HeroFeature3 />
+      <HeroQuote />
       {/* Blog Container Section*/}
       <BlogContainer />
       {/* CTA Footer */}

@@ -70,16 +70,18 @@ export const BlogContainer = async (props: Blog44Props) => {
 
   return (
     <section
-      id="blog_list"
+      id="blog"
       className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
     >
       <div className="container-xl">
         <div className="mb-12 grid grid-cols-1 items-start justify-start gap-y-8 md:mb-18 md:grid-cols-[1fr_max-content] md:items-end md:justify-between md:gap-x-12 md:gap-y-4 lg:mb-20 lg:gap-x-20">
           <div className="w-full max-w-lg">
-            <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl text-white">
+            <h1 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
               {heading}
             </h1>
-            <p className="md:text-md text-white">{description}</p>
+            <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+              {description}
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-16 lg:grid-cols-3">
@@ -134,7 +136,7 @@ export const BlogContainer = async (props: Blog44Props) => {
 };
 
 export const Blog44Defaults: Blog44Props = {
-  heading: "Trends and Insights",
+  heading: "The AVS Blog",
   description:
     "Stay informed with our insightful blog posts and helpful links.",
   button: {

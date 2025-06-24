@@ -26,9 +26,9 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16" data-aos="fade-up">
-          <h1 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
+          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
             {heading} <span className="text-robinsEggBlue">{highlight}</span>
-          </h1>
+          </h2>
           <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
             {description}
           </p>

@@ -44,14 +44,14 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
   return (
     <section
       id="benefits"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
     >
       <div className="container">
         <div className="mb-12 md:mb-18 lg:mb-20">
           <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
-            <h1 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
+            <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
               {heading} <span className="text-robinsEggBlue">{highlight}</span>
-            </h1>
+            </h2>
             <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
               {description}
             </p>
@@ -80,7 +80,10 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
             {footerText}
           </h3>
         </div>
-        <div className="mt-6 flex items-center justify-center gap-4 md:mt-8">
+        <div
+          className="mt-6 flex items-center justify-center gap-4 md:mt-8"
+          data-aos="fade-up"
+        >
           {buttons.map((button, index) => (
             <LinkButton key={index} {...button} />
           ))}
@@ -99,10 +102,12 @@ const FeatureSection = ({ sections }: { sections: SectionProps[] }) => (
         data-aos="fade-up"
         data-aos-delay="300"
       >
-        <h3 className="mb-3 text-2xl font-bold md:mb-4 md:text-4xl">
+        <h3 className="mb-3 text-2xl md:text-4xl font-bold md:mb-4 lg:text-5xl text-robinsEggBlue">
           {section.heading}
         </h3>
-        <p>{section.description}</p>
+        <p className="md:text-md lg:text-lg text-white">
+          {section.description}
+        </p>
       </div>
     ))}
   </div>

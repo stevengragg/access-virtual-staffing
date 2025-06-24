@@ -21,14 +21,14 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
   return (
     <section
       id="newsletter"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-softZinc"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralBase"
     >
       <div className="container grid w-full grid-cols-1 items-start justify-between gap-6 md:gap-x-12 md:gap-y-8 lg:grid-cols-[1fr_max-content] lg:gap-x-20">
         <div className="w-full max-w-lg">
-          <h2 className="mb-3 text-4xl font-bold leading-[1.2] text-deepBlue md:mb-4 md:text-5xl lg:text-6xl text-center lg:text-left">
+          <h2 className="mb-3 text-4xl font-bold leading-[1.2] text-white md:mb-4 md:text-5xl lg:text-6xl text-center lg:text-left">
             {heading}
           </h2>
-          <p className="text-zinc-800 md:text-md text-center lg:text-left">
+          <p className="text-white md:text-md text-center lg:text-left">
             {description}
           </p>
         </div>
