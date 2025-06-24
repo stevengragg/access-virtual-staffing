@@ -11,6 +11,10 @@ body,
 }
 
 @layer utilities {
+  .text-11xl {
+    font-size: 4.5rem;
+    line-height: 1.5;
+  }
   .animate-bounce {
     animation: bounce 1s infinite;
 

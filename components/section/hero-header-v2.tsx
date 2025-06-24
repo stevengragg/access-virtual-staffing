@@ -40,23 +40,32 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
               />
             </div>
             <div className="flex flex-col items-center justify-center lg:items-start  text-center lg:text-left">
-              <h1 className="text-6xl font-semibold md:text-9xl lg:text-[4.5rem] text-white">
+              <h1
+                className="text-6xl font-semibold md:text-9xl lg:text-11xl text-white"
+                data-aos="fade-up"
+              >
                 {heading1}
               </h1>
               <h1
-                className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-[4.5rem] text-white"
+                className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-11xl text-white"
                 data-aos="fade-up"
               >
                 {heading2}
               </h1>
-              <p className="md:text-md text-white" data-aos="fade-up">
+              <p
+                className="text-lg md:text-xl lg:text-2xl text-white"
+                data-aos="fade-up"
+              >
                 {description1}
               </p>
-              <p className="md:text-md text-white" data-aos="fade-up">
+              <p
+                className="text-lg md:text-xl lg:text-2xl text-white"
+                data-aos="fade-up"
+              >
                 {description2}
               </p>
               <div
-                className="mt-6 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-8"
+                className="mt-12 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-16"
                 data-aos="fade-up"
                 data-aos-delay="200"
               >

@@ -55,7 +55,7 @@ export const Brands = (props: Logo3Props) => {
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                className="w-12 h-12 fill-yellow-400 text-yellow-400"
               />
             ))}
           </div>

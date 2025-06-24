@@ -7,7 +7,6 @@ import { HeroHeaderV2 } from "@/components/section/hero-header-v2";
 import { Brands } from "@/components/section/brands";
 import { Testimonials } from "@/components/section/testimonials";
 import { WhyChoose2 } from "@/components/section/why-choose-2";
-import { HowItWorks2 } from "@/components/section/how-it-works-2";
 import { HeroFeature3 } from "@/components/section/hero-feature-3";
 import HowItWorks3 from "@/components/section/how-it-works-3";
 
@@ -20,23 +19,15 @@ export default function Home() {
       <HowItWorks3 />
       {/* Why Choose Section */}
       <WhyChoose2 />
-      {/* Feature 1 Section  */}
-      <HeroFeature3 />
-      {/* Testimonials Section */}
-      <Testimonials />
       {/* Brands section */}
       <Brands />
-
-      {/* How We Help Feature Section */}
-      {/* <HowWeHelpFeature /> */}
-
+      {/* Testimonials Section */}
+      <Testimonials />
+      {/* Feature 1 Section  */}
+      <HeroFeature3 />
       {/* Blog Container Section*/}
       <BlogContainer />
-      {/* For Employees Section */}
-      {/* <CtaJobseeker /> */}
-      {/* Contact CTA Section */}
-      {/* <ContactCTA /> */}
-      {/* CTA Footer Section */}
+      {/* CTA Footer */}
       <CTAFooter
         heading="Stop Doing Everything."
         heading2="Start Leading with Leverage."
