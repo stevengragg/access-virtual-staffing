@@ -43,14 +43,17 @@ export const HeroQuote = (props: HeroQuoteProps) => {
     >
       <div className="container-xl">
         <div className="grid w-full auto-cols-fr grid-cols-1 items-center justify-center gap-12 md:grid-cols-2 md:gap-10 lg:gap-x-20">
-          <div className="order-last md:order-first shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight">
+          <div
+            className="order-last md:order-first shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <Image
               src={image.src}
               alt={image.alt}
               className="aspect-square w-full object-cover rounded-lg "
               width={image.width}
               height={image.height}
-              data-aos="fade-up"
             />
           </div>
           <div className="flex flex-col items-start">

@@ -81,7 +81,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
           </h3>
         </div>
         <div
-          className="mt-6 flex items-center justify-center gap-4 md:mt-8"
+          className="mt-12 flex items-center justify-center gap-4 md:mt-16"
           data-aos="fade-up"
         >
           {buttons.map((button, index) => (
@@ -150,7 +150,7 @@ export const WhyChoose2Defaults: Props = {
   buttons: [
     {
       navLink: {
-        title: "Find your perfect VA match",
+        title: "Start hiring your VA today",
         url: "/book-a-meeting",
         follow: false,
       },

@@ -7,7 +7,9 @@ import {
   List,
   Lock,
   TrendingUp,
+  ArrowRight,
 } from "lucide-react";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 export default function VaServices() {
   const services = [
@@ -57,6 +59,18 @@ export default function VaServices() {
       description: "Report generation, KPI tracking, and performance insights",
     },
   ];
+  const buttons: LinkButtonProps[] = [
+    {
+      navLink: {
+        title: "Find your perfect VA match",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "cta1",
+      size: "xl",
+      icon: () => <ArrowRight className="" />,
+    },
+  ];
 
   return (
     <section
@@ -65,11 +79,15 @@ export default function VaServices() {
     >
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Our VAs Are <span className="text-[#00C2CB]">Trained In</span>
+        <div
+          className="text-center mb-16"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
+            Our VAs Are <span className="text-robinsEggBlue">Trained In</span>
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
+          <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
             Access Virtual Staffing assistants are equipped with premium skills
             to handle your most critical business functions.
           </p>
@@ -82,12 +100,12 @@ export default function VaServices() {
             return (
               <div
                 key={index}
-                className="bg-gray-900/50 border border-gray-800 rounded-lg p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"
+                className="bg-zinc-800 border border-zinc-800 rounded-lg p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"
               >
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="w-16 h-16 mx-auto bg-[#00C2CB]/10 rounded-full flex items-center justify-center">
-                    <IconComponent className="w-8 h-8 text-[#00C2CB]" />
+                  <div className="w-16 h-16 mx-auto bg-robinsEggBlue/10 rounded-full flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-robinsEggBlue" />
                   </div>
                 </div>
 
@@ -97,12 +115,21 @@ export default function VaServices() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>
             );
           })}
+        </div>
+
+        <div
+          className="mt-12 flex items-center justify-center gap-4 md:mt-16"
+          data-aos="fade-up"
+        >
+          {buttons.map((button, index) => (
+            <LinkButton key={index} {...button} />
+          ))}
         </div>
       </div>
     </section>

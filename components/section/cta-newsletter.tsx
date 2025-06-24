@@ -25,10 +25,10 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
     >
       <div className="container grid w-full grid-cols-1 items-start justify-between gap-6 md:gap-x-12 md:gap-y-8 lg:grid-cols-[1fr_max-content] lg:gap-x-20">
         <div className="w-full max-w-lg">
-          <h2 className="mb-3 text-4xl font-bold leading-[1.2] text-white md:mb-4 md:text-5xl lg:text-6xl text-center lg:text-left">
-            {heading}
+          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white text-center lg:text-left">
+            <span className="text-robinsEggBlue">AVS</span> {heading}
           </h2>
-          <p className="text-white md:text-md text-center lg:text-left">
+          <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
             {description}
           </p>
         </div>
@@ -88,7 +88,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
 };
 
 export const CtaNewsLetterDefaults: Props = {
-  heading: "AVS Newsletter",
+  heading: "Newsletter",
   description:
     "Subscribe to our newsletter to get the latest updates and offers in Hiring Virtual Staff",
   inputPlaceholder: "Enter your email",

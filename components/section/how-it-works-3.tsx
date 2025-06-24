@@ -34,15 +34,17 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
           </p>
         </div>
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div
+          className="grid md:grid-cols-3 gap-8"
+          data-aos="fade-up"
+          data-aos-delay={100}
+        >
           {steps.map((step, idx) => (
-            <Card
+            <div
               key={idx}
-              className="bg-zinc-800 border-zinc-700 text-center p-8 shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
-              data-aos="fade-up"
-              data-aos-delay={100 * (idx + 1)}
+              className="bg-zinc-800 border border-zinc-800 rounded-lg p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"
             >
-              <CardContent className="space-y-6">
+              <div className="space-y-6">
                 <div className="w-16 h-16 bg-robinsEggBlue rounded-full flex items-center justify-center mx-auto">
                   <p className="text-2xl md:text-4xl font-extrabold text-zinc-900">
                     {idx + 1}
@@ -54,11 +56,9 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
                 <p className="text-base md:text-lg lg:text-xl text-white leading-relaxed">
                   {step.description}
                 </p>
-                <div className="pt-4 flex items-center justify-center">
-                  {step.icon}
-                </div>
-              </CardContent>
-            </Card>
+                {step.icon}
+              </div>
+            </div>
           ))}
         </div>
         <div
@@ -83,17 +83,25 @@ export const HowItWorks3Defaults: HowItWorks3Props = {
       title: "Discovery Call",
       description:
         "We analyze your needs, challenges, and goals to understand exactly what support will drive your success.",
-      icon: <Headphones className="w-8 h-8 text-robinsEggBlue" />,
+      icon: (
+        <div className="pt-4">
+          <div className="w-16 h-16 border-2 border-robinsEggBlue rounded-full flex items-center justify-center mx-auto">
+            <Headphones className="w-8 h-8 text-robinsEggBlue" />
+          </div>
+        </div>
+      ),
     },
     {
       title: "Strategic Matching",
       description:
         "We pair you with a VA whose skills, experience, and personality align perfectly with your business needs.",
       icon: (
-        <div className="flex items-center justify-center space-x-4">
-          <div className="w-8 h-8 border-2 border-robinsEggBlue rounded-full"></div>
-          <ArrowRight className="w-6 h-6 text-robinsEggBlue" />
-          <div className="w-8 h-8 border-2 border-robinsEggBlue rounded-full"></div>
+        <div className="pt-4">
+          <div className="flex items-center justify-center space-x-4">
+            <div className="w-8 h-8 border-2 border-robinsEggBlue rounded-full"></div>
+            <ArrowRight className="w-6 h-6 text-robinsEggBlue" />
+            <div className="w-8 h-8 border-2 border-robinsEggBlue rounded-full"></div>
+          </div>
         </div>
       ),
     },
@@ -101,7 +109,13 @@ export const HowItWorks3Defaults: HowItWorks3Props = {
       title: "Ongoing Optimization",
       description:
         "We continuously refine processes, provide training, and ensure your VA delivers exceptional results.",
-      icon: <TrendingUp className="w-8 h-8 text-robinsEggBlue" />,
+      icon: (
+        <div className="pt-4">
+          <div className="w-16 h-16 border-2 border-robinsEggBlue rounded-full flex items-center justify-center mx-auto">
+            <TrendingUp className="w-8 h-8 text-robinsEggBlue" />
+          </div>
+        </div>
+      ),
     },
   ],
   button: {
