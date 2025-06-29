@@ -10,19 +10,22 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
+  title:
+    "Top Virtual Staffing Agency in the US & Worldwide | Access Virtual Staffing",
   description:
-    "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
+    "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, World's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
   keywords: [
     "virtual staffing",
     "remote staffing",
     "virtual assistants",
     "Florida staffing agency",
+    "US staffing agency",
     "remote professionals",
     "Access Virtual Staffing",
     "virtual team",
     "business solutions",
     "top staffing agency Florida",
+    "top staffing agency US",
     "virtual workforce",
     "virtual staffing agency",
     "administrative support staff",
@@ -43,18 +46,20 @@ export const metadata: Metadata = {
     canonical: "https://www.accessvirtualstaffing.com",
   },
   openGraph: {
-    title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
+    title:
+      "Top Virtual Staffing Agency in the US & Worldwide | Access Virtual Staffing",
     description:
-      "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
+      "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, World's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
     type: "website",
     url: "https://www.accessvirtualstaffing.com", // Replace with your actual URL
     images: "/opengraph-image.jpg", // Replace with your actual image URL
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top Virtual Staffing Agency in Florida | Access Virtual Staffing",
+    title:
+      "Top Virtual Staffing Agency in the US & Worldwide | Access Virtual Staffing",
     description:
-      "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, Florida's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
+      "Whether you're looking for administrative support, data entry, customer service, or specialized skills, Access Virtual Staffing, World's top virtual staffing agency, can take care of the hiring and administrative processes so you can focus on what matters most - growing your business.",
     images: "/twitter-image.jpg", // Replace with your actual image URL
   },
 };

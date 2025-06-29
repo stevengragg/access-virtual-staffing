@@ -1,6 +1,6 @@
 # Access Virtual Staffing
 
-Access Virtual Staffing is a Next.js application designed to promote virtual staffing services that will be provided by the AVS team in Florida, USA. This project includes features for managing talent requests, job applications, and personal information collection.
+Access Virtual Staffing is a Next.js website designed to promote virtual staffing services that will be provided by the AVS team in Florida, USA. This project is built with a focus on SEO, performance, scalability, and user experience, leveraging modern web technologies such as Next.js, React, TypeScript, and Tailwind CSS.
 
 ## Getting Started
 
@@ -60,24 +60,6 @@ npm run start
 
 ```
 
-### Running Migrations
-
-To generate database migrations, use the following commands:
-
-```bash
-npm run migration:generate
-
-```
-
-To run the migrations, use the following command:
-
-```bash
-npm run migration:run
-
-```
-
-> Note: Make sure to communicate any needs to change the database schema with the team before generating or running migrations.
-
 ### Linting
 
 To lint the codebase, run:
@@ -109,13 +91,11 @@ npm run lint
 - **React**: For building UI components.
 - **TypeScript**: For type safety.
 - **Tailwind CSS**: For styling.
-- **Auth0**: For authentication.
 - **Radix UI**: For UI components.
 - **Framer Motion**: For animations.
 - **ESLint**: For linting.
 - **Vercel**: For deployment.
-- **PostgreSQL**: For the database.
-- **Drizzle**: For database ORM and migrations.
+- **RESEND**: For email API.
 
 ## Contributing
 
@@ -131,3 +111,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 105 S. Narcissus Ave. Suite 512  
 West Palm Beach, FL 33401  
 Email: support@accessvirtualstaffing.com
+
+## Iona Innovation Labs Team
+
+**Iona Innovation Labs**  
+Cainta, Philippines
+Email: steven@ionainnovlabs.com
+Website: [ionainnovlabs.com](https://ionainnovlabs.com)

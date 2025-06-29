@@ -64,7 +64,7 @@ export const HeroFeature = (props: Header37Props) => {
 };
 
 export const Header37Defaults: Header37Props = {
-  tagline: "Florida's Premier Virtual Staffing Agency",
+  tagline: "World's Premier Virtual Staffing Agency",
   heading: "Scale Your Business with Top Remote Talent—No Hiring Headaches",
   questionBold: "Need Skilled Staff Without the Overhead? ",
   description1:

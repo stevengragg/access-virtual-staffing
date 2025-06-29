@@ -12,7 +12,7 @@ import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 export const metadata: Metadata = {
   title: "About Us | Access Virtual Staffing",
   description:
-    "Learn more about Access Virtual Staffing, Florida's top virtual staffing agency. Discover our mission, values, and the team dedicated to providing exceptional virtual staffing solutions.",
+    "Learn more about Access Virtual Staffing, World's top virtual staffing agency. Discover our mission, values, and the team dedicated to providing exceptional virtual staffing solutions.",
 };
 
 type Props = {};
@@ -56,18 +56,18 @@ Phil's innovative model offers more than just a staffing solution; it provides a
       />
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Take the First Step with"
-        heading2="Access Virtual Staffing"
-        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
+        heading="Stop Doing Everything."
+        heading2="Start Leading with Leverage."
+        description="Your next level of growth is waiting. Book your free strategy call today and discover how our premium virtual assistants can transform your business operations."
         buttons={[
           {
             navLink: {
-              title: "Schedule a Free Strategy Call",
+              title: "Book a Free Strategy Call",
               url: "/book-a-meeting",
               follow: false,
             },
             icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
-            variant: "outline",
+            variant: "cta1",
             size: "xl",
           },
         ]}

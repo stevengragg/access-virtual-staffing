@@ -42,7 +42,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
     <section
       id="navigation"
       className={cn(
-        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] py-4 md:py-6",
+        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] h-30",
         isLandingPage ? "bg-primaryBlue" : "bg-white"
       )}
     >

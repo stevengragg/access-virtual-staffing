@@ -70,7 +70,7 @@ export const HeroFeature3 = (props: HeroFeature3Props) => {
 };
 
 export const HeroFeature3Defaults: Props = {
-  tagline: "Florida's Premier Virtual Staffing Agency",
+  tagline: "World's Premier Virtual Staffing Agency",
   heading: "Scale Your Business with Top Remote Talent—No Hiring Headaches",
   questionBold: "Need Skilled Staff Without the Overhead? ",
   description:
