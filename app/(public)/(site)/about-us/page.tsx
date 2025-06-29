@@ -7,6 +7,7 @@ import { LongFormContent2 } from "@/components/section/long-form-content2";
 import { LongFormHeader } from "@/components/section/long-form-header";
 import { HeaderWithBg } from "@/components/section/header-with-bg";
 import { ArrowRight } from "lucide-react";
+import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 
 export const metadata: Metadata = {
   title: "About Us | Access Virtual Staffing",
@@ -20,7 +21,11 @@ export default function AboutUs({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* About Us Hero Header Section */}
-      <HeaderWithBg />
+      {/* <HeaderWithBg /> */}
+      <HeroHeaderNormal
+        heading="How it all started"
+        context="Access Virtual Staffing was born out of a vision to revolutionize the way businesses connect with talent. Our founder, Phil Wardell, recognized the immense potential of leveraging global expertise to drive local success. With a commitment to excellence and a passion for people, he set out to create a staffing solution that transcends traditional boundaries.  "
+      />
       {/* Long Form Content Header Section */}
       <LongFormHeader />
       {/* Long Form Content Section */}

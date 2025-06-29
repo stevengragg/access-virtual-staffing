@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
+import { useMediaQuery } from "@relume_io/relume-ui";
 import LinkButton, { LinkButtonProps } from "@/components/ui/link-button";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
@@ -37,16 +37,19 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
   const url = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
-
+  const isLandingPage = url === "" || url === "/";
   return (
     <section
       id="navigation"
-      className="z-[999] flex w-full items-center bg-primaryBlue lg:min-h-18 lg:px-[5%]"
+      className={cn(
+        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] py-4 md:py-6",
+        isLandingPage ? "bg-primaryBlue" : "bg-white"
+      )}
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          {logo && (
-            <a href={logo.url} className="block lg:hidden">
+          {logo && !isLandingPage && (
+            <a href={logo.url} className="">
               <Image
                 src={isMobile ? "/avs_logo_5.png" : logo.src}
                 alt={logo.alt || "AVS Logo"}
@@ -112,8 +115,9 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
                 className={cn(
-                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 font-medium text-white",
-                  url === navLink.url ? "underline" : ""
+                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 font-medium ",
+                  url === navLink.url ? "underline" : "",
+                  isLandingPage ? "text-white" : "text-black"
                 )}
               >
                 {navLink.title}
@@ -141,14 +145,17 @@ const SubMenu = ({
   pathname: string;
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const isLandingPage = pathname === "" || pathname === "/";
   return (
     <section
       onMouseEnter={() => !isMobile && setIsDropdownOpen(true)}
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base text-white font-medium"
+        className={cn(
+          "flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base tfont-medium",
+          isLandingPage ? "text-white" : "text-black"
+        )}
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         <span>{navLink.title}</span>
@@ -207,10 +214,10 @@ const SubMenu = ({
 const SiteNavigation2Defaults: SiteNavigation2Props = {
   logo: {
     url: "/",
-    src: "/avs_logo_4.png",
+    src: "/avs_logo_2025_resized.png",
     alt: "Access Virtual Staffing Logo 2",
-    width: 175,
-    height: 50,
+    width: 250,
+    height: 0,
   },
   navLinks: [
     { title: "Home", url: "/" },

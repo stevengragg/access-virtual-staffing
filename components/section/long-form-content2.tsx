@@ -37,10 +37,17 @@ export const LongFormContent2 = (props: LongFormContent2Props) => {
             />
           </div>
           <div className="order-last">
-            <h1 className="mb-5 text-white text-xl md:text-2xl lg:text-4xl max-w-2xl mx-auto leading-relaxed">
+            <h1
+              className="mb-5 text-white text-xl md:text-2xl lg:text-4xl max-w-2xl mx-auto leading-relaxed"
+              data-aos="fade-up"
+            >
               {quote}
             </h1>
-            <p className="text-md lg:text-lg font-semibold text-white leading-relaxed">
+            <p
+              className="text-md lg:text-lg font-semibold text-white leading-relaxed"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               {author}
             </p>
 
@@ -49,7 +56,11 @@ export const LongFormContent2 = (props: LongFormContent2Props) => {
             </div>
           </div>
         </div>
-        <div className="mt-8 md:mt-12 lg:mt-14">
+        <div
+          className="mt-8 md:mt-12 lg:mt-14"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           <p className="text-md lg:text-lg font-semibold text-white leading-relaxed">
             {description}
           </p>
