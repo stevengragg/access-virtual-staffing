@@ -110,12 +110,12 @@ export default function VaServices() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white text-xl font-semibold mb-4">
+                <h3 className="text-white text-xl md:text-4xl font-semibold mb-4">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-white text-sm leading-relaxed">
+                <p className="text-white text-md md:text-xl leading-relaxed">
                   {service.description}
                 </p>
               </div>
