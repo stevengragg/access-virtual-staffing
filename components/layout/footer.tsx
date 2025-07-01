@@ -9,6 +9,7 @@ import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { ImageProps } from "@/types/general";
 import GoogleMapLink from "../ui/googlemap-link";
+import { cn } from "@/lib/utils";
 
 type Links = {
   title: string;
@@ -64,7 +65,10 @@ export const Footer = (props: Footer11Props) => {
   return (
     <footer
       id="footer"
-      className="px-[5%] py-12 md:py-18 lg:py-20 bg-primaryBlue text-zinc-100"
+      className={cn(
+        "px-[5%] py-12 md:py-18 lg:py-20  text-zinc-100",
+        process.env.NEXT_PUBLIC_LAYOUT_COLOR?.toString() ?? "bg-primaryBlue"
+      )}
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">

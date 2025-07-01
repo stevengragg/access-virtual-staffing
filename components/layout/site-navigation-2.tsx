@@ -43,7 +43,10 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
       id="navigation"
       className={cn(
         "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] h-30",
-        isLandingPage ? "bg-primaryBlue" : "bg-white"
+        isLandingPage
+          ? (process.env.NEXT_PUBLIC_LAYOUT_COLOR?.toString() ??
+              "bg-primaryBlue")
+          : "bg-white"
       )}
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
