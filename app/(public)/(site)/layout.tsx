@@ -2,19 +2,17 @@
 
 import { useEffect } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Product, WithContext, WebSite, BreadcrumbList } from "schema-dts";
+import { WithContext, BreadcrumbList } from "schema-dts";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { Footer } from "@/components/layout/footer";
-import {
-  SiteNavbar,
-  SiteNavbarDefaultProps,
-} from "@/components/layout/site-navigation";
+
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { CtaNewsLetter } from "@/components/section/cta-newsletter";
 import { SiteNavigation2 } from "@/components/layout/site-navigation-2";
 import LiveChatWidget from "@/components/livechat/live-chat-widget";
+import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
 
 export default function PublicRootLayout({
   children,
@@ -64,6 +62,7 @@ export default function PublicRootLayout({
     <>
       <SiteNavigation2 />
       {children}
+      <StrategyCallModal />
       <ScrollToTop />
       <LiveChatWidget />
       <CtaNewsLetter />

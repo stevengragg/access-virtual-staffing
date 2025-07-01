@@ -3,11 +3,11 @@ import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 import { ImageProps } from "@/types/general";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Props = {
-  heading1: string;
-  heading2: string;
-  logo: ImageProps;
+  heading: string;
+  highlight: string;
   description1: string;
   description2: string;
   buttons: LinkButtonProps[];
@@ -18,15 +18,7 @@ export type HeroHeaderV2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
-  const {
-    heading1,
-    heading2,
-    description1,
-    description2,
-    buttons,
-    images,
-    logo,
-  } = {
+  const { heading, highlight, description1, description2, buttons, images } = {
     ...HeroHeaderV2Defaults,
     ...props,
   };
@@ -35,53 +27,36 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
       id="hero"
       className="bg-heroHeaderBg lg:bg-center bg-no-repeat bg-cover bg-top"
     >
-      <div className="px-[5%] py-16  bg-neutralBase/90">
+      <div className="px-[5%] py-16 bg-neutralDark/85">
         <div className="container-xl flex flex-col ">
-          <div className="flex items-center justify-start flex-col-reverse lg:flex-row  gap-8  text-left mb-5 lg:mb-0 ">
-            <div className="hidden lg:block">
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                className="w-full max-w-xs md:max-w-md lg:max-w-lg h-1/2 object-contain"
-                data-aos="fade-up"
-              />
-            </div>
-            <div className="flex flex-col items-center justify-center lg:items-start  text-center lg:text-left">
-              <h1
-                className="text-6xl font-semibold md:text-9xl lg:text-11xl text-white"
-                data-aos="fade-up"
-              >
-                {heading1}
-              </h1>
-              <h1
-                className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-11xl text-white"
-                data-aos="fade-up"
-              >
-                {heading2}
-              </h1>
-              <p
-                className="text-lg md:text-xl lg:text-2xl text-white"
-                data-aos="fade-up"
-              >
-                {description1}
-              </p>
-              <p
-                className="text-lg md:text-xl lg:text-2xl text-white"
-                data-aos="fade-up"
-              >
-                {description2}
-              </p>
-              <div
-                className="mt-12 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-16"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                {buttons.map((button, index) => (
-                  <LinkButton key={index} {...button} />
-                ))}
-              </div>
+          <div className="flex flex-col items-center justify-center   text-center  mb-12 md:mb-16 ">
+            <h1
+              className="text-6xl font-semibold md:text-9xl lg:text-11xl text-white"
+              data-aos="fade-up"
+            >
+              {heading} <span className="text-robinsEggBlue">{highlight}</span>
+            </h1>
+
+            <p
+              className="text-lg md:text-xl lg:text-2xl text-white"
+              data-aos="fade-up"
+            >
+              {description1}
+            </p>
+            <p
+              className="text-lg md:text-xl lg:text-2xl text-white"
+              data-aos="fade-up"
+            >
+              {description2}
+            </p>
+            <div
+              className="mt-12 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-16"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              {buttons.map((button, index) => (
+                <LinkButton key={index} {...button} />
+              ))}
             </div>
           </div>
           <div className="container flex flex-col items-center  rb-12 mb-12 md:mb-18 lg:mb-20 ">
@@ -143,8 +118,8 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
 };
 
 export const HeroHeaderV2Defaults: Props = {
-  heading1: "Scale Smarter with",
-  heading2: "Global Talent",
+  heading: "Scale Smarter with",
+  highlight: "Global Talent",
   description1:
     "Access top-tier professionals while saving up to 70% on salaries and 90% on operations. ",
   description2:
@@ -170,12 +145,7 @@ export const HeroHeaderV2Defaults: Props = {
       size: "xl",
     },
   ],
-  logo: {
-    src: "/avs_logo_2025.png",
-    alt: "Access Virtual Staffing Logo",
-    width: 1000,
-    height: 1000,
-  },
+
   images: [
     {
       src: "/img/carousel_img1.webp",

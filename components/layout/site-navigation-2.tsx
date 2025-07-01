@@ -37,22 +37,16 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
   const url = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
-  const isLandingPage = url === "" || url === "/";
+
   return (
     <section
       id="navigation"
-      className={cn(
-        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] h-30",
-        isLandingPage
-          ? (process.env.NEXT_PUBLIC_LAYOUT_COLOR?.toString() ??
-              "bg-primaryBlue")
-          : "bg-white"
-      )}
+      className="z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-neutralBase"
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          {logo && !isLandingPage && (
-            <a href={logo.url} className="">
+          {logo && (
+            <a href={logo.url} className=" ">
               <Image
                 src={isMobile ? "/avs_logo_5.png" : logo.src}
                 alt={logo.alt || "AVS Logo"}
@@ -118,9 +112,8 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
                 className={cn(
-                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 font-medium ",
-                  url === navLink.url ? "underline" : "",
-                  isLandingPage ? "text-white" : "text-black"
+                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 font-medium text-white",
+                  url === navLink.url ? "underline" : ""
                 )}
               >
                 {navLink.title}
@@ -148,17 +141,14 @@ const SubMenu = ({
   pathname: string;
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const isLandingPage = pathname === "" || pathname === "/";
+
   return (
     <section
       onMouseEnter={() => !isMobile && setIsDropdownOpen(true)}
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className={cn(
-          "flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base tfont-medium",
-          isLandingPage ? "text-white" : "text-black"
-        )}
+        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base tfont-medium text-white"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         <span>{navLink.title}</span>

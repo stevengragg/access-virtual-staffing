@@ -101,7 +101,12 @@ export const Footer = (props: Footer11Props) => {
             </div>
             <div className="grid grid-flow-col grid-cols-[max-content] items-start justify-start gap-x-3">
               {socialMediaLinks.map((link, index) => (
-                <a key={index} href={link.url}>
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {link.icon}
                 </a>
               ))}
@@ -161,18 +166,38 @@ export const Footer11Defaults: Footer11Props = {
     email: "support@accessvirtualstaffing.com",
   },
   socialMediaLinks: [
-    { url: "#", icon: <BiLogoFacebookCircle className="size-6 text-white" /> },
-    { url: "#", icon: <BiLogoInstagram className="size-6 text-white" /> },
-    { url: "#", icon: <FaXTwitter className="size-6 p-0.5 text-white" /> },
-    { url: "#", icon: <BiLogoLinkedinSquare className="size-6 text-white" /> },
-    { url: "#", icon: <BiLogoYoutube className="size-6 text-white" /> },
+    {
+      url: "https://www.facebook.com/profile.php?id=61570533775513",
+      icon: <BiLogoFacebookCircle className="size-6 text-white" />,
+    },
+    {
+      url: "https://www.instagram.com/access_virtual_staffing",
+      icon: <BiLogoInstagram className="size-6 text-white" />,
+    },
+    {
+      url: "https://x.com/Access_VAs16",
+      icon: <FaXTwitter className="size-6 p-0.5 text-white" />,
+    },
+    {
+      url: "https://www.linkedin.com/company/access-virtual-staffing/",
+      icon: <BiLogoLinkedinSquare className="size-6 text-white" />,
+    },
+    {
+      url: "https://www.youtube.com/@AccessVirtualStaffing",
+      icon: <BiLogoYoutube className="size-6 text-white" />,
+    },
   ],
   columnLinks: [
     {
       links: [
+        { title: "Book a Strategy Call", url: "/book-a-meeting" },
         { title: "About Us", url: "/about-us" },
-        { title: "Hire Virtual Staff", url: "/book-a-meeting" },
         { title: "Success Stories", url: "/success-stories" },
+        {
+          title: "Find Work",
+          url: "https://www.accessvirtualjobs.com",
+          follow: true,
+        },
       ],
     },
     {

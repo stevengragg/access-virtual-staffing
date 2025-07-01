@@ -11,6 +11,8 @@ import { HowWeHelpFeature } from "@/components/section/how-we-help-feature";
 // import { Testimonials } from "@/components/section/testimonials";
 
 import { WhyChoose } from "@/components/section/why-choose";
+import { Testimonials } from "@/components/section/testimonials";
+import { HowItWorks2 } from "@/components/section/how-it-works-2";
 
 export default function Home() {
   return (
@@ -76,9 +78,10 @@ export default function Home() {
       {/* How We Help Feature Section */}
       <HowWeHelpFeature />
       {/* Testimonials Section */}
-      {/* <Testimonials /> */}
+      <Testimonials />
       {/* Brands Section */}
       {/* <Brands /> */}
+      <HowItWorks2 />
       {/* CTA Footer Section */}
       <CTAFooter
         heading="Unlock Your Business Potential Today"

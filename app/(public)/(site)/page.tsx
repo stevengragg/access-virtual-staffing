@@ -2,12 +2,10 @@ import { ArrowRight } from "lucide-react";
 
 import { BlogContainer } from "@/components/section/blog-container";
 import { CTAFooter } from "@/components/section/cta-footer";
-import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
 import { HeroHeaderV2 } from "@/components/section/hero-header-v2";
 import { Brands } from "@/components/section/brands";
 import { Testimonials } from "@/components/section/testimonials";
 import { WhyChoose2 } from "@/components/section/why-choose-2";
-import { HeroFeature3 } from "@/components/section/hero-feature-3";
 import HowItWorks3 from "@/components/section/how-it-works-3";
 import { HeroQuote } from "@/components/section/hero-quote";
 import VaServices from "@/components/section/va-services-section";
@@ -35,7 +33,8 @@ export default function Home() {
       <CTAFooter
         heading="Stop Doing Everything."
         heading2="Start Leading with Leverage."
-        description="Your next level of growth is waiting. Book your free strategy call today and discover how our premium virtual assistants can transform your business operations."
+        description1="Your next level of growth is waiting. Book your free strategy call today. "
+        description2="Discover how our premium virtual assistants can transform your business operations."
         buttons={[
           {
             navLink: {
@@ -49,7 +48,6 @@ export default function Home() {
           },
         ]}
       />
-      <StrategyCallModal />
     </main>
   );
 }

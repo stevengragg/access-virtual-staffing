@@ -1,13 +1,11 @@
 import { Metadata } from "next";
 
 import { CTAFooter } from "@/components/section/cta-footer";
-import { HeroHeader2 } from "@/components/section/hero-header-2";
 import { LongFormContent } from "@/components/section/long-form-content";
 import { LongFormContent2 } from "@/components/section/long-form-content2";
 import { LongFormHeader } from "@/components/section/long-form-header";
-import { HeaderWithBg } from "@/components/section/header-with-bg";
 import { ArrowRight } from "lucide-react";
-import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
+import { HeroHeaderWBgImg } from "@/components/section/hero-header-short-w-bg-img";
 
 export const metadata: Metadata = {
   title: "About Us | Access Virtual Staffing",
@@ -15,17 +13,43 @@ export const metadata: Metadata = {
     "Learn more about Access Virtual Staffing, World's top virtual staffing agency. Discover our mission, values, and the team dedicated to providing exceptional virtual staffing solutions.",
 };
 
-type Props = {};
-
-export default function AboutUs({}: Props) {
+export default function AboutUs() {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* About Us Hero Header Section */}
-      {/* <HeaderWithBg /> */}
-      <HeroHeaderNormal
+      <HeroHeaderWBgImg
+        tagline="Our Story"
         heading="How it all started"
-        context="Access Virtual Staffing was born out of a vision to revolutionize the way businesses connect with talent. Our founder, Phil Wardell, recognized the immense potential of leveraging global expertise to drive local success. With a commitment to excellence and a passion for people, he set out to create a staffing solution that transcends traditional boundaries.  "
+        description="Access Virtual Staffing was born out of a vision to revolutionize the way businesses connect with talent. Our founder, Phil Wardell, recognized the immense potential of leveraging global expertise to drive local success. With a commitment to excellence and a passion for people, he set out to create a staffing solution that transcends traditional boundaries."
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Free Strategy Call",
+              url: "/book-a-meeting",
+              follow: false,
+            },
+            variant: "cta1",
+            size: "xl",
+            icon: () => <ArrowRight className="" />,
+          },
+          {
+            navLink: {
+              title: "Check Our Services",
+              url: "/services",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+        ]}
+        image={{
+          src: "/bg/about_bg.webp",
+          alt: "About Us Hero Image",
+          width: 1920,
+          height: 1080,
+        }}
       />
+
       {/* Long Form Content Header Section */}
       <LongFormHeader />
       {/* Long Form Content Section */}
@@ -58,7 +82,8 @@ Phil's innovative model offers more than just a staffing solution; it provides a
       <CTAFooter
         heading="Stop Doing Everything."
         heading2="Start Leading with Leverage."
-        description="Your next level of growth is waiting. Book your free strategy call today and discover how our premium virtual assistants can transform your business operations."
+        description1="Your next level of growth is waiting. Book your free strategy call today. "
+        description2="Discover how our premium virtual assistants can transform your business operations."
         buttons={[
           {
             navLink: {
