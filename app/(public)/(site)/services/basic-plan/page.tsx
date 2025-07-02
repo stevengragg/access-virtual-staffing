@@ -6,6 +6,7 @@ import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { ServicesLeft } from "@/components/section/services-left";
 import { ServicesOutline } from "@/components/section/services-outline";
+import { HeroHeaderWBgImg2 } from "@/components/section/hero-header-short-w-bg-img-2";
 
 // import { ServicesRight } from "@/components/section/services-right";
 // import { Testimonials } from "@/components/section/testimonials";
@@ -37,6 +38,38 @@ export default function BasicPlan({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
+      <HeroHeaderWBgImg2
+        tagline="Services"
+        heading="Basic Plan: Recruiting and Payroll"
+        description="Our Basic Recruitment and Payroll service is ideal for employers seeking project-based staff. We handle the recruiting and payroll processes, allowing you to focus on the project, without the need for timekeeping or benefits administration."
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Free Strategy Call",
+              url: "/book-a-meeting",
+              follow: false,
+            },
+            variant: "cta1",
+            size: "xl",
+            icon: () => <ArrowRight className="" />,
+          },
+          {
+            navLink: {
+              title: "Check Our Services",
+              url: "/services",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+        ]}
+        image={{
+          src: "/bg/about_bg.webp",
+          alt: "About Us Hero Image",
+          width: 1920,
+          height: 1080,
+        }}
+      />
       <HeroHeaderNormal
         heading="Basic Plan:  Recruiting and Payroll"
         context=""
@@ -106,22 +139,22 @@ export default function BasicPlan({}: Props) {
       />
       {/* Hero feature Section */}
       <HeroFeature />
-      {/* Testimonials Section */}
-      {/* <Testimonials /> */}
+
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Take the First Step with"
-        heading2="Access Virtual Staffing"
-        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
+        heading="Stop Doing Everything."
+        heading2="Start Leading with Leverage."
+        description1="Your next level of growth is waiting. Book your free strategy call today. "
+        description2="Discover how our premium virtual assistants can transform your business operations."
         buttons={[
           {
             navLink: {
-              title: "Schedule a Free Strategy Call",
+              title: "Book a Free Strategy Call",
               url: "/book-a-meeting",
               follow: false,
             },
             icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
-            variant: "outline",
+            variant: "cta1",
             size: "xl",
           },
         ]}

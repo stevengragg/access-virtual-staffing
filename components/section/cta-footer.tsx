@@ -37,21 +37,19 @@ export const CTAFooter = (props: Cta25Props) => {
         <p
           className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"
           data-aos="fade-up"
-          data-aos-delay="200"
         >
           {description1}
         </p>
         <p
           className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"
           data-aos="fade-up"
-          data-aos-delay="200"
         >
           {description2}
         </p>
         <div
           className="mt-6 flex flex-col lg:flex-row items-center justify-center gap-4 md:mt-8"
           data-aos="fade-up"
-          data-aos-delay="300"
+          data-aos-delay="100"
         >
           {buttons.map((button, index) => (
             <LinkButton key={index} {...button} />

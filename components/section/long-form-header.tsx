@@ -32,7 +32,7 @@ export const LongFormHeader = (props: LongFormHeaderProps) => {
       id="long_form_header1"
       className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
     >
-      <div className="container-xl flex flex-col items-start">
+      <div className="container flex flex-col items-start">
         <div
           className="mb-0 w-full space-y-6 text-white"
           data-aos="fade-up"

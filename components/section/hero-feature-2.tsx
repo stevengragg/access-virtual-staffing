@@ -1,7 +1,8 @@
 import { ImageProps } from "@/types/general";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { BiSolidStar } from "react-icons/bi";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
 type Props = {
   tagline: string;
@@ -11,28 +12,24 @@ type Props = {
   quote2: string;
   quote3: string;
   image: ImageProps;
-  name: string;
-  position: string;
-  avatar: ImageProps;
+  buttons: LinkButtonProps[];
 };
 
-export type HeroQuoteProps = React.ComponentPropsWithoutRef<"section"> &
+export type HeroFeature2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const HeroQuote = (props: HeroQuoteProps) => {
+export const HeroFeature2 = (props: HeroFeature2Props) => {
   const {
     quote1,
     quote2,
     quote3,
     image,
-    name,
-    position,
-    avatar,
+    buttons,
     highlight,
     tagline,
     heading,
   } = {
-    ...HeroQuoteDefaults,
+    ...HeroFeature2Defaults,
     ...props,
   };
 
@@ -74,7 +71,6 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             <blockquote
               className="text-xl font-semibold md:text-2xl text-white"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {quote1}
             </blockquote>
@@ -82,7 +78,6 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             <blockquote
               className="text-xl font-semibold md:text-2xl text-white"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {quote2}
             </blockquote>
@@ -90,30 +85,17 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             <blockquote
               className="text-xl font-semibold md:text-2xl text-white"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {quote3}
             </blockquote>
-            <br />
-            <div className="mt-6 flex flex-nowrap items-center gap-5 md:mt-8">
-              {/* Avatar */}
-              <Image
-                src={avatar.src}
-                alt={avatar.alt}
-                width={avatar.width}
-                height={avatar.height}
-                className="rounded-full aspect-square mr-3 object-cover"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              />
-              <div
-                className="text-white"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <p className="font-semibold ">{name}</p>
-                <p>{position}</p>
-              </div>
+            <div
+              className="mt-12 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-16"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              {buttons.map((button, index) => (
+                <LinkButton key={index} {...button} />
+              ))}
             </div>
           </div>
         </div>
@@ -122,28 +104,39 @@ export const HeroQuote = (props: HeroQuoteProps) => {
   );
 };
 
-export const HeroQuoteDefaults: Props = {
-  tagline: "MEET YOUR STRATEGIC PARTNER",
-  heading: "Elevating Leaders Through",
-  highlight: "Strategic Support",
+export const HeroFeature2Defaults: Props = {
+  tagline: "WORLD'S PREMIER VIRTUAL STAFFING AGENCY",
+  heading: "Scale Your Business with Top Remote Talent—",
+  highlight: "No Hiring Headaches",
   quote1:
-    "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic deligation.",
-  quote2:
-    "After witnessing countless talented executives, entrepreneurs, and pastors burning out from handling tasks that didn't leverage their unique gifts, we built a solution that provides not just assistance, but true strategic partnership.",
-  quote3:
-    "Our team of premium virtual assistants is meticulously selected and trained to deliver excellence in every interaction, allowing you to lead with greater focus, clarity, and effectiveness.",
+    "Access Virtual Staffing connects you with exceptional remote professionals.",
+  quote2: "No recruitment hassles, no benefits management, no hidden costs.",
+  quote3: "Just ready-to-work talent that drives your business forward.",
   image: {
-    src: "/img/talent-feature-img.webp",
+    src: "/img/heroimage3.webp",
     alt: "Working Remotely",
     width: 1000,
     height: 1000,
   },
-  name: "Phil Wardell",
-  position: "Founder & CEO, Access Virtual Staffing",
-  avatar: {
-    src: "/img/phil-new.webp",
-    alt: "Phil Wardell Avatar",
-    width: 100,
-    height: 100,
-  },
+  buttons: [
+    {
+      navLink: {
+        title: "Book a Free Strategy Call",
+        url: "/book-a-meeting",
+        follow: false,
+      },
+      variant: "cta1",
+      size: "xl",
+      icon: () => <ArrowRight className="" />,
+    },
+    {
+      navLink: {
+        title: "Learn How it Works",
+        url: "/services#how-it-works",
+        follow: false,
+      },
+      variant: "outline",
+      size: "xl",
+    },
+  ],
 };

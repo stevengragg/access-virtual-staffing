@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { WithContext, BreadcrumbList } from "schema-dts";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useMediaQuery } from "@relume_io/relume-ui";
 
 import { Footer } from "@/components/layout/footer";
 
@@ -13,12 +14,15 @@ import { CtaNewsLetter } from "@/components/section/cta-newsletter";
 import { SiteNavigation2 } from "@/components/layout/site-navigation-2";
 import LiveChatWidget from "@/components/livechat/live-chat-widget";
 import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
+import { cn } from "@/lib/utils";
 
 export default function PublicRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isMobile = useMediaQuery("(max-width: 991px)");
+
   useEffect(() => {
     AOS.init({
       once: true,
@@ -27,7 +31,7 @@ export default function PublicRootLayout({
     });
   });
 
-  const jsonLd: WithContext<BreadcrumbList> = {
+  const _jsonLd: WithContext<BreadcrumbList> = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
@@ -61,7 +65,7 @@ export default function PublicRootLayout({
   return (
     <>
       <SiteNavigation2 />
-      {children}
+      <div className={cn(!isMobile && "pt-[120px]")}>{children}</div>
       <StrategyCallModal />
       <ScrollToTop />
       <LiveChatWidget />

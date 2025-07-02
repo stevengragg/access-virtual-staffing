@@ -67,7 +67,6 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
               height={image.height}
               className="h-auto w-full object-cover rounded-full aspect-square object-center shadow transition-transform  hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
               data-aos="fade-up"
-              data-aos-delay="200"
             />
           </div>
           <FeatureSection sections={rightSections} />
@@ -100,7 +99,7 @@ const FeatureSection = ({ sections }: { sections: SectionProps[] }) => (
         key={index}
         className="flex flex-col items-center text-center"
         data-aos="fade-up"
-        data-aos-delay="300"
+        data-aos-delay="100"
       >
         <h3 className="mb-3 text-2xl md:text-4xl font-bold md:mb-4 lg:text-5xl text-robinsEggBlue">
           {section.heading}

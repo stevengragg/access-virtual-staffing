@@ -16,7 +16,7 @@ export type HeroHeaderWBgImgProps = React.ComponentPropsWithoutRef<"section"> &
 export const HeroHeaderWBgImg = (props: HeroHeaderWBgImgProps) => {
   const { heading, description, buttons, tagline, image } = props;
   return (
-    <section id="relume" className="relative px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="hero" className="relative px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container relative z-10">
         <div className="w-full max-w-2xl">
           <p
@@ -53,9 +53,10 @@ export const HeroHeaderWBgImg = (props: HeroHeaderWBgImgProps) => {
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            {buttons.map((button: LinkButtonProps, index: number) => (
-              <LinkButton key={index} {...button} />
-            ))}
+            {buttons &&
+              buttons.map((button: LinkButtonProps, index: number) => (
+                <LinkButton key={index} {...button} />
+              ))}
           </div>
         </div>
       </div>

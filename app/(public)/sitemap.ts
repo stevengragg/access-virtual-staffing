@@ -33,12 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: "https://accessvirtualstaffing.com/services",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: "https://accessvirtualstaffing.com/services/basic-plan",
       lastModified: new Date(),
       changeFrequency: "monthly",

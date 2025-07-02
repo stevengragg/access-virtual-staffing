@@ -34,11 +34,7 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
           </p>
         </div>
         {/* Steps Grid */}
-        <div
-          className="grid md:grid-cols-3 gap-8"
-          data-aos="fade-up"
-          data-aos-delay={100}
-        >
+        <div className="grid md:grid-cols-3 gap-8" data-aos="fade-up">
           {steps.map((step, idx) => (
             <div
               key={idx}
@@ -64,7 +60,7 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
         <div
           className="mt-12 flex items-center justify-center gap-4 md:mt-16"
           data-aos="fade-up"
-          data-aos-delay="400"
+          data-aos-delay="100"
         >
           <LinkButton {...button} />
         </div>

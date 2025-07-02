@@ -1,7 +1,6 @@
 import { ImageProps } from "@/types/general";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 
 type Props = {
   heading: string;
@@ -18,23 +17,36 @@ export const ServicesRight = (props: ServicesRightProps) => {
     ...props,
   } as Props;
   return (
-    <section id="services_right" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="services_right"
+      className="bg-neutralDarker px-[5%] py-16 md:py-24 lg:py-28"
+    >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className="order-2 lg:order-1">
+          <div
+            className="order-2 lg:order-1"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <Image
               src={image.src}
-              className="w-full object-cover rounded-lg"
+              className="w-full object-cover rounded-lg hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"
               alt={image.alt}
               width={image.width}
               height={image.height}
             />
           </div>
-          <div className="order-1 lg:order-2">
-            <h1 className="mb-5 text-2xl font-bold md:mb-6 md:text-4xl lg:text-6xl">
+          <div
+            className="order-1 lg:order-2"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <h1 className="mb-5 text-4xl font-semibold md:mb-6 md:text-6xl lg:text-8xl text-white">
               {heading}
             </h1>
-            <p className="md:text-md">{description}</p>
+            <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed">
+              {description}
+            </p>
             <div className="mt-6 md:mt-8">
               {button && <LinkButton {...button} />}
             </div>

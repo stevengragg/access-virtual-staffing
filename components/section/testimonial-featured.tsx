@@ -109,7 +109,7 @@ export const TestimonialFeaturedDefaults: Props = {
   buttons: [
     {
       navLink: {
-        title: "Book a Free Strategy Call",
+        title: "Start Hiring your VA today",
         url: "/book-a-meeting",
         follow: false,
       },

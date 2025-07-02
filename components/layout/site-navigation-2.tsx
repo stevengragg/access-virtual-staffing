@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useMediaQuery } from "@relume_io/relume-ui";
 import LinkButton, { LinkButtonProps } from "@/components/ui/link-button";
@@ -36,12 +36,32 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
   };
   const url = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
+
+  // Handle scroll detection for sticky behavior on desktop only
+  useEffect(() => {
+    if (isMobile) return;
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
 
   return (
     <section
       id="navigation"
-      className="z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-neutralBase"
+      className={cn(
+        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-neutralBase transition-all duration-300",
+        !isMobile && "fixed top-0 left-0 right-0",
+        !isMobile &&
+          isScrolled &&
+          "shadow-lg backdrop-blur-sm bg-neutralBase/95"
+      )}
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
@@ -112,7 +132,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
                 className={cn(
-                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 font-medium text-white",
+                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2  font-semibold text-white hover:text-zinc-100 transition-colors duration-200",
                   url === navLink.url ? "underline" : ""
                 )}
               >
@@ -148,10 +168,10 @@ const SubMenu = ({
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base tfont-medium text-white"
+        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base font-semibold text-white hover:text-zinc-100 transition-colors duration-200"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
-        <span>{navLink.title}</span>
+        {navLink.title}
         <motion.span
           animate={isDropdownOpen ? "rotated" : "initial"}
           variants={{
@@ -160,7 +180,7 @@ const SubMenu = ({
           }}
           transition={{ duration: 0.3 }}
         >
-          <RxChevronDown />
+          <RxChevronDown className="font-semibold" />
         </motion.span>
       </button>
       {isDropdownOpen && (
@@ -218,15 +238,15 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
     { title: "Success Stories", url: "/success-stories" },
     {
       title: "Services",
-      url: "/services",
-      // subMenuLinks: [
-      //   { title: "Basic Plan", url: "/services/basic-plan" },
-      //   { title: "Standard Plan", url: "/services/standard-plan" },
-      //   {
-      //     title: "Specialized Services",
-      //     url: "/services/specialized-services",
-      //   },
-      // ],
+      url: "#",
+      subMenuLinks: [
+        { title: "Basic Plan", url: "/services/basic-plan" },
+        { title: "Standard Plan", url: "/services/standard-plan" },
+        {
+          title: "Specialized Services",
+          url: "/services/specialized-services",
+        },
+      ],
     },
     {
       title: "Resources",

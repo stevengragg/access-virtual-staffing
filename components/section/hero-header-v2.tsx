@@ -25,9 +25,9 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
   return (
     <section
       id="hero"
-      className="bg-heroHeaderBg lg:bg-center bg-no-repeat bg-cover bg-top"
+      className="bg-heroHeaderMainBg lg:bg-center bg-no-repeat bg-cover bg-top"
     >
-      <div className="px-[5%] py-16 bg-neutralDark/85">
+      <div className="px-[5%] py-16 ">
         <div className="container-xl flex flex-col ">
           <div className="flex flex-col items-center justify-center   text-center  mb-12 md:mb-16 ">
             <h1

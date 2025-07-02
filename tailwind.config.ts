@@ -42,6 +42,7 @@ const config: Config = {
     },
     backgroundImage: {
       heroHeaderBg: "url(/bg/heroheaderbg.webp)",
+      heroHeaderMainBg: "url(/bg/main_bg.webp)",
       heroFeatureBg: "url(/bg/herofeaturebg.webp)",
       ctaFooterBg: "url(/bg/ctafooterbg.webp)",
       ctaFooterBg2: "url(/bg/ctafooterbg_new.webp)",

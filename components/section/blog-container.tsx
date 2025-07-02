@@ -75,7 +75,7 @@ export const BlogContainer = async (props: Blog44Props) => {
     >
       <div className="container-xl">
         <div className="mb-12 grid grid-cols-1 items-start justify-start gap-y-8 md:mb-18 md:grid-cols-[1fr_max-content] md:items-end md:justify-between md:gap-x-12 md:gap-y-4 lg:mb-20 lg:gap-x-20">
-          <div className="w-full max-w-lg">
+          <div className="w-full max-w-lg" data-aos="fade-up">
             <h1 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
               {heading}
             </h1>
@@ -127,7 +127,7 @@ export const BlogContainer = async (props: Blog44Props) => {
             </a>
           ))}
         </div>
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center" data-aos="fade-up">
           <LinkButton {...button} />
         </div>
       </div>

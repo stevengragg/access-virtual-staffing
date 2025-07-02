@@ -51,7 +51,7 @@ export const Testimonials = (props: Testimonial17Props) => {
         </div>
         <div
           className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 "
-          data-aos-delay="200"
+          data-aos-delay="100"
           data-aos="fade-up"
         >
           {testimonials.map((testimonial, index) => {
