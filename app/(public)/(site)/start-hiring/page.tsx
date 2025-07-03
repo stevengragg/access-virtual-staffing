@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 import { PodioForm } from "@/components/form/podio-form";
 import { CTAFooter } from "@/components/section/cta-footer";
@@ -133,25 +133,19 @@ export default function StartHiring({}: Props) {
       />
       {/* CTA Footer Section */}
       <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Discover our different services or you can send us your requirements or inquiries so that we can start hiring your first Virtual Staff."
+        heading="Stop Doing Everything."
+        heading2="Start Leading with Leverage."
+        description1="Your next level of growth is waiting. Book your free strategy call today. "
+        description2="Discover how our premium virtual assistants can transform your business operations."
         buttons={[
           {
             navLink: {
-              title: "Discover Our Services",
-              url: "/services",
+              title: "Book a Free Strategy Call",
+              url: "/book-a-meeting",
               follow: false,
             },
-            variant: "secondary",
-            size: "xl",
-          },
-          {
-            navLink: {
-              title: "Contact Us",
-              url: "/contact-us",
-              follow: false,
-            },
-            variant: "outline",
+            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
+            variant: "cta1",
             size: "xl",
           },
         ]}

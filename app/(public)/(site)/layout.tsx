@@ -15,6 +15,8 @@ import { SiteNavigation2 } from "@/components/layout/site-navigation-2";
 import LiveChatWidget from "@/components/livechat/live-chat-widget";
 import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
 import { cn } from "@/lib/utils";
+import { CTAFooter } from "@/components/section/cta-footer";
+import { ArrowRight } from "lucide-react";
 
 export default function PublicRootLayout({
   children,
@@ -70,6 +72,24 @@ export default function PublicRootLayout({
       <ScrollToTop />
       <LiveChatWidget />
       <CtaNewsLetter />
+      <CTAFooter
+        heading="Stop Doing Everything."
+        heading2="Start Leading with Leverage."
+        description1="Your next level of growth is waiting. Book your free strategy call today. "
+        description2="Discover how our premium virtual assistants can transform your business operations."
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Free Strategy Call",
+              url: "/book-a-meeting",
+              follow: false,
+            },
+            icon: () => <ArrowRight className="text-deepZinc size-6" />,
+            variant: "cta1",
+            size: "xl",
+          },
+        ]}
+      />
       <Footer />
       <SpeedInsights />
     </>

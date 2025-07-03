@@ -84,7 +84,7 @@ export const Footer = (props: Footer11Props) => {
                 />
               </a>
             </div>
-            <div className="mb-6 md:mb-8 text-white">
+            <div className="mb-6 md:mb-8 text-white font-semibold">
               <div className="space-x-2 flex flex-row items-start">
                 <span>{address.icon()}</span>
                 <GoogleMapLink address={address.value} />
@@ -132,10 +132,10 @@ export const Footer = (props: Footer11Props) => {
         </div>
 
         <div className="flex flex-col-reverse items-start justify-between pb-4 pt-6 text-sm md:flex-row md:items-center md:pb-0 md:pt-8">
-          <p className="mt-8 md:mt-0 text-white">{footerText}</p>
+          <p className="mt-8 md:mt-0 text-white font-semibold">{footerText}</p>
           <ul className="grid grid-flow-row grid-cols-[max-content] justify-center gap-x-0 gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0 text-white">
             {footerLinks.map((link, index) => (
-              <li key={index} className="underline">
+              <li key={index} className="underline font-semibold">
                 <a href={link.url} className="hover:underline">
                   {link.title}
                 </a>
@@ -202,7 +202,7 @@ export const Footer11Defaults: Footer11Props = {
     },
     {
       links: [
-        { title: "Services", url: "/services" },
+        // { title: "Services", url: "/services" },
         { title: "Basic Plan", url: "/services/basic-plan" },
         { title: "Standard Plan", url: "/services/standard-plan" },
         {

@@ -41,7 +41,10 @@ export const TestimonialFeatured = (props: TestimonialFeaturedProps) => {
                 >
                   {heading}
                 </h2>
-                <p className="md:text-md mb-5 text-white" data-aos="fade-up">
+                <p
+                  className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"
+                  data-aos="fade-up"
+                >
                   {description}
                 </p>
               </div>

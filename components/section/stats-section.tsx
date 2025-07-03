@@ -7,23 +7,21 @@ export default function StatsSection() {
             <div className="text-5xl md:text-6xl font-bold text-robinsEggBlue">
               94%
             </div>
-            <div className="text-zinc-400 text-lg">Client retention rate</div>
+            <div className="text-white  text-lg">Client retention rate</div>
           </div>
 
           <div className="space-y-2">
             <div className="text-5xl md:text-6xl font-bold text-robinsEggBlue">
               15+
             </div>
-            <div className="text-zinc-400 text-lg">Hours saved weekly</div>
+            <div className="text-white  text-lg">Hours saved weekly</div>
           </div>
 
           <div className="space-y-2">
             <div className="text-5xl md:text-6xl font-bold text-robinsEggBlue">
               30%
             </div>
-            <div className="text-zinc-400 text-lg">
-              Average revenue increase
-            </div>
+            <div className="text-white  text-lg">Average revenue increase</div>
           </div>
         </div>
       </div>

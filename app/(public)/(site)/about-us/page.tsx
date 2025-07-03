@@ -1,11 +1,11 @@
 import { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 
-import { CTAFooter } from "@/components/section/cta-footer";
 import { LongFormContent } from "@/components/section/long-form-content";
 import { LongFormContent2 } from "@/components/section/long-form-content2";
 import { LongFormHeader } from "@/components/section/long-form-header";
-import { ArrowRight } from "lucide-react";
 import { HeroHeaderWBgImg } from "@/components/section/hero-header-short-w-bg-img";
+import { Team } from "@/components/section/team";
 
 export const metadata: Metadata = {
   title: "About Us | Access Virtual Staffing",
@@ -78,25 +78,9 @@ Phil's innovative model offers more than just a staffing solution; it provides a
           height: 500,
         }}
       />
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="Stop Doing Everything."
-        heading2="Start Leading with Leverage."
-        description1="Your next level of growth is waiting. Book your free strategy call today. "
-        description2="Discover how our premium virtual assistants can transform your business operations."
-        buttons={[
-          {
-            navLink: {
-              title: "Book a Free Strategy Call",
-              url: "/book-a-meeting",
-              follow: false,
-            },
-            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
-            variant: "cta1",
-            size: "xl",
-          },
-        ]}
-      />
+      {/* Team Section */}
+      <Team />
+      {/* Global Offices */}
     </main>
   );
 }

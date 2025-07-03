@@ -39,21 +39,28 @@ export const FaqFooter = (props: FaqFooter1Props) => {
     ...props,
   } as Props;
   return (
-    <section id="faq_footer" className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container-xl mx-auto">
-        <div className="rb-12 mb-12 text-left md:mb-18 lg:mb-20">
+    <section
+      id="faq_footer"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+    >
+      <div className="container mx-auto">
+        <div className="rb-12 mb-12 text-left md:mb-18 lg:mb-20 text-white">
           <h2 className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
             {heading}
           </h2>
           <p className="md:text-md">{description}</p>
         </div>
-        <Accordion type="multiple">
+        <Accordion type="multiple" defaultValue={["item-0"]}>
           {questions.map((question: QuestionsProps, index: number) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="md:py-5 md:text-md">
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="text-white"
+            >
+              <AccordionTrigger className="md:py-5 text-lg md:text-xl lg:text-2xl font-semibold text-white">
                 {question.title}
               </AccordionTrigger>
-              <AccordionContent className="md:pb-6">
+              <AccordionContent className="md:pb-6 text-white text-md md:text-lg lg:text-xl">
                 {question.answer}
                 <br />
                 {question.pointers && question.pointers?.length
@@ -72,8 +79,10 @@ export const FaqFooter = (props: FaqFooter1Props) => {
           ))}
         </Accordion>
         <div className="mt-6 flex flex-col lg:flex-row items-center gap-2 md:mt-8">
-          <p className="md:text-md text-deepBlue">{footerDescription}</p>
-          <LinkButton {...button} className="text-deepBlue font-medium" />
+          <p className="text-md md:text-xl lg:text-2xl font-semibold text-robinsEggBlue">
+            {footerDescription}
+          </p>
+          <LinkButton {...button} />
         </div>
         {/* <div className="mx-auto mt-12 max-w-md text-center md:mt-18 lg:mt-20">
             <h4 className="mb-3 text-2xl font-bold md:mb-4 md:text-3xl md:leading-[1.3] lg:text-4xl">

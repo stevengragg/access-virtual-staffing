@@ -27,9 +27,9 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
       id="hero"
       className="bg-heroHeaderMainBg lg:bg-center bg-no-repeat bg-cover bg-top"
     >
-      <div className="px-[5%] py-16 ">
+      <div className="px-[5%] py-16 md:py-24 lg:py-28 ">
         <div className="container-xl flex flex-col ">
-          <div className="flex flex-col items-center justify-center   text-center  mb-12 md:mb-16 ">
+          <div className="flex flex-col items-center justify-center   text-center  mb-12 md:mb-16 lg:mb-32 ">
             <h1
               className="text-6xl font-semibold md:text-9xl lg:text-11xl text-white"
               data-aos="fade-up"
