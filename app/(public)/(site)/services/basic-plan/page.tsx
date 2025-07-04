@@ -1,8 +1,6 @@
 import { ArrowRight, ChevronRight, CheckCheck } from "lucide-react";
 import { Metadata } from "next";
 
-import { CTAFooter } from "@/components/section/cta-footer";
-import { HeroFeature } from "@/components/section/hero-feature";
 import { ServicesLeft } from "@/components/section/services-left";
 import { HeroHeaderWBgImg2 } from "@/components/section/hero-header-short-w-bg-img-2";
 import { WhatWeOffer } from "@/components/section/what-we-offer";

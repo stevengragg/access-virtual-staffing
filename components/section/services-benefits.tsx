@@ -40,7 +40,7 @@ export const ServicesBenefits = (props: ServicesBenefitsProps) => {
       id={hyperlink ?? "feature"}
       className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
     >
-      <div className="container">
+      <div className="container-xl">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
           <div className="order-2 md:order-1" data-aos="fade-up">
             {image && (
