@@ -41,7 +41,10 @@ export const ServiceFeatureLeft = (props: ServiceFeatureLeftProps) => {
               />
             )}
           </div>
-          <div className="order-1 md:order-2 text-white" data-aos="fade-up">
+          <div
+            className="order-1 md:order-2 text-white w-full"
+            data-aos="fade-up"
+          >
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
             <h2 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
               {heading}

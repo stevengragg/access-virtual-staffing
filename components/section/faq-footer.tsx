@@ -1,12 +1,10 @@
 import {
-  Button,
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@relume_io/relume-ui";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
-import { ChevronRight } from "lucide-react";
 
 type QuestionsProps = {
   title: string;
@@ -20,7 +18,7 @@ type Props = {
   description: string;
   footerHeading: string;
   footerDescription: string;
-  button: LinkButtonProps;
+  buttons: LinkButtonProps[];
   questions: QuestionsProps[];
 };
 
@@ -32,9 +30,9 @@ export const FaqFooter = (props: FaqFooter1Props) => {
     questions,
     heading,
     description,
-    footerHeading,
+    footerHeading: _footerHeading,
     footerDescription,
-    button,
+    buttons,
   } = {
     ...props,
   } as Props;
@@ -78,11 +76,15 @@ export const FaqFooter = (props: FaqFooter1Props) => {
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="mt-6 flex flex-col lg:flex-row items-center gap-2 md:mt-8">
+        <div className="mt-6 flex flex-col lg:flex-row lg:items-center gap-4 md:mt-8">
           <p className="text-md md:text-xl lg:text-2xl font-semibold text-robinsEggBlue">
             {footerDescription}
           </p>
-          <LinkButton {...button} />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {buttons?.map((button, index) => (
+              <LinkButton key={index} {...button} />
+            ))}
+          </div>
         </div>
         {/* <div className="mx-auto mt-12 max-w-md text-center md:mt-18 lg:mt-20">
             <h4 className="mb-3 text-2xl font-bold md:mb-4 md:text-3xl md:leading-[1.3] lg:text-4xl">

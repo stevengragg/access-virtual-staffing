@@ -20,7 +20,7 @@ export const HeroHeaderWBgImg2 = (props: HeroHeaderWBgImg2Props) => {
   const { tagline, heading, description, buttons, image, highlight } = props;
   return (
     <section id="hero" className="relative px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container relative z-10 max-w-2xl text-center">
+      <div className="container relative z-10 max-w-4xl text-center">
         <p
           className="mb-3 font-semibold text-text-alternative md:mb-4"
           data-aos="fade-up"
@@ -32,6 +32,11 @@ export const HeroHeaderWBgImg2 = (props: HeroHeaderWBgImg2Props) => {
           data-aos="fade-up"
         >
           {heading}
+        </h1>
+        <h1
+          className="mb-5 text-6xl font-bold text-text-alternative md:mb-6 md:text-9xl lg:text-11xl"
+          data-aos="fade-up"
+        >
           <span className="text-robinsEggBlue">{highlight}</span>
         </h1>
         <div

@@ -7,7 +7,7 @@ type Card = {
   heading: string;
   description: string;
   image: ImageProps;
-  link: string;
+  link?: string;
 };
 
 type Props = {
@@ -97,16 +97,18 @@ const Card = (card: Card) => {
 
         {/* Button Container - Fixed at bottom */}
         <div className="pt-2 md:pt-4">
-          <LinkButton
-            navLink={{
-              title: "Learn more",
-              url: card.link,
-              follow: false,
-            }}
-            variant="outline"
-            size="default"
-            icon={() => <ChevronRight className="w-4 h-4" />}
-          />
+          {card.link && (
+            <LinkButton
+              navLink={{
+                title: "Learn more",
+                url: card.link,
+                follow: false,
+              }}
+              variant="outline"
+              size="default"
+              icon={() => <ChevronRight className="w-4 h-4" />}
+            />
+          )}
         </div>
       </div>
     </div>

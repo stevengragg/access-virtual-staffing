@@ -43,7 +43,7 @@ export default function BasicPlan() {
         tagline="Services"
         heading="Basic Plan: "
         highlight="Recruiting and Payroll"
-        description="Our Basic Recruitment and Payroll service is ideal for employers seeking project-based staff. We handle the recruiting and payroll processes, allowing you to focus on the project, without the need for timekeeping or benefits administration."
+        description=""
         buttons={[
           {
             navLink: {
@@ -99,6 +99,7 @@ export default function BasicPlan() {
       <WhatWeOffer
         heading="What we offer in our"
         highlight="Basic Plan"
+        description="We recruit and manage payroll for:"
         cards={[
           {
             heading: "General Virtual Staff",
@@ -221,7 +222,7 @@ export default function BasicPlan() {
         features={[
           {
             icon: <CheckCheck className="size-6 text-green-400" />,
-            paragraph: " Legal services",
+            paragraph: "Legal services",
           },
           {
             icon: <CheckCheck className="size-6 text-green-400" />,
@@ -375,17 +376,28 @@ export default function BasicPlan() {
               "The cost of our virtual staffing services depends on factors such as the type of tasks, the level of expertise required, and the number of hours needed. For more information, please contact us at support@accessvirtualstaffing.com",
           },
         ]}
-        footerDescription="You have other questions?"
-        button={{
-          navLink: {
-            title: "See more",
-            url: "/faq",
-            follow: false,
+        footerDescription="Do you have other questions?"
+        buttons={[
+          {
+            navLink: {
+              title: "See more",
+              url: "/faq",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+            icon: () => <ChevronRight className=" text-deepZinc w-6 h-6" />,
           },
-          variant: "outline",
-          size: "xl",
-          icon: () => <ChevronRight className=" text-deepZinc w-6 h-6" />,
-        }}
+          {
+            navLink: {
+              title: "Contact Us",
+              url: "/contact-us",
+              follow: false,
+            },
+            variant: "secondary",
+            size: "xl",
+          },
+        ]}
       />
       {/* Blog Section */}
       <BlogContainer />

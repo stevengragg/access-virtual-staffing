@@ -1,117 +1,104 @@
-import { ImageProps } from "@/types/general";
 import Image from "next/image";
 
-type Card = {
-  heading: string;
-  description: string;
-  image: ImageProps;
+import { ImageProps } from "@/types/general";
+import React from "react";
+import LinkButton, { LinkButtonProps } from "../ui/link-button";
+
+type FeaturesProps = {
+  icon: React.JSX.Element;
+  paragraph: string;
 };
 
 type Props = {
+  hyperlink?: string;
+  highlight?: string;
+  tagline: string;
   heading: string;
   description: string;
-  cards: Card[];
+  image: ImageProps;
+  features: FeaturesProps[];
+  button: LinkButtonProps;
 };
 
 export type ServicesBenefitsProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const ServicesBenefits = (props: ServicesBenefitsProps) => {
-  const { heading, description, cards } = {
-    // ...ServicesBenefitsDefaults,
-    ...props,
-  } as Props;
+  const {
+    tagline,
+    heading,
+    description,
+    image,
+    features,
+    hyperlink,
+    button,
+    highlight,
+  } = props;
+
   return (
-    <section id="services_benefits" className="px-[5%] py-6 md:py-8 lg:py-12">
-      <div className="container-xl">
-        <div className="mx-auto mb-12 w-full max-w-xl text-center md:mb-18 lg:mb-20">
-          <h1 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
-            {heading}
-          </h1>
-          <p className="md:text-md">{description}</p>
-        </div>
-        <div className="grid auto-cols-fr grid-cols-1 gap-6 md:gap-8 lg:grid-cols-4">
-          {cards.map((card, index) => (
-            <Card key={index} {...card} />
-          ))}
+    <section
+      id={hyperlink ?? "feature"}
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+    >
+      <div className="container">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
+          <div className="order-2 md:order-1" data-aos="fade-up">
+            {image && (
+              <Image
+                src={image.src}
+                className="w-full object-cover aspect-square rounded-lg shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+              />
+            )}
+          </div>
+          <div
+            className="order-1 md:order-2 text-white w-full"
+            data-aos="fade-up"
+          >
+            {tagline && (
+              <p className="mb-3 font-semibold md:mb-4 text-robinsEggBlue text-base md:text-lg">
+                {tagline}
+              </p>
+            )}
+            <h2 className="mb-4 md:mb-5 text-4xl md:text-6xl lg:text-9xl xl:text-10xl font-semibold text-white leading-tight">
+              {heading}{" "}
+              {highlight && (
+                <span className="text-robinsEggBlue">{highlight}</span>
+              )}
+            </h2>
+            {description && (
+              <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+                {description}
+              </p>
+            )}
+            <div className="grid grid-cols-1 gap-4 py-2">
+              {features &&
+                features.map((feature, index) => (
+                  <div key={index} className="flex self-start">
+                    <div className="mr-4 flex-none self-start">
+                      {feature.icon}
+                    </div>
+                    <p className="text-lg md:text-xl lg:text-2xl max-w-2xl  leading-relaxed font-semibold">
+                      {feature.paragraph}
+                    </p>
+                  </div>
+                ))}
+            </div>
+
+            {button && (
+              <div
+                className="mt-8 md:mt-12 lg:mt-16  "
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <LinkButton {...button} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
   );
 };
-
-const Card = (card: Card) => {
-  return (
-    <div className="flex flex-col border border-deepZinc rounded-b-lg">
-      <div className="flex flex-col items-center justify-center ">
-        <Image
-          src={card.image.src}
-          alt={card.image.alt}
-          width={card.image.width}
-          height={card.image.height}
-        />
-      </div>
-      <div className="flex flex-1 flex-col justify-start p-6 md:p-8">
-        <div>
-          <h2 className="mb-3 text-2xl font-bold md:mb-4 md:text-3xl md:leading-[1.3] lg:text-4xl">
-            {card.heading}
-          </h2>
-          <p>{card.description}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// export const ServicesBenefitsDefaults: ServicesBenefitsProps = {
-//   tagline: "Bridging Talent and Business Success, Crafted to Perfection",
-//   heading: "Why Choose Access Virtual Staffing?",
-//   description:
-//     "With our straightforward, efficient process, Access Virtual Staffing takes the hassle out of hiring and managing virtual staff. From initial request to seamless integration, we’re committed to delivering a smooth experience and ensuring that your business operates at its best. Partner with us today and experience the ease of building a skilled virtual team that perfectly fits your needs.",
-//   cards: [
-//     {
-//       heading: "Transparent Talent Sourcing",
-//       description:
-//         "We handle every step of the talent sourcing process with complete transparency. From identifying and sourcing top candidates to matching their skills with your specific requirements, we ensure a seamless fit through thorough screening and skill validation. Our commitment is to provide you with the best talent, fully aligned with your business needs.",
-//       image: {
-//         src: "/img/transparent_talent_sourcing_illu.webp",
-//         alt: "Transparent talent sourcing",
-//         width: 304,
-//         height: 160,
-//       },
-//     },
-//     {
-//       heading: "Diverse Skill Sets",
-//       description:
-//         "Our virtual support staff are not only highly proficient in English but also possess a broad range of skills tailored to meet your unique needs. Additionally, we have a pool of bilingual virtual staff fluent in both Spanish and English, ready to effectively serve your diverse client base.",
-//       image: {
-//         src: "/img/diverse_skill_sets_illu.webp",
-//         alt: "Diverse Skill Sets",
-//         width: 304,
-//         height: 160,
-//       },
-//     },
-//     {
-//       heading: "Customized Solutions",
-//       description:
-//         "We offer tiered recruiting services to match your unique needs, from basic administrative support to high-level professional services. Our tiers include Basic Recruiting Service, Tier 1 General Virtual Staff, Tier 2 Skilled Virtual Staff, and Tier 3 High-Level Professional Services.",
-//       image: {
-//         src: "/img/customized_solutions_illu.webp",
-//         alt: "Customized Solutions",
-//         width: 304,
-//         height: 160,
-//       },
-//     },
-//     {
-//       heading: "All-Inclusive Talent Management",
-//       description:
-//         "We offer more than just recruitment; we provide a complete suite of services to ensure your operations run seamlessly. From the initial recruitment phase through to ongoing management, our all-inclusive support covers everything from payroll administration and timekeeping to detailed performance monitoring. This comprehensive approach guarantees smooth operations, optimal efficiency, and peace of mind for you.",
-//       image: {
-//         src: "/img/all_inclusive_talent_management_illu.webp",
-//         alt: "All-Inclusive Talent Management",
-//         width: 304,
-//         height: 160,
-//       },
-//     },
-//   ],
-// };

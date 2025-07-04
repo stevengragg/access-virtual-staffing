@@ -1,15 +1,8 @@
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 
-import { CTAFooter } from "@/components/section/cta-footer";
-import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
-import { ServicesBenefits } from "@/components/section/services-benefits";
 import { ServicesLeft } from "@/components/section/services-left";
-
-// import { ServicesOutline } from "@/components/section/services-outline";
-// import { ServicesRight } from "@/components/section/services-right";
-// import { Testimonials } from "@/components/section/testimonials";
 
 export const metadata: Metadata = {
   title:
@@ -64,80 +57,6 @@ export default function SpecializedServices({}: Props) {
           width: 616,
           height: 640,
         }}
-      />
-
-      {/* Services Benefits Section */}
-      <ServicesBenefits
-        heading="Benefits of the Specialized Services"
-        description="Our Specialized Services offer targeted training programs designed to enhance your team’s skills and efficiency. With offerings such as Complete Staff Work, Basic Management Training, and Advanced Leadership Training, our programs are tailored to address critical areas like job description writing, goal setting, SWOT analysis, and process improvement."
-        cards={[
-          {
-            heading: "Enhanced Employee Skills",
-            description:
-              "Equip your team with advanced skills and methodologies, including KPI tracking and SMART goal setting, to boost their performance and efficiency.",
-            image: {
-              src: "/img/computer.svg",
-              alt: "Enhanced Employee Skills",
-              width: 304,
-              height: 160,
-            },
-          },
-          {
-            heading: "Improved Efficiency",
-            description:
-              "Streamline operations using frameworks like PDCA (Plan-Do-Check-Act) and process improvement techniques to reduce bottlenecks and enhance workflow.",
-            image: {
-              src: "/img/circle-fading-arrow-up.svg",
-              alt: "Improved Efficiency",
-              width: 304,
-              height: 160,
-            },
-          },
-          {
-            heading: "Strategic Growth",
-            description:
-              "Develop and execute growth strategies using SWOT analysis and other strategic planning tools to set clear, actionable objectives and drive your business forward.",
-            image: {
-              src: "/img/shrub.svg",
-              alt: "Informed Decision-Making",
-              width: 304,
-              height: 160,
-            },
-          },
-          {
-            heading: "Informed Decision-Making",
-            description:
-              "Utilize comprehensive frameworks such as KPI metrics, SMART criteria, and PDCA cycles to make data-driven decisions and achieve superior business outcomes.",
-            image: {
-              src: "/img/chart-line.svg",
-              alt: "Informed Decision-Making",
-              width: 304,
-              height: 160,
-            },
-          },
-        ]}
-      />
-      {/* Hero feature Section */}
-      <HeroFeature />
-      {/* Testimonials Section */}
-      {/* <Testimonials /> */}
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="Take the First Step with"
-        heading2="Access Virtual Staffing"
-        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
-        buttons={[
-          {
-            navLink: {
-              title: "Schedule a Free Strategy Call",
-              url: "/book-a-meeting",
-              follow: false,
-            },
-            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
-            variant: "outline",
-            size: "xl",
-          },
-        ]}
       />
     </main>
   );
