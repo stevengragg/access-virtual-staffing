@@ -1,23 +1,24 @@
-import { BusinessScalingCTA } from "@/components/section/business-scale-cta";
-import { CTAFooter } from "@/components/section/cta-footer";
-import { FaqFooter } from "@/components/section/faq-footer";
-import { StrategyCallHeroHeader } from "@/components/section/strategy-call-hero-header";
 import { ChevronRight } from "lucide-react";
 
-type Props = {};
+import { BusinessScalingCTA } from "@/components/section/business-scale-cta";
+import { CtaQuickCall } from "@/components/section/cta-quick-call";
+import { FaqFooter } from "@/components/section/faq-footer";
+import { HeroHeaderQuote } from "@/components/section/hero-header-quote";
+import HowItWorks3 from "@/components/section/how-it-works-3";
+import { Brands } from "@/components/section/brands";
+import { Testimonials } from "@/components/section/testimonials";
 
-export default function BookAMeeting({}: Props) {
+export default function BookAMeeting() {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
-      <h1>....</h1>
       {/* Header Section */}
-      {/* <StrategyCallHeroHeader /> */}
-      {/* <HeroHeaderNormal
-        heading="Book a Free Discovery Call Today"
-        context="Book a discovery call with the professional team from Access Virtual Staffing today to learn how we can help you reduce your staffing costs by up to 70% with our talented Virtual Staff."
-      /> */}
+      <HeroHeaderQuote />
+
+      {/* CTA Section */}
+      <CtaQuickCall />
+
       {/* Calendly Form Section */}
-      {/* <BusinessScalingCTA
+      <BusinessScalingCTA
         heading="AVS Free Strategy Session"
         subheading="Thank you for your interest in AVS! This 15-minute strategy session is designed to help you find the best virtual staffing solutions for your business. During this call, we’ll discuss your goals, challenges, and how AVS can help you scale efficiently with expert virtual support."
         agenda={[
@@ -45,21 +46,20 @@ export default function BookAMeeting({}: Props) {
               contact us
             </a>
             , and we’ll arrange a suitable time for you.
-            <br />
-            Are you applying as a Virtual Assistant?{" "}
-            <a href="/talent/portal" className="text-deepBlue underline">
-              Create a free account here
-            </a>{" "}
-            or{" "}
-            <a href="/talent" className="text-deepBlue underline">
-              Explore jobs.
-            </a>
           </p>
         }
-      /> */}
+      />
+
+      {/* How it works Section */}
+      <HowItWorks3 />
+
+      {/* Brands section */}
+      <Brands />
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* FAQ Footer Section */}
-      {/* <FaqFooter
+      <FaqFooter
         heading="FAQs"
         description="Find answers to your common questions."
         questions={[
@@ -80,36 +80,21 @@ export default function BookAMeeting({}: Props) {
           },
         ]}
         footerDescription="You have other questions?"
-        button={{
-          navLink: {
-            title: "See more",
-            url: "/faq",
-            follow: false,
-          },
-          variant: "link2",
-          size: "lg",
-          icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
-        }}
-      /> */}
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="For Business Owners"
-        description="Want to know everything about how to work with Virtual Staff and how we close the gap? Schedule a Free strategy call now!"
         buttons={[
           {
             navLink: {
-              title: "Schedule a Strategy Session",
-              url: "/book-a-meeting#calendly",
+              title: "See more",
+              url: "/faq",
               follow: false,
             },
             variant: "outline",
             size: "xl",
+            icon: () => <ChevronRight className=" text-deepZinc w-6 h-6" />,
           },
-
           {
             navLink: {
-              title: "Discover Our Services",
-              url: "/services",
+              title: "Contact Us",
+              url: "/contact-us",
               follow: false,
             },
             variant: "secondary",

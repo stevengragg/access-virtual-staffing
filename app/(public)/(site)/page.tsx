@@ -24,7 +24,6 @@ export default function Home() {
       <VaServices />
       {/* Feature 1 Section  */}
       <HeroQuote />
-
       {/* Blog Container Section*/}
       <BlogContainer />
     </main>

@@ -17,7 +17,7 @@ export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
   return (
     <section
       id="long_form_header1"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark "
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker "
     >
       <div className="container-xl flex flex-col items-start">
         <div className="mb-12 w-full space-y-6">

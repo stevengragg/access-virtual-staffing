@@ -36,38 +36,24 @@ export default function ContactUs({}: Props) {
           },
         ]}
         footerDescription="You have other questions?"
-        button={{
-          navLink: {
-            title: "See more",
-            url: "/faq",
-            follow: false,
-          },
-          variant: "link2",
-          size: "lg",
-          icon: () => <ChevronRight className="text-deepZinc w-6 h-6" />,
-        }}
-      />
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Discover our different services or you can send us your requirements so that we can start hiring your first Virtual Staff."
         buttons={[
           {
             navLink: {
-              title: "Discover Our Services",
-              url: "/services",
-              follow: false,
-            },
-            variant: "secondary",
-            size: "xl",
-          },
-          {
-            navLink: {
-              title: "Free Strategy Call",
-              url: "/book-a-meeting",
+              title: "See more",
+              url: "/faq",
               follow: false,
             },
             variant: "outline",
+            size: "xl",
+            icon: () => <ChevronRight className=" text-deepZinc w-6 h-6" />,
+          },
+          {
+            navLink: {
+              title: "Contact Us",
+              url: "/contact-us",
+              follow: false,
+            },
+            variant: "secondary",
             size: "xl",
           },
         ]}

@@ -117,7 +117,7 @@ export const HowItWorks3Defaults: HowItWorks3Props = {
   button: {
     navLink: {
       title: "Start Your Journey",
-      url: "/book-a-meeting",
+      url: "/book-a-meeting#calendly",
       follow: false,
     },
     size: "xl",

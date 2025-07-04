@@ -49,7 +49,7 @@ export const Team = (props: TeamProps) => {
       className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
     >
       <div className="container">
-        <div className="mx-auto mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
+        <div className="mx-auto mb-12 max-w-lg text-center md:mb-18 lg:mb-20 text-white">
           <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
           <h2 className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
             {heading}
@@ -61,15 +61,6 @@ export const Team = (props: TeamProps) => {
             <TeamMember key={index} member={member} />
           ))}
         </div>
-        <div className="mx-auto mt-14 w-full max-w-md text-center md:mt-20 lg:mt-24">
-          <h4 className="mb-3 text-2xl font-bold md:mb-4 md:text-3xl md:leading-[1.3] lg:text-4xl">
-            {footer.heading}
-          </h4>
-          <p className="md:text-md">{footer.description}</p>
-          <div className="mt-6 flex items-center justify-center gap-x-4 text-center md:mt-8">
-            <Button {...footer.button}>{footer.button.title}</Button>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -77,7 +68,7 @@ export const Team = (props: TeamProps) => {
 
 const TeamMember = ({ member }: { member: TeamMember }) => {
   return (
-    <div className="flex flex-col text-center">
+    <div className="flex flex-col text-center text-white">
       <div className="relative mb-5 size-full overflow-hidden md:mb-6">
         <img
           src={member.image.src}
@@ -102,9 +93,10 @@ const TeamMember = ({ member }: { member: TeamMember }) => {
 };
 
 export const TeamDefaults: Props = {
-  tagline: "Tagline",
+  tagline: "",
   heading: "Our team",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  description:
+    "We are a team of experts dedicated to helping businesses succeed. Our goal is to provide reliable, skilled virtual staff who feel like a natural part of your team.",
   teamMembers: [
     {
       image: {
