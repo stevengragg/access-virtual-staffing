@@ -21,20 +21,23 @@ export const CollectionArchive: React.FC<Props> = (props) => {
             if (typeof result === "object" && result !== null) {
               const { slug, categories, meta, title } = result;
               const { description, image: metaImage } = meta || {};
-              
+
               // Get the first category
-              const category = categories?.[0] && typeof categories[0] !== "number" 
-                ? categories[0].title 
-                : "Blog";
+              const category =
+                categories?.[0] && typeof categories[0] !== "number"
+                  ? categories[0].title
+                  : "Blog";
 
               // Get image URL with proper type checking
-              const imageUrl = metaImage && typeof metaImage === "object" && "url" in metaImage
-                ? (metaImage as Media).url 
-                : "/blog/blog1.webp"; // Fallback image
+              const imageUrl =
+                metaImage && typeof metaImage === "object" && "url" in metaImage
+                  ? (metaImage as Media).url
+                  : "/blog/blog1.webp"; // Fallback image
 
-              const imageAlt = metaImage && typeof metaImage === "object" && "alt" in metaImage
-                ? (metaImage as Media).alt 
-                : title;
+              const imageAlt =
+                metaImage && typeof metaImage === "object" && "alt" in metaImage
+                  ? (metaImage as Media).alt
+                  : title;
 
               return (
                 <Link
@@ -66,11 +69,14 @@ export const CollectionArchive: React.FC<Props> = (props) => {
                         {title}
                       </h2>
                       {description && (
-                        <p className="text-zinc-700 mb-4 overflow-hidden" style={{
-                          display: '-webkit-box',
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: 'vertical',
-                        }}>
+                        <p
+                          className="text-zinc-700 mb-4 overflow-hidden"
+                          style={{
+                            display: "-webkit-box",
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: "vertical",
+                          }}
+                        >
                           {description}
                         </p>
                       )}
