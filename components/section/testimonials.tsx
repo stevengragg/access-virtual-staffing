@@ -35,7 +35,7 @@ export const Testimonials = (props: Testimonial17Props) => {
   return (
     <section
       id="testimonials"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
     >
       <div className="container-xl">
         <div
@@ -51,21 +51,21 @@ export const Testimonials = (props: Testimonial17Props) => {
         </div>
         <div
           className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 "
-          data-aos-delay="200"
+          data-aos-delay="100"
           data-aos="fade-up"
         >
           {testimonials.map((testimonial, index) => {
             return (
               <div
                 key={index}
-                className="flex w-full flex-col items-start justify-between border rounded-md p-6 md:p-8 bg-zinc-800 border-zinc-700 text-center shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
+                className="flex w-full flex-col items-start justify-between border rounded-md p-6 md:p-8 bg-robinsEggBlueLighter border-zinc-700 text-center shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
               >
                 {/* Avatar, Name, Position (row, left aligned) */}
                 <div className="mb-5 md:mb-6 flex flex-row items-center w-full text-left">
                   <div className="size-12 min-h-12 min-w-12 rounded-full bg-robinsEggBlue flex items-center justify-center text-zinc-800 font-bold text-lg mr-4">
                     {getInitials(testimonial.name)}
                   </div>
-                  <div className="flex flex-col text-white">
+                  <div className="flex flex-col text-neutralDarker">
                     <p className="font-semibold">{testimonial.name}</p>
                     <p>
                       {testimonial.position}, {testimonial.companyName}
@@ -73,7 +73,7 @@ export const Testimonials = (props: Testimonial17Props) => {
                   </div>
                 </div>
                 {/* Quote */}
-                <blockquote className="md:text-md text-white mb-6 text-left">
+                <blockquote className="md:text-md text-neutralDarker mb-6 text-left">
                   {testimonial.quote}
                 </blockquote>
                 {/* Stars */}

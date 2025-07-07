@@ -39,7 +39,7 @@ export const HeroQuote = (props: HeroQuoteProps) => {
   return (
     <section
       id="owner-quote"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-white"
     >
       <div className="container-xl">
         <div className="grid w-full auto-cols-fr grid-cols-1 items-center justify-center gap-12 md:grid-cols-2 md:gap-10 lg:gap-x-20">
@@ -60,19 +60,20 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             <p
               data-aos="fade-up"
               data-aos-delay="100"
-              className="mb-3 font-semibold md:mb-4 text-white md:text-md lg:text-lg"
+              className="mb-3 font-semibold md:mb-4 text-neutralDarker md:text-md lg:text-lg"
             >
               {tagline}
             </p>
             <h2
-              className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white"
+              className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-neutralDarker"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              {heading} <span className="text-robinsEggBlue">{highlight}</span>
+              {heading}{" "}
+              <span className="text-robinsEggBlueDark">{highlight}</span>
             </h2>
             <blockquote
-              className="text-xl font-semibold md:text-2xl text-white"
+              className="text-xl font-semibold md:text-2xl text-neutralDarker"
               data-aos="fade-up"
               data-aos-delay="100"
             >
@@ -80,7 +81,7 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             </blockquote>
             <br />
             <blockquote
-              className="text-xl font-semibold md:text-2xl text-white"
+              className="text-xl font-semibold md:text-2xl text-neutralDarker"
               data-aos="fade-up"
               data-aos-delay="100"
             >
@@ -88,7 +89,7 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             </blockquote>
             <br />
             <blockquote
-              className="text-xl font-semibold md:text-2xl text-white"
+              className="text-xl font-semibold md:text-2xl text-neutralDarker"
               data-aos="fade-up"
               data-aos-delay="100"
             >
@@ -97,17 +98,19 @@ export const HeroQuote = (props: HeroQuoteProps) => {
             <br />
             <div className="mt-6 flex flex-nowrap items-center gap-5 md:mt-8">
               {/* Avatar */}
+
               <Image
                 src={avatar.src}
                 alt={avatar.alt}
                 width={avatar.width}
                 height={avatar.height}
-                className="rounded-full aspect-square mr-3 object-cover"
+                className="object-cover rounded-full aspect-square object-center shadow transition-transform  hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueDarkLight"
                 data-aos="fade-up"
                 data-aos-delay="100"
               />
+
               <div
-                className="text-white"
+                className="text-neutralDarker"
                 data-aos="fade-up"
                 data-aos-delay="200"
               >
@@ -129,7 +132,7 @@ export const HeroQuoteDefaults: Props = {
   quote1:
     "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic deligation.",
   quote2:
-    "After witnessing countless talented executives, entrepreneurs, and pastors burning out from handling tasks that didn'tleverage their unique gifts, we built a solution that provides not just assistance, but true strategic partnership.",
+    "After witnessing countless talented executives, entrepreneurs, and pastors burning out from handling tasks that didn't leverage their unique gifts, we built a solution that provides not just assistance, but true strategic partnership.",
   quote3:
     "Our team of premium virtual assistants is meticulously selected and trained to deliver excellence in every interaction, allowing you to lead with greater focus, clarity, and effectiveness.",
   image: {
@@ -141,7 +144,7 @@ export const HeroQuoteDefaults: Props = {
   name: "Phil Wardell",
   position: "Founder & CEO, Access Virtual Staffing",
   avatar: {
-    src: "/img/phil_wardell.webp",
+    src: "/img/phil-new.webp",
     alt: "Phil Wardell Avatar",
     width: 100,
     height: 100,

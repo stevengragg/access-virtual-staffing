@@ -70,9 +70,9 @@ export const HeroHeader2 = (props: Header2Props) => {
 };
 
 export const Header2Defaults: Header2Props = {
-  heading: "Leading Virtual Staffing Agency based in Florida, USA",
+  heading: "Leading Virtual Staffing Agency Worldwide based in Florida, USA",
   description:
-    "At Access Virtual Staffing, we understand that the right talent can make all the difference. We specialize in bridging the gap between your business needs and the talent required for success. Our network across Florida, combined with our dedicated recruiters, ensures that we find virtual staff crafted to meet your specific needs—whether it’s administrative support, data entry, customer service, or specialized skills. With a focus on perfection, we tailor our services to ensure your business thrives. Together, we are Bridging Talent and Business Success, Crafted to Perfection.",
+    "At Access Virtual Staffing, we understand that the right talent can make all the difference. We specialize in bridging the gap between your business needs and the talent required for success. Our network across the US and worldwide, combined with our dedicated recruiters, ensures that we find virtual staff crafted to meet your specific needs—whether it’s administrative support, data entry, customer service, or specialized skills. With a focus on perfection, we tailor our services to ensure your business thrives. Together, we are Bridging Talent and Business Success, Crafted to Perfection.",
   // highlights: [
   //   {
   //     content: "50 +",

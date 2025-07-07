@@ -21,10 +21,15 @@ export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
     >
       <div className="container-xl flex flex-col items-start">
         <div className="mb-12 w-full space-y-6">
-          <h3 className="text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl text-white">
+          <h3
+            className="text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl leading-[1.2] text-white"
+            data-aos="fade-up"
+          >
             {heading}
           </h3>
-          <p className="text-md font-normal text-white">{context}</p>
+          <p className="text-md font-normal text-white" data-aos="fade-up">
+            {context}
+          </p>
           {ads && (
             <div className="mt-4 lg:mt-8">
               <p className="text-md font-normal text-white">{ads.text || ""}</p>

@@ -47,7 +47,7 @@ export const Brands2 = (props: Brands2Props) => {
 };
 
 export const Brands2Defaults: Props = {
-  heading: "Trusted by a wide range of clients & businesses in Florida, USA",
+  heading: "Trusted by a wide range of clients & business globally",
   logos: [
     {
       src: "https://d22po4pjz3o32e.cloudfront.net/webflow-logo.svg",

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-import { ne } from "drizzle-orm";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -42,12 +41,13 @@ const config: Config = {
     },
     backgroundImage: {
       heroHeaderBg: "url(/bg/heroheaderbg.webp)",
+      heroHeaderMainBg: "url(/bg/main_bg.webp)",
       heroFeatureBg: "url(/bg/herofeaturebg.webp)",
       ctaFooterBg: "url(/bg/ctafooterbg.webp)",
       ctaFooterBg2: "url(/bg/ctafooterbg_new.webp)",
     },
   },
   presets: [require("@relume_io/relume-tailwind")],
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
 export default config;

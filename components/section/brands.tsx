@@ -20,7 +20,7 @@ export const Brands = (props: Logo3Props) => {
       id="brands"
       className="overflow-hidden py-12 md:py-16 lg:py-20 bg-robinsEggBlueLighter"
     >
-      <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
+      <div className="container mx-auto mb-8 w-full max-w-2xl px-[5%] md:mb-10 lg:mb-12">
         <h1
           className="text-center text-xl font-bold leading-[1.2] md:text-2xl lg:text-4xl md:leading-[1.2] text-black"
           data-aos="fade-up"
@@ -49,11 +49,7 @@ export const Brands = (props: Logo3Props) => {
             </div>
           ))}
       </div> */}
-      <div
-        className="flex items-center pt-7 md:pt-0"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
+      <div className="flex items-center pt-7 md:pt-0" data-aos="fade-up">
         <div className="flex justify-center w-full">
           <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (
@@ -70,7 +66,7 @@ export const Brands = (props: Logo3Props) => {
 };
 
 export const Logo3Defaults: Logo3Props = {
-  heading: "Trusted by a wide range of clients & businesses in Florida, USA",
+  heading: "Trusted by a wide range of clients & business globally",
   logos: [
     {
       src: "https://relume-assets.s3.amazonaws.com/webflow-logo.svg",

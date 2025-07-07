@@ -21,14 +21,14 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
   return (
     <section
       id="newsletter"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralBase"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container grid w-full grid-cols-1 items-start justify-between gap-6 md:gap-x-12 md:gap-y-8 lg:grid-cols-[1fr_max-content] lg:gap-x-20">
-        <div className="w-full max-w-lg">
-          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white text-center lg:text-left">
-            <span className="text-robinsEggBlue">AVS</span> {heading}
+        <div className="w-full max-w-2xl">
+          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-neutralDarker text-center lg:text-left">
+            <span className="text-robinsEggBlueDark">AVS</span> {heading}
           </h2>
-          <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-neutralDarker text-lg md:text-xl lg:text-2xl mx-auto leading-relaxed">
             {description}
           </p>
         </div>
@@ -90,12 +90,12 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
 export const CtaNewsLetterDefaults: Props = {
   heading: "Newsletter",
   description:
-    "Subscribe to our newsletter to get the latest updates and offers in Hiring Virtual Staff",
+    "Subscribe to our newsletter to get the latest blogs and updates.",
   inputPlaceholder: "Enter your email",
   termsAndConditions: `
     <p class='text-xs'>
       By clicking "Subscribe" you're confirming that you agree with our
-      <a href='/terms-of-service' class='underline'>Terms and Conditions</a>.
+      <a href='/privacy-policy' class='underline'>Terms and Conditions</a>.
     </p>
   `,
 };

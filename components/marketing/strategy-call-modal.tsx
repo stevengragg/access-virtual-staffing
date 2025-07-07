@@ -72,7 +72,7 @@ export const StrategyCallModal = () => {
             <LinkButton
               navLink={{
                 title: "Book Your Free Strategy Call",
-                url: "/book-a-meeting",
+                url: "/book-a-meeting#calendly",
                 follow: false,
               }}
               variant="primary"

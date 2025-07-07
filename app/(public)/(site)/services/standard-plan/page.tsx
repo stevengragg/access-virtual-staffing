@@ -1,12 +1,20 @@
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCheck, ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 
 import { CTAFooter } from "@/components/section/cta-footer";
 import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
-import { ServicesBenefits } from "@/components/section/services-benefits";
 import { ServicesLeft } from "@/components/section/services-left";
 import { ServicesOutline } from "@/components/section/services-outline";
+import { HeroHeaderWBgImg2 } from "@/components/section/hero-header-short-w-bg-img-2";
+import { WhatWeOffer } from "@/components/section/what-we-offer";
+import { ServiceFeatureLeft } from "@/components/section/service-feature-left";
+import { ServicesBenefits } from "@/components/section/services-benefits";
+import { AllPlans } from "@/components/section/all-services";
+import { BlogContainer } from "@/components/section/blog-container";
+import { FaqFooter } from "@/components/section/faq-footer";
+import { Brands } from "@/components/section/brands";
+import StatsSection from "@/components/section/stats-section";
 // import { ServicesRight } from "@/components/section/services-right";
 // import { Testimonials } from "@/components/section/testimonials";
 
@@ -14,12 +22,12 @@ export const metadata: Metadata = {
   title:
     "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
   description:
-    "Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations.",
+    "Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system.",
   openGraph: {
     title:
       "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
     description:
-      "Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations.",
+      "Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system.",
     type: "website",
     url: "https://www.accessvirtualstaffing.com/services/standard-plan",
     images: "/opengraph-image.jpg", // Use the specified image URL
@@ -29,7 +37,7 @@ export const metadata: Metadata = {
     title:
       "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
     description:
-      "Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations.",
+      "Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system.",
     images: "/twitter-image.jpg", // Use the specified image URL
   },
 };
@@ -40,146 +48,311 @@ export default function StandardPlan({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
-      <HeroHeaderNormal
-        heading="Standard Plan: Advance Recruiting Solutions"
-        context=""
+      <HeroHeaderWBgImg2
+        tagline="Services"
+        heading="Standard Plan: "
+        highlight="Advanced Recruiting Solutions"
+        description=""
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Free Strategy Call",
+              url: "/book-a-meeting",
+              follow: false,
+            },
+            variant: "cta1",
+            size: "xl",
+            icon: () => <ArrowRight className="" />,
+          },
+          {
+            navLink: {
+              title: "Learn More",
+              url: "/services/basic-plan#how-it-works",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+        ]}
+        image={{
+          src: "/bg/public_pages_bg.webp",
+          alt: "About Us Hero Image",
+          width: 1920,
+          height: 1080,
+        }}
       />
       {/* Services A Section */}
       <ServicesLeft
         heading="Overview"
-        description="Elevate your business operations with our Standard Plan, offering advanced recruitment solutions along with integrated timekeeping and payroll administration. Designed for growing businesses, this tier provides enhanced support and management to ensure seamless and efficient workforce operations. We manage salaries, benefits, and all related administrative tasks, allowing you to focus on growing your business. This tier is designed to streamline operations and ensure smooth management of your workforce."
+        description="Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system."
         button={{
           navLink: {
-            title: "Free Strategy Call",
+            title: "Start Hiring your VA today",
             url: "/book-a-meeting",
             follow: false,
           },
-          variant: "secondary",
+          variant: "cta1",
           size: "xl",
-          icon: () => (
-            <ChevronRight className="text-neutralLightZinc w-6 h-6" />
-          ),
+          icon: () => <ChevronRight className=" w-6 h-6" />,
         }}
         image={{
           src: "/img/services2.webp",
-          alt: "Services Image B",
+          alt: "Services Image A",
           width: 616,
           height: 640,
         }}
       />
-      {/* What we offer Section */}
-      <ServicesOutline
-        heading="What We Offer"
-        subheading="Our Standard Plan provides an all-in-one solution for businesses, combining expert recruitment with streamlined timekeeping and payroll administration. This tier is designed to alleviate the complexities of workforce management so you can concentrate on growing your business."
-        tabs={[
+      {/* What We Offer Section */}
+      <WhatWeOffer
+        heading="What we offer in our"
+        highlight="Standard Plan"
+        description="Our Standard Plan streamlines recruitment and workforce management by covering:"
+        cards={[
           {
-            heading: "Recruitment Excellence",
+            heading: "Expert Recruitment",
             description:
-              "We source and recruit top talent tailored to your specific needs, ensuring you have the right people for the job.",
+              "We source and recruit top talent suited to your business needs, ensuring you have the right team in place.",
             image: {
-              src: "/img/recruitment_excellence.svg",
-              alt: "Virtual Staff SVG",
-              width: 616,
-              height: 640,
+              src: "/img/skilled_staff.svg",
+              alt: "Expert Recruitment",
+              width: 304,
+              height: 160,
             },
           },
           {
             heading: "Efficient Timekeeping",
             description:
-              "We handle accurate tracking of work hours to maintain productivity and transparency.",
+              "Accurate tracking of employee work hours to boost productivity and ensure transparency.",
             image: {
               src: "/img/timekeeping.svg",
-              alt: "Skilled Staff SVG",
-              width: 616,
-              height: 640,
+              alt: "Timekeeping",
+              width: 304,
+              height: 160,
             },
           },
           {
-            heading: "Payroll Administration",
+            heading: "Payroll & Benefits Administration",
             description:
-              "From managing salaries to administering benefits, we take care of all payroll-related tasks, including compliance with relevant regulations.",
+              "We manage salaries, taxes, and benefits, ensuring smooth payroll processing and legal compliance.",
             image: {
               src: "/img/payroll_admin.svg",
-              alt: "Professional Staff SVG",
-              width: 616,
-              height: 640,
+              alt: "Payroll & Benefits Administration",
+              width: 304,
+              height: 160,
             },
           },
         ]}
+        button={{
+          navLink: {
+            title: "Get Started with Standard Plan",
+            url: "/book-a-meeting",
+            follow: false,
+          },
+          variant: "cta1",
+          size: "xl",
+          icon: () => <ChevronRight className=" w-6 h-6" />,
+        }}
       />
-      {/* Services Benefits Section */}
+      {/* Benefits Section */}
       <ServicesBenefits
-        heading="Benefits of the Standard Plan"
-        description="Experience seamless workforce management with our Standard Plan. Enjoy the benefits of comprehensive recruiting, precise time monitoring, efficient payroll processing, and hassle-free benefits administration. This all-in-one solution streamlines your operations, boosts productivity, and ensures your team is well-supported, so you can focus on driving your business forward."
+        tagline=""
+        heading="Benefits of the "
+        highlight="Standard Plan"
+        description="With our Standard Plan, you get a fully managed recruitment and payroll solution, giving your business the efficiency and structure it needs to thrive."
+        features={[
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph: "Hassle-free workforce management",
+          },
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph: "Precise time tracking & reporting",
+          },
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph: "Reliable payroll & benefits handling",
+          },
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph: "More time to focus on business growth",
+          },
+        ]}
+        image={{
+          src: "/img/laptop-desk-image.webp",
+          alt: "Benefits of the Standard Plan",
+          width: 1000,
+          height: 1000,
+        }}
+        button={{
+          navLink: {
+            title: "Start Hiring with Standard Plan",
+            url: "/book-a-meeting",
+            follow: false,
+          },
+          variant: "cta1",
+          size: "xl",
+          icon: () => <ChevronRight className=" w-6 h-6" />,
+        }}
+      />
+
+      {/* All Services Section */}
+      <AllPlans
+        heading="Our"
+        highlight="Services"
         cards={[
           {
-            heading: "Recruiting",
+            heading: "Basic Plan",
             description:
-              "We handle the entire recruitment process from start to finish, ensuring you attract and hire top talent tailored to your specific business needs. Our expert team leverages a vast network and advanced sourcing techniques to find candidates who not only have the right skills but also fit your company culture. With us managing recruitment, you gain access to a pool of high-caliber candidates efficiently and cost-effectively, saving you valuable time and resources.",
-            image: {
-              src: "/img/handshake.svg",
-              alt: "Recruiting",
-              width: 304,
-              height: 160,
-            },
+              "Our Basic Plan offers project-based staffing without the burden of managing full-time employees. We handle recruitment and payroll, so you get the right talent—fast and hassle-free.",
+
+            link: "/services/basic-plan",
+            features: [
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "General virtual staff",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Skilled staff",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "High-level professionals",
+              },
+            ],
           },
           {
-            heading: "Time Monitoring",
+            heading: "Standard Plan",
             description:
-              "Our robust time monitoring service ensures accurate tracking of employee hours and productivity. We provide detailed, actionable reports that help you manage and optimize your workforce effectively. Beyond just tracking time, our system helps identify areas for improvement and ensures compliance with labor regulations, ultimately enhancing operational efficiency and minimizing administrative burdens.",
-            image: {
-              src: "/img/clock.svg",
-              alt: "Time Monitoring",
-              width: 304,
-              height: 160,
-            },
+              "Scale with ease using our Standard Plan—complete recruitment, timekeeping, and payroll management in one. Ideal for businesses needing a structured, all-in-one workforce solution.",
+
+            link: "/services/standard-plan",
+            features: [
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Expert Recruitment",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Efficient Timekeeping",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Comprehensive Payroll & Benefits Administration",
+              },
+            ],
           },
           {
-            heading: "Payroll",
+            heading: "Specialized Services",
             description:
-              "Leave the complexities of payroll to us. We manage all aspects of payroll processing, including accurate salary disbursements, tax withholdings, and compliance with wage laws. Our streamlined payroll system ensures that your staff is paid on time and without errors, reducing the risk of costly mistakes and freeing you to focus on growing your business.",
-            image: {
-              src: "/img/wallet-cards.svg",
-              alt: "Payroll",
-              width: 304,
-              height: 160,
-            },
-          },
-          {
-            heading: "Benefits Administration",
-            description:
-              "Our comprehensive benefits administration service takes the hassle out of managing employee benefits. We handle everything from enrollment to ongoing management and compliance, ensuring your team receives the full range of benefits they are entitled to. By outsourcing this function, you can offer competitive benefits packages without the administrative burden, improving employee satisfaction and retention.",
-            image: {
-              src: "/img/book-heart.svg",
-              alt: "Scalable Solutions",
-              width: 304,
-              height: 160,
-            },
+              "Enhance your team with our Specialized Services—targeted training in Complete Staff Work, Management, and Leadership. We cover essentials like goal setting, KPIs, and process improvement to boost your virtual staff’s performance and drive growth..",
+
+            link: "/services/specialized-services",
+            features: [
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Complete Staff Work Training",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Basic Management Training",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Advanced Leadership Training",
+              },
+            ],
           },
         ]}
+        button={{
+          navLink: {
+            title: "Start Hiring your VA today",
+            url: "/book-a-meeting",
+            follow: false,
+          },
+          variant: "cta1",
+          size: "xl",
+          icon: () => <ChevronRight className=" w-6 h-6" />,
+        }}
       />
-      {/* Hero feature Section */}
-      <HeroFeature />
-      {/* Testimonials Section */}
-      {/* <Testimonials /> */}
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="Take the First Step with"
-        heading2="Access Virtual Staffing"
-        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
+      {/* Brands Section */}
+      <Brands />
+      {/* Stats Section */}
+      <section
+        id="testimonials"
+        className="px-[5%] py-16 md:py-24 lg:py-28 bg-white"
+      >
+        <div className="container-xl">
+          <div
+            className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20 "
+            data-aos-delay="200"
+            data-aos="fade-up"
+          >
+            <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-neutralDarker">
+              Sneak Peek into our Innovative Journey
+            </h1>
+          </div>
+
+          <div
+            className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20"
+            data-aos-delay="200"
+            data-aos="fade-up"
+          >
+            <StatsSection />
+          </div>
+        </div>
+      </section>
+      {/* FAQ footer section */}
+      <FaqFooter
+        heading="FAQs"
+        description="Find answers to your common questions about our Standard Plan"
+        questions={[
+          {
+            title: "How is the Standard Plan different from the Basic Plan?",
+            answer:
+              "The Standard Plan includes recruitment, timekeeping, and payroll with benefits, making it ideal for businesses needing a fully managed and structured workforce system—not just short-term hires.",
+          },
+          {
+            title: "What kind of timekeeping system do you use?",
+            answer:
+              "We use accurate and transparent time tracking tools to monitor work hours, helping boost productivity and ensure payroll accuracy.",
+          },
+          {
+            title: "Can you handle benefits and tax compliance?",
+            answer:
+              "Yes. We manage salaries, government compliance, and employee benefits so you don’t have to deal with administrative burdens.",
+          },
+          {
+            title: "How much does it cost?",
+            answer:
+              "The cost of our virtual staffing services depends on factors such as the type of tasks, the level of expertise required, and the number of hours needed. For more information, please contact us at support@accessvirtualstaffing.com",
+          },
+        ]}
+        footerDescription="You have other questions?"
         buttons={[
           {
             navLink: {
-              title: "Schedule a Free Strategy Call",
-              url: "/book-a-meeting",
+              title: "See more",
+              url: "/faq",
               follow: false,
             },
-            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
             variant: "outline",
+            size: "xl",
+            icon: () => <ChevronRight className=" text-deepZinc w-6 h-6" />,
+          },
+          {
+            navLink: {
+              title: "Contact Us",
+              url: "/contact-us",
+              follow: false,
+            },
+            variant: "secondary",
             size: "xl",
           },
         ]}
       />
+      {/* Blog Section */}
+      <BlogContainer />
     </main>
   );
 }

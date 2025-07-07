@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 
-import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqContent } from "@/components/section/faq-content";
-import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
+import { HeroHeaderWBgImg } from "@/components/section/hero-header-short-w-bg-img";
 
 export const metadata: Metadata = {
   title: "FAQs | Access Virtual Staffing",
@@ -15,37 +14,21 @@ export default function FAQ({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* FAQ Hero Header Section */}
-      <HeroHeaderNormal
+      <HeroHeaderWBgImg
+        tagline=""
         heading="Frequently Asked Questions"
-        context="Find answers to common questions about Access Virtual Staffing and our services."
+        description="Find answers to common questions about Access Virtual Staffing and our services."
+        buttons={[]}
+        image={{
+          src: "/bg/resources_bg.webp",
+          alt: "Resources Background",
+          width: 1920,
+          height: 1080,
+        }}
       />
+
       {/* FAQ Main Content Section */}
       <FaqContent />
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="Unlock Your Business Potential Today"
-        description="Discover our different services or you can send us your requirements so that we can start hiring your first Virtual Staff."
-        buttons={[
-          {
-            navLink: {
-              title: "Discover Our Services",
-              url: "/services",
-              follow: false,
-            },
-            variant: "secondary",
-            size: "xl",
-          },
-          {
-            navLink: {
-              title: "Free Strategy Call",
-              url: "/book-a-meeting",
-              follow: false,
-            },
-            variant: "outline",
-            size: "xl",
-          },
-        ]}
-      />
     </main>
   );
 }

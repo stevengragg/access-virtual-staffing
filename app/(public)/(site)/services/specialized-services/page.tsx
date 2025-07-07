@@ -1,26 +1,27 @@
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCheck, ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 
-import { CTAFooter } from "@/components/section/cta-footer";
-import { HeroFeature } from "@/components/section/hero-feature";
 import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
-import { ServicesBenefits } from "@/components/section/services-benefits";
 import { ServicesLeft } from "@/components/section/services-left";
-
-// import { ServicesOutline } from "@/components/section/services-outline";
-// import { ServicesRight } from "@/components/section/services-right";
-// import { Testimonials } from "@/components/section/testimonials";
+import { HeroHeaderWBgImg2 } from "@/components/section/hero-header-short-w-bg-img-2";
+import { WhatWeOffer } from "@/components/section/what-we-offer";
+import { ServicesBenefits } from "@/components/section/services-benefits";
+import { AllPlans } from "@/components/section/all-services";
+import StatsSection from "@/components/section/stats-section";
+import { Brands } from "@/components/section/brands";
+import { FaqFooter } from "@/components/section/faq-footer";
+import { BlogContainer } from "@/components/section/blog-container";
 
 export const metadata: Metadata = {
   title:
     "Specialized Services: Training and Development | Access Virtual Staffing",
   description:
-    "Explore our Specialized Services, offering in-depth training programs designed to enhance your team's skills and effectiveness. From Complete Staff Work to Advanced Leadership training, we cover all crucial areas to ensure your virtual staff exceeds your business needs.",
+    "Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth.",
   openGraph: {
     title:
       "Specialized Services: Training and Development | Access Virtual Staffing",
     description:
-      "Explore our Specialized Services, offering in-depth training programs designed to enhance your team's skills and effectiveness. From Complete Staff Work to Advanced Leadership training, we cover all crucial areas to ensure your virtual staff exceeds your business needs.",
+      "Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth.",
     type: "website",
     url: "https://www.accessvirtualstaffing.com/services/specialized-services",
     images: "/opengraph-image.jpg", // Use the specified image URL
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     title:
       "Specialized Services: Training and Development | Access Virtual Staffing",
     description:
-      "Explore our Specialized Services, offering in-depth training programs designed to enhance your team's skills and effectiveness. From Complete Staff Work to Advanced Leadership training, we cover all crucial areas to ensure your virtual staff exceeds your business needs.",
+      "Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth.",
     images: "/twitter-image.jpg", // Use the specified image URL
   },
 };
@@ -41,104 +42,314 @@ export default function SpecializedServices({}: Props) {
   return (
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
-      <HeroHeaderNormal heading="Specialized Services" context="" />
+      <HeroHeaderWBgImg2
+        tagline="Services"
+        heading="Specialized Services: "
+        highlight="Training and Development"
+        description=""
+        buttons={[
+          {
+            navLink: {
+              title: "Book a Free Strategy Call",
+              url: "/book-a-meeting",
+              follow: false,
+            },
+            variant: "cta1",
+            size: "xl",
+            icon: () => <ArrowRight className="" />,
+          },
+          {
+            navLink: {
+              title: "Learn More",
+              url: "/services/basic-plan#how-it-works",
+              follow: false,
+            },
+            variant: "outline",
+            size: "xl",
+          },
+        ]}
+        image={{
+          src: "/bg/public_pages_bg.webp",
+          alt: "About Us Hero Image",
+          width: 1920,
+          height: 1080,
+        }}
+      />
       {/* Services A Section */}
       <ServicesLeft
         heading="Overview"
-        description="Our Specialized Services provide more than just recruitment; we offer in-depth training programs designed to enhance your team’s skills and effectiveness. Our training includes Complete Staff Work, Basic Management training, and Advanced Leadership training. These programs cover crucial areas such as writing job descriptions, setting goals and objectives, performing SWOT analysis, and understanding KRA and KPI metrics. We also focus on identifying gaps and bottlenecks and implementing process improvements. By investing in these specialized training programs, we help ensure that your virtual staff not only meets but exceeds your business needs, driving efficiency and growth in every aspect of your operations."
+        description="Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth."
         button={{
           navLink: {
-            title: "Free Strategy Call",
+            title: "Start Hiring your VA today",
             url: "/book-a-meeting",
             follow: false,
           },
-          variant: "secondary",
+          variant: "cta1",
           size: "xl",
-          icon: () => (
-            <ChevronRight className="text-neutralLightZinc w-6 h-6" />
-          ),
+          icon: () => <ChevronRight className=" w-6 h-6" />,
         }}
         image={{
           src: "/img/services3.webp",
-          alt: "Services Image B",
+          alt: "Services Image A",
           width: 616,
           height: 640,
         }}
       />
 
-      {/* Services Benefits Section */}
-      <ServicesBenefits
-        heading="Benefits of the Specialized Services"
-        description="Our Specialized Services offer targeted training programs designed to enhance your team’s skills and efficiency. With offerings such as Complete Staff Work, Basic Management Training, and Advanced Leadership Training, our programs are tailored to address critical areas like job description writing, goal setting, SWOT analysis, and process improvement."
+      {/* What We Offer Section */}
+      <WhatWeOffer
+        heading="What we offer in our"
+        highlight="Specialized Services"
+        description="Our Specialized Services focus on skill development and business efficiency through:"
         cards={[
           {
-            heading: "Enhanced Employee Skills",
-            description:
-              "Equip your team with advanced skills and methodologies, including KPI tracking and SMART goal setting, to boost their performance and efficiency.",
+            heading: "Complete Staff Work Training",
+            description: "Structured workflows and execution strategies.",
             image: {
-              src: "/img/computer.svg",
-              alt: "Enhanced Employee Skills",
+              src: "/img/working_remotely.svg",
+              alt: "Complete Staff Work Training",
               width: 304,
               height: 160,
             },
           },
           {
-            heading: "Improved Efficiency",
-            description:
-              "Streamline operations using frameworks like PDCA (Plan-Do-Check-Act) and process improvement techniques to reduce bottlenecks and enhance workflow.",
+            heading: "Basic Management Training",
+            description: "Foundational leadership and operational skills.",
             image: {
-              src: "/img/circle-fading-arrow-up.svg",
-              alt: "Improved Efficiency",
+              src: "/img/virtual_staff.svg",
+              alt: "Basic Management Training",
               width: 304,
               height: 160,
             },
           },
           {
-            heading: "Strategic Growth",
-            description:
-              "Develop and execute growth strategies using SWOT analysis and other strategic planning tools to set clear, actionable objectives and drive your business forward.",
+            heading: "Advanced Leadership Training",
+            description: "Strategic decision-making and team development.",
             image: {
-              src: "/img/shrub.svg",
-              alt: "Informed Decision-Making",
-              width: 304,
-              height: 160,
-            },
-          },
-          {
-            heading: "Informed Decision-Making",
-            description:
-              "Utilize comprehensive frameworks such as KPI metrics, SMART criteria, and PDCA cycles to make data-driven decisions and achieve superior business outcomes.",
-            image: {
-              src: "/img/chart-line.svg",
-              alt: "Informed Decision-Making",
+              src: "/img/recruitment_excellence.svg",
+              alt: "Advanced Leadership Training",
               width: 304,
               height: 160,
             },
           },
         ]}
+        button={{
+          navLink: {
+            title: "Get Started with Specialized Services",
+            url: "/book-a-meeting",
+            follow: false,
+          },
+          variant: "cta1",
+          size: "xl",
+          icon: () => <ChevronRight className=" w-6 h-6" />,
+        }}
       />
-      {/* Hero feature Section */}
-      <HeroFeature />
-      {/* Testimonials Section */}
-      {/* <Testimonials /> */}
-      {/* CTA Footer Section */}
-      <CTAFooter
-        heading="Take the First Step with"
-        heading2="Access Virtual Staffing"
-        description="Focus on what matters—let us handle the rest. Get the right virtual assistant for your needs."
+      {/* Benefits Section */}
+      <ServicesBenefits
+        tagline=""
+        heading="Benefits of the "
+        highlight="Specialized Services"
+        description="With our Specialized Services, your team gets the tools and training needed to perform at their best, optimize workflows, and contribute to business success."
+        features={[
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph:
+              "Enhanced Employee Skills - Equip your team with advanced skills like KPI tracking, SMART goal setting, and leadership principles for higher productivity.",
+          },
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph:
+              "Improved Efficiency - Implement proven frameworks like PDCA (Plan-Do-Check-Act) and process improvement techniques to streamline operations.",
+          },
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph:
+              "Strategic Growth - Develop scalable strategies using SWOT analysis and performance metrics to drive long-term business success.",
+          },
+          {
+            icon: <CheckCheck className="size-6 text-green-400" />,
+            paragraph:
+              "Informed Decision-Making - Leverage data-driven insights through KPI tracking, SMART objectives, and structured evaluations to refine business strategies.",
+          },
+        ]}
+        image={{
+          src: "/img/heroimage3.webp",
+          alt: "Benefits of the Specialized Services Plan",
+          width: 1000,
+          height: 1000,
+        }}
+        button={{
+          navLink: {
+            title: "Start Hiring Now",
+            url: "/book-a-meeting",
+            follow: false,
+          },
+          variant: "cta1",
+          size: "xl",
+          icon: () => <ChevronRight className=" w-6 h-6" />,
+        }}
+      />
+
+      {/* All Services Section */}
+      <AllPlans
+        heading="Our"
+        highlight="Services"
+        cards={[
+          {
+            heading: "Basic Plan",
+            description:
+              "Our Basic Plan offers project-based staffing without the burden of managing full-time employees. We handle recruitment and payroll, so you get the right talent—fast and hassle-free.",
+
+            link: "/services/basic-plan",
+            features: [
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "General virtual staff",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Skilled staff",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "High-level professionals",
+              },
+            ],
+          },
+          {
+            heading: "Standard Plan",
+            description:
+              "Scale with ease using our Standard Plan—complete recruitment, timekeeping, and payroll management in one. Ideal for businesses needing a structured, all-in-one workforce solution.",
+
+            link: "/services/standard-plan",
+            features: [
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Expert Recruitment",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Efficient Timekeeping",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Comprehensive Payroll & Benefits Administration",
+              },
+            ],
+          },
+          {
+            heading: "Specialized Services",
+            description:
+              "Enhance your team with our Specialized Services—targeted training in Complete Staff Work, Management, and Leadership. We cover essentials like goal setting, KPIs, and process improvement to boost your virtual staff’s performance and drive growth..",
+
+            link: "/services/specialized-services",
+            features: [
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Complete Staff Work Training",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Basic Management Training",
+              },
+              {
+                icon: <CheckCheck className="size-6 text-green-400" />,
+                paragraph: "Advanced Leadership Training",
+              },
+            ],
+          },
+        ]}
+        button={{
+          navLink: {
+            title: "Start Hiring your VA today",
+            url: "/book-a-meeting",
+            follow: false,
+          },
+          variant: "cta1",
+          size: "xl",
+          icon: () => <ChevronRight className=" w-6 h-6" />,
+        }}
+      />
+
+      {/* Brands Section */}
+      <Brands />
+      {/* Stats Section */}
+      <section
+        id="testimonials"
+        className="px-[5%] py-16 md:py-24 lg:py-28 bg-white"
+      >
+        <div className="container-xl">
+          <div
+            className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20 "
+            data-aos-delay="200"
+            data-aos="fade-up"
+          >
+            <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-neutralDarker">
+              Sneak Peek into our Innovative Journey
+            </h1>
+          </div>
+
+          <div
+            className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20"
+            data-aos-delay="200"
+            data-aos="fade-up"
+          >
+            <StatsSection />
+          </div>
+        </div>
+      </section>
+      {/* FAQ footer section */}
+      <FaqFooter
+        heading="FAQs"
+        description="Find answers to your common questions about our Specialized Services"
+        questions={[
+          {
+            title: "What is included in your training programs?",
+            answer:
+              "We offer three key programs: Complete Staff Work (workflow & execution), Basic Management Training  (foundational leadership), Advanced Leadership Training (strategic decision-making & development).",
+          },
+          {
+            title: "Who is the training for—managers or virtual assistants?",
+            answer:
+              "Both. Our programs are designed for virtual staff, team leaders, and managers—anyone looking to improve performance, leadership, or operational efficiency.",
+          },
+          {
+            title: "How will these trainings benefit my business?",
+            answer:
+              "Your team will gain practical skills like goal setting, KPI tracking, SWOT analysis, and process improvement, which translate directly to better productivity and scalable growth.",
+          },
+          {
+            title: "How much does it cost?",
+            answer:
+              "The cost of our virtual staffing services depends on factors such as the type of tasks, the level of expertise required, and the number of hours needed. For more information, please contact us at support@accessvirtualstaffing.com",
+          },
+        ]}
+        footerDescription="Do you have other questions?"
         buttons={[
           {
             navLink: {
-              title: "Schedule a Free Strategy Call",
-              url: "/book-a-meeting",
+              title: "See more",
+              url: "/faq",
               follow: false,
             },
-            icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
             variant: "outline",
+            size: "xl",
+            icon: () => <ChevronRight className=" text-deepZinc w-6 h-6" />,
+          },
+          {
+            navLink: {
+              title: "Contact Us",
+              url: "/contact-us",
+              follow: false,
+            },
+            variant: "secondary",
             size: "xl",
           },
         ]}
       />
+      {/* Blog Section */}
+      <BlogContainer />
     </main>
   );
 }

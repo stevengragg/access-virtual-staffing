@@ -7,6 +7,7 @@ import configPromise from "@payload-config";
 import { getPayload } from "payload";
 import React from "react";
 import PageClient from "./page.client";
+import { HeroHeaderWBgImg } from "@/components/section/hero-header-short-w-bg-img";
 
 export const dynamic = "force-static";
 export const revalidate = 600;
@@ -28,23 +29,24 @@ export default async function Page() {
   });
 
   return (
-    <div className="pt-24 pb-24">
+    <main className="w-full mx-auto bg-primaryBlue overflow-hidden">
       <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <div className="text-center mb-12 ">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-zinc-800">
-              The AVS Blog
-            </h1>
-            <p className="text-lg text-zinc-700">
-              Find the latest news and insights about Virtual Staffing and
-              Remote Talents
-            </p>
-          </div>
-        </div>
-      </div>
 
-      <div className="container mb-8">
+      <HeroHeaderWBgImg
+        tagline=""
+        heading="The AVS Blog"
+        description="Find the latest news and insights about Virtual Staffing and
+              Remote Talents."
+        buttons={[]}
+        image={{
+          src: "/bg/resources_bg.webp",
+          alt: "Resources Background",
+          width: 1920,
+          height: 1080,
+        }}
+      />
+
+      <div className="container my-8">
         <PageRange
           collection="posts"
           currentPage={posts.page}
@@ -55,12 +57,12 @@ export default async function Page() {
 
       <CollectionArchive posts={posts.docs} />
 
-      <div className="container">
+      <div className="container mb-16 md:mb-24 ">
         {posts.totalPages > 1 && posts.page && (
           <Pagination page={posts.page} totalPages={posts.totalPages} />
         )}
       </div>
-    </div>
+    </main>
   );
 }
 
