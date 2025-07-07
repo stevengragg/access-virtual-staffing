@@ -22,7 +22,7 @@ export const LongFormContent = (props: LongFormContentProps) => {
   return (
     <section
       id="long_form_content"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
@@ -32,15 +32,15 @@ export const LongFormContent = (props: LongFormContentProps) => {
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className="mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full  aspect-square object-center shadow transition-transform hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
+              className="mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full  aspect-square object-center shadow transition-transform hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-primaryBlue"
               data-aos="fade-up"
             />
           </div>
           <div className="" data-aos="fade-up" data-aos-delay="200">
-            <h1 className="mb-5 text-white text-lg sm:text-xl md:text-2xl lg:text-4xl max-w-2xl mx-auto leading-relaxed text-center lg:text-left">
+            <h1 className="mb-5 text-neutralDarker text-lg sm:text-xl md:text-2xl lg:text-4xl max-w-2xl mx-auto leading-relaxed text-center lg:text-left">
               {quote}
             </h1>
-            <p className="text-sm sm:text-md lg:text-lg font-semibold text-white leading-relaxed text-center lg:text-left">
+            <p className="text-sm sm:text-md lg:text-lg font-semibold text-neutralDarker leading-relaxed text-center lg:text-left">
               {author}
             </p>
 
@@ -54,11 +54,11 @@ export const LongFormContent = (props: LongFormContentProps) => {
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-neutralDarker text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed px-4">
             {description}
           </p>
 
-          <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed mt-4 px-4">
+          <p className="text-neutralDarker text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed mt-4 px-4">
             {description2}
           </p>
         </div>

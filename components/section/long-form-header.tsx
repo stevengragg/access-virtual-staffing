@@ -30,7 +30,7 @@ export const LongFormHeader = (props: LongFormHeaderProps) => {
   return (
     <section
       id="long_form_header1"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
     >
       <div className="container flex flex-col items-start">
         <div

@@ -5,7 +5,10 @@ import { LongFormContent } from "@/components/section/long-form-content";
 import { LongFormContent2 } from "@/components/section/long-form-content2";
 import { LongFormHeader } from "@/components/section/long-form-header";
 import { HeroHeaderWBgImg } from "@/components/section/hero-header-short-w-bg-img";
-import { Team } from "@/components/section/team";
+import { BlogContainer } from "@/components/section/blog-container";
+import { Brands } from "@/components/section/brands";
+import GlobalOffices from "@/components/section/global-offices";
+// import { Team } from "@/components/section/team";
 
 export const metadata: Metadata = {
   title: "About Us | Access Virtual Staffing",
@@ -78,9 +81,12 @@ Phil's innovative model offers more than just a staffing solution; it provides a
           height: 500,
         }}
       />
-      {/* Team Section */}
-      <Team />
+      {/* Brands */}
+      <Brands />
       {/* Global Offices */}
+      <GlobalOffices />
+      {/* Blog Container Section*/}
+      <BlogContainer />
     </main>
   );
 }
