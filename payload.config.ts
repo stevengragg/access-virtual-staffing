@@ -5,6 +5,7 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import type {
   HandleUpload,
   HandleDelete,
+  StaticHandler,
 } from "@payloadcms/plugin-cloud-storage/types";
 import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
 import type { UploadApiResponse } from "cloudinary";
@@ -39,10 +40,10 @@ const cloudinaryAdapter = () => ({
   name: "cloudinary-adapter",
   async handleUpload({
     file,
-    collection,
-    data,
-    req,
-    clientUploadContext,
+    collection: _collection,
+    data: _data,
+    req: _req,
+    clientUploadContext: _clientUploadContext,
   }: Parameters<HandleUpload>[0]) {
     try {
       // createing a function that will upload your file in cloudinary
@@ -78,10 +79,10 @@ const cloudinaryAdapter = () => ({
   },
 
   async handleDelete({
-    collection,
-    doc,
+    collection: _collection,
+    doc: _doc,
     filename,
-    req,
+    req: _req,
   }: Parameters<HandleDelete>[0]) {
     console.log("handleDelete has been called");
 
@@ -97,9 +98,14 @@ const cloudinaryAdapter = () => ({
       console.error("Cloudinary Delete Error:", error);
     }
   },
-  staticHandler() {
-    return new Response("Not implemented", { status: 501 });
-  },
+
+  staticHandler: ((req, { params }) => {
+    // Redirect to the Cloudinary URL instead of serving locally
+    const cloudinaryUrl = cloudinary.url(`media/${params.filename}`, {
+      secure: true,
+    });
+    return Response.redirect(cloudinaryUrl, 302);
+  }) satisfies StaticHandler,
 });
 
 export default buildConfig({
