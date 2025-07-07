@@ -64,16 +64,15 @@ export const HeroFeature = (props: Header37Props) => {
 };
 
 export const Header37Defaults: Header37Props = {
-  tagline: "Top Virtual Staffing Agency in Florida, USA",
-  heading:
-    "Unlock Growth and Profitability with Talented Remote Staff—No Hiring Hassles, No Overhead Costs, Just Exceptional Talent Ready to Drive Your Success!",
-  questionBold: "Struggling to find or afford new employees? ",
+  tagline: "World's Premier Virtual Staffing Agency",
+  heading: "Scale Your Business with Top Remote Talent—No Hiring Headaches",
+  questionBold: "Need Skilled Staff Without the Overhead? ",
   description1:
-    " Is your company’s growth stalled due to a lack of skilled talent? Tired of the high costs of Medicare, FICA, worker’s compensation, and exorbitant employee benefits, not to mention the risks of potential lawsuits? Imagine how quickly your business could grow and become highly profitable with a team of talented, loyal, and hardworking remote staff. At Access Virtual Staffing, we provide the skilled professionals you need without the hiring hassles or overhead costs. Discover the power of exceptional remote talent and unlock your company's full potential today!",
+    "Access Virtual Staffing connects you with exceptional remote professionals. No recruitment hassles, no benefits management, no hidden costs. Just ready-to-work talent that drives your business forward.",
   buttons: [
     {
       navLink: {
-        title: "Start Hiring Virtual Staff",
+        title: "Hire Virtual Staff",
         url: "/book-a-meeting",
         follow: false,
       },
@@ -92,7 +91,7 @@ export const Header37Defaults: Header37Props = {
   ],
   image: {
     src: "/img/heroimage2.webp",
-    alt: "Calling image - thanks to Magnet.me",
+    alt: "Professional virtual team collaboration",
     width: 1000,
     height: 1000,
   },

@@ -1,1 +1,0 @@
-ALTER TABLE "file_uploads" ADD COLUMN "cloudinary_id" text;

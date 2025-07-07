@@ -1,1 +1,0 @@
-DROP TABLE "video_links" CASCADE;

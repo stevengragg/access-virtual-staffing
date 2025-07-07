@@ -1,5 +1,6 @@
 import { ImageProps } from "@/types/general";
 import Image from "next/image";
+import { Star } from "lucide-react";
 
 type Props = {
   heading: string;
@@ -17,14 +18,17 @@ export const Brands = (props: Logo3Props) => {
   return (
     <section
       id="brands"
-      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-primaryBrightAqua"
+      className="overflow-hidden py-12 md:py-16 lg:py-20 bg-robinsEggBlueLighter"
     >
-      <div className="container mx-auto mb-8 w-full max-w-lg px-[5%] md:mb-10 lg:mb-12">
-        <h1 className="text-center text-base font-bold leading-[1.2] md:text-md md:leading-[1.2]">
+      <div className="container mx-auto mb-8 w-full max-w-2xl px-[5%] md:mb-10 lg:mb-12">
+        <h1
+          className="text-center text-xl font-bold leading-[1.2] md:text-2xl lg:text-4xl md:leading-[1.2] text-black"
+          data-aos="fade-up"
+        >
           {heading}
         </h1>
       </div>
-      <div className="flex items-center pt-7 md:pt-0">
+      {/* <div className="flex items-center pt-7 md:pt-0">
         {Array(2)
           .fill(0)
           .map((_, index) => (
@@ -44,13 +48,25 @@ export const Brands = (props: Logo3Props) => {
               ))}
             </div>
           ))}
+      </div> */}
+      <div className="flex items-center pt-7 md:pt-0" data-aos="fade-up">
+        <div className="flex justify-center w-full">
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className="w-12 h-12 fill-yellow-400 text-yellow-400"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
 export const Logo3Defaults: Logo3Props = {
-  heading: "Trusted by a wide range of clients & businesses in Florida, USA",
+  heading: "Trusted by a wide range of clients & business globally",
   logos: [
     {
       src: "https://relume-assets.s3.amazonaws.com/webflow-logo.svg",

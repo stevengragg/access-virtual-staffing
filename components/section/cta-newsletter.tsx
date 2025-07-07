@@ -21,20 +21,20 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
   return (
     <section
       id="newsletter"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-softGray"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container grid w-full grid-cols-1 items-start justify-between gap-6 md:gap-x-12 md:gap-y-8 lg:grid-cols-[1fr_max-content] lg:gap-x-20">
-        <div className="w-full max-w-lg">
-          <h2 className="mb-3 text-4xl font-bold leading-[1.2] text-deepBlue md:mb-4 md:text-5xl lg:text-6xl text-center lg:text-left">
-            {heading}
+        <div className="w-full max-w-2xl">
+          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-neutralDarker text-center lg:text-left">
+            <span className="text-robinsEggBlueDark">AVS</span> {heading}
           </h2>
-          <p className="text-zinc-800 md:text-md text-center lg:text-left">
+          <p className="text-neutralDarker text-lg md:text-xl lg:text-2xl mx-auto leading-relaxed">
             {description}
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <form
-            action="https://medsurf.us9.list-manage.com/subscribe/post?u=aafc6579016a0403f3ee6bef7&amp;id=24ac809d44&amp;f_id=00f7e8e3f0"
+            action="https://accessvirtualstaffing.us7.list-manage.com/subscribe/post?u=8af96849d97864dc4fc3babe7&amp;id=3dab04282a&amp;f_id=00d1ace4f0"
             method="post"
             id="mc-embedded-subscribe-form"
             name="mc-embedded-subscribe-form"
@@ -44,7 +44,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
             <div className="flex-1">
               <Label
                 htmlFor="mce-EMAIL"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                className="block text-sm font-medium text-zinc-700 mb-2"
               >
                 Email Address <span className="text-red-500">*</span>
               </Label>
@@ -54,7 +54,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
                 id="mce-EMAIL"
                 required
                 placeholder={inputPlaceholder}
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-primaryBlue focus:ring-primaryBlue sm:text-sm"
+                className="w-full rounded-md border-zinc-300 shadow-sm focus:border-primaryBlue focus:ring-primaryBlue sm:text-sm"
               />
               <div
                 className="hidden"
@@ -63,7 +63,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
               >
                 <input
                   type="text"
-                  name="b_aafc6579016a0403f3ee6bef7_24ac809d44"
+                  name="b_8af96849d97864dc4fc3babe7_3dab04282a"
                   tabIndex={-1}
                 />
               </div>
@@ -71,7 +71,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
                 type="submit"
                 name="subscribe"
                 id="mc-embedded-subscribe"
-                className="bg-primaryBlue text-white py-2 px-6 rounded-md hover:bg-oceanBlue mt-5"
+                className="bg-deepBlue text-white py-2 px-6 rounded-md hover:bg-oceanBlue mt-5"
               >
                 Subscribe
               </Button>
@@ -88,14 +88,14 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
 };
 
 export const CtaNewsLetterDefaults: Props = {
-  heading: "AVS Newsletter",
+  heading: "Newsletter",
   description:
-    "Subscribe to our newsletter to get the latest updates and offers in Hiring Virtual Staff and Finding work as a VA!",
+    "Subscribe to our newsletter to get the latest blogs and updates.",
   inputPlaceholder: "Enter your email",
   termsAndConditions: `
     <p class='text-xs'>
       By clicking "Subscribe" you're confirming that you agree with our
-      <a href='/terms-of-service' class='underline'>Terms and Conditions</a>.
+      <a href='/privacy-policy' class='underline'>Terms and Conditions</a>.
     </p>
   `,
 };

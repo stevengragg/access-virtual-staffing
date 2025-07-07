@@ -4,6 +4,9 @@ import { RxChevronRight } from "react-icons/rx";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import Image from "next/image";
 import { ImageProps } from "@/types/general";
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
+import { Post } from "@/payload-types";
 
 type BlogPost = {
   url: string;
@@ -25,20 +28,60 @@ type Props = {
 export type Blog44Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const BlogContainer = (props: Blog44Props) => {
-  const { heading, description, button, blogPosts } = {
+export const BlogContainer = async (props: Blog44Props) => {
+  const { heading, description, button } = {
     ...Blog44Defaults,
     ...props,
   } as Props;
+
+  // Fetch latest 3 posts from Payload CMS
+  const payload = await getPayload({ config: configPromise });
+  const posts = await payload.find({
+    collection: "posts",
+    depth: 1,
+    limit: 3,
+    sort: "-createdAt",
+    overrideAccess: false,
+  });
+
+  // Transform Payload posts to match BlogPost type
+  const blogPosts = posts.docs.map((post: Post) => ({
+    url: `/posts/${post.slug}`,
+    image: {
+      src:
+        post.meta?.image && typeof post.meta.image !== "number"
+          ? post.meta.image.url
+          : "/blog/blog1.webp", // Fallback image if none provided
+      alt:
+        post.meta?.image && typeof post.meta.image !== "number"
+          ? post.meta.image.alt
+          : post.title,
+      width: 1000,
+      height: 1000,
+    },
+    category:
+      post.categories?.[0] && typeof post.categories[0] !== "number"
+        ? post.categories[0].title
+        : "Blog",
+    readTime: "5 min read", // You might want to calculate this based on content length
+    title: post.title,
+    description: post.meta?.description || "",
+  }));
+
   return (
-    <section id="blog_list" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="blog"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
+    >
       <div className="container-xl">
         <div className="mb-12 grid grid-cols-1 items-start justify-start gap-y-8 md:mb-18 md:grid-cols-[1fr_max-content] md:items-end md:justify-between md:gap-x-12 md:gap-y-4 lg:mb-20 lg:gap-x-20">
-          <div className="w-full max-w-lg">
-            <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">
+          <div className="w-full max-w-lg" data-aos="fade-up">
+            <h1 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
               {heading}
             </h1>
-            <p className="md:text-md">{description}</p>
+            <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+              {description}
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-16 lg:grid-cols-3">
@@ -46,12 +89,12 @@ export const BlogContainer = (props: Blog44Props) => {
             <a
               key={index}
               href={post.url}
-              className="flex size-full flex-col items-center justify-start border border-deepZinc rounded-b-lg bg-softGray"
+              className="flex size-full flex-col items-center justify-start border border-deepZinc rounded-b-lg bg-softZinc"
             >
               <div className="relative w-full overflow-hidden pt-[66%]">
                 <Image
-                  src={post.image.src}
-                  alt={post.image.alt}
+                  src={post.image.src || ""}
+                  alt={post.image.alt || ""}
                   className="absolute inset-0 size-full object-cover"
                   width={post.image.width}
                   height={post.image.height}
@@ -73,20 +116,18 @@ export const BlogContainer = (props: Blog44Props) => {
                   </h2>
                   <p>{post.description}</p>
                   <Button
-                    variant={post.button.variant}
-                    size={post.button.size}
-                    iconRight={post.button.iconRight}
-                    iconLeft={post.button.iconLeft}
-                    className="mt-6 flex items-center justify-center gap-x-1"
+                    variant="ghost"
+                    size="sm"
+                    className="mt-6 flex items-center justify-center gap-x-1 rounded-lg bg-deepBlue text-white "
                   >
-                    {post.button.title}
+                    Click to View post
                   </Button>
                 </div>
               </div>
             </a>
           ))}
         </div>
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center" data-aos="fade-up">
           <LinkButton {...button} />
         </div>
       </div>
@@ -95,79 +136,17 @@ export const BlogContainer = (props: Blog44Props) => {
 };
 
 export const Blog44Defaults: Blog44Props = {
-  heading: "Trends and Insights",
+  heading: "The AVS Blog",
   description:
     "Stay informed with our insightful blog posts and helpful links.",
   button: {
     navLink: {
       title: "Read more insights",
-      url: "https://accessvirtualstaffing.blogspot.com/",
-      follow: true,
+      url: "/posts",
+      follow: false,
     },
-    variant: "secondary",
-    size: "lg",
+    variant: "cta1",
+    size: "xl",
   },
-  blogPosts: [
-    {
-      url: "https://accessvirtualstaffing.blogspot.com/2024/09/how-virtual-staffing-supercharged.html",
-      image: {
-        src: "/blog/blog1.webp",
-        alt: "Blog 1 Image",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Virtual Staffing",
-      readTime: "5 min read",
-      title:
-        "How Virtual Staffing Supercharged Access Insurance Underwriting: Our Transformation Story",
-      description:
-        "Access Insurance Underwriting, led by CEO Phil Wardell, transformed their business with virtual staffing, cutting costs, boosting efficiency, and driving unexpected growth. Here’s the full story.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "https://accessvirtualstaffing.blogspot.com/2024/09/why-virtual-staffing-is-key-to-growing.html",
-      image: {
-        src: "/blog/blog2.webp",
-        alt: "Blog 2 image",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Business",
-      readTime: "5 min read",
-      title: "Why Virtual Staffing is Key to Growing Your Business in Florida",
-      description:
-        "Virtual staffing, particularly through Access Virtual Staffing's bilingual team, enables Florida businesses to cut overhead costs and strategically expand by reaching a broader, diverse audience. Read the full article.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-    {
-      url: "https://accessvirtualstaffing.blogspot.com/2024/09/why-philippines-is-go-to-hub-for.html",
-      image: {
-        src: "/blog/blog3.webp",
-        alt: "Blog image 3",
-        width: 1000,
-        height: 1000,
-      },
-      category: "Virtual Staffing",
-      readTime: "5 min read",
-      title: "Why the Philippines Is the Go-To Hub for Offshore Virtual Staff",
-      description:
-        "Have you ever wondered why so many companies are tapping into the virtual talent pool in the Philippines?. Here’s the full story.",
-      button: {
-        title: "Read more",
-        variant: "link",
-        size: "link",
-        iconRight: <RxChevronRight />,
-      },
-    },
-  ],
+  blogPosts: [], // This will be populated from Payload CMS
 };

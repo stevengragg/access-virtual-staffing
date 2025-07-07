@@ -20,33 +20,47 @@ export const LongFormContent = (props: LongFormContentProps) => {
     ...props,
   } as Props;
   return (
-    <section id="long_form_content" className="px-[5%] py-4 lg:py-6">
-      <div className="container-xl">
+    <section
+      id="long_form_content"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
+    >
+      <div className="container">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className="order-first lg:order-last mx-auto">
+          <div className="relative lg:order-last w-full order-first duration-200 hover:scale-105">
             <Image
               src={image.src}
-              className=" object-cover rounded-lg "
               alt={image.alt}
               width={image.width}
               height={image.height}
+              className="mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full  aspect-square object-center shadow transition-transform hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-primaryBlue"
+              data-aos="fade-up"
             />
           </div>
-          <div className="">
-            <h1 className="mb-5 text-2xl font-bold md:mb-6 lg:text-4xl">
+          <div className="" data-aos="fade-up" data-aos-delay="200">
+            <h1 className="mb-5 text-neutralDarker text-lg sm:text-xl md:text-2xl lg:text-4xl max-w-2xl mx-auto leading-relaxed text-center lg:text-left">
               {quote}
             </h1>
-            <p className="text-xs lg:text-sm font-normal">{author}</p>
+            <p className="text-sm sm:text-md lg:text-lg font-semibold text-neutralDarker leading-relaxed text-center lg:text-left">
+              {author}
+            </p>
 
-            <div className="mt-6 md:mt-8">
+            <div className="mt-6 md:mt-8 text-center lg:text-left">
               {button && <LinkButton {...button} className="py-2 px-0" />}
             </div>
           </div>
         </div>
-        <div className="mt-8 md:mt-12 lg:mt-14">
-          <p className="text-md lg:text-lg font-medium">{description}</p>
+        <div
+          className="mt-8 md:mt-12 lg:mt-14 text-left"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <p className="text-neutralDarker text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed px-4">
+            {description}
+          </p>
 
-          <p className="text-md lg:text-lg font-medium mt-4">{description2}</p>
+          <p className="text-neutralDarker text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed mt-4 px-4">
+            {description2}
+          </p>
         </div>
       </div>
     </section>

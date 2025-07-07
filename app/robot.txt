@@ -1,7 +1,0 @@
-User-Agent: *
-Disallow: /app/
-Disallow: /robot.txt
-
-Allow: /
-
-Sitemap: https://www.accessvirtualstaffing.com/sitemap.xml

@@ -9,6 +9,7 @@ import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { ImageProps } from "@/types/general";
 import GoogleMapLink from "../ui/googlemap-link";
+import { cn } from "@/lib/utils";
 
 type Links = {
   title: string;
@@ -62,9 +63,12 @@ export const Footer = (props: Footer11Props) => {
     ...props,
   } as Props;
   return (
-    <footer id="footer" className="px-[5%] py-12 md:py-18 lg:py-20 bg-deepBlue">
+    <footer
+      id="footer"
+      className="px-[5%] py-12 md:py-18 lg:py-20  text-zinc-100 bg-white"
+    >
       <div className="container-xl">
-        <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  border border-neutralLightZinc rounded-lg p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
+        <div className="grid grid-cols-1 gap-x-[4vw] gap-y-12  p-8 md:gap-y-16 md:p-12 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4">
           <div className="flex flex-col">
             <div className="mb-6 md:mb-8  ">
               <a href={logo.url} className="w-full">
@@ -77,7 +81,7 @@ export const Footer = (props: Footer11Props) => {
                 />
               </a>
             </div>
-            <div className="mb-6 md:mb-8 text-white">
+            <div className="mb-6 md:mb-8 text-neutralDarker font-semibold">
               <div className="space-x-2 flex flex-row items-start">
                 <span>{address.icon()}</span>
                 <GoogleMapLink address={address.value} />
@@ -92,8 +96,20 @@ export const Footer = (props: Footer11Props) => {
                 </a>
               </div>
             </div>
+            <div className="grid grid-flow-col grid-cols-[max-content] items-start justify-start gap-x-3">
+              {socialMediaLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-8 md:gap-y-4 text-white">
+          <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-8 md:gap-y-4 text-neutralDarker">
             {columnLinks.map((column, index) => (
               <ul key={index}>
                 {column.links.map((link, linkIndex) => (
@@ -113,10 +129,12 @@ export const Footer = (props: Footer11Props) => {
         </div>
 
         <div className="flex flex-col-reverse items-start justify-between pb-4 pt-6 text-sm md:flex-row md:items-center md:pb-0 md:pt-8">
-          <p className="mt-8 md:mt-0 text-white">{footerText}</p>
-          <ul className="grid grid-flow-row grid-cols-[max-content] justify-center gap-x-0 gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0 text-white">
+          <p className="mt-8 md:mt-0 text-neutralDarker font-semibold">
+            {footerText}
+          </p>
+          <ul className="grid grid-flow-row grid-cols-[max-content] justify-center gap-x-0 gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0 text-neutralDarker">
             {footerLinks.map((link, index) => (
-              <li key={index} className="underline">
+              <li key={index} className="underline font-semibold">
                 <a href={link.url} className="hover:underline">
                   {link.title}
                 </a>
@@ -138,36 +156,52 @@ export const Footer11Defaults: Footer11Props = {
     height: 65,
   },
   address: {
-    icon: () => <MapPin className="text-white w-6 h-6" />,
+    icon: () => <MapPin className="text-neutralDarker w-6 h-6" />,
     value: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
   },
   contact: {
-    icon: () => <Mail className="text-white w-6 h-6" />,
+    icon: () => <Mail className="text-neutralDarker w-6 h-6" />,
 
     email: "support@accessvirtualstaffing.com",
   },
+  socialMediaLinks: [
+    {
+      url: "https://www.facebook.com/profile.php?id=61570533775513",
+      icon: <BiLogoFacebookCircle className="size-6 text-neutralDarker" />,
+    },
+    {
+      url: "https://www.instagram.com/access_virtual_staffing",
+      icon: <BiLogoInstagram className="size-6 text-neutralDarker" />,
+    },
+    {
+      url: "https://x.com/Access_VAs16",
+      icon: <FaXTwitter className="size-6 p-0.5 text-neutralDarker" />,
+    },
+    {
+      url: "https://www.linkedin.com/company/access-virtual-staffing/",
+      icon: <BiLogoLinkedinSquare className="size-6 text-neutralDarker" />,
+    },
+    {
+      url: "https://www.youtube.com/@AccessVirtualStaffing",
+      icon: <BiLogoYoutube className="size-6 text-neutralDarker" />,
+    },
+  ],
   columnLinks: [
     {
       links: [
+        { title: "Book a Strategy Call", url: "/book-a-meeting" },
         { title: "About Us", url: "/about-us" },
-        { title: "Hire Virtual Staff", url: "/book-a-meeting" },
-        { title: "Contact Us", url: "/contact-us" },
-        { title: "FAQs", url: "/faq" },
+        { title: "Success Stories", url: "/success-stories" },
         {
-          title: "Blog",
-          url: "https://accessvirtualstaffing.blogspot.com/",
-          follow: true,
-        },
-        {
-          title: "Fiverr with AVS",
-          url: process.env.NEXT_PUBLIC_FIVERR_AFFILIATE_URL || "#",
+          title: "Find Work",
+          url: "https://www.accessvirtualjobs.com",
           follow: true,
         },
       ],
     },
     {
       links: [
-        { title: "Services", url: "/services" },
+        // { title: "Services", url: "/services" },
         { title: "Basic Plan", url: "/services/basic-plan" },
         { title: "Standard Plan", url: "/services/standard-plan" },
         {
@@ -178,15 +212,43 @@ export const Footer11Defaults: Footer11Props = {
     },
     {
       links: [
-        { title: "For Talents", url: "/talent" },
-        { title: "Remote Jobs", url: "/talent/find-work" },
-        { title: "Applicant Portal", url: "/talent/portal" },
+        {
+          title: "The AVS Blog",
+          url: "/posts",
+        },
+        { title: "Contact Us", url: "/contact-us" },
+        { title: "FAQs", url: "/faq" },
+
+        {
+          title: "Fiverr with AVS",
+          url: process.env.NEXT_PUBLIC_FIVERR_AFFILIATE_URL || "#",
+          follow: true,
+        },
       ],
     },
+    // {
+    //   links: [
+    //     {
+    //       title: "Access Virtual Jobs",
+    //       url: "https://www.accessvirtualjobs.com",
+    //       follow: true,
+    //     },
+    //     {
+    //       title: "Remote Jobs",
+    //       url: "https://www.accessvirtualjobs.com/browse-jobs",
+    //       follow: true,
+    //     },
+    //     {
+    //       title: "Applicant Portal",
+    //       url: "https://www.accessvirtualjobs.com/login",
+    //       follow: true,
+    //     },
+    //   ],
+    // },
   ],
   footerText: `© 2024 - ${new Date().getFullYear()} Access Virtual Staffing. All rights reserved.`,
   footerLinks: [
     { title: "Privacy Policy", url: "/privacy-policy" },
-    { title: "Terms of Service", url: "/terms-of-service" },
+    { title: "Cookie Policy", url: "/cookie-policy" },
   ],
 };

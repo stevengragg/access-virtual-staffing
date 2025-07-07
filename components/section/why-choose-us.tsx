@@ -26,17 +26,17 @@ export const WhyChooseUs = ({
         <p className="text-sm font-semibold text-deepBlue uppercase">
           {tagline}
         </p>
-        <h2 className="text-3xl font-bold text-gray-900 leading-tight mt-2">
+        <h2 className="text-3xl font-bold text-zinc-900 leading-tight mt-2">
           {heading}
         </h2>
-        {description && <p className="text-gray-600 mt-4">{description}</p>}
+        {description && <p className="text-zinc-600 mt-4">{description}</p>}
 
         {/* Bullet Points */}
         <ul className="mt-6 space-y-3">
           {bulletPoints.map((item, index) => (
             <li key={index} className="flex items-center space-x-3">
               <span className="text-deepBlue">✔</span>
-              <p className="text-gray-700">{item}</p>
+              <p className="text-zinc-700">{item}</p>
             </li>
           ))}
         </ul>

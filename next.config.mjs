@@ -1,7 +1,34 @@
+import { withPayload } from "@payloadcms/next/withPayload";
+
+import redirects from "./redirects.mjs";
+
+function ensureURLProtocol(url) {
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    return "https://" + url;
+  }
+  return url;
+}
+
+const rawServerUrl =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  process.env.NEXT_PUBLIC_SERVER_URL ||
+  "http://localhost:3000";
+const NEXT_PUBLIC_SERVER_URL = ensureURLProtocol(rawServerUrl);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
+      ...[
+        NEXT_PUBLIC_SERVER_URL /* 'https://www.accessvirtualstaffing.com' */,
+      ].map((item) => {
+        const url = new URL(item);
+
+        return {
+          hostname: url.hostname,
+          protocol: url.protocol.replace(":", ""),
+        };
+      }),
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
@@ -31,8 +58,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
     ],
   },
+  reactStrictMode: true,
+  redirects,
 };
 
-export default nextConfig;
+export default withPayload(nextConfig, { devBundleServerPackages: false });
