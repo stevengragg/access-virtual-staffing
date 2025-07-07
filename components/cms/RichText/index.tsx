@@ -77,8 +77,27 @@ export default function RichText(props: Props) {
         {
           container: enableGutter,
           "max-w-none": !enableGutter,
-          "mx-auto prose md:prose-md dark:prose-invert": enableProse,
+          "mx-auto prose prose-lg md:prose-xl lg:prose-2xl dark:prose-invert prose-primaryBlue": enableProse,
         },
+        // Enhanced prose styling for blog content
+        enableProse && [
+          "prose-headings:text-neutralDarker prose-headings:font-bold",
+          "prose-h1:text-3xl md:prose-h1:text-4xl lg:prose-h1:text-5xl prose-h1:leading-tight",
+          "prose-h2:text-2xl md:prose-h2:text-3xl lg:prose-h2:text-4xl prose-h2:leading-tight prose-h2:mt-12 prose-h2:mb-6",
+          "prose-h3:text-xl md:prose-h3:text-2xl lg:prose-h3:text-3xl prose-h3:leading-tight prose-h3:mt-10 prose-h3:mb-4",
+          "prose-p:text-neutralDarker/90 prose-p:leading-relaxed prose-p:mb-6",
+          "prose-a:text-primaryBlue prose-a:font-semibold prose-a:no-underline hover:prose-a:text-primaryBrightAqua hover:prose-a:underline",
+          "prose-strong:text-neutralDarker prose-strong:font-bold",
+          "prose-em:text-neutralDarker/80",
+          "prose-blockquote:border-l-primaryBrightAqua prose-blockquote:bg-robinsEggBlueLighter prose-blockquote:p-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic",
+          "prose-blockquote:text-neutralDarker prose-blockquote:font-medium",
+          "prose-ul:my-6 prose-ol:my-6",
+          "prose-li:text-neutralDarker/90 prose-li:leading-relaxed prose-li:mb-2",
+          "prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-primaryBlue prose-code:font-medium",
+          "prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg prose-pre:p-6",
+          "prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8",
+          "prose-hr:border-gray-200 prose-hr:my-12",
+        ],
         className
       )}
       {...rest}

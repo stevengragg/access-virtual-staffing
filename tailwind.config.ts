@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-import { ne } from "drizzle-orm";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -49,6 +48,9 @@ const config: Config = {
     },
   },
   presets: [require("@relume_io/relume-tailwind")],
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
 };
 export default config;

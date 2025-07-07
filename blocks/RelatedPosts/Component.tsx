@@ -17,15 +17,29 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
   const { className, docs, introContent } = props;
 
   return (
-    <div className={clsx("lg:container", className)}>
-      {introContent && <RichText data={introContent} enableGutter={false} />}
+    <div className={clsx("w-full", className)}>
+      {introContent && (
+        <div className="mb-12 text-center">
+          <RichText data={introContent} enableGutter={false} />
+        </div>
+      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {docs?.map((doc, index) => {
           if (typeof doc === "string") return null;
 
           return (
-            <Card key={index} doc={doc} relationTo="posts" showCategories />
+            <div
+              key={index}
+              className="transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              <Card 
+                doc={doc} 
+                relationTo="posts" 
+                showCategories 
+                className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-xl overflow-hidden"
+              />
+            </div>
           );
         })}
       </div>

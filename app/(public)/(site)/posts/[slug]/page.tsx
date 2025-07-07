@@ -50,7 +50,7 @@ export default async function Post({ params: paramsPromise }: Args) {
   if (!post) return <PayloadRedirects url={url} />;
 
   return (
-    <article className="pb-16">
+    <article className="min-h-screen bg-white">
       <PageClient />
 
       {/* Allows redirects for valid pages too */}
@@ -60,23 +60,38 @@ export default async function Post({ params: paramsPromise }: Args) {
 
       <PostHero post={post} />
 
-      <div className="flex flex-col items-center gap-4 pt-8">
-        <div className="container">
+      {/* Main Content Section */}
+      <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-white">
+        <div className="container max-w-4xl mx-auto">
           <RichText
-            className="max-w-[48rem] mx-auto"
+            className="prose prose-lg md:prose-xl lg:prose-2xl max-w-none mx-auto leading-relaxed"
             data={post.content}
             enableGutter={false}
+            enableProse={true}
           />
-          {post.relatedPosts && post.relatedPosts.length > 0 && (
+        </div>
+      </section>
+
+      {/* Related Posts Section */}
+      {post.relatedPosts && post.relatedPosts.length > 0 && (
+        <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutralDarker mb-4">
+                Related Articles
+              </h2>
+              <p className="text-lg text-neutralDarker/80 max-w-2xl mx-auto">
+                Discover more insights and expert perspectives on virtual staffing
+              </p>
+            </div>
             <RelatedPosts
-              className="mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"
               docs={post.relatedPosts.filter(
                 (post) => typeof post === "object"
               )}
             />
-          )}
-        </div>
-      </div>
+          </div>
+        </section>
+      )}
     </article>
   );
 }
