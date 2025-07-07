@@ -68,7 +68,7 @@ export default function PublicRootLayout({
   return (
     <>
       <SiteNavigation2 />
-      <div className={cn(!isMobile && "pt-[60px]")}>{children}</div>
+      <div className={cn(!isMobile && "pt-[120px]")}>{children}</div>
       <StrategyCallModal />
       <ScrollToTop />
       <LiveChatWidget />
