@@ -81,7 +81,8 @@ export default async function Post({ params: paramsPromise }: Args) {
                 Related Articles
               </h2>
               <p className="text-lg text-neutralDarker/80 max-w-2xl mx-auto">
-                Discover more insights and expert perspectives on virtual staffing
+                Discover more insights and expert perspectives on virtual
+                staffing
               </p>
             </div>
             <RelatedPosts

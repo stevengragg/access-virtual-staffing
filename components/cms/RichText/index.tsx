@@ -77,7 +77,8 @@ export default function RichText(props: Props) {
         {
           container: enableGutter,
           "max-w-none": !enableGutter,
-          "mx-auto prose prose-lg md:prose-xl lg:prose-2xl dark:prose-invert prose-primaryBlue": enableProse,
+          "mx-auto prose prose-lg md:prose-xl lg:prose-2xl dark:prose-invert prose-primaryBlue":
+            enableProse,
         },
         // Enhanced prose styling for blog content
         enableProse && [

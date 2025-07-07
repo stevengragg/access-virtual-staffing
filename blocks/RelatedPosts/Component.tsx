@@ -33,10 +33,10 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
               key={index}
               className="transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
-              <Card 
-                doc={doc} 
-                relationTo="posts" 
-                showCategories 
+              <Card
+                doc={doc}
+                relationTo="posts"
+                showCategories
                 className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-xl overflow-hidden"
               />
             </div>

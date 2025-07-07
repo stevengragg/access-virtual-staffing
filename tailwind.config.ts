@@ -48,9 +48,6 @@ const config: Config = {
     },
   },
   presets: [require("@relume_io/relume-tailwind")],
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
 export default config;

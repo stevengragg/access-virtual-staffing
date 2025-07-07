@@ -51,7 +51,7 @@ export const Card: React.FC<{
             <div className="text-white text-center p-4">
               <div className="w-12 h-12 mx-auto mb-2 opacity-50">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM13.96 12.29L11.21 15.83L9.25 13.47L6.5 17H17.5L13.96 12.29Z"/>
+                  <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM13.96 12.29L11.21 15.83L9.25 13.47L6.5 17H17.5L13.96 12.29Z" />
                 </svg>
               </div>
               <p className="text-sm font-medium">No Image Available</p>
@@ -59,8 +59,8 @@ export const Card: React.FC<{
           </div>
         )}
         {metaImage && typeof metaImage !== "string" && (
-          <Media 
-            resource={metaImage} 
+          <Media
+            resource={metaImage}
             size="33vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
@@ -78,7 +78,8 @@ export const Card: React.FC<{
               {categories?.map((category, index) => {
                 if (typeof category === "object") {
                   const { title: titleFromCategory } = category;
-                  const categoryTitle = titleFromCategory || "Untitled category";
+                  const categoryTitle =
+                    titleFromCategory || "Untitled category";
 
                   return (
                     <span
@@ -99,8 +100,8 @@ export const Card: React.FC<{
         {titleToUse && (
           <div className="mb-3 flex-1">
             <h3 className="text-xl md:text-2xl font-bold text-neutralDarker leading-tight group-hover:text-primaryBlue transition-colors duration-300">
-              <Link 
-                href={href} 
+              <Link
+                href={href}
                 ref={link.ref}
                 className="line-clamp-3 hover:text-primaryBlue"
               >
@@ -121,18 +122,23 @@ export const Card: React.FC<{
 
         {/* Read More Link */}
         <div className="mt-4 pt-4 border-t border-gray-100">
-          <Link 
+          <Link
             href={href}
             className="inline-flex items-center text-primaryBlue font-semibold text-sm hover:text-primaryBrightAqua transition-colors duration-300 group"
           >
             Read Article
-            <svg 
-              className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
-              fill="none" 
-              stroke="currentColor" 
+            <svg
+              className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </Link>
         </div>

@@ -52,7 +52,9 @@ export const PostHero: React.FC<{
                         <span className="px-3 py-1 bg-primaryBrightAqua/20 backdrop-blur-sm rounded-full border border-primaryBrightAqua/30">
                           {titleToUse}
                         </span>
-                        {!isLast && <span className="text-primaryBrightAqua">•</span>}
+                        {!isLast && (
+                          <span className="text-primaryBrightAqua">•</span>
+                        )}
                       </React.Fragment>
                     );
                   }
@@ -86,7 +88,7 @@ export const PostHero: React.FC<{
                 <p className="text-sm md:text-base font-medium text-primaryBrightAqua uppercase tracking-wide">
                   Published
                 </p>
-                <time 
+                <time
                   dateTime={publishedAt}
                   className="text-base md:text-lg font-semibold"
                 >
