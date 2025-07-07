@@ -2,9 +2,18 @@ import { withPayload } from "@payloadcms/next/withPayload";
 
 import redirects from "./redirects.mjs";
 
-const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? process.env.VERCEL_PROJECT_PRODUCTION_URL
-  : undefined || process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+function ensureURLProtocol(url) {
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    return "https://" + url;
+  }
+  return url;
+}
+
+const rawServerUrl =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  process.env.NEXT_PUBLIC_SERVER_URL ||
+  "http://localhost:3000";
+const NEXT_PUBLIC_SERVER_URL = ensureURLProtocol(rawServerUrl);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
