@@ -22,7 +22,7 @@ export const HeroFeature3 = (props: HeroFeature3Props) => {
     ...props,
   };
   return (
-    <section id="cta" className="px-[5%] py-8 md:py-12 bg-neutralDarker">
+    <section id="cta" className="px-[5%] py-8 md:py-12 bg-primaryBlue">
       <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div className="text-white">
@@ -46,7 +46,6 @@ export const HeroFeature3 = (props: HeroFeature3Props) => {
             </p>
             <div
               data-aos="fade-up"
-              data-aos-delay="400"
               className="mt-6 flex flex-wrap items-center gap-4 md:mt-8"
             >
               {buttons.map((button, index) => (

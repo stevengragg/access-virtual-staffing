@@ -26,7 +26,7 @@ export const ServiceFeatureRight = (props: ServiceFeatureRightProps) => {
   return (
     <section
       id={hyperlink ?? "feature"}
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
@@ -41,7 +41,10 @@ export const ServiceFeatureRight = (props: ServiceFeatureRightProps) => {
               />
             )}
           </div>
-          <div className="order-1 md:order-1 text-white" data-aos="fade-up">
+          <div
+            className="order-1 md:order-1 text-neutralDarker"
+            data-aos="fade-up"
+          >
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
             <h2 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
               {heading}

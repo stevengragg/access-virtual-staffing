@@ -29,7 +29,7 @@ export default async function Page() {
   });
 
   return (
-    <main className="w-full mx-auto bg-neutralDarker overflow-hidden">
+    <main className="w-full mx-auto bg-primaryBlue overflow-hidden">
       <PageClient />
 
       <HeroHeaderWBgImg
@@ -57,7 +57,7 @@ export default async function Page() {
 
       <CollectionArchive posts={posts.docs} />
 
-      <div className="container mb-16 md:mb-24 bg-neutralDarker">
+      <div className="container mb-16 md:mb-24 ">
         {posts.totalPages > 1 && posts.page && (
           <Pagination page={posts.page} totalPages={posts.totalPages} />
         )}

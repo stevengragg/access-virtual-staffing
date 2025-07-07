@@ -31,7 +31,7 @@ export const ContactHeader = (props: Contact24Props) => {
   return (
     <section
       id="contact_header"
-      className="px-[5%] py-8 md:py-12 lg:py-14 bg-neutralDarker"
+      className="px-[5%] py-8 md:py-12 lg:py-14 bg-primaryBlue"
     >
       <div className="container-xl">
         <div className="rb-12 mb-12 max-w-lg md:mb-18 lg:mb-20">

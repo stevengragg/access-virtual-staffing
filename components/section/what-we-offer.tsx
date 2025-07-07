@@ -26,7 +26,7 @@ export const WhatWeOffer = (props: WhatWeOfferProps) => {
   const { tagline, heading, highlight, description, cards, button } =
     props as Props;
   return (
-    <section id="feature_list" className="bg-neutralDarker py-12 md:py-16 px-4">
+    <section id="feature_list" className="bg-primaryBlue py-12 md:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 md:mb-16" data-aos="fade-up">
@@ -60,7 +60,6 @@ export const WhatWeOffer = (props: WhatWeOfferProps) => {
           <div
             className="mt-8 md:mt-12 lg:mt-16 flex items-center justify-center gap-4 px-4"
             data-aos="fade-up"
-            data-aos-delay="100"
           >
             <LinkButton {...button} />
           </div>
@@ -72,7 +71,7 @@ export const WhatWeOffer = (props: WhatWeOfferProps) => {
 
 const Card = (card: Card) => {
   return (
-    <div className="flex flex-col h-full bg-zinc-800 border border-zinc-800 rounded-lg p-6 md:p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform">
+    <div className="flex flex-col h-full bg-robinsEggBlueLighter border border-zinc-800 rounded-lg p-6 md:p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform">
       <div className="flex flex-col flex-1 space-y-4 md:space-y-6">
         {/* Image Container - Fixed height for consistency */}
         <div className="flex flex-col items-center justify-center h-32 md:h-40">
@@ -87,10 +86,10 @@ const Card = (card: Card) => {
 
         {/* Content Container - Flexible height */}
         <div className="flex flex-col flex-1 space-y-3 md:space-y-4">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-neutralDarker">
             {card.heading}
           </h3>
-          <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed flex-1">
+          <p className="text-sm md:text-base lg:text-lg text-neutralDarker leading-relaxed flex-1">
             {card.description}
           </p>
         </div>

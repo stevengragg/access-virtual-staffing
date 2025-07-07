@@ -80,10 +80,10 @@ export default function VaServices() {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
+          <h2 className="mb-5 text-4xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
             Our VAs Are <span className="text-robinsEggBlue">Trained In</span>
           </h2>
-          <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed hidden lg:block">
             Access Virtual Staffing assistants are equipped with premium skills
             to handle your most critical business functions.
           </p>

@@ -53,7 +53,7 @@ export const TestimonialCarousel = (props: TestimonialCarouselProps) => {
   return (
     <section
       id="testimonials"
-      className="overflow-hidden px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
+      className="overflow-hidden px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
     >
       <div className="container">
         <div className="rb-12 mb-12 md:mb-18 lg:mb-20 mx-auto w-full max-w-2xl text-center">
@@ -103,7 +103,6 @@ export const TestimonialCarousel = (props: TestimonialCarouselProps) => {
         </Carousel>
         <div
           className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20"
-          data-aos-delay="200"
           data-aos="fade-up"
         >
           <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-white">
@@ -113,7 +112,6 @@ export const TestimonialCarousel = (props: TestimonialCarouselProps) => {
 
         <div
           className="mx-auto mt-12 w-full max-w-lg text-center md:mt-18 lg:mb-20"
-          data-aos-delay="200"
           data-aos="fade-up"
         >
           <StatsSection />
@@ -125,7 +123,7 @@ export const TestimonialCarousel = (props: TestimonialCarouselProps) => {
 
 const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
   return (
-    <div className="flex w-full flex-col items-start justify-between border rounded-md p-6 md:p-8 bg-zinc-800 border-zinc-700 text-center shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight">
+    <div className="flex w-full flex-col items-start justify-between border rounded-md p-6 md:p-8 bg-robinsEggBlueLighter border-zinc-700 text-center shadow transition-transform duration-200 hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight">
       {/* Stars */}
       <div className="mb-5 md:mb-6 flex justify-start w-full">
         {Array(testimonial.numberOfStars)
@@ -138,13 +136,15 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
           ))}
       </div>
       {/* Quote */}
-      <blockquote className="text-lg md:text-xl text-white mb-6 text-left leading-relaxed">
+      <blockquote className="text-lg md:text-xl text-neutralDarker mb-6 text-left leading-relaxed">
         {testimonial.quote}
       </blockquote>
       {/* Name and Position */}
       <div className="mt-5 flex w-full flex-col items-start text-left">
-        <p className="font-semibold text-white text-lg">{testimonial.name}</p>
-        <p className="text-white">
+        <p className="font-semibold text-neutralDarker text-lg">
+          {testimonial.name}
+        </p>
+        <p className="text-neutralDarker">
           {testimonial.position}, {testimonial.companyName}
         </p>
       </div>

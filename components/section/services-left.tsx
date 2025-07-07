@@ -19,11 +19,11 @@ export const ServicesLeft = (props: ServicesLeftProps) => {
   return (
     <section
       id="services_left"
-      className="bg-neutralDarker px-[5%] py-16 md:py-24 lg:py-28"
+      className="bg-primaryBlue px-[5%] py-16 md:py-24 lg:py-28"
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div data-aos="fade-up" data-aos-delay="100">
+          <div data-aos="fade-up">
             <h1 className="mb-5 text-4xl font-semibold md:mb-6 md:text-6xl lg:text-8xl text-white">
               {heading}
             </h1>
@@ -34,7 +34,7 @@ export const ServicesLeft = (props: ServicesLeftProps) => {
               {button && <LinkButton {...button} />}
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-delay="200">
+          <div data-aos="fade-up" data-aos-delay="100">
             <Image
               src={image.src}
               className="w-full object-cover rounded-lg hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"

@@ -38,7 +38,7 @@ export const ServicesBenefits = (props: ServicesBenefitsProps) => {
   return (
     <section
       id={hyperlink ?? "feature"}
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
@@ -54,7 +54,7 @@ export const ServicesBenefits = (props: ServicesBenefitsProps) => {
             )}
           </div>
           <div
-            className="order-1 md:order-2 text-white w-full"
+            className="order-1 md:order-2 text-neutralDarker w-full"
             data-aos="fade-up"
           >
             {tagline && (
@@ -62,14 +62,14 @@ export const ServicesBenefits = (props: ServicesBenefitsProps) => {
                 {tagline}
               </p>
             )}
-            <h2 className="mb-4 md:mb-5 text-4xl md:text-6xl lg:text-9xl xl:text-10xl font-semibold text-white leading-tight">
+            <h2 className="mb-4 md:mb-5 text-4xl md:text-6xl lg:text-9xl xl:text-10xl font-semibold  leading-tight">
               {heading}{" "}
               {highlight && (
                 <span className="text-robinsEggBlue">{highlight}</span>
               )}
             </h2>
             {description && (
-              <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+              <p className=" text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
                 {description}
               </p>
             )}
@@ -88,11 +88,7 @@ export const ServicesBenefits = (props: ServicesBenefitsProps) => {
             </div>
 
             {button && (
-              <div
-                className="mt-8 md:mt-12 lg:mt-16  "
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
+              <div className="mt-8 md:mt-12 lg:mt-16  " data-aos="fade-up">
                 <LinkButton {...button} />
               </div>
             )}

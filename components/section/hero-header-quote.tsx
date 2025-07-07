@@ -24,7 +24,7 @@ export const HeroHeaderQuote = (props: HeroHeaderQuoteProps) => {
   return (
     <section
       id="owner-quote"
-      className="px-[5%] py-8 md:py-12 lg:py-14 bg-neutralDarker"
+      className="px-[5%] py-8 md:py-12 lg:py-14 bg-primaryBlue"
     >
       <div className="container-xl">
         <div className="grid w-full auto-cols-fr grid-cols-1 items-center justify-center gap-12 md:grid-cols-2 md:gap-10 lg:gap-x-20">
@@ -45,21 +45,18 @@ export const HeroHeaderQuote = (props: HeroHeaderQuoteProps) => {
             <blockquote
               className="mb-2 text-6xl font-bold md:mb-4 md:text-9xl lg:text-10xl text-white"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {heading}
             </blockquote>
             <blockquote
               className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               <span className="text-robinsEggBlue">{highlight}</span>
             </blockquote>
             <blockquote
               className="text-xl font-semibold md:text-2xl text-white"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {quote1}
             </blockquote>
@@ -67,7 +64,7 @@ export const HeroHeaderQuote = (props: HeroHeaderQuoteProps) => {
               <div
                 className="text-white"
                 data-aos="fade-up"
-                data-aos-delay="200"
+                data-aos-delay="100"
               >
                 <p className="font-semibold ">{name}</p>
                 <p>{position}</p>

@@ -28,7 +28,7 @@ export const TestimonialFeatured = (props: TestimonialFeaturedProps) => {
   return (
     <section
       id="featured"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container-xl">
         <div className="flex flex-col items-center">
@@ -36,13 +36,13 @@ export const TestimonialFeatured = (props: TestimonialFeaturedProps) => {
             <div className="mx-auto max-w-2xl text-center">
               <div className="flex flex-col items-center justify-start">
                 <h2
-                  className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white"
+                  className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-neutralDarker"
                   data-aos="fade-up"
                 >
                   {heading}
                 </h2>
                 <p
-                  className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"
+                  className="text-neutralDarker text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"
                   data-aos="fade-up"
                 >
                   {description}

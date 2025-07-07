@@ -19,14 +19,14 @@ export const ServicesRight = (props: ServicesRightProps) => {
   return (
     <section
       id="services_right"
-      className="bg-neutralDarker px-[5%] py-16 md:py-24 lg:py-28"
+      className="bg-primaryBlue px-[5%] py-16 md:py-24 lg:py-28"
     >
       <div className="container-xl">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
           <div
             className="order-2 lg:order-1"
             data-aos="fade-up"
-            data-aos-delay="200"
+            data-aos-delay="100"
           >
             <Image
               src={image.src}
@@ -36,11 +36,7 @@ export const ServicesRight = (props: ServicesRightProps) => {
               height={image.height}
             />
           </div>
-          <div
-            className="order-1 lg:order-2"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
+          <div className="order-1 lg:order-2" data-aos="fade-up">
             <h1 className="mb-5 text-4xl font-semibold md:mb-6 md:text-6xl lg:text-8xl text-white">
               {heading}
             </h1>

@@ -30,6 +30,7 @@ export default function PublicRootLayout({
       once: true,
       duration: 600,
       easing: "ease-out-sine",
+      disable: "mobile",
     });
   });
 
@@ -67,7 +68,7 @@ export default function PublicRootLayout({
   return (
     <>
       <SiteNavigation2 />
-      <div className={cn(!isMobile && "pt-[120px]")}>{children}</div>
+      <div className={cn(!isMobile && "pt-[60px]")}>{children}</div>
       <StrategyCallModal />
       <ScrollToTop />
       <LiveChatWidget />

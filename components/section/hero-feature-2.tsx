@@ -36,7 +36,7 @@ export const HeroFeature2 = (props: HeroFeature2Props) => {
   return (
     <section
       id="owner-quote"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container-xl">
         <div className="grid w-full auto-cols-fr grid-cols-1 items-center justify-center gap-12 md:grid-cols-2 md:gap-10 lg:gap-x-20">
@@ -56,34 +56,32 @@ export const HeroFeature2 = (props: HeroFeature2Props) => {
           <div className="flex flex-col items-start">
             <p
               data-aos="fade-up"
-              data-aos-delay="100"
-              className="mb-3 font-semibold md:mb-4 text-white md:text-md lg:text-lg"
+              className="mb-3 font-semibold md:mb-4 text-neutralDarker md:text-md lg:text-lg"
             >
               {tagline}
             </p>
             <h2
-              className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-white"
+              className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl text-neutralDarker"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {heading} <span className="text-robinsEggBlue">{highlight}</span>
             </h2>
             <blockquote
-              className="text-xl font-semibold md:text-2xl text-white"
+              className="text-xl font-semibold md:text-2xl text-neutralDarker"
               data-aos="fade-up"
             >
               {quote1}
             </blockquote>
             <br />
             <blockquote
-              className="text-xl font-semibold md:text-2xl text-white"
+              className="text-xl font-semibold md:text-2xl text-neutralDarker"
               data-aos="fade-up"
             >
               {quote2}
             </blockquote>
             <br />
             <blockquote
-              className="text-xl font-semibold md:text-2xl text-white"
+              className="text-xl font-semibold md:text-2xl text-neutralDarker"
               data-aos="fade-up"
             >
               {quote3}
@@ -91,7 +89,6 @@ export const HeroFeature2 = (props: HeroFeature2Props) => {
             <div
               className="mt-12 flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-4 md:mt-16"
               data-aos="fade-up"
-              data-aos-delay="100"
             >
               {buttons.map((button, index) => (
                 <LinkButton key={index} {...button} />

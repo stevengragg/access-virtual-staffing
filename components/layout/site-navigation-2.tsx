@@ -56,7 +56,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
     <section
       id="navigation"
       className={cn(
-        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-white transition-all duration-300",
+        "z-40 flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-white transition-all duration-300 ",
         !isMobile && "fixed top-0 left-0 right-0",
         !isMobile && isScrolled && "shadow-lg backdrop-blur-lg bg-white/90"
       )}
@@ -123,12 +123,14 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 navLink={navLink}
                 isMobile={isMobile}
                 pathname={url}
+                setIsMobileMenuOpen={setIsMobileMenuOpen}
               />
             ) : (
               <Link
                 key={index}
                 target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
                   "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2  font-semibold text-neutralDarker hover:text-neutralDark transition-colors duration-200",
                   url === navLink.url ? "underline" : ""
@@ -153,10 +155,12 @@ const SubMenu = ({
   navLink,
   isMobile,
   pathname,
+  setIsMobileMenuOpen,
 }: {
   navLink: NavLink;
   isMobile: boolean;
   pathname: string;
+  setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -207,6 +211,7 @@ const SubMenu = ({
                 key={index}
                 href={subMenuLink.url}
                 target={subMenuLink.follow ? "_blank" : ""}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
                   "block py-3 text-center lg:px-4 lg:py-2 lg:text-left font-medium ",
                   pathname === navLink.url ? "underline" : ""

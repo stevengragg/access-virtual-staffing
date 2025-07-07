@@ -1,13 +1,14 @@
 import type { Metadata } from "next/types";
+import { notFound } from "next/navigation";
+import configPromise from "@payload-config";
+import { getPayload } from "payload";
+import React from "react";
 
 import { CollectionArchive } from "@/components/cms/CollectionArchive";
 import { PageRange } from "@/components/cms/PageRange";
 import { Pagination } from "@/components/cms/Pagination";
-import configPromise from "@payload-config";
-import { getPayload } from "payload";
-import React from "react";
 import PageClient from "./page.client";
-import { notFound } from "next/navigation";
+import { HeroHeaderWBgImg } from "@/components/section/hero-header-short-w-bg-img";
 
 export const revalidate = 600;
 
@@ -34,15 +35,24 @@ export default async function Page({ params: paramsPromise }: Args) {
   });
 
   return (
-    <div className="pt-24 pb-24">
+    <main className="w-full mx-auto bg-primaryBlue overflow-hidden">
       <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
-        </div>
-      </div>
 
-      <div className="container mb-8">
+      <HeroHeaderWBgImg
+        tagline=""
+        heading="The AVS Blog"
+        description="Find the latest news and insights about Virtual Staffing and
+              Remote Talents."
+        buttons={[]}
+        image={{
+          src: "/bg/resources_bg.webp",
+          alt: "Resources Background",
+          width: 1920,
+          height: 1080,
+        }}
+      />
+
+      <div className="container my-8">
         <PageRange
           collection="posts"
           currentPage={posts.page}
@@ -53,12 +63,12 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       <CollectionArchive posts={posts.docs} />
 
-      <div className="container">
-        {posts?.page && posts?.totalPages > 1 && (
+      <div className="container mb-16 md:mb-24 ">
+        {posts.totalPages > 1 && posts.page && (
           <Pagination page={posts.page} totalPages={posts.totalPages} />
         )}
       </div>
-    </div>
+    </main>
   );
 }
 

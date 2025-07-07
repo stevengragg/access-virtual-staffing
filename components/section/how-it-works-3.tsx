@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Headphones, ArrowRight, TrendingUp } from "lucide-react";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 
@@ -60,7 +59,6 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
         <div
           className="mt-12 flex items-center justify-center gap-4 md:mt-16"
           data-aos="fade-up"
-          data-aos-delay="100"
         >
           <LinkButton {...button} />
         </div>

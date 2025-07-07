@@ -17,22 +17,17 @@ export const HeroHeaderNormal = (props: HeroHeaderNormalProps) => {
   return (
     <section
       id="long_form_header1"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker "
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue "
     >
       <div className="container-xl flex flex-col items-start">
         <div className="mb-12 w-full space-y-6">
           <h3
             className="text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl leading-[1.2] text-white"
             data-aos="fade-up"
-            data-aos-delay="100"
           >
             {heading}
           </h3>
-          <p
-            className="text-md font-normal text-white"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
+          <p className="text-md font-normal text-white" data-aos="fade-up">
             {context}
           </p>
           {ads && (

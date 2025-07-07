@@ -26,7 +26,7 @@ export const ServiceFeatureLeft = (props: ServiceFeatureLeftProps) => {
   return (
     <section
       id={hyperlink ?? "feature"}
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:gap-x-20">
@@ -42,7 +42,7 @@ export const ServiceFeatureLeft = (props: ServiceFeatureLeftProps) => {
             )}
           </div>
           <div
-            className="order-1 md:order-2 text-white w-full"
+            className="order-1 md:order-2 text-neutralDarker w-full"
             data-aos="fade-up"
           >
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>

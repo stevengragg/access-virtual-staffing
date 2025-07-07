@@ -12,7 +12,7 @@ export default function ContactUsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
+    <main className="w-full mx-auto bg-white overflow-hidden">
       {children}
       <Toaster />
     </main>

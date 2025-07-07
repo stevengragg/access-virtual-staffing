@@ -39,10 +39,10 @@ export const FaqFooter = (props: FaqFooter1Props) => {
   return (
     <section
       id="faq_footer"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-robinsEggBlueLighter"
     >
       <div className="container mx-auto">
-        <div className="rb-12 mb-12 text-left md:mb-18 lg:mb-20 text-white">
+        <div className="rb-12 mb-12 text-left md:mb-18 lg:mb-20 text-neutralDarker">
           <h2 className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
             {heading}
           </h2>
@@ -53,12 +53,12 @@ export const FaqFooter = (props: FaqFooter1Props) => {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="text-white"
+              className="text-neutralDarker"
             >
-              <AccordionTrigger className="md:py-5 text-lg md:text-xl lg:text-2xl font-semibold text-white">
+              <AccordionTrigger className="md:py-5 text-lg md:text-xl lg:text-2xl font-semibold text-neutralDarker">
                 {question.title}
               </AccordionTrigger>
-              <AccordionContent className="md:pb-6 text-white text-md md:text-lg lg:text-xl">
+              <AccordionContent className="md:pb-6 text-neutralDarker text-md md:text-lg lg:text-xl">
                 {question.answer}
                 <br />
                 {question.pointers && question.pointers?.length

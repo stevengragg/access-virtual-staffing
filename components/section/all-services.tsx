@@ -33,7 +33,7 @@ export const AllPlans = (props: AllPlansProps) => {
   const { tagline, heading, highlight, description, cards, button } =
     props as Props;
   return (
-    <section id="feature_list" className="bg-neutralDarker py-12 md:py-16 px-4">
+    <section id="feature_list" className="bg-primaryBlue py-12 md:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 md:mb-16" data-aos="fade-up">
@@ -67,7 +67,6 @@ export const AllPlans = (props: AllPlansProps) => {
           <div
             className="mt-8 md:mt-12 lg:mt-16 flex items-center justify-center gap-4 px-4"
             data-aos="fade-up"
-            data-aos-delay="100"
           >
             <LinkButton {...button} />
           </div>
@@ -79,7 +78,7 @@ export const AllPlans = (props: AllPlansProps) => {
 
 const Card = (card: Card) => {
   return (
-    <div className="flex flex-col h-full bg-zinc-800 border border-zinc-800 rounded-lg p-6 md:p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform">
+    <div className="flex flex-col h-full bg-robinsEggBlueLighter border border-zinc-800 rounded-lg p-6 md:p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform">
       <div className="flex flex-col flex-1 space-y-4 md:space-y-6">
         {/* Image Container - Fixed height for consistency */}
 
@@ -88,7 +87,7 @@ const Card = (card: Card) => {
           <h3 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-robinsEggBlue underline">
             {card.heading}
           </h3>
-          <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed flex-1">
+          <p className="text-sm md:text-base lg:text-lg text-neutralDarker leading-relaxed flex-1">
             {card.description}
           </p>
         </div>
@@ -98,7 +97,7 @@ const Card = (card: Card) => {
             card.features.map((feature, index) => (
               <div key={index} className="flex flex-row  gap-3 md:gap-4">
                 <div className="flex-shrink-0 mt-1">{feature.icon}</div>
-                <p className=" text-left text-sm md:text-base lg:text-lg leading-relaxed font-medium text-white break-words">
+                <p className=" text-left text-sm md:text-base lg:text-lg leading-relaxed font-medium text-neutralDarker break-words">
                   {feature.paragraph}
                 </p>
               </div>

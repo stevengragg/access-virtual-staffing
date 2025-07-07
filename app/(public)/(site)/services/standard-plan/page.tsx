@@ -275,11 +275,12 @@ export default function StandardPlan({}: Props) {
           icon: () => <ChevronRight className=" w-6 h-6" />,
         }}
       />
-
+      {/* Brands Section */}
+      <Brands />
       {/* Stats Section */}
       <section
         id="testimonials"
-        className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDarker"
+        className="px-[5%] py-16 md:py-24 lg:py-28 bg-white"
       >
         <div className="container-xl">
           <div
@@ -287,7 +288,7 @@ export default function StandardPlan({}: Props) {
             data-aos-delay="200"
             data-aos="fade-up"
           >
-            <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-white">
+            <h1 className="mb-5 text-xl font-bold md:mb-6 lg:text-4xl text-neutralDarker">
               Sneak Peek into our Innovative Journey
             </h1>
           </div>
@@ -301,8 +302,6 @@ export default function StandardPlan({}: Props) {
           </div>
         </div>
       </section>
-      {/* Brands Section */}
-      <Brands />
       {/* FAQ footer section */}
       <FaqFooter
         heading="FAQs"

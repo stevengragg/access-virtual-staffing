@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/form/contact-form";
 import { ContactHeader } from "@/components/section/contact-header";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { FaqFooter } from "@/components/section/faq-footer";
+import GlobalOffices from "@/components/section/global-offices";
 
 type Props = {};
 
@@ -14,6 +15,8 @@ export default function ContactUs({}: Props) {
       <ContactHeader />
       {/* Contact Form Section */}
       <ContactForm />
+      {/* Global offices */}
+      <GlobalOffices />
       {/* FAQ Footer Section */}
       <FaqFooter
         heading="FAQs"
