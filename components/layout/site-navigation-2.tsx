@@ -263,10 +263,10 @@ const SubMenu = ({
 const SiteNavigation2Defaults: SiteNavigation2Props = {
   logo: {
     url: "/",
-    src: "/avs_logo_2025_resized.png",
+    src: "/avs_logo_2025.png",
     alt: "Access Virtual Staffing Logo 2",
     width: 250,
-    height: 0,
+    height: 250,
   },
   navLinks: [
     { title: "Home", url: "/" },
