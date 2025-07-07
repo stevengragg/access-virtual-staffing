@@ -84,7 +84,7 @@ export default function PublicRootLayout({
               url: "/book-a-meeting",
               follow: false,
             },
-            icon: () => <ArrowRight className="text-deepZinc size-6" />,
+            icon: () => <ArrowRight className="" />,
             variant: "cta1",
             size: "xl",
           },

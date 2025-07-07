@@ -42,17 +42,15 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
   };
 
   return (
-    <section
-      id="benefits"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutralDark"
-    >
+    <section id="benefits" className="px-[5%] py-16 md:py-24 lg:py-28 bg-white">
       <div className="container">
         <div className="mb-12 md:mb-18 lg:mb-20">
           <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
-            <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-white">
-              {heading} <span className="text-robinsEggBlue">{highlight}</span>
+            <h2 className="mb-5 text-6xl font-semibold md:mb-6 md:text-9xl lg:text-10xl text-neutralDarker">
+              {heading}{" "}
+              <span className="text-robinsEggBlueDark">{highlight}</span>
             </h2>
-            <p className="text-white text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-neutralDarker text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
               {description}
             </p>
           </div>
@@ -65,7 +63,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className="h-auto w-full object-cover rounded-full aspect-square object-center shadow transition-transform  hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight"
+              className="h-auto w-full object-cover rounded-full aspect-square object-center shadow transition-transform  hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueDarkLight"
               data-aos="fade-up"
             />
           </div>
@@ -75,7 +73,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
           className="mt-12 text-center gap-4 md:mt-18 lg:mt-20"
           data-aos="fade-up"
         >
-          <h3 className="text-xl md:text-2xl lg:text-4xl text-white">
+          <h3 className="text-xl md:text-2xl lg:text-4xl text-neutralDarker">
             {footerText}
           </h3>
         </div>
@@ -93,7 +91,7 @@ export const WhyChoose2 = (props: WhyChoose2Props) => {
 };
 
 const FeatureSection = ({ sections }: { sections: SectionProps[] }) => (
-  <div className="grid w-full grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 text-white">
+  <div className="grid w-full grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 text-neutralDarker">
     {sections.map((section, index) => (
       <div
         key={index}
@@ -101,10 +99,10 @@ const FeatureSection = ({ sections }: { sections: SectionProps[] }) => (
         data-aos="fade-up"
         data-aos-delay="100"
       >
-        <h3 className="mb-3 text-2xl md:text-4xl font-bold md:mb-4 lg:text-5xl text-robinsEggBlue">
+        <h3 className="mb-3 text-2xl md:text-4xl font-bold md:mb-4 lg:text-5xl text-robinsEggBlueDark">
           {section.heading}
         </h3>
-        <p className="md:text-md lg:text-lg text-white">
+        <p className="md:text-md lg:text-lg text-neutralDarker">
           {section.description}
         </p>
       </div>

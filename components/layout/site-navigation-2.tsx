@@ -56,11 +56,9 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
     <section
       id="navigation"
       className={cn(
-        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-neutralBase transition-all duration-300",
+        "z-[999] flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-white transition-all duration-300",
         !isMobile && "fixed top-0 left-0 right-0",
-        !isMobile &&
-          isScrolled &&
-          "shadow-lg backdrop-blur-sm bg-neutralBase/95"
+        !isMobile && isScrolled && "shadow-lg backdrop-blur-lg bg-white/90"
       )}
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
@@ -132,7 +130,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 target={navLink.follow ? "_blank" : ""}
                 href={navLink.url}
                 className={cn(
-                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2  font-semibold text-white hover:text-zinc-100 transition-colors duration-200",
+                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2  font-semibold text-neutralDarker hover:text-neutralDark transition-colors duration-200",
                   url === navLink.url ? "underline" : ""
                 )}
               >
@@ -168,7 +166,7 @@ const SubMenu = ({
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base font-semibold text-white hover:text-zinc-100 transition-colors duration-200"
+        className="flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base font-semibold text-neutralDarker hover:text-neutralDark transition-colors duration-200"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         {navLink.title}

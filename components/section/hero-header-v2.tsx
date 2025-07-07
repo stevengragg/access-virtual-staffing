@@ -27,9 +27,9 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
       id="hero"
       className="bg-heroHeaderMainBg lg:bg-center bg-no-repeat bg-cover bg-top"
     >
-      <div className="px-[5%] py-16 md:py-24 lg:py-28 ">
+      <div className="px-[5%] py-20 md:py-32 lg:py-40 ">
         <div className="container-xl flex flex-col ">
-          <div className="flex flex-col items-center justify-center   text-center  mb-12 md:mb-16 lg:mb-32 ">
+          <div className="flex flex-col items-center justify-center text-center mb-16 md:mb-20 lg:mb-24 pt-8 md:pt-12 lg:pt-16 pb-8 md:pb-12 lg:pb-16">
             <h1
               className="text-6xl font-semibold md:text-9xl lg:text-11xl text-white"
               data-aos="fade-up"
@@ -71,7 +71,7 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
                       {images.map((image, imageIndex) => (
                         <div
                           key={imageIndex}
-                          className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem] "
+                          className="relative w-[45vw] pt-[60%] sm:w-[14rem] md:w-[18rem] "
                         >
                           <Image
                             className="absolute inset-0 size-full object-cover rounded-lg"
@@ -94,7 +94,7 @@ export const HeroHeaderV2 = (props: HeroHeaderV2Props) => {
                       {images.map((image, imageIndex) => (
                         <div
                           key={imageIndex}
-                          className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[26rem] "
+                          className="relative w-[45vw] pt-[60%] sm:w-[14rem] md:w-[18rem] "
                         >
                           <Image
                             className="absolute inset-0 size-full object-cover rounded-lg"

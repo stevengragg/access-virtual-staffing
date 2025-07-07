@@ -22,7 +22,7 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
     ...props,
   };
   return (
-    <section id="how-it-works" className="bg-neutralDarker py-16 px-4">
+    <section id="how-it-works" className="bg-primaryBlue py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16" data-aos="fade-up">
@@ -38,18 +38,18 @@ export default function HowItWorks3(props: Partial<HowItWorks3Props>) {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="bg-zinc-800 border border-zinc-800 rounded-lg p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"
+              className="bg-robinsEggBlueLighter border border-zinc-800 rounded-lg p-8 text-center hover:scale-105 hover:shadow-[0_4px_32px_0_var(--tw-shadow-color)] hover:shadow-robinsEggBlueLight transition-all duration-300 ease-in-out transform cursor-pointer"
             >
               <div className="space-y-6">
                 <div className="w-16 h-16 bg-robinsEggBlue rounded-full flex items-center justify-center mx-auto">
-                  <p className="text-2xl md:text-4xl font-extrabold text-zinc-900">
+                  <p className="text-2xl md:text-4xl font-extrabold text-neutralDarker">
                     {idx + 1}
                   </p>
                 </div>
-                <h3 className="text-md md:text-2xl lg:text-3xl font-semibold text-white">
+                <h3 className="text-md md:text-2xl lg:text-3xl font-semibold text-neutralDarker">
                   {step.title}
                 </h3>
-                <p className="text-base md:text-lg lg:text-xl text-white leading-relaxed">
+                <p className="text-base md:text-lg lg:text-xl text-neutralDarker leading-relaxed">
                   {step.description}
                 </p>
                 {step.icon}
@@ -122,6 +122,6 @@ export const HowItWorks3Defaults: HowItWorks3Props = {
     },
     size: "xl",
     variant: "cta1",
-    icon: () => <ArrowRight className="text-deepZinc w-6 h-6" />,
+    icon: () => <ArrowRight className="" />,
   },
 };
