@@ -46,19 +46,43 @@ const cloudinaryAdapter = () => ({
     clientUploadContext: _clientUploadContext,
   }: Parameters<HandleUpload>[0]) {
     try {
-      // createing a function that will upload your file in cloudinary
-      // Uploading the file to Cloudinary using upload_stream.
-      // Since Cloudinary's upload_stream is callback-based, we wrap it in a Promise
-      // so we can use async/await syntax for cleaner, easier handling.
-      // It uploads the file with a specific public_id under "media/", without overwriting existing files.
+      // Check if this is a metadata-only update (no new file being uploaded)
+      const isMetadataUpdate = !file.buffer || file.buffer.length === 0;
+      
+      if (isMetadataUpdate) {
+        console.log("Metadata-only update detected - preserving existing file data");
+        // For metadata updates, don't modify the file object
+        // Payload will handle the metadata fields (alt, caption) separately
+        return;
+      }
+
+      // Ensure we have a valid filename for new uploads
+      if (!file.filename) {
+        throw new Error("No filename provided for upload");
+      }
+
+      // Sanitize the filename to prevent any unsafe characters
+      const sanitizedFilename = file.filename
+        .replace(/[^a-zA-Z0-9.-_]/g, '') // Remove any non-alphanumeric characters except dots, dashes, and underscores
+        .replace(/\.+/g, '.') // Replace multiple dots with single dot
+        .replace(/^\.+|\.+$/g, ''); // Remove leading/trailing dots
+
+      if (!sanitizedFilename) {
+        throw new Error("Invalid filename after sanitization");
+      }
+
+      console.log("Uploading new file to Cloudinary:", sanitizedFilename);
+
+      // Upload new file to Cloudinary
       const uploadResult = await new Promise<UploadApiResponse>(
         (resolve, reject) => {
           const uploadStream = cloudinary.uploader.upload_stream(
             {
               resource_type: "auto", // auto-detect file type (image, video, etc.)
-              public_id: `media/${file.filename.replace(/\.[^/.]+$/, "")}`, // Set custom file name without extension, and it also previxed the cleaned filename with media/
+              public_id: `media/${sanitizedFilename.replace(/\.[^/.]+$/, "")}`, // Use sanitized filename without extension
               overwrite: false, // Do not overwrite if a file with the same name exists
-              use_filename: true, // Use original filename
+              use_filename: false, // Don't use original filename to avoid conflicts
+              unique_filename: true, // Generate unique filename if needed
             },
             (error, result) => {
               if (error) return reject(error);
@@ -70,11 +94,15 @@ const cloudinaryAdapter = () => ({
           uploadStream.end(file.buffer); // this line send the file to cloudinary it means entire file is already in memory and will be send whole thing at once not in chunk
         }
       );
+      
+      console.log("Successfully uploaded to Cloudinary:", uploadResult.public_id);
+      
       file.filename = uploadResult.public_id; // Use Cloudinary's public_id as the file's unique name
       file.mimeType = `${uploadResult.format}`; // Set MIME type based on Cloudinary's format (e.g., image/png)
       file.filesize = uploadResult.bytes; // Set the actual file size in bytes, for admin display and validations
     } catch (err) {
       console.error("Upload Error", err);
+      throw err; // Re-throw to let Payload handle the error properly
     }
   },
 
@@ -87,12 +115,23 @@ const cloudinaryAdapter = () => ({
     console.log("handleDelete has been called");
 
     // if filename is present then we will look for that file
+    if (!filename) {
+      console.log("No filename provided for deletion");
+      return;
+    }
+
     try {
+      // Sanitize filename for security
+      const sanitizedFilename = filename.replace(/\.\./g, "").replace(/\\/g, "/");
+      
       // We remove the file extension from the filename and then target the file
       // inside the "media/" folder on Cloudinary (which we used as the upload path)
-      await cloudinary.uploader.destroy(
-        `media/${filename.replace(/\.[^/.]+$/, "")}`
-      );
+      const publicId = sanitizedFilename.startsWith("media/") 
+        ? sanitizedFilename.replace(/\.[^/.]+$/, "")
+        : `media/${sanitizedFilename.replace(/\.[^/.]+$/, "")}`;
+        
+      await cloudinary.uploader.destroy(publicId);
+      console.log(`Successfully deleted ${publicId} from Cloudinary`);
     } catch (error) {
       // if something error occured we will catch the error and respond the error in console
       console.error("Cloudinary Delete Error:", error);
@@ -165,11 +204,17 @@ export default buildConfig({
       collections: {
         media: {
           adapter: cloudinaryAdapter,
-
           disableLocalStorage: true, // Prevent Payload from saving files to disk
-
           generateFileURL: ({ filename }) => {
-            return cloudinary.url(`media/${filename}`, { secure: true });
+            // Simplified URL generation without extra parameters that might cause security issues
+            if (!filename) return "";
+            
+            // Basic sanitization
+            const sanitizedFilename = filename.replace(/[^a-zA-Z0-9.-_/]/g, '');
+            
+            return cloudinary.url(`media/${sanitizedFilename}`, { 
+              secure: true
+            });
           },
         },
       },
