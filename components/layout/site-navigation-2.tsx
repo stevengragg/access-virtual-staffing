@@ -11,7 +11,7 @@ import { ImageProps } from "@/types/general";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search, Phone } from "lucide-react";
 
 type NavLink = {
   url: string;
@@ -74,11 +74,24 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
             </a>
           )}
           <div className="flex items-center gap-2 lg:hidden">
-            <div>
-              {(buttons ?? []).map((button, index) => (
-                <LinkButton key={index} {...button} />
-              ))}
-            </div>
+            {/* Search Link for Mobile */}
+            <Link
+              href="/search"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-robinsEggBlue hover:bg-neutralZinc/20 transition-colors duration-200"
+              title="Search"
+            >
+              <Search className="w-5 h-5 text-neutralDarker" />
+            </Link>
+
+            {/* Mobile Book a Call - Phone Icon Only */}
+            <Link
+              href="/book-a-meeting"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-primaryBlue hover:bg-primaryBlue/90 transition-colors duration-200"
+              title="Book a Call"
+            >
+              <Phone className="w-5 h-5 text-white" />
+            </Link>
+
             <button
               className="-mr-2 flex size-12 flex-col items-center justify-center"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -116,6 +129,16 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
           transition={{ duration: 0.4 }}
           className="overflow-hidden px-[5%] text-center lg:flex lg:items-center lg:justify-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto] "
         >
+          {/* Search Link for Mobile Menu */}
+          <Link
+            href="/search"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex items-center justify-center gap-2 py-3 text-md font-semibold text-neutralDarker hover:text-neutralDark transition-colors duration-200 pt-7 lg:hidden"
+          >
+            <Search className="w-5 h-5" />
+            Search
+          </Link>
+
           {(navLinks ?? []).map((navLink, index) =>
             navLink.subMenuLinks && navLink.subMenuLinks.length > 0 ? (
               <SubMenu
@@ -132,7 +155,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
                 href={navLink.url}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2  font-semibold text-neutralDarker hover:text-neutralDark transition-colors duration-200",
+                  "block py-3 text-md lg:px-4 lg:py-2 lg:text-base lg:pt-2  font-semibold text-neutralDarker hover:text-neutralDark transition-colors duration-200",
                   url === navLink.url ? "underline" : ""
                 )}
               >
@@ -141,7 +164,17 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
             )
           )}
         </motion.div>
-        <div className="hidden justify-self-end lg:block">
+        <div className="hidden justify-self-end lg:flex lg:items-center lg:gap-4">
+          {/* Search Link */}
+          <Link
+            href="/search"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-neutralLightZinc hover:bg-neutralZinc/20 transition-colors duration-200"
+            title="Search"
+          >
+            <Search className="w-5 h-5 text-neutralDarker" />
+          </Link>
+
+          {/* Buttons */}
           {(buttons ?? []).map((button, index) => (
             <LinkButton key={index} {...button} />
           ))}

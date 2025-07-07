@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Disallow: /admin/*
+Disallow: /api/*
+
+# Host
+Host: https://www.accessvirtualstaffing.com
+
+# Sitemaps
+Sitemap: https://www.accessvirtualstaffing.com/sitemap.xml
+Sitemap: https://www.accessvirtualstaffing.com/pages-sitemap.xml
+Sitemap: https://www.accessvirtualstaffing.com/posts-sitemap.xml
