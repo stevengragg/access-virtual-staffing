@@ -294,11 +294,11 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
         },
         { title: "FAQs", url: "/faq" },
         { title: "Contact Us", url: "/contact-us" },
-        {
-          title: "Fiverr with AVS",
-          url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
-          follow: true,
-        },
+        // {
+        //   title: "Fiverr with AVS",
+        //   url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
+        //   follow: true,
+        // },
       ],
     },
     // {
