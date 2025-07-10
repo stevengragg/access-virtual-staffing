@@ -17,13 +17,14 @@ import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
 import { cn } from "@/lib/utils";
 import { CTAFooter } from "@/components/section/cta-footer";
 import { ArrowRight } from "lucide-react";
+import { MEDIA_QUERIES } from "@/lib/breakpoints";
 
 export default function PublicRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isMobile = useMediaQuery("(max-width: 991px)");
+  const isMobile = useMediaQuery(MEDIA_QUERIES.mobile);
 
   useEffect(() => {
     AOS.init({
