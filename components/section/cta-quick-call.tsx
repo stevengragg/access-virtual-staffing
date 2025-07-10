@@ -47,7 +47,7 @@ export const CtaQuickCallDefaults: Props = {
     {
       navLink: {
         title: "Schedule your Free Strategy Call",
-        url: "/book-a-meeting",
+        url: "/book-a-meeting#calendly",
         follow: false,
       },
       variant: "cta1",
