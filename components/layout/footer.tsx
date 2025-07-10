@@ -157,7 +157,7 @@ export const Footer11Defaults: Footer11Props = {
   },
   address: {
     icon: () => <MapPin className="text-neutralDarker w-6 h-6" />,
-    value: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
+    value: "2655 North Ocean Drive, suite 405 Singer Island, FL 33404",
   },
   contact: {
     icon: () => <Mail className="text-neutralDarker w-6 h-6" />,
@@ -219,11 +219,11 @@ export const Footer11Defaults: Footer11Props = {
         { title: "Contact Us", url: "/contact-us" },
         { title: "FAQs", url: "/faq" },
 
-        {
-          title: "Fiverr with AVS",
-          url: process.env.NEXT_PUBLIC_FIVERR_AFFILIATE_URL || "#",
-          follow: true,
-        },
+        // {
+        //   title: "Fiverr with AVS",
+        //   url: process.env.NEXT_PUBLIC_FIVERR_AFFILIATE_URL || "#",
+        //   follow: true,
+        // },
       ],
     },
     // {

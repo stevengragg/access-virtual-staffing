@@ -19,25 +19,22 @@ import StatsSection from "@/components/section/stats-section";
 // import { Testimonials } from "@/components/section/testimonials";
 
 export const metadata: Metadata = {
-  title:
-    "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
+  title: "Standard plan: High-touch Services | Access Virtual Staffing",
   description:
-    "Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system.",
+    "Experience high-touch support with our Standard Plan. We go beyond recruitment to provide personalized onboarding, regular performance check-ins, and dedicated account management. This ensures your VA integrates seamlessly, stays aligned with your goals, and delivers maximum impact for your business.",
   openGraph: {
-    title:
-      "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
+    title: "Standard plan: High-touch Services | Access Virtual Staffing",
     description:
-      "Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system.",
+      "Experience high-touch support with our Standard Plan. We go beyond recruitment to provide personalized onboarding, regular performance check-ins, and dedicated account management. This ensures your VA integrates seamlessly, stays aligned with your goals, and delivers maximum impact for your business.",
     type: "website",
     url: "https://www.accessvirtualstaffing.com/services/standard-plan",
     images: "/opengraph-image.jpg", // Use the specified image URL
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Standard Plan: Advanced Recruiting Solutions | Access Virtual Staffing",
+    title: "Standard plan: High-touch Services | Access Virtual Staffing",
     description:
-      "Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system.",
+      "Experience high-touch support with our Standard Plan. We go beyond recruitment to provide personalized onboarding, regular performance check-ins, and dedicated account management. This ensures your VA integrates seamlessly, stays aligned with your goals, and delivers maximum impact for your business.",
     images: "/twitter-image.jpg", // Use the specified image URL
   },
 };
@@ -50,8 +47,8 @@ export default function StandardPlan({}: Props) {
       {/* Header Section */}
       <HeroHeaderWBgImg2
         tagline="Services"
-        heading="Standard Plan: "
-        highlight="Advanced Recruiting Solutions"
+        heading="Standard plan: "
+        highlight="High-touch Services"
         description=""
         buttons={[
           {
@@ -84,7 +81,7 @@ export default function StandardPlan({}: Props) {
       {/* Services A Section */}
       <ServicesLeft
         heading="Overview"
-        description="Scale your business effortlessly with our Standard Plan—an all-in-one recruitment, timekeeping, and payroll administration solution. We handle everything from hiring to salary and benefits management, allowing you to focus on business growth. This plan is perfect for companies that need a structured and efficient workforce management system."
+        description="Experience high-touch support with our Standard Plan. We go beyond recruitment to provide personalized onboarding, regular performance check-ins, and dedicated account management. This ensures your VA integrates seamlessly, stays aligned with your goals, and delivers maximum impact for your business."
         button={{
           navLink: {
             title: "Start Hiring your VA today",
@@ -224,7 +221,7 @@ export default function StandardPlan({}: Props) {
           {
             heading: "Standard Plan",
             description:
-              "Scale with ease using our Standard Plan—complete recruitment, timekeeping, and payroll management in one. Ideal for businesses needing a structured, all-in-one workforce solution.",
+              "Experience high-touch support with our Standard Plan. We go beyond recruitment to provide personalized onboarding, regular performance check-ins, and dedicated account management. This ensures your VA integrates seamlessly, stays aligned with your goals, and delivers maximum impact for your business.",
 
             link: "/services/standard-plan",
             features: [

@@ -10,6 +10,7 @@ import Link from "next/link";
 import LinkButton, { LinkButtonProps } from "../ui/link-button";
 import { usePathname } from "next/navigation";
 import { ImageProps } from "@/types/general";
+import { MEDIA_QUERIES } from "@/lib/breakpoints";
 
 type NavLink = {
   url: string;
@@ -34,7 +35,7 @@ export const Navbar = (props: Navbar1Props) => {
   } as Props;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 991px)");
+  const isMobile = useMediaQuery(MEDIA_QUERIES.mobile);
   const url = usePathname();
 
   return (

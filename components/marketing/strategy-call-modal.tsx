@@ -28,10 +28,14 @@ export const StrategyCallModal = () => {
     setIsBannerVisible(false);
   };
 
+  const handleBookCall = () => {
+    handleCloseBanner(); // Close modal and set cookie
+  };
+
   if (isLoading) return null;
   if (!isBannerVisible) return null;
   return (
-    <Dialog defaultOpen={isBannerVisible}>
+    <Dialog open={isBannerVisible} onOpenChange={setIsBannerVisible}>
       <NoCloseDialogContent
         onCloseAutoFocus={(e) => {
           e.preventDefault();
@@ -69,15 +73,17 @@ export const StrategyCallModal = () => {
               Book a free strategy call to discover how we can help you scale
               your business with Virtual Staffing solutions.
             </p>
-            <LinkButton
-              navLink={{
-                title: "Book Your Free Strategy Call",
-                url: "/book-a-meeting#calendly",
-                follow: false,
-              }}
-              variant="primary"
-              size="lg"
-            />
+            <div onClick={handleBookCall}>
+              <LinkButton
+                navLink={{
+                  title: "Book Your Free Strategy Call",
+                  url: "/book-a-meeting",
+                  follow: false,
+                }}
+                variant="primary"
+                size="lg"
+              />
+            </div>
           </div>
         </div>
       </NoCloseDialogContent>

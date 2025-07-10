@@ -12,6 +12,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Search, Phone } from "lucide-react";
+import { MEDIA_QUERIES } from "@/lib/breakpoints";
+import { is } from "drizzle-orm";
 
 type NavLink = {
   url: string;
@@ -37,7 +39,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
   const url = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 991px)");
+  const isMobile = useMediaQuery(MEDIA_QUERIES.mobile);
 
   // Handle scroll detection for sticky behavior on desktop only
   useEffect(() => {
@@ -65,12 +67,21 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           {logo && (
             <a href={logo.url} className=" ">
-              <Image
-                src={isMobile ? "/avs_logo_5.png" : logo.src}
-                alt={logo.alt || "AVS Logo"}
-                width={isMobile ? 60 : logo.width}
-                height={isMobile ? 60 : logo.height}
-              />
+              {isMobile ? (
+                <Image
+                  src={"/avs_logo_5.png"}
+                  alt={logo.alt || "AVS Logo"}
+                  width={60}
+                  height={60}
+                />
+              ) : (
+                <Image
+                  src={logo.src}
+                  alt={logo.alt || "AVS Logo"}
+                  width={logo.width}
+                  height={logo.height}
+                />
+              )}
             </a>
           )}
           <div className="flex items-center gap-2 lg:hidden">
@@ -294,38 +305,10 @@ const SiteNavigation2Defaults: SiteNavigation2Props = {
         },
         { title: "FAQs", url: "/faq" },
         { title: "Contact Us", url: "/contact-us" },
-        {
-          title: "Fiverr with AVS",
-          url: "https://go.fiverr.com/visit/?bta=1040143&brand=fp",
-          follow: true,
-        },
       ],
     },
-    // {
-    //   title: "For Talents",
-    //   url: "https://www.accessvirtualjobs.com",
-    //   follow: true,
-    // },
   ],
   buttons: [
-    // {
-    //   navLink: {
-    //     title: "Login",
-    //     url: "/auth",
-    //     follow: false,
-    //   },
-    //   variant: "link2",
-    //   size: "default",
-    // },
-    // {
-    //   navLink: {
-    //     title: "Find Work",
-    //     url: "/talent",
-    //     follow: false,
-    //   },
-    //   variant: "outline",
-    //   size: "default",
-    // },
     {
       navLink: {
         title: "Book a Call",

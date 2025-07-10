@@ -1,7 +1,6 @@
 import { ArrowRight, CheckCheck, ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 
-import { HeroHeaderNormal } from "@/components/section/hero-header-normal";
 import { ServicesLeft } from "@/components/section/services-left";
 import { HeroHeaderWBgImg2 } from "@/components/section/hero-header-short-w-bg-img-2";
 import { WhatWeOffer } from "@/components/section/what-we-offer";
@@ -14,12 +13,12 @@ import { BlogContainer } from "@/components/section/blog-container";
 
 export const metadata: Metadata = {
   title:
-    "Specialized Services: Training and Development | Access Virtual Staffing",
+    "Specialized Services: Custom bespoke solutions | Access Virtual Staffing",
   description:
     "Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth.",
   openGraph: {
     title:
-      "Specialized Services: Training and Development | Access Virtual Staffing",
+      "Specialized Services: Custom bespoke solutions | Access Virtual Staffing",
     description:
       "Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth.",
     type: "website",
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Specialized Services: Training and Development | Access Virtual Staffing",
+      "Specialized Services: Custom bespoke solutions | Access Virtual Staffing",
     description:
       "Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth.",
     images: "/twitter-image.jpg", // Use the specified image URL
@@ -45,7 +44,7 @@ export default function SpecializedServices({}: Props) {
       <HeroHeaderWBgImg2
         tagline="Services"
         heading="Specialized Services: "
-        highlight="Training and Development"
+        highlight="Custom bespoke solutions"
         description=""
         buttons={[
           {
@@ -78,7 +77,7 @@ export default function SpecializedServices({}: Props) {
       {/* Services A Section */}
       <ServicesLeft
         heading="Overview"
-        description="Go beyond recruitment with our Specialized Services, designed to enhance your team’s capabilities through targeted training programs. We focus on Complete Staff Work, Basic Management Training, and Advanced Leadership Training, covering essential skills like job description writing, goal setting, SWOT analysis, KPI tracking, and process improvement. Our programs help your virtual staff excel, ensuring they contribute to your company’s efficiency and growth."
+        description="When your business demands niche expertise, our Specialized Solutions deliver. We match you with virtual assistants who bring specific industry knowledge or advanced skill sets—whether legal support, marketing specialists, technical expertise, or more—tailored precisely to meet your unique business needs and drive results."
         button={{
           navLink: {
             title: "Start Hiring your VA today",

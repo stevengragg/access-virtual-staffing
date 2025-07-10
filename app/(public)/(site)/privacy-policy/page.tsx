@@ -41,7 +41,7 @@ const content = (
       If you have any questions regarding this Privacy Policy, please contact us
       at <strong>support@accessvirtualstaffing.com</strong> or via mail at{" "}
       <strong>
-        105 S. Narcissus Ave. Suite 512, West Palm Beach, FL 33401
+        2655 North Ocean Drive, suite 405, Singer Island, FL 33404
       </strong>
       .
     </p>
@@ -200,8 +200,8 @@ const content = (
         <strong>Email:</strong> support@accessvirtualstaffing.com
       </li>
       <li>
-        <strong>Address:</strong> 105 S. Narcissus Ave. Suite 512, West Palm
-        Beach, FL 33401
+        <strong>Address:</strong> 2655 North Ocean Drive, suite 405 Singer
+        Island, FL 33404
       </li>
     </ul>
     <p>Thank you for trusting Access Virtual Staffing!</p>

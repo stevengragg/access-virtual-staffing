@@ -13,22 +13,25 @@ import { BlogContainer } from "@/components/section/blog-container";
 import { FaqFooter } from "@/components/section/faq-footer";
 
 export const metadata: Metadata = {
-  title: "Basic Plan: Recruiting and Payroll | Access Virtual Staffing",
+  title:
+    "Basic Plan: Find your ideal virtual assistant | Access Virtual Staffing",
   description:
-    "Our Basic Plan is designed for businesses needing project-based staff without the hassle of full-time employee management. We handle recruitment and payroll, ensuring you get the right talent for short-term or flexible projects. No timekeeping or benefits administration—just streamlined hiring and payroll processing so you can focus on your business.",
+    "Our Basic Plan is designed for businesses seeking dedicated virtual assistants without the complexity of hiring full-time employees directly. We handle sourcing, recruitment, and payroll, connecting you with skilled VAs who fit your business needs and culture. You enjoy the flexibility of building your team without the burden of benefits administration or HR compliance, so you can focus on growing your business while we manage the details.",
   openGraph: {
-    title: "Basic Plan: Recruiting and Payroll | Access Virtual Staffing",
+    title:
+      "Basic Plan: Find your ideal virtual assistant | Access Virtual Staffing",
     description:
-      "Our Basic Plan is designed for businesses needing project-based staff without the hassle of full-time employee management. We handle recruitment and payroll, ensuring you get the right talent for short-term or flexible projects. No timekeeping or benefits administration—just streamlined hiring and payroll processing so you can focus on your business.",
+      "Our Basic Plan is designed for businesses seeking dedicated virtual assistants without the complexity of hiring full-time employees directly. We handle sourcing, recruitment, and payroll, connecting you with skilled VAs who fit your business needs and culture. You enjoy the flexibility of building your team without the burden of benefits administration or HR compliance, so you can focus on growing your business while we manage the details.",
     type: "website",
     url: "https://www.accessvirtualstaffing.com/services/basic-plan",
     images: "/opengraph-image.jpg", // Use the specified image URL
   },
   twitter: {
     card: "summary_large_image",
-    title: "Basic Plan: Recruiting and Payroll | Access Virtual Staffing",
+    title:
+      "Basic Plan: Find your ideal virtual assistant | Access Virtual Staffing",
     description:
-      "Our Basic Plan is designed for businesses needing project-based staff without the hassle of full-time employee management. We handle recruitment and payroll, ensuring you get the right talent for short-term or flexible projects. No timekeeping or benefits administration—just streamlined hiring and payroll processing so you can focus on your business.",
+      "Our Basic Plan is designed for businesses seeking dedicated virtual assistants without the complexity of hiring full-time employees directly. We handle sourcing, recruitment, and payroll, connecting you with skilled VAs who fit your business needs and culture. You enjoy the flexibility of building your team without the burden of benefits administration or HR compliance, so you can focus on growing your business while we manage the details.",
     images: "/twitter-image.jpg", // Use the specified image URL
   },
 };
@@ -40,7 +43,7 @@ export default function BasicPlan() {
       <HeroHeaderWBgImg2
         tagline="Services"
         heading="Basic Plan: "
-        highlight="Recruiting and Payroll"
+        highlight="Find your ideal virtual assistant"
         description=""
         buttons={[
           {
@@ -74,7 +77,7 @@ export default function BasicPlan() {
       {/* Services A Section */}
       <ServicesLeft
         heading="Overview"
-        description="Our Basic Plan is designed for businesses needing project-based staff without the hassle of full-time employee management. We handle recruitment and payroll, ensuring you get the right talent for short-term or flexible projects. No timekeeping or benefits administration—just streamlined hiring and payroll processing so you can focus on your business."
+        description="Our Basic Plan is designed for businesses seeking dedicated virtual assistants without the complexity of hiring full-time employees directly. We handle sourcing, recruitment, and payroll, connecting you with skilled VAs who fit your business needs and culture. You enjoy the flexibility of building your team without the burden of benefits administration or HR compliance, so you can focus on growing your business while we manage the details."
         button={{
           navLink: {
             title: "Start Hiring your VA today",
@@ -248,7 +251,7 @@ export default function BasicPlan() {
           {
             heading: "Basic Plan",
             description:
-              "Our Basic Plan offers project-based staffing without the burden of managing full-time employees. We handle recruitment and payroll, so you get the right talent—fast and hassle-free.",
+              "Our Basic Plan is designed for businesses seeking dedicated virtual assistants without the complexity of hiring full-time employees directly. We handle sourcing, recruitment, and payroll, connecting you with skilled VAs who fit your business needs and culture.",
 
             link: "/services/basic-plan",
             features: [

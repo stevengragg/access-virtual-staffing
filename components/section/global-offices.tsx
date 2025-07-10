@@ -112,13 +112,13 @@ export const GlobalOfficesDefaults: Props = {
       content: {
         map: {
           embedUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3563.983277772455!2d-80.05081229999999!3d26.712981199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d6899f919fb9%3A0x6480ed02e7a85d25!2s105%20S%20Narcissus%20Ave%20%23%20512%2C%20West%20Palm%20Beach%2C%20FL%2033401%2C%20USA!5e0!3m2!1sen!2sph!4v1751877260486!5m2!1sen!2sph",
-          title: "West Palm Beach Office Location",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.7454403751835!2d-80.0356686!3d26.784383199999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d4f23961995f%3A0x104db26232477af0!2s2655%20N%20Ocean%20Dr%20%23405%2C%20Singer%20Island%2C%20FL%2033404%2C%20USA!5e0!3m2!1sen!2sph!4v1752091758669!5m2!1sen!2sph",
+          title: "Singer Island Office Location",
         },
-        title: "West Palm Beach, Florida",
+        title: "Singer Island, Florida",
         address: {
-          line1: "105 S. Narcissus Ave. Suite 512 ",
-          line2: "West Palm Beach, FL 33401",
+          line1: "2655 North Ocean Drive, suite 405",
+          line2: "Singer Island, FL 33404",
         },
       },
     },
