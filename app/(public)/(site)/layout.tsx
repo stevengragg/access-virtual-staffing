@@ -87,6 +87,12 @@ export default function PublicRootLayout({
         name: "Specialized Services",
         item: "https://www.accessvirtualstaffing.com/services/specialized-services",
       },
+      {
+        "@type": "ListItem",
+        position: 9,
+        name: "The AVS Blog",
+        item: "https://www.accessvirtualstaffing.com/posts",
+      },
     ],
   };
 

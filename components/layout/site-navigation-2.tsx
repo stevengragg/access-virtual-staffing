@@ -66,22 +66,14 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           {logo && (
-            <a href={logo.url} className=" ">
-              {isMobile ? (
-                <Image
-                  src={"/avs_logo_5.png"}
-                  alt={logo.alt || "AVS Logo"}
-                  width={60}
-                  height={60}
-                />
-              ) : (
-                <Image
-                  src={logo.src}
-                  alt={logo.alt || "AVS Logo"}
-                  width={logo.width}
-                  height={logo.height}
-                />
-              )}
+            <a href={logo.url} className="flex items-center">
+              <Image
+                src={logo.src}
+                alt={logo.alt || "AVS Logo"}
+                width={logo.width}
+                height={logo.height}
+                priority
+              />
             </a>
           )}
           <div className="flex items-center gap-2 lg:hidden">
@@ -274,10 +266,10 @@ const SubMenu = ({
 const SiteNavigation2Defaults: SiteNavigation2Props = {
   logo: {
     url: "/",
-    src: "/avs_logo_2025.png",
-    alt: "Access Virtual Staffing Logo 2",
-    width: 250,
-    height: 250,
+    src: "/avs_logo_4.png",
+    alt: "Access Virtual Staffing Logo",
+    width: 200,
+    height: 200,
   },
   navLinks: [
     { title: "Home", url: "/" },

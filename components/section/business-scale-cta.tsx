@@ -56,7 +56,7 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
         </div>
 
         {/* Right Pane - Calendly Form */}
-        <div className="md:w-1/2">
+        <div className="w-full mx-auto md:w-1/2 mt-8 md:mt-0">
           <CalendlyForm />
         </div>
       </div>
