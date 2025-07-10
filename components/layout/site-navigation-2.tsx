@@ -68,14 +68,10 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
           {logo && (
             <a href={logo.url} className="flex items-center">
               <Image
-                src={isMobile ? "/avs_logo_5.png" : logo.src}
+                src={logo.src}
                 alt={logo.alt || "AVS Logo"}
-                width={isMobile ? 50 : 200}
-                height={isMobile ? 50 : 200}
-                className={cn(
-                  "object-contain transition-all duration-300",
-                  isMobile ? "w-12 h-12" : "w-auto h-16 max-w-[200px]"
-                )}
+                width={logo.width}
+                height={logo.height}
                 priority
               />
             </a>
@@ -270,7 +266,7 @@ const SubMenu = ({
 const SiteNavigation2Defaults: SiteNavigation2Props = {
   logo: {
     url: "/",
-    src: "/avs_logo_2025.png",
+    src: "/avs_logo_4.png",
     alt: "Access Virtual Staffing Logo",
     width: 200,
     height: 200,
