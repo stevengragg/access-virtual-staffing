@@ -82,15 +82,5 @@ export const Contact24Defaults: Contact24Props = {
         url: "mailto:support@accessvirtualstaffing.com",
       },
     },
-    // {
-    //   icon: <BiMap className="size-12 text-white" />,
-    //   title: "Office",
-    //   description:
-    //     "Visit our office during business hours for in-person assistance.",
-    //   link: {
-    //     label: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
-    //     url: "105 S. Narcissus Ave. Suite 512 West Palm Beach, FL 33401",
-    //   },
-    // },
   ],
 };

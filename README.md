@@ -77,13 +77,6 @@ npm run lint
 
 - **app/**: Contains the main application files, including pages and global styles.
 - **components/**: Reusable UI components.
-- **context/**: Context providers for state management.
-- **database/**: Database configuration and migrations.
-- **hooks/**: Custom React hooks.
-- **lib/**: Utility functions and libraries.
-- **public/**: Static assets like images and icons.
-- **services/**: API service functions.
-- **types/**: TypeScript type definitions.
 
 ## Technologies Used
 
@@ -91,8 +84,7 @@ npm run lint
 - **React**: For building UI components.
 - **TypeScript**: For type safety.
 - **Tailwind CSS**: For styling.
-- **Radix UI**: For UI components.
-- **Framer Motion**: For animations.
+- **Relume**: For UI components.
 - **ESLint**: For linting.
 - **Vercel**: For deployment.
 - **RESEND**: For email API.
@@ -103,13 +95,13 @@ We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the AVS team's license. See the [LICENSE](LICENSE) file for details.
 
 ## AVS Team
 
 **Access Virtual Staffing**  
-105 S. Narcissus Ave. Suite 512  
-West Palm Beach, FL 33401  
+2655 North Ocean Drive, suite 405
+Singer Island, FL 33404
 Email: support@accessvirtualstaffing.com
 
 ## Iona Innovation Labs Team
