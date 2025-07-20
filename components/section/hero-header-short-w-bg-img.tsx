@@ -16,8 +16,8 @@ export type HeroHeaderWBgImgProps = React.ComponentPropsWithoutRef<"section"> &
 export const HeroHeaderWBgImg = (props: HeroHeaderWBgImgProps) => {
   const { heading, description, buttons, tagline, image } = props;
   return (
-    <section id="hero" className="relative px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container relative z-10">
+    <section id="hero" className="relative px-[5%] py-16 md:py-24 lg:py-28   ">
+      <div className="container relative z-10 ">
         <div className="w-full max-w-2xl">
           <p
             className="mb-3 font-semibold text-white md:mb-4"
@@ -60,7 +60,7 @@ export const HeroHeaderWBgImg = (props: HeroHeaderWBgImgProps) => {
           </div>
         </div>
       </div>
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 ">
         <Image
           src={image.src}
           className="size-full object-cover"
@@ -68,7 +68,7 @@ export const HeroHeaderWBgImg = (props: HeroHeaderWBgImgProps) => {
           width={image.width}
           height={image.height}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 backdrop-blur-sm bg-black/50 " />
       </div>
     </section>
   );

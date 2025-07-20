@@ -19,11 +19,11 @@ export const CtaQuickCall = (props: CtaQuickCallProps) => {
   return (
     <section
       id="cta-quick-call"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-primaryBlue "
     >
       <div className="container mx-auto text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl text-white">
+        <div className="max-w-4xl mx-auto mt-12">
+          <h2 className="mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl text-white ">
             {heading}
           </h2>
           <p className="text-white text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">

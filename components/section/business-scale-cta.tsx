@@ -16,14 +16,14 @@ export const BusinessScalingCTA = (props: Partial<BusinessScalingCTAProps>) => {
 
   return (
     <section
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-zinc-100"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-zinc-100 "
       id="calendly"
     >
       <div className="container mx-auto flex flex-col md:flex-row items-start justify-center gap-x-6 md:gap-x-10 ">
         {/* Left Pane */}
         <div className="md:w-1/2 text-center md:text-left max-w-[512px]">
           {/* Heading & Subheading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight mt-2 lg:mt-24">
             {heading}
           </h2>
           <p className="text-lg font-semibold text-deepBlue mt-2">
