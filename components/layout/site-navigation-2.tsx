@@ -60,7 +60,7 @@ export const SiteNavigation2 = (props: SiteNavigation2Props) => {
       className={cn(
         "z-40 flex w-full items-center lg:min-h-18 lg:px-[5%] lg:h-30 bg-white transition-all duration-300 ",
         !isMobile && "fixed top-0 left-0 right-0",
-        !isMobile && isScrolled && "shadow-lg backdrop-blur-lg bg-white/90"
+        !isMobile && isScrolled && "shadow-lg"
       )}
     >
       <div className="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">

@@ -97,18 +97,7 @@ export const Faq1Defaults: Faq1Props = {
       answer:
         "To request a Virtual Staff, simply schedule a free strategy call (www.accessvirtualstaffing.com/book-a-meeting) and we can discuss the necessary details about your staffing needs. Once you book a call with us we will ensure that we fully understand your requirements and are aligned on the expectations before moving forward.",
     },
-    {
-      title: "What happens after I submit the webform?",
-      answer:
-        "After you submit the webform, we initiate our perfected intake process called PPE: Prepare, Plan, Execute.",
-      pointers: [
-        "Prepare: We start by contacting you—either through a call or an in-person visit—to ensure you're fully prepared to onboard a virtual staff member. We want to confirm that you have everything in place to make the hiring process a success.",
-        "Plan: Together, we’ll develop a detailed plan outlining the tasks you’ll delegate to the virtual worker and how you’ll manage them. This step is crucial in setting up both the worker and your team for success.",
-        "Execute: While we handle backend administrative tasks such as timekeeping, managing performance issues, and processing payroll, it's essential that you take an active role in preparing and guiding your virtual worker. On their first day, be sure to warmly welcome them and clearly communicate your rules, regulations, work hours, and expectations. Outline their deliverables and provide any necessary training. Remember, while they may be working virtually, they are real people, eager to contribute and shape their future through this opportunity.",
-      ],
-      footer:
-        "Our goal is to ensure a smooth and successful integration of the virtual staff into your operations.",
-    },
+
     {
       title: "What services do you offer?",
       answer:

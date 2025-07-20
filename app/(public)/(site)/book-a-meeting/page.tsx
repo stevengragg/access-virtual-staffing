@@ -1,7 +1,6 @@
 import { ChevronRight } from "lucide-react";
 
 import { BusinessScalingCTA } from "@/components/section/business-scale-cta";
-import { CtaQuickCall } from "@/components/section/cta-quick-call";
 import { FaqFooter } from "@/components/section/faq-footer";
 import { HeroHeaderQuote } from "@/components/section/hero-header-quote";
 import HowItWorks3 from "@/components/section/how-it-works-3";
@@ -13,9 +12,6 @@ export default function BookAMeeting() {
     <main className="w-full mx-auto bg-neutralLightZinc overflow-hidden">
       {/* Header Section */}
       <HeroHeaderQuote />
-
-      {/* CTA Section */}
-      <CtaQuickCall />
 
       {/* Calendly Form Section */}
       <BusinessScalingCTA
