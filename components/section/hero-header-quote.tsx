@@ -109,7 +109,7 @@ export const HeroHeaderQuoteDefaults: Props = {
     "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic deligation.",
 
   image: {
-    src: "/img/phil-new.webp",
+    src: "/img/phil-image-official-1.jpeg",
     alt: "Working Remotely",
     width: 1000,
     height: 1000,
