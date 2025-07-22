@@ -144,7 +144,7 @@ export const HeroQuoteDefaults: Props = {
   name: "Phil Wardell",
   position: "Founder & CEO, Access Virtual Staffing",
   avatar: {
-    src: "/img/phil-new.webp",
+    src: "/img/phil-image-official-1.jpeg",
     alt: "Phil Wardell Avatar",
     width: 100,
     height: 100,

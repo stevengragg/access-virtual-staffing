@@ -63,7 +63,7 @@ export default function AboutUs() {
         description2="
 Phil's innovative model offers more than just a staffing solution; it provides a strategic advantage that empowers businesses to scale efficiently, adapt quickly, and outperform competitors. Access Virtual Staffing stands apart by offering more than just personnel—we deliver a partnership that fuels growth, innovation, and long-term success."
         image={{
-          src: "/img/phil_wardell.webp",
+          src: "/img/phil-image-official-2.jpeg",
           alt: "Phil Image 1",
           width: 450,
           height: 500,
@@ -75,7 +75,7 @@ Phil's innovative model offers more than just a staffing solution; it provides a
         author="- Phil Wardell expresses with passion"
         description="Access Virtual Staffing was born out of a desire to extend this proven model to businesses worldwide, enabling them to achieve their goals with the support of highly skilled, dedicated professionals. Our mission is to bridge talent and business success, fostering long-lasting partnerships that drive growth and innovation."
         image={{
-          src: "/img/phil_wardell_w_wife.webp",
+          src: "/img/phil-image-official-3.jpeg",
           alt: "Phil Image 2",
           width: 450,
           height: 500,

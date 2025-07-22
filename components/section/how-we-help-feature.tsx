@@ -114,7 +114,7 @@ export const Header21Defaults: Header21Props = {
   ],
 
   image: {
-    src: "/img/phil_wardell_w_wife.webp",
+    src: "/img/phil-image-official-2.jpeg",
     alt: "Placeholder image",
     width: 450,
     height: 400,
