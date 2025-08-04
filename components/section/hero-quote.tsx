@@ -130,7 +130,7 @@ export const HeroQuoteDefaults: Props = {
   heading: "Elevating Leaders Through",
   highlight: "Strategic Support",
   quote1:
-    "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic deligation.",
+    "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic delegation.",
   quote2:
     "After witnessing countless talented executives, entrepreneurs, and pastors burning out from handling tasks that didn't leverage their unique gifts, we built a solution that provides not just assistance, but true strategic partnership.",
   quote3:
