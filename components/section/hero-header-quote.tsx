@@ -106,7 +106,7 @@ export const HeroHeaderQuoteDefaults: Props = {
   heading: '"If you are not leveraging virtual talent, you are missing out."',
   highlight: "Let us help you focus on what matters most.",
   quote1:
-    "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic deligation.",
+    "Access Virtual Staffing was founded with a singular mission: to help visionary leaders reclaim their time and maximize their impact through strategic delegation.",
 
   image: {
     src: "/img/phil-image-official-1.jpeg",
