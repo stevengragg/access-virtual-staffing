@@ -45,15 +45,15 @@ module.exports = {
     const priorities = {
       "/": 1.0,
       "/faq": 0.8,
-      "/about-us": 0.8,
+      "/about-us": 1.0,
       "/contact-us": 0.8,
-      "/book-a-meeting": 0.8,
+      "/book-a-meeting": 1.0,
       "/services/basic-plan": 0.7,
       "/services/standard-plan": 0.7,
       "/services/specialized-services": 0.7,
-      "/success-stories": 0.8,
+      "/success-stories": 1.0,
       "/search": 0.6,
-      "/posts": 0.6,
+      "/posts": 1.0,
     };
 
     const changeFrequencies = {
