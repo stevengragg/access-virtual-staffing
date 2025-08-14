@@ -12,7 +12,7 @@ import { Footer } from "@/components/layout/footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { CtaNewsLetter } from "@/components/section/cta-newsletter";
 import { SiteNavigation2 } from "@/components/layout/site-navigation-2";
-import LiveChatWidget from "@/components/livechat/live-chat-widget";
+import GoHighLevelChatWidget from "@/components/livechat/go-high-level-chat-widget";
 import { StrategyCallModal } from "@/components/marketing/strategy-call-modal";
 import { cn } from "@/lib/utils";
 import { CTAFooter } from "@/components/section/cta-footer";
@@ -106,7 +106,7 @@ export default function PublicRootLayout({
       <div className={cn(!isMobile && "pt-[120px]")}>{children}</div>
       <StrategyCallModal />
       <ScrollToTop />
-      <LiveChatWidget />
+      <GoHighLevelChatWidget />
       <CtaNewsLetter />
       <CTAFooter
         heading="Stop Doing Everything."

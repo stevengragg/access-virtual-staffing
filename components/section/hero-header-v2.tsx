@@ -188,5 +188,29 @@ export const HeroHeaderV2Defaults: Props = {
       width: 1000,
       height: 1000,
     },
+    {
+      src: "/img/carousel_img7.webp",
+      alt: " placeholder image 7",
+      width: 1000,
+      height: 1000,
+    },
+    {
+      src: "/img/carousel_img8.webp",
+      alt: " placeholder image 8",
+      width: 1000,
+      height: 1000,
+    },
+    {
+      src: "/img/carousel_img9.webp",
+      alt: " placeholder image 9",
+      width: 1000,
+      height: 1000,
+    },
+    {
+      src: "/img/carousel_img10.webp",
+      alt: " placeholder image 10",
+      width: 1000,
+      height: 1000,
+    },
   ],
 };
