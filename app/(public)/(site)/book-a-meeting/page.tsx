@@ -16,7 +16,7 @@ export default function BookAMeeting() {
       {/* Calendly Form Section */}
       <BusinessScalingCTA
         heading="AVS Free Strategy Session"
-        subheading="Thank you for your interest in AVS! This 15-minute strategy session is designed to help you find the best virtual staffing solutions for your business. During this call, we’ll discuss your goals, challenges, and how AVS can help you scale efficiently with expert virtual support."
+        subheading="Thank you for your interest in AVS! This 30-minute strategy session is designed to help you find the best virtual staffing solutions for your business. During this call, we’ll discuss your goals, challenges, and how AVS can help you scale efficiently with expert virtual support."
         agenda={[
           {
             title: "Discover how AVS can streamline your operations",
