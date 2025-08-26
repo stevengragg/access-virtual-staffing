@@ -49,14 +49,14 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
         <div className="w-full lg:w-1/2 bg-white  rounded-lg shadow-md">
           <div className="w-full">
             <iframe
-              src="https://api.leadconnectorhq.com/widget/form/8gVnPAReDHlS2MiZkugo"
+              src="https://api.leadconnectorhq.com/widget/form/bNF21fhnYg3oRPRdFsaI"
               style={{
                 width: "100%",
-                height: "432px",
+                height: "100%",
                 border: "none",
-                borderRadius: "3px",
+                borderRadius: "10px",
               }}
-              id="inline-8gVnPAReDHlS2MiZkugo"
+              id="inline-bNF21fhnYg3oRPRdFsaI"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
               data-trigger-value=""
@@ -65,9 +65,9 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="AVS Newsletter Form"
-              data-height="432"
-              data-layout-iframe-id="inline-8gVnPAReDHlS2MiZkugo"
-              data-form-id="8gVnPAReDHlS2MiZkugo"
+              data-height="464"
+              data-layout-iframe-id="inline-bNF21fhnYg3oRPRdFsaI"
+              data-form-id="bNF21fhnYg3oRPRdFsaI"
               title="AVS Newsletter Form"
             />
           </div>

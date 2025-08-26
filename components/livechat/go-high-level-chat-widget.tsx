@@ -23,7 +23,11 @@ const GoHighLevelChatWidget = () => {
         "data-resources-url",
         "https://widgets.leadconnectorhq.com/chat-widget/loader.js"
       );
-      script.setAttribute("data-widget-id", "689df787173a7f44d90c6447");
+      script.setAttribute(
+        "data-widget-id",
+        process.env.NEXT_PUBLIC_CHAT_WIDGET_ID?.toString() ??
+          "68ad88adb832ccd2fe07afb2"
+      );
       script.async = true;
 
       // Append script to head
