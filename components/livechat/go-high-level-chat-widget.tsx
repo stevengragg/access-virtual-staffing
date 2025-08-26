@@ -26,7 +26,7 @@ const GoHighLevelChatWidget = () => {
       script.setAttribute(
         "data-widget-id",
         process.env.NEXT_PUBLIC_CHAT_WIDGET_ID?.toString() ??
-          "68ad88adb832ccd2fe07afb2"
+          "68add4ac53f21c55161cafb1"
       );
       script.async = true;
 
