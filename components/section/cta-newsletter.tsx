@@ -54,7 +54,7 @@ export const CtaNewsLetter = (props: CtaNewsLetterProps) => {
                 width: "100%",
                 height: "100%",
                 border: "none",
-                borderRadius: "3px",
+                borderRadius: "10px",
               }}
               id="inline-Ikj8NJttZRGcTHXKV5u6"
               data-layout="{'id':'INLINE'}"
